@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36175335-89F2-42BF-9325-8EDA7B412C20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Blog</RootNamespace>
+    <AssemblyName>Blog</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="_ignore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_posts\2016-01-12-Welcome.md" />
+    <None Include="_posts\2016-01-13-Plainion-Repositories.md" />
+    <None Include="_posts\2016-01-14-Recommended-Reading.md" />
+    <None Include="_posts\2016-01-14-Time.md" />
+    <None Include="_posts\2016-02-01-Self-Marketing.md" />
+    <None Include="_posts\2016-02-11-Agile-Is-Dead - Copy.md" />
+    <None Include="_posts\2016-02-11-Architecture-vs-Code.md" />
+    <None Include="_posts\2017-01-04-Continuous-Delivery.md" />
+    <None Include="_posts\2017-01-04-Fsharp-For-Fun-And-Profit - Copy.md" />
+    <None Include="_posts\2017-01-05-Instantly-Better-Presentations - Copy.md" />
+    <None Include="_posts\2017-01-06-Getting-More-Things-Done.md" />
+    <None Include="_posts\2017-01-06-F#-Deep-Dives.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\ContinuousDelivery.jpg" />
+    <Content Include="assets\FSharpDeepDives.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
