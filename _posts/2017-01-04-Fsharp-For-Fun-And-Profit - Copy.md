@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The best source to learn F#
+tags: [book]
 ---
 
 Some months back i started getting my hands dirty with F#. I started my journey with

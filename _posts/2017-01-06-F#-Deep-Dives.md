@@ -1,6 +1,7 @@
 ---
 layout: post
 title: F# Deep Dives
+tags: [book]
 ---
 
 I just finished reading

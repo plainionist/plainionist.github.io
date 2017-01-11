@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Continuous Delivery
+tags: [book]
 ---
 
 A week back i just finished reading
