@@ -15,7 +15,7 @@ Finally i bought the book and found time to read it:
 
 ![]({{ site.url }}/assets/CodeAsCrimeScene.jpg)
 
-[Your Code As a Crime Scene](https://www.amazon.de/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384/ref=sr_1_1?ie=UTF8&qid=1487253949&sr=8-1&keywords=code+as+crime+scene)
+[Your Code As a Crime Scene](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384/ref=sr_1_1?ie=UTF8&qid=1487424204&sr=8-1&keywords=Your+Code+As+a+Crime+Scene)
 
 
 And the only thing I can say is:

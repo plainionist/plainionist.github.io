@@ -28,12 +28,13 @@
     <None Include="_posts\2016-01-14-Recommended-Reading.md" />
     <None Include="_posts\2016-01-14-Time.md" />
     <None Include="_posts\2016-02-01-Self-Marketing.md" />
-    <None Include="_posts\2016-02-11-Agile-Is-Dead - Copy.md" />
+    <None Include="_posts\2016-02-11-Agile-Is-Dead.md" />
     <None Include="_posts\2016-02-11-Architecture-vs-Code.md" />
     <None Include="_posts\2017-01-04-Continuous-Delivery.md" />
-    <None Include="_posts\2017-01-04-Fsharp-For-Fun-And-Profit - Copy.md" />
-    <None Include="_posts\2017-01-05-Instantly-Better-Presentations - Copy.md" />
+    <None Include="_posts\2017-01-04-Fsharp-For-Fun-And-Profit.md" />
+    <None Include="_posts\2017-01-05-Instantly-Better-Presentations.md" />
     <None Include="_posts\2017-02-15-Reactive-Messaging-Patterns.md" />
+    <None Include="_posts\2017-02-19-Coaching-Habit.md" />
     <None Include="_posts\2017-02-18-Your-Code-As-A-Crime-Scene.md" />
     <None Include="_posts\2017-01-29-Microservices-UI.md" />
     <None Include="_posts\2017-01-11-Microservices-Architecture.md" />
@@ -41,8 +42,12 @@
     <None Include="_posts\2017-01-06-F#-Deep-Dives.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\CoachingHabit.jpg" />
+    <Content Include="assets\CodeAsCrimeScene.jpg" />
     <Content Include="assets\ContinuousDelivery.jpg" />
     <Content Include="assets\FSharpDeepDives.jpg" />
+    <Content Include="assets\MicroservicesArchitecture.jpg" />
+    <Content Include="assets\ReactiveMessagingPatterns.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
