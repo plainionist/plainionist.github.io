@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You Don't Know JS: Up and Going
+title: You Dont Know JS - Up and Going
 tags: [book]
 ---
 
@@ -12,5 +12,5 @@ Looking for a short introduction into JavaScript?
 
 Eventhough the first part of the book is extremely low-level the second part gives a nice intro into the JavaScript language.
 
-Obviously the author knows what he is talking about and probably i ll continue reading this series ...
+Obviously the author knows what he is talking about and probably I will continue reading this series ...
 
