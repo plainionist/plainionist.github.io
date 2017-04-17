@@ -34,6 +34,7 @@
     <None Include="_posts\2017-01-04-Fsharp-For-Fun-And-Profit.md" />
     <None Include="_posts\2017-01-05-Instantly-Better-Presentations.md" />
     <None Include="_posts\2017-02-15-Reactive-Messaging-Patterns.md" />
+    <None Include="_posts\2017-04-17-Pro-Asp.Net-Mvc-5.md" />
     <None Include="_posts\2017-03-01-Teamwork-and-Indian-Culture.md" />
     <None Include="_posts\2017-02-23-JDKJS-Up-And-Going.md" />
     <None Include="_posts\2017-02-19-Coaching-Habit.md" />
@@ -49,6 +50,7 @@
     <Content Include="assets\ContinuousDelivery.jpg" />
     <Content Include="assets\FSharpDeepDives.jpg" />
     <Content Include="assets\MicroservicesArchitecture.jpg" />
+    <Content Include="assets\pro.asp.net.mvc.5.jpg" />
     <Content Include="assets\ReactiveMessagingPatterns.jpg" />
     <Content Include="assets\TeamworkAndIndianCulture.jpg" />
     <Content Include="assets\YDKJS-UpAndGoing.jpg" />
