@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NET Microservices: Architecture for Containerized .NET Applications
+title: .NET Microservices - Architecture for Containerized .NET Applications
 tags: [book]
 ---
 
