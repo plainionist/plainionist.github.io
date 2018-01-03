@@ -35,6 +35,7 @@
     <None Include="_posts\2017-01-05-Instantly-Better-Presentations.md" />
     <None Include="_posts\2017-02-15-Reactive-Messaging-Patterns.md" />
     <None Include="_posts\2017-04-17-Pro-Asp.Net-Mvc-5.md" />
+    <None Include="drafts\2018-01-02-Domain-Driven-Design.md" />
     <None Include="_posts\2017-12-18-Clean-Architecture.md" />
     <None Include="_posts\2017-12-16-VueCookbook.md" />
     <None Include="_posts\2017-11-01-SurviveJS.md" />
@@ -53,16 +54,20 @@
     <None Include="_posts\2017-01-06-F#-Deep-Dives.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\CleanArchitecture.jpg" />
     <Content Include="assets\CoachingHabit.jpg" />
     <Content Include="assets\CodeAsCrimeScene.jpg" />
     <Content Include="assets\ContinuousDelivery.jpg" />
+    <Content Include="assets\DomainDrivenDesign.jpg" />
     <Content Include="assets\FSharpDeepDives.jpg" />
     <Content Include="assets\html5-javascript-jquery.jpg" />
     <Content Include="assets\MicroservicesArchitecture.jpg" />
     <Content Include="assets\pro.asp.net.mvc.5.jpg" />
     <Content Include="assets\ReactiveMessagingPatterns.jpg" />
+    <Content Include="assets\surviveJS.jpg" />
     <Content Include="assets\TeamworkAndIndianCulture.jpg" />
     <Content Include="assets\unraveling-bootstrap.jpg" />
+    <Content Include="assets\VueCookbook.jpg" />
     <Content Include="assets\YDKJS-UpAndGoing.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
