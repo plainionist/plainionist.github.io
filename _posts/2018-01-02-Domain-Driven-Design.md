@@ -104,8 +104,8 @@ separated from the specialized implementations.
 ## Large scale structure
 
 While "distillation" helps to maintain focus it is also necessary to maintain a view which allows "seeing the trees for the forest".
-Large scale structures give an over all structure to the system to allows some understanding of each part’s place in the whole even 
-without detailed knowledge of the part’s responsibility. 
+Large scale structures give an over all structure to the system to allows some understanding of each partâ€™s place in the whole even 
+without detailed knowledge of the partâ€™s responsibility. 
 To avoid unnatural constraints on the domain model development the guiding principle here is: less is more.
 
 EVOLVING ORDER states that the conceptual large-scale structure should evolve with the appliation following a minimalistic approach.
