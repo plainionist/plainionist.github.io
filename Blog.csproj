@@ -23,6 +23,7 @@
     <Compile Include="_ignore.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="_config.yml" />
     <None Include="_posts\2016-01-12-Welcome.md" />
     <None Include="_posts\2016-01-13-Plainion-Repositories.md" />
     <None Include="_posts\2016-01-14-Recommended-Reading.md" />
@@ -69,6 +70,19 @@
     <Content Include="assets\unraveling-bootstrap.jpg" />
     <Content Include="assets\VueCookbook.jpg" />
     <Content Include="assets\YDKJS-UpAndGoing.jpg" />
+    <Content Include="images\404.jpg" />
+    <Content Include="index.html" />
+    <Content Include="public\css\lanyon.css" />
+    <Content Include="public\css\poole.css" />
+    <Content Include="public\css\syntax.css" />
+    <Content Include="_includes\analytics.html" />
+    <Content Include="_includes\disqus.html" />
+    <Content Include="_includes\head.html" />
+    <Content Include="_includes\sidebar.html" />
+    <Content Include="_includes\svg-icons.html" />
+    <Content Include="_layouts\default.html" />
+    <Content Include="_layouts\page.html" />
+    <Content Include="_layouts\post.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
