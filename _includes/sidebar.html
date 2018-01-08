@@ -6,8 +6,10 @@
     <div class="sidebar-item">
         <p>{{ site.description }}</p>
     </div>
+
     <nav class="sidebar-nav">
         <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+
         {% comment %}
         The code below dynamically generates a sidebar nav of pages with
         `layout: page` in the front-matter. See readme for usage.
@@ -23,6 +25,7 @@
         {% endfor %}
 
         <div class="sidebar-nav-item">
+            <label>Projects</label><br />
             <a href="http://plainionist.github.io/Plainion.GraphViz/" target="_blank"><img src="{{ site.baseurl }}/images/Plainion.GraphViz.png" /> Plainion.GraphViz</a><br />
             <a href="https://plainionist.github.io/Plainion.CI/" target="_blank"><img src="{{ site.baseurl }}/images/Plainion.CI.png" /> Plainion.CI</a><br />
             <a href="http://plainionist.github.io/Plainion.Flames/" target="_blank"><img src="{{ site.baseurl }}/images/Plainion.Flames.png" /> Plainion.Flames</a><br />
@@ -30,16 +33,10 @@
         </div>
 
         <div class="sidebar-nav-item">
-            <ul>
-                {% for post in site.posts %}
-                {% assign currentdate = post.date | date: "%B %Y" %}
-                {% if currentdate != date %}
-                <li id="y{{currentdate}}">{{ currentdate }}</li>
-                {% assign date = currentdate %}
-                {% endif %}
-                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-                {% endfor %}
-            </ul>
+            <label>Older posts</label><br />
+            {% for post in site.posts limit:10 %}
+            <a href="{{ post.url }}">{{ post.title }}</a><br />
+            {% endfor %}
         </div>
     </nav>
     <div class="sidebar-item">

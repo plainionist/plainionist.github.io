@@ -78,6 +78,7 @@
     <Content Include="_includes\analytics.html" />
     <Content Include="_includes\disqus.html" />
     <Content Include="_includes\head.html" />
+    <Content Include="archive.html" />
     <Content Include="_includes\sidebar.html" />
     <Content Include="_includes\svg-icons.html" />
     <Content Include="_layouts\default.html" />
