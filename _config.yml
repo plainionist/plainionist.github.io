@@ -3,7 +3,7 @@ title:               Plainionic Programmer
 tagline:             ''
 description:         'Quest 4 Simplicity'
 url:                 https://plainionist.github.io/
-baseurl:             ''
+baseurl:             'https://plainionist.github.io/'
 paginate:            5
 
 author:
