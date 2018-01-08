@@ -15,7 +15,7 @@ He clearly describes what architecture is about and what good architecture is, f
 
 Having read his [Clean Architecture article](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) already 3 times for me 
 there were no fundamental news in the book, but still gave me some more insights here and there.
-
+<!--more-->
 So if you haven't studied "The Clean Architecture" already in detail the book is a must read! 
 (what else? - it is by Uncle Bob! ;-) )
 

@@ -13,7 +13,7 @@ This book ...
 ![]({{ site.url }}/assets/unraveling-bootstrap.jpg)
 
 [Unraveling Bootstrap](https://www.amazon.com/Unraveling-Bootstrap-Over-Complete-Samples-ebook/dp/B00NA23F3E/ref=sr_1_8?ie=UTF8&qid=1495345475&sr=8-8&keywords=bootstrap)
-
+<!--more-->
 
 ... gives you a nice and easy overview about bootstrap, its features and the concepts behind it.
 

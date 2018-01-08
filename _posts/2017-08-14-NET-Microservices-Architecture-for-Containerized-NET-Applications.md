@@ -12,7 +12,7 @@ Overall I think it is a really good book about the topic!
 Of course it focuses on Microsoft technologies but that's okay as this is anyway my primary playground ;-)
 The ~300 pages gave me quite good and "deep enough" overview about the topics below and I really wonder whether I would
 need another book at all. And this one is for free!
-
+<!--more-->
 - Docker and containers
 - .Net Core vs .Net Framework
 - Domain Driven Design principles

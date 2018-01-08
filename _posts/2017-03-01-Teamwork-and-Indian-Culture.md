@@ -12,7 +12,7 @@ A quick search on Amazon discovered this small book:
 ![]({{ site.url }}/assets/TeamworkAndIndianCulture.jpg)
 
 [Teamwork & Indian Culture](https://www.amazon.com/Teamwork-Indian-Culture-Practical-Working/dp/1482566982/ref=sr_1_1?ie=UTF8&qid=1488718358&sr=8-1&keywords=teamwork+and+indian+culture)
-
+<!--more-->
 In a novel style the author describes several interesting aspects of the Indian culture which indeed helped me to understand things better.
 
 Definitively worth reading if your work with Indian colleagues!

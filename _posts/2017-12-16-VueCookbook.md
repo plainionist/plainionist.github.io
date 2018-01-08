@@ -15,7 +15,7 @@ to gain an even better foundation. I finally selected
 ![]({{ site.url }}/assets/VueCookbook.jpg)
 
 [Vue.js 2 Cookbook](https://www.amazon.com/Vue-js-2-Cookbook-Andrea-Passaglia/dp/1786468093/ref=sr_1_1?ie=UTF8&qid=1513430297&sr=8-1&keywords=vue+cookbook)
-
+<!--more-->
 Being a cookbook it is not much comfortable to read it from cover to cover - nevertheless I decided to do so to get a broad overview
 on Vue. 
 

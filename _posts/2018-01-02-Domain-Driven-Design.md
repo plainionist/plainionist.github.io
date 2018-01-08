@@ -16,7 +16,7 @@ is talking about but for me his language is more challenging to read as e.g. Unc
 but finally i made it ;-)
 
 Now lets focus on content!
-
+<!--more-->
 As Domain-Driven design (DDD) and so the book has quite some aspects to look at let me separate the whole into several parts.
 
 ## The essence of DDD

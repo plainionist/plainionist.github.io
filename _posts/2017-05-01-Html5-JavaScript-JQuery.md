@@ -10,7 +10,7 @@ And so I came across this book:
 ![]({{ site.url }}/assets/html5-javascript-jquery.jpg)
 
 [A Software Engineer Learns HTML5, JavaScript and jQuery](https://www.amazon.com/Software-Engineer-Learns-JavaScript-jQuery/dp/1493692615/ref=sr_1_4?ie=UTF8&qid=1493896240&sr=8-4&keywords=jquery)
-
+<!--more-->
 It presents the topics
 
 - Html5
