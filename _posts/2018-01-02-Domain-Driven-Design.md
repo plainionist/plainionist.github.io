@@ -2,6 +2,7 @@
 layout: post
 title: Domain-Driven Design
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 After having it on the reading list for a long time and having been reminded to read it by several other sources in the recent 

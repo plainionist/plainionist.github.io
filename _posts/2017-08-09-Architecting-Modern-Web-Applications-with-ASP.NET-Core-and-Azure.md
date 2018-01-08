@@ -2,6 +2,7 @@
 layout: post
 title: Architecting Modern Web Applications with ASP.NET Core and Azure
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 Recently I read in [The week in .Net](https://blogs.msdn.microsoft.com/dotnet/tag/week-in-net/) about some new e-books published by Microsoft 

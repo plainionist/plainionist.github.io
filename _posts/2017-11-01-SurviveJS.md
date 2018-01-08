@@ -2,6 +2,7 @@
 layout: post
 title: SurviveJS
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 After having spent the recent weeks and months getting deeper into web development and esp. into full stack micro services

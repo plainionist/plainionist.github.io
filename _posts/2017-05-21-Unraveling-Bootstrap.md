@@ -2,6 +2,7 @@
 layout: post
 title: Unraveling Bootstrap
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 Do your web sites also look ugly because you have no clue about web design?

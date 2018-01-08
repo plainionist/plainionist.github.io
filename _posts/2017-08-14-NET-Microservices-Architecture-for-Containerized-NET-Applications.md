@@ -2,6 +2,7 @@
 layout: post
 title: .NET Microservices - Architecture for Containerized .NET Applications
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 Since a while now I am interested in MicroServices architectures, their benefits and how to implement them.

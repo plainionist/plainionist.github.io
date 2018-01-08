@@ -2,6 +2,7 @@
 layout: post
 title: Vue.js 2 Cookbook
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 As my expedition in the world of web development (esp. cient side web development) continued and my javascript and HTML codebase grew,

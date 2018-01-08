@@ -2,6 +2,7 @@
 layout: post
 title: Clean Architecture
 tags: [book]
+excerpt_separator: <!--more-->
 ---
 
 ![]({{ site.url }}/assets/CleanArchitecture.jpg)
