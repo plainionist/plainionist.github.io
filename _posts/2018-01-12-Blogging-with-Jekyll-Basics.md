@@ -25,13 +25,17 @@ I think having excerpts of the most recent posts on the start page of the blog p
 So I changed the index.html from
 
 ```
-{{ {{ post.content }} }}
+{% raw %}
+{{ post.content }}
+{% endraw %}
 ```
 
 to
 
 ```
+{% raw %}
 {{ post.excerpt }}
+{% endraw %}
 ```
 
 ## Older posts
