@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Blogging with Jekyll - Introduction
-tags: [jekyll blogging]
+tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
 ---
