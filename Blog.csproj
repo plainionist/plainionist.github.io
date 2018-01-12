@@ -23,6 +23,9 @@
     <Compile Include="_ignore.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="tag\software-enginering.md" />
+    <None Include="tag\microservices.md" />
+    <None Include="tag\book.md" />
     <None Include="_config.yml" />
     <None Include="_posts\2016-01-12-Welcome.md" />
     <None Include="_posts\2016-01-13-Plainion-Repositories.md" />
@@ -80,9 +83,11 @@
     <Content Include="_includes\head.html" />
     <Content Include="archive.html" />
     <Content Include="_includes\sidebar.html" />
+    <Content Include="_includes\collecttags.html" />
     <Content Include="_includes\svg-icons.html" />
     <Content Include="_layouts\default.html" />
     <Content Include="_layouts\page.html" />
+    <Content Include="_layouts\tagpage.html" />
     <Content Include="_layouts\post.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Microservices & UI
-tags: [video]
+tags: [microservices]
 ---
 
 Here is a great video about microservices and UI:

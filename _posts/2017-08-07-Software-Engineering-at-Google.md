@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Big boys software engineering?
-tags: [article]
+tags: [software-enginering]
 ---
 
 I find it always very interesting to learn how other companies do software engineering - esp. the "big boys" :)
