@@ -9,7 +9,7 @@ layout: default
 </div>
 
 <div>
-    <h3>Related Posts</h3>
+    <b>Tags: </b>
     {% for tag in page.tags %}
     {% capture tag_name %}{{ tag }}{% endcapture %}
     <a href="/tag/{{ tag_name }}"><code class="highlight"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
