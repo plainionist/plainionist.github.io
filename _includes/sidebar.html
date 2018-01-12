@@ -10,7 +10,7 @@
     <nav class="sidebar-nav">
         <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
 
-        {% assign pages_list = site.pages | sort:"sidebar-order" %}
+        {% assign pages_list = site.pages | sort:"order" %}
         {% for node in pages_list %}
           {% if node.title != null %}
             {% if node.layout == "page" %}
