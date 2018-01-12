@@ -38,22 +38,6 @@ to
 {% endraw %}
 ```
 
-## Older posts
-
-I think a blog should provide an easy access to the 10 to 15 most recent posts. This gives any easy overview for the visitors
-what this blog is basically about. So I added the following to the sidebar:
-
-```
-{% raw %}
-<div class="sidebar-nav-item">
-    <label>Older posts</label><br />
-    {% for post in site.posts limit:10 %}
-    <a href="{{ post.url }}">{{ post.title }}</a><br />
-    {% endfor %}
-</div>
-{% endraw %}
-```
-
 ## Discussions
 
 And what is a blog without the option to leave comments?
