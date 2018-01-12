@@ -3,6 +3,7 @@ layout: post
 title: Blogging with Jekyll - Basics
 tags: [jekyll blogging]
 series: "Blogging with Jekyll"
+excerpt_separator: <!--more-->
 ---
 
 How did I set up the basics of my blog?
@@ -10,6 +11,7 @@ How did I set up the basics of my blog?
 Of course there are endless very good posts out there about Markdown + Jekyll + GitHub Pages and I am not going to repeat what others already have 
 nicely documented. So let me just summarize my setup and referring to others for more detailed explainations.
 
+<!--more-->
 
 ## Theme
 
@@ -22,13 +24,13 @@ I finally decided for [Lanyon](http://lanyon.getpoole.com/) which is pretty much
 I think having excerpts of the most recent posts on the start page of the blog provides a nice overview to the visitor.
 So I changed the index.html from
 
-``` ruby
-{{ post.content }}
+```
+{{ {{ post.content }} }}
 ```
 
 to
 
-``` ruby
+```
 {{ post.excerpt }}
 ```
 
@@ -37,7 +39,7 @@ to
 I think a blog should provide an easy access to the 10 to 15 most recent posts. This gives any easy overview for the visitors
 what this blog is basically about. So I added the following to the sidebar:
 
-``` html
+```
 <div class="sidebar-nav-item">
     <label>Older posts</label><br />
     {% for post in site.posts limit:10 %}
@@ -51,7 +53,7 @@ what this blog is basically about. So I added the following to the sidebar:
 And what is a blog without the option to leave comments?
 [Disqus](https://disqus.com/) seems to be the state of the art solution so I created an include
 
-``` html
+```
 {% if site.disqus %}
 <div class="comments">
 	<div id="disqus_thread"></div>
@@ -73,7 +75,7 @@ And what is a blog without the option to leave comments?
 
 And added it to the post layout
 
-``` ruby
+```
 {% include disqus.html %}
 ```
 

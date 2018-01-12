@@ -3,12 +3,13 @@ layout: post
 title: Blogging with Jekyll - Introduction
 tags: [jekyll blogging]
 series: "Blogging with Jekyll"
+excerpt_separator: <!--more-->
 ---
 
 How could one blog the pragmatic, the minimalistic, the "plainionistic" way?
 
 For me the answer is simple: Use the "power of plain text" and write posts in Markdown ;-)
-
+<!--more-->
 This allows me to focus on content and use my favorite IDE or text editor for writing ... which makes blogging quite similar to coding :)
 
 But of course you don't want to read blogs in plain text on the web, right? The best solution out there is 
