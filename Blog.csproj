@@ -63,7 +63,9 @@
     <None Include="_posts\2017-01-06-F#-Deep-Dives.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="impressum.html" />
     <Content Include="public\css\panel.css" />
+    <Content Include="robots.txt" />
     <Content Include="tags.html" />
     <Content Include="assets\CleanArchitecture.jpg" />
     <Content Include="assets\CoachingHabit.jpg" />
