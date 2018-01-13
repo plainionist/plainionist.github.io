@@ -41,6 +41,7 @@
     <None Include="_posts\2017-01-05-Instantly-Better-Presentations.md" />
     <None Include="_posts\2017-02-15-Reactive-Messaging-Patterns.md" />
     <None Include="_posts\2017-04-17-Pro-Asp.Net-Mvc-5.md" />
+    <None Include="_posts\2018-01-13-Blogging-with-Jekyll-Legal-Privacy.md" />
     <None Include="_posts\2018-01-12-Blogging-with-Jekyll-Tags-Series.md" />
     <None Include="_posts\2018-01-12-Blogging-with-Jekyll-Basics.md" />
     <None Include="_posts\2018-01-11-Blogging-with-Jekyll-Intro.md" />
@@ -95,6 +96,7 @@
     <Content Include="_includes\collecttags.html" />
     <Content Include="_includes\series.html" />
     <Content Include="_includes\svg-icons.html" />
+    <Content Include="_includes\cookieconsent.html" />
     <Content Include="_layouts\default.html" />
     <Content Include="_layouts\page.html" />
     <Content Include="_layouts\tagpage.html" />
