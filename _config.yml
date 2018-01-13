@@ -2,13 +2,13 @@
 title:               Plainionist
 tagline:             'Plainionic Programmer'
 description:         'Plainionic Programmer'
-url:                 https://plainionist.github.io/
-baseurl:             'https://plainionist.github.io/'
+url:                 https://plainionist.github.io
+baseurl:             'https://plainionist.github.io'
 paginate:            10
 
 author:
   name:              Plainionist
-  url:               https://plainionist.github.io/
+  url:               https://plainionist.github.io
   email:             
 
 footer-links:

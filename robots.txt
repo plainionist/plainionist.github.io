@@ -2,4 +2,6 @@
 ---
 User-agent: *
 Sitemap: {{ site.url }}/sitemap.xml
+Disallow: /impressum
+Disallow: /impressum/
 Disallow: /impressum.html 
