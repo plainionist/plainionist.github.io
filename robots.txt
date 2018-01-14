@@ -1,7 +1,5 @@
-﻿---
----
-User-agent: *
-Sitemap: {{ site.url }}/sitemap.xml
+﻿User-agent: *
+Sitemap: https://plainionist.github.io/sitemap.xml
 Disallow: /impressum
 Disallow: /impressum/
 Disallow: /impressum.html 
