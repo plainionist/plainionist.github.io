@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Sitemap: https://plainionist.github.io/sitemap.xml
 Disallow: /impressum
 Disallow: /impressum/
