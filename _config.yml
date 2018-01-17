@@ -3,7 +3,7 @@ title:               Plainionist
 tagline:             'Plainionic Programmer'
 description:         'Plainionic Programmer'
 url:                 https://plainionist.github.io
-baseurl:             'https://plainionist.github.io'
+baseurl:             ''
 paginate:            10
 
 author:
