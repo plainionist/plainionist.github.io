@@ -25,10 +25,12 @@
   <ItemGroup>
     <None Include="tag\blogging.md" />
     <None Include="tag\jekyll.md" />
+    <None Include="tag\WPF.md" />
     <None Include="tag\software-enginering.md" />
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
+    <None Include="_drafts\2018-01-19-Mvvm-Dialogs.md" />
     <None Include="_posts\2016-01-12-Welcome.md" />
     <None Include="_posts\2016-01-13-Plainion-Repositories.md" />
     <None Include="_posts\2016-01-14-Recommended-Reading.md" />
