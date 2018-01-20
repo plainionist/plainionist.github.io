@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Microservices Architecture
-tags: [book]
+tags: [book,microservices]
 ---
 
 This tiny little book 

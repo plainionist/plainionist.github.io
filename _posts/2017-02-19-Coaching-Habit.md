@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The Coaching Habit
-tags: [book]
+tags: [book,skills]
 ---
 
 If you want to improve your (technical) coaching skills this

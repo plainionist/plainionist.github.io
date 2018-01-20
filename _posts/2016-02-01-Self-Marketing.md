@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Skills & Self-Marketing
+tags: [skills]
 ---
 
 Another great book about "sharpening the saw":

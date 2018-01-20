@@ -26,6 +26,7 @@
     <None Include="404.md" />
     <None Include="tag\blogging.md" />
     <None Include="tag\jekyll.md" />
+    <None Include="tag\skills.md" />
     <None Include="tag\WPF.md" />
     <None Include="tag\software-enginering.md" />
     <None Include="tag\microservices.md" />

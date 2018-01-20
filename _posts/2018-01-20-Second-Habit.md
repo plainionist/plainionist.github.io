@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The second habit
-tags: 
+tags: [skills]
 excerpt_separator: <!--more-->
 ---
 

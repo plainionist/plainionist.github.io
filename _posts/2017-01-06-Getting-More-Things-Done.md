@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Want to get more things done?
+tags: [skills]
 ---
 
 You can surely read a bunch of books about it like:

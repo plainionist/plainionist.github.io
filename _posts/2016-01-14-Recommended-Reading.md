@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Recommended Reading for Professional Software Engineers
+tags: [skills]
 ---
 
 ## Must-Read

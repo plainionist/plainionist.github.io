@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Instantly Better Presentations
+tags: [skills]
 ---
 
 If you do (technical) presentations from time to time you WANT to watch this talk:
