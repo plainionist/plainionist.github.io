@@ -92,14 +92,21 @@ Of course you can also define custom dialog content:
         <prism:PopupWindowAction>
             <prism:PopupWindowAction.WindowContent>
                 <DockPanel LastChildFill="True">
-                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="3" FlowDirection="RightToLeft">
-                        <Button Content="Cancel" Margin="3,3,3,3" MinWidth="75" Command="{Binding CancelCommand}"/>
-                        <Button Content="No" Margin="3,3,3,3" MinWidth="75" Command="{Binding NoCommand}"/>
-                        <Button Content="Yes" Margin="3,3,3,3" MinWidth="75" Command="{Binding YesCommand}"/>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="3" 
+					            FlowDirection="RightToLeft">
+                        <Button Content="Cancel" Margin="3,3,3,3" MinWidth="75" 
+						        Command="{Binding CancelCommand}"/>
+                        <Button Content="No" Margin="3,3,3,3" MinWidth="75" 
+						        Command="{Binding NoCommand}"/>
+                        <Button Content="Yes" Margin="3,3,3,3" MinWidth="75" 
+						        Command="{Binding YesCommand}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="pack://application:,,,/Plainion.Prism;component/Images/Warning.png" Width="38" Height="38" Margin="10,0,0,0"/>
-                        <TextBlock DockPanel.Dock="Top" Text="{Binding Question}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,0,0,0"/>
+                        <Image Source="/Images/Warning.png" Width="38" Height="38" 
+						       Margin="10,0,0,0"/>
+                        <TextBlock DockPanel.Dock="Top" Text="{Binding Question}" 
+						           HorizontalAlignment="Left" VerticalAlignment="Center" 
+								   Margin="25,0,0,0"/>
                     </StackPanel>
                 </DockPanel>
             </prism:PopupWindowAction.WindowContent>
@@ -131,11 +138,11 @@ are a little bit special if you want to have the "native" look & feel. But also 
 
 For more details on handling these special dialogs please refer to
 
-- https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/PopupCommonDialogAction.cs
-- https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/PopupPrintDialogAction.cs
-- https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/InteractionRequest/OpenFileDialogNotification.cs
-- https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/InteractionRequest/SaveFileDialogNotification.cs
-- https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/InteractionRequest/SelectFolderDialogNotification.cs
+- [File open/save dialog action](https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/PopupCommonDialogAction.cs)
+- [Print dialog action](https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/PopupPrintDialogAction.cs=)
+- [File open notification](https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/InteractionRequest/OpenFileDialogNotification.cs)
+- [File close notification](https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/InteractionRequest/SaveFileDialogNotification.cs)
+- [Select folder notification](https://github.com/plainionist/Plainion.Prism/blob/master/src/Plainion.Prism/Interactivity/InteractionRequest/SelectFolderDialogNotification.cs)
 
 ## Conclusion
 
