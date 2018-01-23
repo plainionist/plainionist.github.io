@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The second habit
+description: Seven habits is about about effectiveness, about private and public victory.
 tags: [skills]
 excerpt_separator: <!--more-->
 ---
