@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Domain-Driven Design
+description: Brief review and summary on Eric Evans Domain Driven Design book
 tags: [book]
 excerpt_separator: <!--more-->
 ---

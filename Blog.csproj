@@ -32,6 +32,7 @@
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
+    <None Include="_posts\2018-01-23-Blogging-with-Jekyll-SEO.md" />
     <None Include="_posts\2018-01-20-Second-Habit.md" />
     <None Include="_posts\2018-01-19-Mvvm-Dialogs.md" />
     <None Include="_posts\2016-01-12-Welcome.md" />

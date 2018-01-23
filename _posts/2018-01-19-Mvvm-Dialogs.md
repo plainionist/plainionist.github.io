@@ -1,6 +1,7 @@
 ---
 layout: post
 title: MVVM pattern and dialogs
+description: Open dialogs with WPF, MVVM and Prism using InteractionRequests and PopupWindowAction.
 tags: [WPF]
 excerpt_separator: <!--more-->
 ---
