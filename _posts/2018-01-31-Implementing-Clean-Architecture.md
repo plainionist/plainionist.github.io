@@ -37,7 +37,11 @@ Lets have an example. Imagine we would code s.th. like GitHub. This (simplified)
 It would use Git as souce control system. It would have a database for the issue tracking and one for the wiki pages.
 The UI would be a web site.
 
-For such a system i would probably have three "use case" layer assemblies:
+A system of such a size I would probably organize like this:
+
+![]({{ site.url }}/assets/Github.CleanArch.png)
+
+I would probably have three "use case" layer assemblies:
 
 - GitHub.SourceControl.UseCases
 - GitHub.Wiki.UseCases
@@ -48,8 +52,8 @@ These would be pure "use case" assemblies. No dependencies to any framework or d
 I would then probably continue this separation for the "gateways" layer:
 
 - GitHub.SourceControl.Gateways: hosts adapters to the actual source control system Git.
-- GitHub.Wiki.UseCases: hosts adapters to render wiki pages as HTML
-- GitHub.IssueTracker.UseCases: hosts adapters to render issues to HTML
+- GitHub.Wiki.Gateways: hosts adapters to render wiki pages as HTML
+- GitHub.IssueTracker.Gateways: hosts adapters to render issues to HTML
 
 With this approach I would put most focus on the logical subsystems and still keep the "circles" separated.
 
