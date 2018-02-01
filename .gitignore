@@ -11,4 +11,4 @@ package.json
 /bin
 /obj
 /*.suo
-/plainionist.github.io.gc.ssmosett
+/plainionist.github.io.gc.*

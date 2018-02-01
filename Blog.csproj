@@ -34,7 +34,7 @@
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
     <None Include="_drafts\clean-arch.md" />
-    <None Include="_posts\2018-01-31-Implementing-Clean-Architecture.md" />
+    <None Include="_drafts\2018-01-31-Implementing-Clean-Architecture.md" />
     <None Include="_posts\2018-01-28-Death-By-Powerpoint.md" />
     <None Include="_posts\2018-01-23-Blogging-with-Jekyll-SEO.md" />
     <None Include="_posts\2018-01-20-Second-Habit.md" />
