@@ -29,3 +29,11 @@ How to related DDD & Clean Architecture
 -	ddd also talks about iterative and framework independence .
 -	...
 
+clean architecture and f#
+- is a usecase just a function?
+- what about depenecy injection. reference scott about dependency injection in f#
+
+
+stackoverflow
+- dependency rule between framework and gateway?
+

@@ -97,7 +97,6 @@ For me I decidied as follows:
   - Projects and namespaces would end with role typical postfixes like "Web", "IO" or "UI".
   - Classes would not have any specific convention
 
-
 ## Next
 
 I feel there are more aspects to discuss, like:
