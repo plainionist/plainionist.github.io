@@ -1,7 +1,11 @@
 
 
+## Clean Architecture - More Material
 
-## References
+i have blogged about clean architecture already here
+
+i digged deeper and found
+- 
 
 Here are others having blogged about project structure in Clean Architecture
 
@@ -21,10 +25,16 @@ http://tidyjava.com/clean-architecture-screaming/
 
 
 
-
-
 stackoverflow
 - dependency rule between framework and gateway?
+
+
+start with a better intro and base it on backlook!
+i know the usecases better
+
+
+
+
 
 
 
