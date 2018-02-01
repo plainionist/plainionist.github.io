@@ -7,7 +7,6 @@ i have blogged about clean architecture already here
 i digged deeper and found
 - 
 
-Here are others having blogged about project structure in Clean Architecture
 
 - https://hackernoon.com/applying-clean-architecture-on-web-application-with-modular-pattern-7b11f1b89011
 
@@ -32,7 +31,9 @@ stackoverflow
 start with a better intro and base it on backlook!
 i know the usecases better
 
-
+"do u also run into the situation that u read a book and it is all cool and u want it try out and get stucked with questions? ..."
+"here is how i currently try to "implement clean architecture""
+"this ll be a series of posts sharing the experiences i have"
 
 
 
