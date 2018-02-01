@@ -2,7 +2,7 @@
 layout: post
 title: Clean Architecture
 description: Brief review and summary of uncle bobs new book clean architecture.
-tags: [book]
+tags: [book, clean-architecture]
 excerpt_separator: <!--more-->
 ---
 

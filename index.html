@@ -7,7 +7,7 @@ title: Home
     {% for post in paginator.posts %}
     <div class="post">
         <h1 class="post-title">
-            <a href="{{ site.url }}/{{ site.baseurl }}/{{ post.url }}">
+            <a href="{{ site.url }}{{ site.baseurl }}{{ post.url }}">
                 {{ post.title }}
             </a>
         </h1>
@@ -16,6 +16,7 @@ title: Home
     </div>
     {% endfor %}
 </div>
+
 <div class="pagination">
     {% if paginator.next_page %}
     <a class="pagination-item older" href="{{ site.baseurl }}/page{{paginator.next_page}}">Older</a>

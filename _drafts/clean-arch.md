@@ -1,3 +1,70 @@
+
+
+
+## References
+
+Here are others having blogged about project structure in Clean Architecture
+
+- https://hackernoon.com/applying-clean-architecture-on-web-application-with-modular-pattern-7b11f1b89011
+
+- https://medium.com/@stephanhoekstra/clean-architecture-in-net-8eed6c224c50
+
+- http://nklein.com/exploring-clean-architecture
+
+https://fullstackmark.com/post/11/better-software-design-with-clean-architecture
+
+https://github.com/mattia-battiston/clean-architecture-example
+
+https://github.com/mp911de/CleanArchitecture
+
+http://tidyjava.com/clean-architecture-screaming/
+
+
+
+
+
+stackoverflow
+- dependency rule between framework and gateway?
+
+
+
+==> describe backlook as an example?
+
+
+how do i start?
+- designing a new project
+- with the use cases?
+- now intro backlook
+
+
+
+
+- what is a use-case? how big is it? how do we connect usecase?
+  can a usecase really be independent of the outer world?
+  (dont mix with usecase uml diagrams)
+  in F# is one usecase one public function?
+
+- what is really the benefit/difference to clean architecture?
+  is it the independency to frameworks?
+  is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
+  is it the "screaming" architecture?
+ 
+- how do i access the database then?
+
+https://www.codingblocks.net/tag/clean-architecture/
+
+
+
+
+
+
+
+
+
+
+
+
+
 referencing use cases?
 
 -	refer to stackoverflow questions
@@ -34,6 +101,6 @@ clean architecture and f#
 - what about depenecy injection. reference scott about dependency injection in f#
 
 
-stackoverflow
-- dependency rule between framework and gateway?
+
+
 

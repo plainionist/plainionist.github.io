@@ -2,7 +2,7 @@
 layout: post
 title: How to implement the Clean Architecture?
 description: In books about design and architecture things seem to be easy. Same with Uncle Bobs recent book Clean Architecture. Applying these ideas to your own projects is often a completely different story.
-tags: [design]
+tags: [clean-architecture]
 excerpt_separator: <!--more-->
 ---
 
