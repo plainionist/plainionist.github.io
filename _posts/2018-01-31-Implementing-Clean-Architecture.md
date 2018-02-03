@@ -47,13 +47,13 @@ You may wonder why we have fruits in our backlog ... this is a different story w
 
 ### Work balance
 
-![]({{ site.url }}/assets/clean-architecture/work-balance.png =400px)
+<img src="{{ site.url }}/assets/clean-architecture/work-balance.png" width="400px"/>
 
 As we have multiple teams working on that backlog we want to know how the different teams are loaded.
 
 ### The Burndown
 
-![]({{ site.url }}/assets/clean-architecture/burndown.png =400px)
+<img src="{{ site.url }}/assets/clean-architecture/burndown.png" width="400px"/>
 
 And of course we want to track our remaining work using a burn down.
 
