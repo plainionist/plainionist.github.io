@@ -31,8 +31,14 @@ We could switch to Ruby on Rails or Node.js - it wouldn't make any difference fo
 
 In order to let our architecture scream we would create at least three projects/assemblies/DLLs:
 
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.1.png" class="dynimg"/>
+
+But this is only part one. When organizing our project we also want to respect the Dependency Rule.
 
 <img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg"/>
+
+We want to separate the four circles to easier control the dependencies between those.
+
 
 Most recommendations I found proposed to have at least one project per "circle". That would be one for entities, one for 
 use cases, one for gateways and one for frameworks. If you have a rather "big" project with boundaries and sub-systems
@@ -41,18 +47,9 @@ boundaries also in code. Entities, as defined by Uncle Bob, are central for the 
 probably one project is sufficient. And as there is usually rather few code in the frameworks circle probably one
 project is sufficient as well.
 
-Lets have an example. Imagine we would code s.th. like GitHub. This (simplified) system would have
 
-- a Source Control System (integration)
-- an issue tracker 
-- a wiki
 
-It would use Git as souce control system. It would have a database for the issue tracking and one for the wiki pages.
-The UI would be a web site.
-
-A system of such a size I would probably organize like this:
-
-![]({{ site.url }}/assets/Github.CleanArch.png)
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.2.png" class="dynimg"/>
 
 I would probably have three "use case" layer assemblies:
 
@@ -68,6 +65,11 @@ I would then probably continue this separation for the "gateways" layer:
 - GitHub.Wiki.Gateways: hosts adapters to render wiki pages as HTML
 - GitHub.IssueTracker.Gateways: hosts adapters to render issues to HTML
 
+
+gateways contain asp.net controllers and TFS repository
+we could separate it but as of now i dont see much benefit
+
+
 With this approach I would put most focus on the logical subsystems and still keep the "circles" separated.
 
 I may have Git, database or web "extensions" - but probably only few so I would try to start with just one "frameworks" project.
@@ -81,6 +83,13 @@ give a clear recommendation here. I would tend to decide carefully "bottom up" w
 is really worth sharing across subsystem boundaries.
 From my past experience a little code duplication is easier to "fix" than a "to early" reuse.
 
+## that about infrastructure?
+
+logging?
+supported!
+.net extensions?
+
+## Can we handle it more pragmantic?
 
 And what about smaller projects? What about projects which are just a single application which "does only one thing and does it well"?
 
