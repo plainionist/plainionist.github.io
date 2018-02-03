@@ -1,16 +1,6 @@
 
 
 
-
-
-
-open questions:
-
-https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture
-
-
-
-
 - what is a use-case? how big is it? how do we connect usecase?
   can a usecase really be independent of the outer world?
   (dont mix with usecase uml diagrams)
@@ -32,22 +22,10 @@ https://www.codingblocks.net/tag/clean-architecture/
 
 
 
-
-
-
-
-## Next
-
-I feel there are more aspects to discuss, like:
-
 - Can I reference use cases from use cases?
 - What about testing?
 - How to relate Domain-Driven Design and Clean Architecture?
 - What about micro services?
-
-I will follow up on these questions in subsequent posts ...
-
-
 
 
 referencing use cases?
@@ -117,26 +95,30 @@ If you will strictly make it ten pages ALWAYS, put it on your usecase because he
 But, I suggest to make it as a parameter on the presenter, to make it flexible because maybe you will have a scenario in which you want to adjust the max pages on a specific activity/fragment.
 
 
-
-
 https://stackoverflow.com/questions/48141142/how-to-handle-usecase-interactor-constructors-that-have-too-many-dependency-para
-
 
 
 https://stackoverflow.com/questions/48119036/clean-architecture-usecases-and-entities/48589325#48589325
 
 Quite a lot questions within a single question. let me try to consolidate what I think I understood are ur key questions
-
 •Can Entities reference each other? the answer would be: YES. Also in Clean Architecture u can create a domain model where entities are interconnected
-
-
 •What should be returned from a UseCase? Answer: UseCases define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
-
-
 •What is the role of the presenter then? Answer: ideally a presenter is converting data only. It converts data which is most convenient for one layer into data which is most convenient for the other layer.
-
-
 hope this guidance helps u to answer ur detailed questions
 
-
 https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture
+
+
+
+
+
+## open questions
+
+- https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture
+
+
+
+
+
+
+
