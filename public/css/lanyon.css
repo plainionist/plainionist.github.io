@@ -604,3 +604,8 @@ footer {
     padding: 20px 0;
     text-align: center;
 }
+
+.dynimg {
+    width: 75%;
+    height: auto;
+} 

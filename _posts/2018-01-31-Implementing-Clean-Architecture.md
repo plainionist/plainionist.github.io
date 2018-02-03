@@ -38,7 +38,7 @@ nicely on an intranet page to give us the views and reports we need ...
 
 ### The Backlog
 
-<img src="{{ site.url }}/assets/clean-architecture/backlog.png" />
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
 *Athena* shows our ranked backlog in a simple table with some filters.
 It also applies the capacity of our teams to illustrate differnt cut-lines in different colors.
@@ -47,13 +47,13 @@ You may wonder why we have fruits in our backlog ... this is a different story w
 
 ### Work balance
 
-<img src="{{ site.url }}/assets/clean-architecture/work-balance.png" width="400px"/>
+<img src="{{ site.url }}/assets/clean-architecture/work-balance.png" class="dynimg"/>
 
 As we have multiple teams working on that backlog we want to know how the different teams are loaded.
 
 ### The Burndown
 
-<img src="{{ site.url }}/assets/clean-architecture/burndown.png" width="400px"/>
+<img src="{{ site.url }}/assets/clean-architecture/burndown.png" class="dynimg"/>
 
 And of course we want to track our remaining work using a burn down.
 
