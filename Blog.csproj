@@ -35,7 +35,7 @@
     <None Include="_config.yml" />
     <None Include="_drafts\2018-02-03-Implementing-Clean-Architecture-Project-Structure.md" />
     <None Include="_drafts\clean-arch.md" />
-    <None Include="_drafts\2018-01-31-Implementing-Clean-Architecture.md" />
+    <None Include="_posts\2018-01-31-Implementing-Clean-Architecture.md" />
     <None Include="_posts\2018-01-28-Death-By-Powerpoint.md" />
     <None Include="_posts\2018-01-23-Blogging-with-Jekyll-SEO.md" />
     <None Include="_posts\2018-01-20-Second-Habit.md" />
@@ -76,7 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\7habits.jpg" />
-    <Content Include="assets\Github.CleanArch.png" />
+    <Content Include="assets\clean-architecture\backlog.png" />
+    <Content Include="assets\clean-architecture\burndown.png" />
+    <Content Include="assets\clean-architecture\Circles.png" />
+    <Content Include="assets\clean-architecture\Circles.xml" />
+    <Content Include="assets\clean-architecture\Github.CleanArch.png" />
+    <Content Include="assets\clean-architecture\work-balance.png" />
     <Content Include="atom.xml" />
     <Content Include="impressum.html" />
     <Content Include="public\css\panel.css" />

@@ -7,11 +7,13 @@ series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-....
+make the architecture scream ...
+
+and separate frameworks from business logic
 
 <!--more-->
 
-![](https://8thlight.com/blog/assets/posts/2012-08-13-the-clean-architecture/CleanArchitecture.jpg =200x)
+![]({{ site.url }}/assets/clean-architecture/circles.png =200px)
 
 ## What is a pragmatic project structure?
 

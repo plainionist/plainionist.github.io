@@ -2,10 +2,6 @@
 
 ## Clean Architecture - More Material
 
-i have blogged about clean architecture already here
-
-i digged deeper and found
-- 
 
 http://nklein.com/exploring-clean-architecture
 http://tidyjava.com/clean-architecture-screaming/
