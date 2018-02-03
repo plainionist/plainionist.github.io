@@ -9,13 +9,13 @@ excerpt_separator: <!--more-->
 
 Let's briefly summarize what the Clean Architecture is ...
 
-<img src="{{ site.url }}/assets/clean-architecture/circles.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg"/>
 
 <!--more-->
 
 Wait! Let me rephrase: Let others briefly summarize what the Clean Architecture is about ...
 
-(I really like the DRY principle so why should I repeat what others have put together nicely already :)
+(I really like the DRY principle so why should I repeat what others have put together nicely already ;-) )
 
 - [Uncle Bob's original article on Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html).
   Of course this is the ultimative source. If you have not read it yet, do it right now!
