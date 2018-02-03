@@ -33,7 +33,7 @@
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
-    <None Include="_drafts\2018-02-02-Implementing-Clean-Architecture-Overview.md" />
+    <None Include="_posts\2018-02-02-Implementing-Clean-Architecture-Overview.md" />
     <None Include="_drafts\2018-02-03-Implementing-Clean-Architecture-Project-Structure.md" />
     <None Include="_drafts\clean-arch.md" />
     <None Include="_posts\2018-01-31-Implementing-Clean-Architecture.md" />

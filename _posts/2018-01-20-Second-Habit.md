@@ -9,11 +9,11 @@ excerpt_separator: <!--more-->
 This week I had a discussion with a colleague of mine about stakeholder conform communication.
 The content of the discussion reminded me about the "2. Habit: Begin with the end in mind".
 
-<!--more-->
-
 This habit is one of seven from Stephen Convey's great book "[The 7 Habits of Highly Effective People](https://www.amazon.com/Habits-Highly-Effective-People-Powerful/dp/1451639619/ref=sr_1_3?ie=UTF8&qid=1516449751&sr=8-3&keywords=7+habits)".
 
 ![]({{ site.url }}/assets/7habits.jpg)
+
+<!--more-->
 
 The book is the best book I have ever read about personal and organisational success.
 

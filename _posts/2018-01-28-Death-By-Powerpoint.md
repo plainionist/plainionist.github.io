@@ -9,12 +9,12 @@ excerpt_separator: <!--more-->
 Are you scared of doing presentations? Especially in front of a bigger audience?
 You don't have to! Just don't do these mistakes ...
 
-<!--more-->
-
 1. Using corporate templates
 2. Having content packed slides
 3. Writing full centences
 4. Focusing on the slides during presentation
+
+<!--more-->
 
 If you do the opposite I promise your audience will love you ;-)
 
