@@ -1,27 +1,38 @@
 ---
 layout: post
-title: Implementing Clean Architecture - Project structure
+title: Implementing Clean Architecture - Let's scream
 description: When starting with Clean Architecture the project structure like folders, DLLs and namespaces is one of the first questions.
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-Let's start with making our architecture SCREEEEEEAM ;-)
+How do we make an architecture "scream"?
+
+According to Uncle Bob an architecture "screams" when it clearly expresses its core business purpose.
+
+How do we express the business purpose easily?
+
+We use an appropriate top level folder structure, speaking DLL names and namespaces.
+Frameworks, on the other hand, are details which should not shape the project at all.
+
+*[Athena](/implementing-clean-architecture)* is a web application implemented in ASP.NET. But is this important?
+We could switch to Ruby on Rails or Node.js - it wouldn't make any difference for the business.
 
 <!--more-->
 
-One of the important aspects in Uncle Bob's Clean Architecture is 
+## Screaming project structure
 
-*[Athena](/implementing-clean-architecture)* is a web application which uses ASP.NET.
+*[Athena](/implementing-clean-architecture)* has three core features
 
-but that we dont want to yell out ... we want to 
+- Show the backlog with projected team capacity (work balance we consider to be a different view on the same backlog)
+- Calculate a burndown
+- Ensure backlog conventions via governance rules
 
-<img src="{{ site.url }}/assets/clean-architecture/circles.png" class="dynimg"/>
+In order to let our architecture scream we would create at least three projects/assemblies/DLLs:
 
-## What is a pragmatic project structure?
 
-Probably one of the first questions is: How do I organize my code?
+<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg"/>
 
 Most recommendations I found proposed to have at least one project per "circle". That would be one for entities, one for 
 use cases, one for gateways and one for frameworks. If you have a rather "big" project with boundaries and sub-systems
@@ -83,7 +94,7 @@ the adapters then while the second contains all use cases and entities. With thi
 due to the fact that in f# order in project is important we can easily keep one assembly in smaller projects and just 
 organize the files according to the circles in the arch
 
-## How to name things?
+## Screaming namespaces
 
 In the context of Clean Architecture you can find may names which refer to the same thing. 
 When implementing one concrete project we surely want to decide for a clear terminology.
