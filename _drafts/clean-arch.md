@@ -1,13 +1,4 @@
 
-## Implementing Clean Architecture
-
-"do u also run into the situation that u read a book and it is all cool and u want it try out and get stucked with questions? ..."
-"here is how i currently try to "implement clean architecture""
-"this ll be a series of posts sharing the experiences i have"
-
-==> in the first post describe the case study (backlook)
-
-
 
 ## Clean Architecture - More Material
 
@@ -55,6 +46,9 @@ https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framewor
   is it the "screaming" architecture?
  
 - how do i access the database then?
+  - how do i update it?
+  - irepository is in usecase layer and impl by datalayer
+    (in layered arch it is usually the other way round)
 
 https://www.codingblocks.net/tag/clean-architecture/
 
@@ -66,6 +60,16 @@ https://www.codingblocks.net/tag/clean-architecture/
 
 
 
+## Next
+
+I feel there are more aspects to discuss, like:
+
+- Can I reference use cases from use cases?
+- What about testing?
+- How to relate Domain-Driven Design and Clean Architecture?
+- What about micro services?
+
+I will follow up on these questions in subsequent posts ...
 
 
 
@@ -158,3 +162,5 @@ Quite a lot questions within a single question. let me try to consolidate what I
 
 hope this guidance helps u to answer ur detailed questions
 
+
+https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture
