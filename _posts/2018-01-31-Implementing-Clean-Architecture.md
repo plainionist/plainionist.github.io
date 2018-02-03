@@ -38,7 +38,7 @@ nicely on an intranet page to give us the views and reports we need ...
 
 ### The Backlog
 
-![]({{ site.url }}/assets/clean-architecture/backlog.png | width=400)
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" width="400px"/>
 
 *Athena* shows our ranked backlog in a simple table with some filters.
 It also applies the capacity of our teams to illustrate differnt cut-lines in different colors.
