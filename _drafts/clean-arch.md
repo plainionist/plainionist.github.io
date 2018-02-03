@@ -1,26 +1,6 @@
 
 
-## Clean Architecture - More Material
 
-
-http://nklein.com/exploring-clean-architecture
-http://tidyjava.com/clean-architecture-screaming/
-https://android.jlelse.eu/a-complete-idiots-guide-to-clean-architecture-2422f428946f
-https://blog.ndepend.com/introduction-clean-architecture/
-https://dev.to/wahibhaq/a-brief-summary-of-thoughts-on-clean-architecture-and-mvp-48h9
-https://dzone.com/articles/book-review-clean-architecture-by-robert-c-martin
-https://fullstackmark.com/post/11/better-software-design-with-clean-architecture
-https://github.com/mattia-battiston/clean-architecture-example
-https://github.com/mp911de/CleanArchitecture
-https://hackernoon.com/applying-clean-architecture-on-web-application-with-modular-pattern-7b11f1b89011
-https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/
-https://medium.com/@stephanhoekstra/clean-architecture-in-net-8eed6c224c50
-https://theplainprogrammer.com/applying-clean-architecture-to-ruby-on-rails-first-impressions-3746ed0c9668
-https://www.eventbrite.com/e/clean-architecture-2-days-with-uncle-bob-in-dallas-tx-registration-36591678696
-https://www.langer-blomqvist.de/clean-architecture-mitp-professional-martin-robert-c-mitp-verlags-gmbh-co-kg-9783958457249.html
-https://www.pearson.com/us/higher-education/program/Martin-Clean-Architecture-A-Craftsman-s-Guide-to-Software-Structure-and-Design/PGM333762.html
-https://www.pluralsight.com/courses/clean-architecture-patterns-practices-principles
-https://www.tooploox.com/blog/yet-another-clean-architecture
 
 
 

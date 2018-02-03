@@ -7,13 +7,17 @@ series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-make the architecture scream ...
-
-and separate frameworks from business logic
+Let's start with making our architecture SCREEEEEEAM ;-)
 
 <!--more-->
 
-![]({{ site.url }}/assets/clean-architecture/circles.png =200px)
+One of the important aspects in Uncle Bob's Clean Architecture is 
+
+*[Athena](/implementing-clean-architecture)* is a web application which uses ASP.NET.
+
+but that we dont want to yell out ... we want to 
+
+<img src="{{ site.url }}/assets/clean-architecture/circles.png" class="dynimg"/>
 
 ## What is a pragmatic project structure?
 
@@ -98,4 +102,3 @@ For me I decidied as follows:
 - Frameworks
   - Projects and namespaces would end with role typical postfixes like "Web", "IO" or "UI".
   - Classes would not have any specific convention
-
