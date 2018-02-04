@@ -120,3 +120,4 @@ the referenced libraries in the inner circles.
 
 This would be then a question of discipline ...
 
+{% include series.html %}

@@ -67,9 +67,4 @@ We also have quite some conventions for our backlog, e.g.:
 
 So we also have a page reporting violations to these conventions.
 
-
-## Let's get started ...
-
-... with the next post ...
-
 {% include series.html %}

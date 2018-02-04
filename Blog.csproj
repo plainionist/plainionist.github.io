@@ -34,7 +34,7 @@
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
     <None Include="_posts\2018-02-02-Implementing-Clean-Architecture-Overview.md" />
-    <None Include="_posts\2018-02-03-Implementing-Clean-Architecture-Scream.md" />
+    <None Include="_posts\2018-02-04-Implementing-Clean-Architecture-Scream.md" />
     <None Include="_drafts\clean-arch.md" />
     <None Include="_posts\2018-01-31-Implementing-Clean-Architecture.md" />
     <None Include="_posts\2018-01-28-Death-By-Powerpoint.md" />
