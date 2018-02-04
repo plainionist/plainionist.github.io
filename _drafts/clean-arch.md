@@ -20,6 +20,24 @@ https://www.codingblocks.net/tag/clean-architecture/
   - refer to stackoverflow questions
   - my conclusion ? yes because of SRP
 
+https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repository
+https://stackoverflow.com/questions/47868684/in-clean-mvp-who-should-handle-combining-interactors
+
+https://softwareengineering.stackexchange.com/questions/331479/c-wpf-clean-architecture
+https://softwareengineering.stackexchange.com/questions/362071/clean-architecture-too-many-use-case-classes
+https://softwareengineering.stackexchange.com/questions/364424/crossing-boundaries-in-clean-architecture?answertab=votes#tab-top
+https://softwareengineering.stackexchange.com/questions/303478/uncle-bobs-clean-architecture-an-entity-model-class-for-each-layer
+
+how to access the outer world
+https://softwareengineering.stackexchange.com/questions/315558/where-to-put-peripheral-use-cases-in-android-while-using-clean-architecture
+
+
+https://softwareengineering.stackexchange.com/questions/364725/do-interactors-in-clean-architecture-violate-the-single-responsibility-princip
+
+https://softwareengineering.stackexchange.com/questions/346847/clean-architecture-how-to-split-up-use-cases-dealing-with-use-case-dependenci
+
+https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
+
 
 ## modules
 
