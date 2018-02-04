@@ -1,15 +1,11 @@
 
-
+## some core questions for the over all architecture
 
 - what is a use-case? how big is it? how do we connect usecase?
   can a usecase really be independent of the outer world?
   (dont mix with usecase uml diagrams)
   in F# is one usecase one public function?
 
-- what is really the benefit/difference to clean architecture?
-  is it the independency to frameworks?
-  is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
-  is it the "screaming" architecture?
  
 - how do i access the database then?
   - how do i update it?
@@ -18,20 +14,19 @@
 
 https://www.codingblocks.net/tag/clean-architecture/
 
-
-
-
-
 - Can I reference use cases from use cases?
-- What about testing?
-- How to relate Domain-Driven Design and Clean Architecture?
-- What about micro services?
+  - refer to stackoverflow questions
+  - my conclusion ? yes because of SRP
 
 
-referencing use cases?
+## modules
 
--	refer to stackoverflow questions
--	my conclusion ? yes because of SRP
+draw a scetch of Athenas architecture
+separate domain objects for backlog and burndown and governance
+
+
+
+## misc
 
 testing
 
@@ -63,6 +58,12 @@ clean architecture and f#
 - is a usecase just a function?
 - what about depenecy injection. reference scott about dependency injection in f#
 
+
+
+- what is really the benefit/difference to clean architecture?
+  is it the independency to frameworks?
+  is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
+  is it the "screaming" architecture?
 
 
 ## stackoverflow
