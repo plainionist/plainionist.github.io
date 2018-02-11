@@ -49,11 +49,11 @@ ranked backlog with cut-lines:
 Is providing this page a use case? On the most highest and abstract level: yes.
 The simplified "list of actions" is:
 
-- Get all workitems from TFS (Team Foundation Server)
-- Rank all workitems
-- Get the team capacity 
-- Determine the cut-lines
-- Generate the report (including all further details like TFS links and hints for missing information)
+1. Get all workitems from TFS (Team Foundation Server)
+2. Rank all workitems
+3. Get the team capacity 
+4. Determine the cut-lines
+5. Generate the report (including all further details like TFS links and hints for missing information)
 
 This would probably be the level on which I would specify an expected system behavior. 
 I might add more details or draw a UML use case diagram.
@@ -83,7 +83,6 @@ Interpreting plain text fields and generic tags and giving these information bus
 So I want to have this logic in the "use case circle". Guided by the SRP I would say
 
 &#8680; First use case interactor found
-
 
 <picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
 
@@ -137,10 +136,10 @@ matches these against the capacity. It is clearly about business rules so I will
 On the first glance this sounds like "UI work", but that's not all. Here are further business rules to consider:
 
 - Create hyperlinks for each workitem to the TFS
-- Indicating missing information (missing confidence level, missing estimation)
-- add total capacity for reference
-- add total effort for reference
-- aggregate involved team membmers for the filters
+- Indicate missing information (missing confidence level, missing estimation)
+- Show total capacity for reference
+- Show total effort for reference
+- Compute list of involved team membmers (for the filters)
 - Create e-mail links
 
 Eventhough this sounds like UI logic I see it as business logic. The business rules are the ones deciding how
@@ -152,7 +151,7 @@ so lets have an interactor which prepares all that so that the presenter has an 
 
 <picture BacklogInteractor with "GenerateReport(filter)">
 
-## Can I reference use cases from use cases?
+## How do I combine use cases?
 
 We have created three interactors so far. But how do we assembly them together to get the use case implemented?
 
@@ -172,9 +171,9 @@ which calls the other interactors. Which leaves us with that picture
 
 <picture of interaction: backloginteractor to other interactors>
 
-## How do I access the database then?
+## How do I access the database?
 
-Uncle Bob writes in his book:
+In his [book](/Clean-Architecture/) Uncle Bob writes about database access:
 
 > Between the use case interactors and the database are the database gateways. 
 > These gateways are polymorphic interfaces that contain methods for every create, read, update, 
@@ -187,15 +186,15 @@ the external service.
 
 <picture of the two interfaces with methods>
 
-The details about accessing the "outer world" like database, TFS and other services I will discuss in one of the next posts
+Details about accessing "IO devices" and external systems I will discuss in one of my next posts
 
-## How to interact with controller/presenter?
+## How do I interact with controller and presenter?
 
 According to the Dependency Rule a use case interactor must not depend on a controller or presenter.
 
 Instead the use case interactor defines "input and output ports" to invert the dependencies.
 
-<picture from use cases from uncle bob>
+<picture from use cases from uncle bob, from circles>
 
 In our use case the setup is more simple. As we use Asp.Net MVC the controller and the presenter are the same class: the Asp.Net MVC conroller.
 
@@ -205,28 +204,23 @@ This would give us this picture:
 
 <picture like page 207 with our use case .. dependencies>
 
+Which role is than actually left to the controller and presenter? The answer to this question I will leave to another post.
 
-### What will be passed to and returned from a use case? 
+## Which data is passed to and returned from a use case interactor? 
 
-
-UseCases define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
+Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
 in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
 
-"
-We don't want to cheat and pass Entity objects or database rows. 
-We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
-"
+Uncle Bob:
+> We don't want to cheat and pass Entity objects or database rows. 
+> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
+>
+> [...]
+>
+> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
 
-"
-Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
-"
-
+All methods we have defined on the interactors so far are simple functions which return results.
 Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
-
-
-what is then actually the role of the controller and presenter?
-
-==> separate post
 
 ## How do others think about use cases?
 

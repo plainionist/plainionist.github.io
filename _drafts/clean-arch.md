@@ -1,20 +1,6 @@
 
 # Interface Adapters
 
-## How to interact with controller/presenter?
-
-- request/response model
-
-- picture shows it clearly
-  - from controller to usecase
-  - from presenter to usecase
-  - all dependencies towards usecase! ==> Dependency Inversion
-- if the usecase would have to "call" the presenter define e.g. an interface on usecase level
-  most convenient for the usecase. this can be implemented by presenter. so we can "notify" the presenter
-- in asp.net controller and presenter are the same class?
-
-page 207
-
 ## What is the role of the presenter then? 
 
 ideally a presenter is converting data only. It converts data which is most convenient for one layer into data which is most convenient for the other layer.
