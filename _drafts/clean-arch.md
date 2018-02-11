@@ -38,11 +38,17 @@ https://softwareengineering.stackexchange.com/questions/346847/clean-architectur
 
 https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
 
+# Athena
 
-## modules
+## overview
 
 draw a scetch of Athenas architecture
 separate domain objects for backlog and burndown and governance
+
+## by example
+
+show how one scenario would be designed in clean-arch.
+what is usecase, what is gateway, ...
 
 
 
