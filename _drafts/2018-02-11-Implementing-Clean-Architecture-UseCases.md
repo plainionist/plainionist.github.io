@@ -7,17 +7,21 @@ series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-start with a picture?
+<img src="{{ site.url }}/assets/clean-architecture/Circle.UseCase.png" class="dynimg"/>
 
-so now we have a screaming architecture which screams out the business.
-that gives most focus on use cases.
-but what is a use case?
+Now that my architecture is screaming the business capabilities of my system let's look at those with more detail.
+
+In the Clean Architecture all the application specific business rules and business logic goes into the "use cases" circle.
+
+But what is a use case? How big should it be? How does it interact with its environment?
+
+Read on!
 
 <!--more-->
 
 ## Definitions
 
-a first attempt i could try is looking for some definition:
+As a starting point for answering these questions I like to fish for find some definitions ...
 
 [Wikipedia](https://en.wikipedia.org/wiki/Use_case):
 
@@ -29,45 +33,107 @@ a first attempt i could try is looking for some definition:
 > These use cases orchestrate the flow of data to and from the entities, and direct those entities to use their 
 > Critical Business Rules to achieve the goals of the use case.
 
+Ok, these definitions are rather high-level and nothing concrete. I kinda expected that ;-)
 
-## Examples
+Enough of theory - let's something more practical ...
 
-ok the definition does not help me much - too generic - lets try with exampled
+## The example
 
-typical example from uncle blob
-- picture from uncle bob from "a typical scenario" (page 207)
-- redraw it!
-- shortly summarize his scenario
+To recap, *[Athena](/Implementing-Clean-Architecture)* is an "agile backlog visualizer" implemented in F# using Asp.Net MVC.
+It provides various reports to improve the overall transparency in a software project. One major report is showing the
+ranked backlog with cut-lines:
 
-==> what is the "use case" here?
-==> i dont know as there is no word about business
-==> i just see that interactor is independent from many things
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
-that is a web sample which fits very well to athena sample project
-so lets make it more concreate by taking one example from athena
+Is providing this page a use case? On the most highest and abstract level: yes.
+The simplified "list of actions" is:
 
-name an athena usecase and draw a concrete highlevel picture
-- mention the project setup again: asp.net mvc, web, f#, ...
+- Get all workitems from TFS (Team Foundation Server)
+- Rank all workitems
+- Get the team capacity 
+- Determine the cut-lines
+- Generate the report (including all further details like TFS links and hints for missing information)
 
-https://softwareengineering.stackexchange.com/questions/346847/clean-architecture-how-to-split-up-use-cases-dealing-with-use-case-dependenci
+This would probably be the level on which I would specify an expected system behavior. 
+I might add more details or draw a UML use case diagram.
 
-## how big should a usecase be?
+But should I implement this use case in a single use case interactor?
 
-==> break down athena usecase according to SRP
-==> gives many interactors
+## How big should a use case be?
 
-- https://stackoverflow.com/questions/48141142/how-to-handle-usecase-interactor-constructors-that-have-too-many-dependency-para
-- https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture
-- can a usecase really be independent of the outer world?
-- would a usecase just be one function in F#?
-- https://softwareengineering.stackexchange.com/questions/362071/clean-architecture-too-many-use-case-classes
-  - A Use Case is not "Add a Customer Record." A Use Case is more along the lines of "Sell an item to a customer" 
-    (which involves Customer, Product, and Inventory entities) or "Print an invoice" (which involves the same 
-    entities, in addition to Invoice Header and Invoice Line Items).
-- https://softwareengineering.stackexchange.com/questions/364725/do-interactors-in-clean-architecture-violate-the-single-responsibility-princip
+There is no ideal size of a use case. Use cases can be long or short, high level or more concrete. It all depends on the 
+level of abstraction we want to consider.
 
-- usecases can be big or small - depending on the abstraction level u look from
-- in clean architecture use case "interactors" tend to be small. u want to follow SRP
+Let me rephrase the question: How big should a use case INTERACTOR be?
+
+So what would be a driving priciple for deciding about "size"? Correct: Single Responsibility Pattern (SRP).
+
+Let's look again at the list of actions from above and explore some more details.
+
+### Action: Get all workitems from TFS
+
+This is clearly data access, isn't it? 
+
+Yes and no. Obviously fetching the (raw) data from TFS is data access. But there are also business rules. 
+The TFS itself is rather generic. 
+We have put quite some custom conventions on top of it like: fruits, confidence levels, product lines and many more.
+
+Interpreting plain text fields and generic tags and giving these information business semantics is about business rules.
+So I want to have this logic in the "use case circle". Guided by the SRP I would say
+
+&U21D2; First use case interactor found
+
+<picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
+
+### Action: Rank all workitems
+
+Ranking the backlog is definitively about business rules as those define how the ranking should happen. Ideally this is 
+a very simple task which just sorts workitems by stack rank. 
+But reality is rarely ideal so I could imagine additional rules, e.g.:
+
+- Always rank [MMP](https://agilesoftwareengineer.com/2013/08/28/minimum-viable-product-vs-minimum-marketable-product/) higher than "best effort"
+- Rank workitems without any given rank lowest
+- In case of duplicate ranks, rank one product line over the other product line.
+
+&U21D2; As this has nothing to do with backlog conventions and parsing I will add a second interactor.
+
+<picture BacklogInteractor with "Rank" as method>
+
+### Action: Get the team capacity 
+
+This is again mostly about data access. We have a non-TFS data source where all teams are modeled with 
+their ramp up and ramp down in head count for a given time frame. Getting this (raw) data is pure data access.
+
+In a second step I need to calculate the team capacity from the given data. This step is again about business rules:
+
+- Substract corridors like hotfixes for the installed base from the modeled head count
+- Convert head count into person days by applying an "availability factor" (e.g. remove holidays)
+- Apply correct time frame (e.g. duration of an iteration or software version)
+
+&U21D2; As this involves much different entities than the previous two interactors I will create a third one.
+
+<picture TeamCapacityInteractor with "GetTotalCapacity(teams,from,to)", "GetTeamCapacity(team,from,to)">
+
+### Action: Determine the cut-lines
+
+Now that I have a ranked backlog and the capacity I can determine the cut-lines.
+
+```
+*Side note*: You may wonder why I talk about multiple cut-lines. This comes from the confidence levels. Each confidence level
+defines a certain percentage by which the actual estimation is correct, e.g. confidence level "low" could be defined  as "+/- 50%" 
+which means that the actual estimation could be "50% too expensive" or "50% too cheap". This approach basically gives three 
+numbers for each estimation: an optimistic, a pessimistic and a realistic one. Hence, we have three cut-lines.
+```
+
+Calculating the cut-lines is a simple algorithm which walks the backlog from top to bottom, sums up estimations and 
+matches these against the capacity. It is clearly about business rules so I will add it to a use case interactor.
+
+&U21D2; Considering the existing interactors and my favor of pragmatic decisions I will put this logic into the BacklogInteractor
+
+<picture BacklogInteractor with "GetCutLines(rankedBacklog, capacity)">
+
+### Action: Generate the report
+
 
 ## Can I reference use cases from use cases?
 
@@ -76,6 +142,8 @@ https://softwareengineering.stackexchange.com/questions/346847/clean-architectur
 - https://stackoverflow.com/questions/47868684/in-clean-mvp-who-should-handle-combining-interactors
  
 ## how do i access the database then?
+
+- can a usecase really be independent of the outer world?
 
 in general
 
@@ -120,4 +188,18 @@ Thus, when we pass data across a boundary, it is always in the form that is most
 what is then actually the role of the controller and presenter?
 
 ==> separate post
+
+## Would a usecase just be one function in F#?
+
+
+## How do others think about use cases?
+
+During research I found many discussions about the "right cut" of use cases. 
+Here is a list of well crafted thoughts:
+
+- [How big or small should a Use Case Interactor be in Clean Architecture?](https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture)
+- [Do Interactors in “clean architecture” violate the Single Responsibility Principle?](https://softwareengineering.stackexchange.com/questions/364725/do-interactors-in-clean-architecture-violate-the-single-responsibility-princip) 
+
+
+
 
