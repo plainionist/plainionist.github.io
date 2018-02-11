@@ -8,22 +8,16 @@ excerpt_separator: <!--more-->
 ---
 
 start with a picture?
-- picture from uncle bob from "a typical scenario" (page 207)
-- redraw it!
 
-name an athena usecase and draw a concrete highlevel picture
-- mention the project setup again: asp.net mvc, web, f#, ...
-
-What is a "use case"?
-
-
-
-re read the chapters !!
-
+so now we have a screaming architecture which screams out the business.
+that gives most focus on use cases.
+but what is a use case?
 
 <!--more-->
 
 ## Definitions
+
+a first attempt i could try is looking for some definition:
 
 [Wikipedia](https://en.wikipedia.org/wiki/Use_case):
 
@@ -38,12 +32,29 @@ re read the chapters !!
 
 ## Examples
 
-maybe we start with describing one "aspect" of athena?
+ok the definition does not help me much - too generic - lets try with exampled
+
+typical example from uncle blob
+- picture from uncle bob from "a typical scenario" (page 207)
+- redraw it!
+- shortly summarize his scenario
+
+==> what is the "use case" here?
+==> i dont know as there is no word about business
+==> i just see that interactor is independent from many things
+
+that is a web sample which fits very well to athena sample project
+so lets make it more concreate by taking one example from athena
+
+name an athena usecase and draw a concrete highlevel picture
+- mention the project setup again: asp.net mvc, web, f#, ...
 
 https://softwareengineering.stackexchange.com/questions/346847/clean-architecture-how-to-split-up-use-cases-dealing-with-use-case-dependenci
 
-
 ## how big should a usecase be?
+
+==> break down athena usecase according to SRP
+==> gives many interactors
 
 - https://stackoverflow.com/questions/48141142/how-to-handle-usecase-interactor-constructors-that-have-too-many-dependency-para
 - https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture
@@ -57,21 +68,6 @@ https://softwareengineering.stackexchange.com/questions/346847/clean-architectur
 
 - usecases can be big or small - depending on the abstraction level u look from
 - in clean architecture use case "interactors" tend to be small. u want to follow SRP
-
-## What should be returned from a UseCase? 
-
-UseCases define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
-in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
-
-"
-We don’t want to cheat and pass Entity objects or database rows. 
-We don’t want the data structures to have any kind of dependency that violates the Dependency Rule.
-"
-
-"
-Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
-"
-
 
 ## Can I reference use cases from use cases?
 
@@ -104,6 +100,22 @@ Martin, Robert C.. Clean Architecture: A Craftsman's Guide to Software Structure
 - in asp.net controller and presenter are the same class?
 
 page 207
+
+
+### What should be returned from a UseCase? 
+
+UseCases define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
+in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
+
+"
+We don’t want to cheat and pass Entity objects or database rows. 
+We don’t want the data structures to have any kind of dependency that violates the Dependency Rule.
+"
+
+"
+Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
+"
+
 
 what is then actually the role of the controller and presenter?
 

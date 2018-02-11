@@ -46,6 +46,11 @@ https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repos
 - https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
 
 
+# partial boundaries
+
+- do i really have to create all those DTOs?
+- what about performance?
+- is it worth the effort?
 
 
 # The Main module
