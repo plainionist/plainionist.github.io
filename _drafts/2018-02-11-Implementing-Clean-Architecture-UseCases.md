@@ -83,6 +83,7 @@ Interpreting plain text fields and generic tags and giving these information bus
 So I want to have this logic in the "use case circle". Guided by the SRP I would say
 
 :white_check_mark: First use case interactor found
+&rarr;
 
 <picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
 
