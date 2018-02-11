@@ -13,7 +13,7 @@ According to Uncle Bob an architecture "screams" when it clearly expresses its c
 The top level folder structure, the project/DLL names and the namespaces should express business aspects rather
 than frameworks or other details.
 
-*[Athena](/Implementing-Clean-Architecture)* is a web application implemented in ASP.NET. But is this important?
+*[Athena](/Implementing-Clean-Architecture)* is a web application implemented in ASP.NET MVC. But is this important?
 I could switch to Ruby on Rails or Node.js - it wouldn't make any difference for the business. 
 Why do we let such details impact our project structure so often?
 

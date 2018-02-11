@@ -1,4 +1,53 @@
 
+# Interface Adapters
+
+## What is the role of the presenter then? 
+
+ideally a presenter is converting data only. It converts data which is most convenient for one layer into data which is most convenient for the other layer.
+
+
+"
+The job of the Presenter is to repackage the OutputData into viewable form as the ViewModel, 
+which is yet another plain old Java object. The ViewModel contains mostly Strings and flags that the 
+View uses to display the data. Whereas the OutputData may contain Date objects, the Presenter will load the 
+ViewModel with corresponding Strings already formatted properly for the user. The same is true of Currency objects or 
+any other business-related data. Button and MenuItem names are placed in the ViewModel, as are flags that tell the 
+View whether those Buttons and MenuItems should be gray.
+"
+
+==> separate post about interface adapters
+
+
+## How to apply EntityFramework or other ORM?
+
+page 214
+
+- irepository is in usecase layer and impl by datalayer
+  (in layered arch it is usually the other way round)
+- https://softwareengineering.stackexchange.com/questions/315558/where-to-put-peripheral-use-cases-in-android-while-using-clean-architecture
+
+## how to communicate with other systems?
+
+or IO devices? or serivces? 
+
+page 215
+
+# Entities
+
+## Can entities access repositories?
+
+https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repository
+
+
+# Where is what? - Example
+
+## input validation?
+
+- https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
+
+
+
+
 # The Main module
 
 https://softwareengineering.stackexchange.com/questions/364424/crossing-boundaries-in-clean-architecture?answertab=votes#tab-top
@@ -16,7 +65,9 @@ https://softwareengineering.stackexchange.com/questions/364424/crossing-boundari
 - with this strange idea in mind i currently try to put - as i also think i read it in uncle bobs post - all code in the usecases/entities and test it
 - i want to have all gateways that dump that testing feels like violating DRY (the code already clearly documents itself and is too simple that a test adds value - it is obvious)
 
-# What to put in Entities in a micro services architecture?
+# relation to other patterns
+
+## What to put in Entities in a micro services architecture?
 
 - uncle bob: enterprise wide
 - dont have that - just one app
@@ -25,7 +76,7 @@ https://softwareengineering.stackexchange.com/questions/364424/crossing-boundari
 - so i decided to go bottom up: i handle each MS as separate app and put local entities
 - if i find entities which are valuable to be shared across multiple microservices i put them in shared lib
 
-# How to related DDD & Clean Architecture
+## How to related DDD & Clean Architecture
 
 - i first read clean architecture and then Erics DDD
 - when reading DDD my brain immediately started comparing both books

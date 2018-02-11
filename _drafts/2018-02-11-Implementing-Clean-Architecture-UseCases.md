@@ -7,32 +7,40 @@ series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-In Clean architecture there is very much focus on use cases.
-So what is a use case?
+start with a picture?
+- picture from uncle bob from "a typical scenario" (page 207)
+- redraw it!
+
+name an athena usecase and draw a concrete highlevel picture
+- mention the project setup again: asp.net mvc, web, f#, ...
+
+What is a "use case"?
 
 
 
 re read the chapters !!
-get all the details !!
 
-a lot of theory - where to fold in an example?
-
-- picture from uncle bob from "a typical scenario" (page 207)
-
-maybe we start with describing one "aspect" of athena?
-
-https://softwareengineering.stackexchange.com/questions/346847/clean-architecture-how-to-split-up-use-cases-dealing-with-use-case-dependenci
 
 <!--more-->
 
 ## Definitions
 
-(Wikipedia)[https://en.wikipedia.org/wiki/Use_case]:
+[Wikipedia](https://en.wikipedia.org/wiki/Use_case):
 
 > In software and systems engineering, a use case is a list of actions or event steps typically defining the interactions 
 > between a role (known in the Unified Modeling Language as an actor) and a system to achieve a goal.
 
+[Clean Architecture book](/Clean-Architecture):
 
+> These use cases orchestrate the flow of data to and from the entities, and direct those entities to use their 
+> Critical Business Rules to achieve the goals of the use case.
+
+
+## Examples
+
+maybe we start with describing one "aspect" of athena?
+
+https://softwareengineering.stackexchange.com/questions/346847/clean-architecture-how-to-split-up-use-cases-dealing-with-use-case-dependenci
 
 
 ## how big should a usecase be?
@@ -50,6 +58,21 @@ https://softwareengineering.stackexchange.com/questions/346847/clean-architectur
 - usecases can be big or small - depending on the abstraction level u look from
 - in clean architecture use case "interactors" tend to be small. u want to follow SRP
 
+## What should be returned from a UseCase? 
+
+UseCases define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
+in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
+
+"
+We don’t want to cheat and pass Entity objects or database rows. 
+We don’t want the data structures to have any kind of dependency that violates the Dependency Rule.
+"
+
+"
+Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
+"
+
+
 ## Can I reference use cases from use cases?
 
 - refer to stackoverflow questions
@@ -58,28 +81,31 @@ https://softwareengineering.stackexchange.com/questions/346847/clean-architectur
  
 ## how do i access the database then?
 
-- irepository is in usecase layer and impl by datalayer
-  (in layered arch it is usually the other way round)
-- https://softwareengineering.stackexchange.com/questions/315558/where-to-put-peripheral-use-cases-in-android-while-using-clean-architecture
+in general
+
+"
+Between the use case interactors and the database are the database gateways. 2 These gateways are polymorphic interfaces that contain methods for every create, read, update, or delete operation that can be performed by the application on the database. For example, if the application needs to know the last names of all the users who logged in yesterday, then the UserGateway interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and returns a list of last names.
+
+Martin, Robert C.. Clean Architecture: A Craftsman's Guide to Software Structure and Design (Robert C. Martin Series) (p. 214). Pearson Education. Kindle Edition. 
+"
+
+==> separate post
 
 ## How to interact with controller/presenter?
 
 - request/response model
 - https://softwareengineering.stackexchange.com/questions/331479/c-wpf-clean-architecture
+- picture shows it clearly
+  - from controller to usecase
+  - from presenter to usecase
+  - all dependencies towards usecase! ==> Dependency Inversion
+- if the usecase would have to "call" the presenter define e.g. an interface on usecase level
+  most convenient for the usecase. this can be implemented by presenter. so we can "notify" the presenter
+- in asp.net controller and presenter are the same class?
 
-## What should be returned from a UseCase? 
+page 207
 
-UseCases define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
+what is then actually the role of the controller and presenter?
 
-## What is the role of the presenter then? 
-
-ideally a presenter is converting data only. It converts data which is most convenient for one layer into data which is most convenient for the other layer.
-
-## Can entities access repositories?
-
-https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repository
-
-## input validation?
-
-- https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
+==> separate post
 
