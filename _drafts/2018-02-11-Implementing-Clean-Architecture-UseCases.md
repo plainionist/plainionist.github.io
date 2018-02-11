@@ -82,7 +82,7 @@ We have put quite some custom conventions on top of it like: fruits, confidence 
 Interpreting plain text fields and generic tags and giving these information business semantics is about business rules.
 So I want to have this logic in the "use case circle". Guided by the SRP I would say
 
-&#10142; First use case interactor found
+&#8680; First use case interactor found
 
 
 <picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
@@ -112,7 +112,7 @@ In a second step I need to calculate the team capacity from the given data. This
 - Convert head count into person days by applying an "availability factor" (e.g. remove holidays)
 - Apply correct time frame (e.g. duration of an iteration or software version)
 
-&#10145; As this involves much different entities than the previous two interactors I will create a third one.
+&#8680; As this involves much different entities than the previous two interactors I will create a third one.
 
 <picture TeamCapacityInteractor with "GetTotalCapacity(teams,from,to)", "GetTeamCapacity(team,from,to)">
 
@@ -128,7 +128,7 @@ Now that I have a ranked backlog and the capacity I can determine the cut-lines.
 Calculating the cut-lines is a simple algorithm which walks the backlog from top to bottom, sums up estimations and 
 matches these against the capacity. It is clearly about business rules so I will add it to a use case interactor.
 
-&U21D2; Considering the existing interactors and my favor of pragmatic decisions I will put this logic into the RankingInteractor
+&#8680; Considering the existing interactors and my favor of pragmatic decisions I will put this logic into the RankingInteractor
 
 <picture RankingInteractor with "GetCutLines(rankedBacklog, capacity)">
 
@@ -148,7 +148,7 @@ we compile this report together. The business rules define what is important in 
 
 so lets have an interactor which prepares all that so that the presenter has an easy job.
 
-&U21D2; Even with my pragmatic view this logic doesn't fit nicely into any existing interactor without violating SRP. So let me create a new one.
+&#8680; Even with my pragmatic view this logic doesn't fit nicely into any existing interactor without violating SRP. So let me create a new one.
 
 <picture BacklogInteractor with "GenerateReport(filter)">
 
