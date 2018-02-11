@@ -126,7 +126,7 @@ Now that I have a ranked backlog and the capacity I can determine the cut-lines.
 Calculating the cut-lines is a simple algorithm which walks the backlog from top to bottom, sums up estimations and 
 matches these against the capacity. It is clearly about business rules so I will add it to a use case interactor.
 
-&#8680; Considering the existing interactors and my preference of pragmatic decisions I will put this logic into the RankingInteractor
+&#8680; Considering the existing interactors and my preference of pragmatic decisions I will put this logic into the ```RankingInteractor```.
 
 <img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.2.png" class="dynimg"/>
 
@@ -161,7 +161,7 @@ is involved in combining the other interactors?
 I want the interface adapters (controllers, presenters) rather dumb. So as soon as some logic is involved in combining 
 interactors I prefer having another interactor realizing the combination.
 
-For the use case discussed here I tend to make again a pragmatic decision: I will make the BacklogInteractor the "conbining interactor"
+For the use case discussed here I tend to make again a pragmatic decision: I will make the ```BacklogInteractor``` the "conbining interactor"
 which calls the other interactors. 
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactors.Collaboration.png" class="dynimg"/>
