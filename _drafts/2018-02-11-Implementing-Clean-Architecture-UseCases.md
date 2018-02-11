@@ -97,7 +97,7 @@ But reality is rarely ideal so I could imagine additional rules, e.g.:
 - Rank workitems without any given rank lowest
 - In case of duplicate ranks, rank one product line over the other product line.
 
-&U21D2; As this has nothing to do with backlog conventions and parsing I will add a second interactor.
+&#8680; As this has nothing to do with backlog conventions and parsing I will add a second interactor.
 
 <picture RankingInteractor with "Rank" as method>
 
@@ -112,7 +112,7 @@ In a second step I need to calculate the team capacity from the given data. This
 - Convert head count into person days by applying an "availability factor" (e.g. remove holidays)
 - Apply correct time frame (e.g. duration of an iteration or software version)
 
-&U21D2; As this involves much different entities than the previous two interactors I will create a third one.
+&xrArr; As this involves much different entities than the previous two interactors I will create a third one.
 
 <picture TeamCapacityInteractor with "GetTotalCapacity(teams,from,to)", "GetTeamCapacity(team,from,to)">
 
