@@ -209,3 +209,5 @@ Here is a list of some well crafted thoughts:
 - [How big or small should a Use Case Interactor be in Clean Architecture?](https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture)
 - [Do Interactors in clean architecture violate the Single Responsibility Principle?](https://softwareengineering.stackexchange.com/questions/364725/do-interactors-in-clean-architecture-violate-the-single-responsibility-princip) 
 - [Who should handle combining interactors?](https://stackoverflow.com/questions/47868684/in-clean-mvp-who-should-handle-combining-interactors)
+
+{% include series.html %}
