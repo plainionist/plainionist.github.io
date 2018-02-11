@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 
 Now that my architecture is screaming the business capabilities of my system let's look at those with more detail.
 
-In the Clean Architecture all the application specific business rules and business logic goes into the "use cases" circle.
+In the Clean Architecture all the application specific business rules go into the use cases circle.
 
 But what is a use case? How big should it be? How does it interact with its environment?
 
@@ -36,7 +36,7 @@ As a starting point for answering these questions I like to fish for find some d
 
 Ok, these definitions are rather high-level and nothing concrete. I kinda expected that ;-)
 
-Enough of theory - let's something more practical ...
+Enough of theory - let's look at something more practical ...
 
 ## The example
 
@@ -46,7 +46,7 @@ ranked backlog with cut-lines:
 
 <img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
-Is providing this page a use case? On the most highest and abstract level: yes.
+Is providing this report a use case? On the most highest and abstract level: yes.
 The simplified "list of actions" is:
 
 1. Get all workitems from TFS (Team Foundation Server)
@@ -56,20 +56,19 @@ The simplified "list of actions" is:
 5. Generate the report (including all further details like TFS links and hints for missing information)
 
 This would probably be the level on which I would specify an expected system behavior. 
-I might add more details or draw a UML use case diagram.
 
 But should I implement this use case in a single use case interactor?
 
 ## How big should a use case be?
 
-There is no ideal size of a use case. Use cases can be long or short, high level or more concrete. It all depends on the 
+There is no ideal size of a use case. Use cases can be long or short, high-level or more concrete. It all depends on the 
 level of abstraction we want to consider.
 
 Let me rephrase the question: How big should a use case INTERACTOR be?
 
 So what would be a driving priciple for deciding about "size"? Correct: Single Responsibility Pattern (SRP).
 
-Let's look again at the list of actions from above and explore some more details.
+Let's look closer at the list of actions from above ...
 
 ### Action: Get all workitems from TFS
 
@@ -80,11 +79,11 @@ The TFS itself is rather generic.
 We have put quite some custom conventions on top of it like: fruits, confidence levels, product lines and many more.
 
 Interpreting plain text fields and generic tags and giving these information business semantics is about business rules.
-So I want to have this logic in the "use case circle". Guided by the SRP I would say
+So I want to have this logic in the use cases circle. Guided by the SRP I would say
 
 &#8680; First use case interactor found
 
-<picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
+<img src="{{ site.url }}/assets/clean-architecture/WorkitemParserInteractor.png" class="dynimg"/>
 
 ### Action: Rank all workitems
 
@@ -98,12 +97,12 @@ But reality is rarely ideal so I could imagine additional rules, e.g.:
 
 &#8680; As this has nothing to do with backlog conventions and parsing I will add a second interactor.
 
-<picture RankingInteractor with "Rank" as method>
+<img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.1.png" class="dynimg"/>
 
 ### Action: Get the team capacity 
 
 This is again mostly about data access. We have a non-TFS data source where all teams are modeled with 
-their ramp up and ramp down in head count for a given time frame. Getting this (raw) data is pure data access.
+their ramp up and ramp down in head count for one year. Getting this (raw) data is pure data access.
 
 In a second step I need to calculate the team capacity from the given data. This step is again about business rules:
 
@@ -111,9 +110,9 @@ In a second step I need to calculate the team capacity from the given data. This
 - Convert head count into person days by applying an "availability factor" (e.g. remove holidays)
 - Apply correct time frame (e.g. duration of an iteration or software version)
 
-&#8680; As this involves much different entities than the previous two interactors I will create a third one.
+&#8680; As this involves quite different entities than the previous two interactors I will create a third one.
 
-<picture TeamCapacityInteractor with "GetTotalCapacity(teams,from,to)", "GetTeamCapacity(team,from,to)">
+<img src="{{ site.url }}/assets/clean-architecture/TeamCapacityInteractor.png" class="dynimg"/>
 
 ### Action: Determine the cut-lines
 
@@ -127,33 +126,29 @@ Now that I have a ranked backlog and the capacity I can determine the cut-lines.
 Calculating the cut-lines is a simple algorithm which walks the backlog from top to bottom, sums up estimations and 
 matches these against the capacity. It is clearly about business rules so I will add it to a use case interactor.
 
-&#8680; Considering the existing interactors and my favor of pragmatic decisions I will put this logic into the RankingInteractor
+&#8680; Considering the existing interactors and my preference of pragmatic decisions I will put this logic into the RankingInteractor
 
-<picture RankingInteractor with "GetCutLines(rankedBacklog, capacity)">
+<img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.2.png" class="dynimg"/>
 
 ### Action: Generate the report
 
-On the first glance this sounds like "UI work", but that's not all. Here are further business rules to consider:
+At first glance this may look like "UI work", but that's not all. Here are further business rules to consider:
 
-- Create hyperlinks for each workitem to the TFS
-- Indicate missing information (missing confidence level, missing estimation)
-- Show total capacity for reference
-- Show total effort for reference
+- Validate missing information (missing confidence level, missing estimation)
+- Provide total capacity for reference
+- Provide total effort for reference
 - Compute list of involved team membmers (for the filters)
-- Create e-mail links
 
-Eventhough this sounds like UI logic I see it as business logic. The business rules are the ones deciding how
-we compile this report together. The business rules define what is important in that report and what not.
+I want to have these business rules realized in an interactor as well.
 
-so lets have an interactor which prepares all that so that the presenter has an easy job.
+&#8680; Even with my preference for pragmatic decisions this logic doesn't fit nicely into any existing interactor without violating SRP. 
+So let me create a new one.
 
-&#8680; Even with my pragmatic view this logic doesn't fit nicely into any existing interactor without violating SRP. So let me create a new one.
-
-<picture BacklogInteractor with "GenerateReport(filter)">
+<img src="{{ site.url }}/assets/clean-architecture/BacklogInteractor.png" class="dynimg"/>
 
 ## How do I combine use cases?
 
-We have created three interactors so far. But how do we assembly them together to get the use case implemented?
+We have created four interactors so far. But how do we "combine" them to realize the high-level use case?
 
 Basically there are two possibilities:
 
@@ -166,10 +161,10 @@ is involved in combining the other interactors?
 I want the interface adapters (controllers, presenters) rather dumb. So as soon as some logic is involved in combining 
 interactors I prefer having another interactor realizing the combination.
 
-For the use case discussed here I tend to make again a pragmatic decision: I will make the BacklogInteractor the "aggregate interactor"
-which calls the other interactors. Which leaves us with that picture
+For the use case discussed here I tend to make again a pragmatic decision: I will make the BacklogInteractor the "conbining interactor"
+which calls the other interactors. 
 
-<picture of interaction: backloginteractor to other interactors>
+<img src="{{ site.url }}/assets/clean-architecture/Interactors.Collaboration.png" class="dynimg"/>
 
 ## How do I access the database?
 
@@ -184,45 +179,26 @@ In his [book](/Clean-Architecture/) Uncle Bob writes about database access:
 For our use case I will define two interfaces. One to get the workitems from TFS and one to get the team capacity information from
 the external service.
 
-<picture of the two interfaces with methods>
+<img src="{{ site.url }}/assets/clean-architecture/Interactors.DataAccess.png" class="dynimg"/>
 
-Details about accessing "IO devices" and external systems I will discuss in one of my next posts
+Details about accessing "IO devices" and external systems I will discuss in one of my next posts.
 
 ## How do I interact with controller and presenter?
 
 According to the Dependency Rule a use case interactor must not depend on a controller or presenter.
+Instead, the use case interactor defines "input ports" and "output ports" to invert the dependencies.
 
-Instead the use case interactor defines "input and output ports" to invert the dependencies.
+<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
-<picture from use cases from uncle bob, from circles>
+In the use case I have described here the setup is simpler. A I use Asp.Net MVC, the controller and the presenter are 
+the same class: the Asp.Net MVC conroller.
 
-In our use case the setup is more simple. As we use Asp.Net MVC the controller and the presenter are the same class: the Asp.Net MVC conroller.
-
-All methods we have defined on the interactors so far are simple functions which return results.
-
-This would give us this picture:
-
-<picture like page 207 with our use case .. dependencies>
+All methods I have defined on the interactors so far are simple and pure functions which get parameters and 
+return results. So I don't need to define any "ports". I will simply pass DTOs (data transfer objects) around.
 
 Which role is than actually left to the controller and presenter? The answer to this question I will leave to another post.
 
-## Which data is passed to and returned from a use case interactor? 
-
-Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
-in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
-
-Uncle Bob:
-> We don't want to cheat and pass Entity objects or database rows. 
-> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
->
-> [...]
->
-> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
-
-All methods we have defined on the interactors so far are simple functions which return results.
-Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
-
-## How do others think about use cases?
+## How do others think about use cases and interactors?
 
 During research for this post I found many discussions about the "right cut" of use cases. 
 Here is a list of some well crafted thoughts:
