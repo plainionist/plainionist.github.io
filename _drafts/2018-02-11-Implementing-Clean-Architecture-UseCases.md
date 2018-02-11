@@ -190,11 +190,14 @@ Instead, the use case interactor defines "input ports" and "output ports" to inv
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
-In the use case I have described here the setup is simpler. A I use Asp.Net MVC, the controller and the presenter are 
-the same class: the Asp.Net MVC conroller.
+In the use case I have described here the setup is simpler.
 
-All methods I have defined on the interactors so far are simple and pure functions which get parameters and 
-return results. So I don't need to define any "ports". I will simply pass DTOs (data transfer objects) around.
+- As I use Asp.Net MVC, the controller and the presenter are the same class: the Asp.Net MVC conroller.
+- All methods I have defined on the interactors so far are simple and pure functions which get parameters and 
+  return results. So I don't need to define any "ports". I will simply pass DTOs (data transfer objects) around.
+
+So I will just let the controller call ```BacklogInteractor.GetBacklog``` passing some filter DTO which will
+return some report DTO as result.
 
 Which role is than actually left to the controller and presenter? The answer to this question I will leave to another post.
 
