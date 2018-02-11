@@ -82,8 +82,8 @@ We have put quite some custom conventions on top of it like: fruits, confidence 
 Interpreting plain text fields and generic tags and giving these information business semantics is about business rules.
 So I want to have this logic in the "use case circle". Guided by the SRP I would say
 
-:white_check_mark: First use case interactor found
-&rarr;
+&rArr; First use case interactor found
+
 
 <picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
 
