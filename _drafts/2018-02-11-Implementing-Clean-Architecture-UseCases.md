@@ -4,6 +4,7 @@ title: Implementing Clean Architecture - What is a use case?
 description: Clean Architecture is very much focusing on business by emphasizing use cases. But what is a use case? How big should it be? How does it interact with its environment?
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
+draft: true
 excerpt_separator: <!--more-->
 ---
 
@@ -81,7 +82,7 @@ We have put quite some custom conventions on top of it like: fruits, confidence 
 Interpreting plain text fields and generic tags and giving these information business semantics is about business rules.
 So I want to have this logic in the "use case circle". Guided by the SRP I would say
 
-&U21D2; First use case interactor found
+:white_check_mark: First use case interactor found
 
 <picture of class WorkitemParserInteractor with "ParseFruit", "ParseConfidenceLevel">
 
@@ -118,12 +119,10 @@ In a second step I need to calculate the team capacity from the given data. This
 
 Now that I have a ranked backlog and the capacity I can determine the cut-lines.
 
-```
-*Side note*: You may wonder why I talk about multiple cut-lines. This comes from the confidence levels. Each confidence level
-defines a certain percentage by which the actual estimation is correct, e.g. confidence level "low" could be defined  as "+/- 50%" 
-which means that the actual estimation could be "50% too expensive" or "50% too cheap". This approach basically gives three 
-numbers for each estimation: an optimistic, a pessimistic and a realistic one. Hence, we have three cut-lines.
-```
+> *Side note*: You may wonder why I talk about multiple cut-lines. This comes from the confidence levels. Each confidence level
+> defines a certain percentage by which the actual estimation is correct, e.g. confidence level "low" could be defined  as "+/- 50%" 
+> which means that the actual estimation could be "50% too expensive" or "50% too cheap". This approach basically gives three 
+> numbers for each estimation: an optimistic, a pessimistic and a realistic one. Hence, we have three cut-lines.
 
 Calculating the cut-lines is a simple algorithm which walks the backlog from top to bottom, sums up estimations and 
 matches these against the capacity. It is clearly about business rules so I will add it to a use case interactor.
@@ -213,8 +212,8 @@ UseCases define input DTOs (Data transfer objects) and output DTOs which are mos
 in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
 
 "
-We don’t want to cheat and pass Entity objects or database rows. 
-We don’t want the data structures to have any kind of dependency that violates the Dependency Rule.
+We don't want to cheat and pass Entity objects or database rows. 
+We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
 "
 
 "
@@ -234,5 +233,5 @@ During research for this post I found many discussions about the "right cut" of 
 Here is a list of some well crafted thoughts:
 
 - [How big or small should a Use Case Interactor be in Clean Architecture?](https://stackoverflow.com/questions/47934312/how-big-or-small-should-a-use-case-interactor-be-in-clean-architecture)
-- [Do Interactors in “clean architecture” violate the Single Responsibility Principle?](https://softwareengineering.stackexchange.com/questions/364725/do-interactors-in-clean-architecture-violate-the-single-responsibility-princip) 
+- [Do Interactors in clean architecture violate the Single Responsibility Principle?](https://softwareengineering.stackexchange.com/questions/364725/do-interactors-in-clean-architecture-violate-the-single-responsibility-princip) 
 - [Who should handle combining interactors?](https://stackoverflow.com/questions/47868684/in-clean-mvp-who-should-handle-combining-interactors)
