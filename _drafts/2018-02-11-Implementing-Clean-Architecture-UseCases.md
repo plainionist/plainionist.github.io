@@ -134,26 +134,41 @@ matches these against the capacity. It is clearly about business rules so I will
 
 ### Action: Generate the report
 
+On the first glance this sounds like "UI work", but that's not all. Here are further business rules to consider:
+
+- Create hyperlinks for each workitem to the TFS
+- Indicating missing information (missing confidence level, missing estimation)
+- add total capacity for reference
+- add total effort for reference
+- aggregate involved team membmers for the filters
+- Create e-mail links
+
+Eventhough this sounds like UI logic I see it as business logic. The business rules are the ones deciding how
+we compile this report together. The business rules define what is important in that report and what not.
+
+so lets have an interactor which prepares all that so that the presenter has an easy job.
+
+&U21D2; Even with my pragmatic view this logic doesn't fit nicely into any existing interactor without violating SRP. So let me create a new one.
+
+<picture BacklogInteractor with "Generate()">
 
 ## Can I reference use cases from use cases?
 
-- refer to stackoverflow questions
-- my conclusion ? yes because of SRP
+We have created three interactors so far. But how do we assembly them together to get the use case implemented:
+
 - https://stackoverflow.com/questions/47868684/in-clean-mvp-who-should-handle-combining-interactors
  
-## how do i access the database then?
+## How do I access the database then?
 
-- can a usecase really be independent of the outer world?
+Uncle Bob writes in his book:
 
-in general
+> Between the use case interactors and the database are the database gateways. 
+> 2 These gateways are polymorphic interfaces that contain methods for every create, read, update, 
+> or delete operation that can be performed by the application on the database. For example, if the 
+> application needs to know the last names of all the users who logged in yesterday, then the UserGateway 
+> interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and returns a list of last names.
 
-"
-Between the use case interactors and the database are the database gateways. 2 These gateways are polymorphic interfaces that contain methods for every create, read, update, or delete operation that can be performed by the application on the database. For example, if the application needs to know the last names of all the users who logged in yesterday, then the UserGateway interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and returns a list of last names.
-
-Martin, Robert C.. Clean Architecture: A Craftsman's Guide to Software Structure and Design (Robert C. Martin Series) (p. 214). Pearson Education. Kindle Edition. 
-"
-
-==> separate post
+The details about accessing the "outer world" like database, TFS and other services I ll discuss in one of the next posts
 
 ## How to interact with controller/presenter?
 
