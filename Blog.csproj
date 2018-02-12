@@ -28,11 +28,13 @@
     <None Include="tag\jekyll.md" />
     <None Include="tag\skills.md" />
     <None Include="tag\clean-architecture.md" />
+    <None Include="tag\tools.md" />
     <None Include="tag\WPF.md" />
     <None Include="tag\software-enginering.md" />
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
+    <None Include="_posts\2018-02-10-Plainion.GraphViz-2.8.md" />
     <None Include="_posts\2018-02-11-Implementing-Clean-Architecture-UseCases.md" />
     <None Include="_posts\2018-02-02-Implementing-Clean-Architecture-Overview.md" />
     <None Include="_posts\2018-02-04-Implementing-Clean-Architecture-Scream.md" />
