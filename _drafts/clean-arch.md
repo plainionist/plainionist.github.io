@@ -1,11 +1,14 @@
 
 # Interface Adapters
 
+nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
+
 ## Which data is passed to and returned from a use case interactor? 
 
 DOUBLE check with the book: this is actually about BOUNDARIES! 
 i think i can pass entities from one internal interactor to another one.
 once this internal interactor becomes public we should again check what is passing a boundary
+
 
 Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
 in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
@@ -35,8 +38,17 @@ any other business-related data. Button and MenuItem names are placed in the Vie
 View whether those Buttons and MenuItems should be gray.
 "
 
-==> separate post about interface adapters
+## how to impl an input port?
 
+nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
+
+==> method call
+
+## how would i implement an output port?
+
+nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
+
+==> interface + callback (more details in the book?)
 
 ## How to apply EntityFramework or other ORM?
 
