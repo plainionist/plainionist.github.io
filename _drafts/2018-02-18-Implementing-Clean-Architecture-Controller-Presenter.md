@@ -100,7 +100,12 @@ decouple view and interactor. none knows about the data format of the other. the
 takes the response model and turns it into another data strcuture - one which is most convenient for the view.
 so that the view can be as dump as possible - because the view is very hard to test.
 if we want to test how things are show to the user we want to do it on the presenter
-(humble object)
+
+presenters are a form of "humble object" pattern - separates behavior easy to test from behavior hard to test.
+is about creating boundaries.
+
+for everything the view needs to know the presenter create a field on the view model in the appropriate format and data type ...
+probably mostly strings.
 
 there could be multiple presenter per "use case": one for html, one for print, one for wpf ...
 
