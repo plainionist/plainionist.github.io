@@ -18,6 +18,15 @@ page 215
 
 # Entities
 
+application independent business objects
+
+the "interactor controls the dance of the entities"
+
+that means: entities are NOT just dump data objects. there is logic!
+
+==> ddd happens here!
+==> u can also have ddd in application specific business objects (interactors)
+
 ## Can entities access repositories?
 
 https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repository
@@ -39,7 +48,11 @@ https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repos
 
 # The Main module
 
+how do i wire up all the things?
+who instanciates interactors?
 https://softwareengineering.stackexchange.com/questions/364424/crossing-boundaries-in-clean-architecture?answertab=votes#tab-top
+
+
 
 ## Dependency Injection?
 
@@ -53,6 +66,24 @@ https://softwareengineering.stackexchange.com/questions/364424/crossing-boundari
 - "what is simple enough that writing a test would violate DRY"?
 - with this strange idea in mind i currently try to put - as i also think i read it in uncle bobs post - all code in the usecases/entities and test it
 - i want to have all gateways that dump that testing feels like violating DRY (the code already clearly documents itself and is too simple that a test adds value - it is obvious)
+
+
+==> you can test without the web server
+==> you can test without many mocks!
+
+- testing interactors !!
+- if want to test close to user test controller and presenter (which still does not require a web server)
+- the presenter does everything possible to make the view so dump that we never need to test it.
+  (humble object)
+
+==> so no testing of html needed
+
+- but what about all the smart javascript in a modern SPA?
+- maybe u can use frameworks to keep also the javascript as simple as possible - i dont want to test it :)
+- what about vue or react and binding?
+
+==> in the end u probably just need a very simple integration test which is running thrugh UI to check
+    that everything is wired up correctly. but NO deep logic testing through UI!
 
 # relation to other patterns
 

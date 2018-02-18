@@ -45,18 +45,34 @@ in MVC and MVP the controller/presenters are the "hearts of logic".
 
 in clean arch as much logic as possible goes into the use case interactors.
 
-controllers and presenters live in "interface adapters" circle - which gives already a hint: they are adpaters only!
+we earlier looked at this picture ..
 
+<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
+and we see already : controllers and presenters live in "interface adapters" circle - which gives already a hint: they are adpaters only!
 
+lets add some more details:
 
-https://softwareengineering.stackexchange.com/questions/357052/clean-architecture-use-case-containing-the-presenter-or-returning-data
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
-https://stackoverflow.com/questions/46510550/clean-architecture-what-are-the-jobs-of-presenter
+<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
 
+todo: describe what we see here with control flow
+- user
+- view (part of the framework - e.g. HTML/JavaScript)
+- controller (adapter)
+- interactor (logic)
+- presenter
+- view
+- user
+
+todo: describe the dependencies
+(see: dependency rule!)
+
+todo: describe special "implemented by" arrows
+
+so now that we know how the controllers and presenters fit into the complete picture of 
+Clean Architecture lets check out what they are doing there.
 
 ## What is the role of the controller? 
-
 
 the controller takes user input, prepares it for the interactor and pass it to it
 could also take the response from interactor and pass it to the presenter
@@ -77,12 +93,21 @@ any other business-related data. Button and MenuItem names are placed in the Vie
 View whether those Buttons and MenuItems should be gray.
 "
 
+decouple view and interactor. none knows about the data format of the other. the presenter is the "adapter"
 
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
+takes the response model and turns it into another data strcuture - one which is most convenient for the view.
+so that the view can be as dump as possible - because the view is very hard to test.
+if we want to test how things are show to the user we want to do it on the presenter
+(humble object)
 
 ##  Athena
 
 as said: simplified view throught asp.net mvc
+
+is this actually correct according to clean architecture to just return data from interactor and pass this to presenter?
+is it ok having the controller know the presenter? just passing data?
+if we look at the picture the architecture clearly says that the presenter "implements" the output port ... arrow asks for polymorphism
+
 
 patterns allways have to match into context
 
@@ -90,35 +115,28 @@ so i am fine with using simplified view in my simple example in combination with
 
 nevertheless my controller/presenter classes will focus on the responsiblities from Clean architecture
 
-## implementation overview
-
-Controllers and presenters interact with the interactors respecting the dependency rule.
-so how is the general control flow:
-- user
-- view
-- controller
-- interactor
-- presenter
-- view
-- user
-
-<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
 how would i implement a presenter if i would like to separate my Asp.Net controller?
 
+
 ## how to impl an input port?
 
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
+this is an interface implemented by an use case interactor.
+do i need to have a dedicated interface? i dont think so. i am pretty fine with calling a method on the usecase interator directy.
+do i intend to replace the interactor implementation later? NO - i would just change it. 
+do i have other reasons to hide the interactor implementation? NO - even if i would have further APIs on the interactor for 
+testing i would make them internal ... controllers i would anyhow put in other projects than interactors to keep dependencies to third party clean.
+
 
 ==> method call
 
 ## how would i implement an output port?
 
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
 
-==> interface + callback (more details in the book?)
+==> interface + callback (more details in the book?) interface defined by the use case - most convenient for the use case
+    containing the output data defined by the use case
 
-
+==> again: what about just returning data?
 
 
 ## Which data is passed between controller, interactor and presenter? 
@@ -155,11 +173,13 @@ Therefore we dont need to define input or output ports as interfaces - we can ha
 
 ## How do others think about controllers and presenters
 
-During research for this post I found many discussions about the "right cut" of use cases. 
-Here is a list of some well crafted thoughts:
+During research for this post I came along many other discussions about controllers and presenters in the Clean Architecture.
+Here are some of them:
 
-- https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
-- https://softwareengineering.stackexchange.com/questions/357052/clean-architecture-use-case-containing-the-presenter-or-returning-data
-- https://stackoverflow.com/questions/46510550/clean-architecture-what-are-the-jobs-of-presenter
+- [Use case containing the presenter or returning data?](https://softwareengineering.stackexchange.com/questions/357052/clean-architecture-use-case-containing-the-presenter-or-returning-data)
+- [What are the jobs of presenter?](https://stackoverflow.com/questions/46510550/clean-architecture-what-are-the-jobs-of-presenter)
+
+
+ https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
 
 {% include series.html %}

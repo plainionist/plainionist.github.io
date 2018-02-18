@@ -145,7 +145,7 @@ So let me create a new one.
 
 <img src="{{ site.url }}/assets/clean-architecture/BacklogInteractor.png" class="dynimg"/>
 
-## How do I combine use cases?
+## How do I combine use case interactors?
 
 We have created four interactors so far. But how do we "combine" them to realize the high-level use case?
 
