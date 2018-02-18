@@ -91,6 +91,10 @@
     <Content Include="assets\clean-architecture\Github.CleanArch.png" />
     <Content Include="assets\clean-architecture\work-balance.png" />
     <Content Include="atom.xml" />
+    <Content Include="images\Plainion.CI.png" />
+    <Content Include="images\Plainion.Flames.png" />
+    <Content Include="images\Plainion.GraphViz.png" />
+    <Content Include="images\Plainion.OneNote.png" />
     <Content Include="impressum.html" />
     <Content Include="public\css\panel.css" />
     <Content Include="robots.txt" />

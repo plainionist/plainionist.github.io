@@ -198,7 +198,7 @@ In the use case I have described here the setup is simpler.
 So I will just let the controller call ```BacklogInteractor.GetBacklog``` passing some filter DTO which will
 return some report DTO as result.
 
-Which role is than actually left to the controller and presenter? The answer to this question I will leave to another post.
+Which role is than actually left to the controller and the presenter? The answer to this question I will leave to another post.
 
 ## How do others think about use cases and interactors?
 
