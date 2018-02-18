@@ -39,7 +39,7 @@ And the presenter in MVP:
 Well, this is about MVC and MVP ... how do the responsibilities change in Clean Architecture?
 
 
-## Clean Architecture
+## Clean Architecture 
 
 in MVC and MVP the controller/presenters are the "hearts of logic".
 
@@ -64,8 +64,8 @@ todo: describe what we see here with control flow
 - view
 - user
 
-todo: describe the dependencies
-(see: dependency rule!)
+todo: describe the dependencies (code level dependencies - arrow means "knows about")
+(see: dependency rule!) - explain different kind of arrows
 
 todo: describe special "implemented by" arrows
 
@@ -77,6 +77,8 @@ Clean Architecture lets check out what they are doing there.
 the controller takes user input, prepares it for the interactor and pass it to it
 could also take the response from interactor and pass it to the presenter
 "controller coordinates"
+
+the controller probably receives a "command" from the view with some parameters which trigger the whole scenario.
 
 ## What is the role of the presenter? 
 
@@ -100,7 +102,16 @@ so that the view can be as dump as possible - because the view is very hard to t
 if we want to test how things are show to the user we want to do it on the presenter
 (humble object)
 
-##  Athena
+there could be multiple presenter per "use case": one for html, one for print, one for wpf ...
+
+## Back to *Athena*
+
+Controller and Presenter are different objects?
+
+"
+We want to protect the Controller from changes in the Presenters.
+"
+
 
 as said: simplified view throught asp.net mvc
 
@@ -126,6 +137,14 @@ do i need to have a dedicated interface? i dont think so. i am pretty fine with 
 do i intend to replace the interactor implementation later? NO - i would just change it. 
 do i have other reasons to hide the interactor implementation? NO - even if i would have further APIs on the interactor for 
 testing i would make them internal ... controllers i would anyhow put in other projects than interactors to keep dependencies to third party clean.
+maybe i have an interactor providing multiple public methods but not all public methods should be accessible to all controllers?
+then we should have separate interfaces - one per "scenario".
+
+"
+The FinancialReportRequester interface serves a different purpose. It is there to protect the FinancialReportController from knowing too much about the internals of the Interactor. If that interface were not there, then the Controller would have transitive dependencies on the FinancialEntities. Transitive dependencies are a violation of the general principle that software entities should not depend on things they don’t directly use. We’ll encounter that principle again when we talk about the Interface Segregation Principle and the Common Reuse Principle. So, even though our first priority is to protect the Interactor from changes to the Controller, we also want to protect the Controller from changes to the Interactor by hiding the internals of the Interactor.
+
+Martin, Robert C.. Clean Architecture: A Craftsman's Guide to Software Structure and Design (Robert C. Martin Series) (pp. 74-75). Pearson Education. Kindle Edition. 
+"
 
 
 ==> method call
@@ -166,7 +185,8 @@ Therefore we dont need to define input or output ports as interfaces - we can ha
 
 
 
-
+But who wires all this up? If the controller and presenter are different classes: who is injecting the
+presenter into the interactor? This will be answered in one of the next posts about "The Main".
 
 
 

@@ -1,6 +1,27 @@
 
-# Interface Adapters
 
+# The Web and the Database and other Details
+
+the web is a detail!
+the db is a details
+
+we want those details to be plugins into our application architecture.
+
+## But what about the database?
+
+but all meaningful app once does persist s.th. right?
+we want to store data efficiently.
+access it fast
+and model it well to avoid redundancy - we want normalization?
+
+but is it really still like that? in 2000 the database seemt to be the god of the applicaiton architecture.
+then there was the time about ORM - abstract the database away
+today is about big data ... we dont care about the kind of db! could be even a simple json based document store?
+we talk about micro services and eventual consistency?
+
+when did u heards s.o. talking about "normalization of the schema" the last time?
+
+maybe DB has become less important ...
 
 ## How to apply EntityFramework or other ORM?
 
@@ -10,11 +31,30 @@ page 214
   (in layered arch it is usually the other way round)
 - https://softwareengineering.stackexchange.com/questions/315558/where-to-put-peripheral-use-cases-in-android-while-using-clean-architecture
 
+## How do i handle transactions?
+
+how do i do it across multiple interactors?
+
+- transactions are necessary because we store state
+- what if we only store events (+snapshots)
+- CRUD goes to CR
+- its like source code control action
+
+==> no transactions!!
+
 ## how to communicate with other systems?
 
 or IO devices? or serivces? 
 
 page 215
+
+## other details
+
+ANY KIND of framework!
+- dependency injection (MEF)
+- ...
+
+
 
 # Entities
 
@@ -27,9 +67,39 @@ that means: entities are NOT just dump data objects. there is logic!
 ==> ddd happens here!
 ==> u can also have ddd in application specific business objects (interactors)
 
+i tend to start with fewer entities - the entities i am sure about.
+i tend to start with less methods in the entities.
+then i implement use cases - the more i implmenent the more i learn about the domain the more code/logic
+goes into the entities. of course i could have done more domain analysis and modeling up front ... but i dont 
+like it much. i like to work incrementally. i like to have the first usecases up and running fast. 
+but i also like to deferre heavy weight decisions. and so i keep my logic "private to the interactors"
+until i learned enough to realize that certain knowledge is actually "application independenty business rules"
+
+
+
 ## Can entities access repositories?
 
 https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repository
+
+
+
+
+# The Main module
+
+how do i wire up all the things?
+who instanciates interactors?
+https://softwareengineering.stackexchange.com/questions/364424/crossing-boundaries-in-clean-architecture?answertab=votes#tab-top
+
+who injects the presenter through the output port into the interacotr?
+
+## Dependency Injection?
+
+- doesn't this mean that there is something wrong with using @Inject constructor for classes in the higher levels?
+  - Strictly speaking, yes: DI frameworks should also not be used in use case or entities circle. (That includes attributes and annotations)
+
+
+
+
 
 
 # Where is what? - Example
@@ -45,19 +115,6 @@ https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repos
 - what about performance?
 - is it worth the effort?
 
-
-# The Main module
-
-how do i wire up all the things?
-who instanciates interactors?
-https://softwareengineering.stackexchange.com/questions/364424/crossing-boundaries-in-clean-architecture?answertab=votes#tab-top
-
-
-
-## Dependency Injection?
-
-- doesn't this mean that there is something wrong with using @Inject constructor for classes in the higher levels?
-  - Strictly speaking, yes: DI frameworks should also not be used in use case or entities circle. (That includes attributes and annotations)
 
 
 # Tests in Clean Architecture
