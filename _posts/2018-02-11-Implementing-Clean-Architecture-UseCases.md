@@ -4,7 +4,6 @@ title: Implementing Clean Architecture - What is a use case?
 description: Clean Architecture is very much focusing on business by emphasizing use cases. But what is a use case? How big should it be? How does it interact with its environment?
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
-draft: true
 excerpt_separator: <!--more-->
 ---
 
