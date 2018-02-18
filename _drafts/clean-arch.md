@@ -1,54 +1,6 @@
 
 # Interface Adapters
 
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
-
-## Which data is passed to and returned from a use case interactor? 
-
-DOUBLE check with the book: this is actually about BOUNDARIES! 
-i think i can pass entities from one internal interactor to another one.
-once this internal interactor becomes public we should again check what is passing a boundary
-
-
-Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
-in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
-
-Uncle Bob:
-> We don't want to cheat and pass Entity objects or database rows. 
-> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
->
-> [...]
->
-> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
-
-All methods we have defined on the interactors so far are simple functions which return results.
-Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
-
-## What is the role of the presenter then? 
-
-ideally a presenter is converting data only. It converts data which is most convenient for one layer into data which is most convenient for the other layer.
-
-
-"
-The job of the Presenter is to repackage the OutputData into viewable form as the ViewModel, 
-which is yet another plain old Java object. The ViewModel contains mostly Strings and flags that the 
-View uses to display the data. Whereas the OutputData may contain Date objects, the Presenter will load the 
-ViewModel with corresponding Strings already formatted properly for the user. The same is true of Currency objects or 
-any other business-related data. Button and MenuItem names are placed in the ViewModel, as are flags that tell the 
-View whether those Buttons and MenuItems should be gray.
-"
-
-## how to impl an input port?
-
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
-
-==> method call
-
-## how would i implement an output port?
-
-nice description of controlflow: https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
-
-==> interface + callback (more details in the book?)
 
 ## How to apply EntityFramework or other ORM?
 
