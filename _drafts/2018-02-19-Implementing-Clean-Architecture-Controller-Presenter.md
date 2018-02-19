@@ -83,9 +83,6 @@ the user's world (the view) and the business logic's world (interactors).
 > the arrow is pointing to. All these arrows fulfill the Dependency Rule as all arrows crossing  the boundaries 
 > are always going from left to right - from the framework circle to the interface adapters circle to the 
 > use case circle.
->
-> You probably have noticed that there are two types of arrows: The open arrow indicates a "uses" relationship,
-> the closed one indicates a "implements" or "extends" relationship. We will look into this difference in more detail soon.
 
 Now that we know how the controllers and presenters fit into the complete picture of the Clean Architecture 
 let's deep dive into their responsiblities.
@@ -318,49 +315,88 @@ We have a controller and an independent presenter now. We have a request object,
 
 But where are the ports?
 
-## how to impl an input port?
+## How do I implement an input port?
 
-this is an interface implemented by an use case interactor.
-do i need to have a dedicated interface? i dont think so. i am pretty fine with calling a method on the usecase interator directy.
-do i intend to replace the interactor implementation later? NO - i would just change it. 
-do i have other reasons to hide the interactor implementation? NO - even if i would have further APIs on the interactor for 
-testing i would make them internal ... controllers i would anyhow put in other projects than interactors to keep dependencies to third party clean.
-maybe i have an interactor providing multiple public methods but not all public methods should be accessible to all controllers?
-then we should have separate interfaces - one per "scenario".
+You probably have already noticed that there are two types of arrows in the picture above. The open arrow indicates a 
+"uses" relationship and the closed one indicates a "implements" or "extends" relationship. Interestingly the two closed arrows
+are both pointing to a port ...
 
-"
-The FinancialReportRequester interface serves a different purpose. It is there to protect the FinancialReportController from knowing too much about the internals of the Interactor. If that interface were not there, then the Controller would have transitive dependencies on the FinancialEntities. Transitive dependencies are a violation of the general principle that software entities should not depend on things they don’t directly use. We’ll encounter that principle again when we talk about the Interface Segregation Principle and the Common Reuse Principle. So, even though our first priority is to protect the Interactor from changes to the Controller, we also want to protect the Controller from changes to the Interactor by hiding the internals of the Interactor.
+Obviously, an input port has to be an interface or an (abstract) class to be implemented by the interactor with at least one 
+API called by the controller to pass the request model and trigger the processing.
 
-Martin, Robert C.. Clean Architecture: A Craftsman's Guide to Software Structure and Design (Robert C. Martin Series) (pp. 74-75). Pearson Education. Kindle Edition. 
-"
+So far, I have not used any interfaces on the interactors. I have just called APIs on the interactors directly. Do I really need
+an interface - another abstraction? 
 
+I would see two benefits in introducing interfaces (maybe later on):
 
-==> method call
+1. Testing. If I would want to test the controller without the interactor I would need an abstraction to replace the actual implementation
+   with a stub or a mock
+2. Interface Segregation. If multiple controllers would use different APIs on the same interactor separate input port interfaces would ensure
+   that each controller only knows the parts about the interactor it needs to know.
 
-## how would i implement an output port?
+I should probably consider a refactoring step ...
 
+## How do I implement an output port?
 
-==> interface + callback (more details in the book?) interface defined by the use case - most convenient for the use case
-    containing the output data defined by the use case
+Now that we know what an input port is we can conclude what an output port will be.
 
-==> again: what about just returning data?
+An output port needs to be an interface or an (abstract) class implemented by the presenter with at least one API called by the interactor
+to pass the response model.
 
+Implementing an output port finally means to invert the control flow. Instead of getting a return value from the interactor and asking 
+the presenter to convert it into a view model, the interactor now would "actively" pass the response model through the output port
+to the presenter. The interactor is now not only controlling HOW the response looks like, it also controls WHEN it will be available.
 
-## How to invert to control flow?
+## How do I invert the controll fow?
 
-now controller injects presenter into interactor. but still controller asks for view model form presenter - due to nature 
-of asp.net mvc fremwwork
+Here is my proposal
 
-can we fix that?
+```F#
+    type IOutputPort = 
+        abstract HandleResponse : ReleaseBacklogResponse -> unit
 
+    type BacklogPresenter(callback) =
+        interface IOutputPort with 
+            member this.HandleResponse response = 
+                {
+                    Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+                    BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+                    ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+                    ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+                    AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
+                    Workitems = response.Workitems
 
-for now we just did it in the controller? is this correct? ... next post.
+                    RemainingEffort = response.RemainingEffort |> formatEffort
+                    RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
 
-But who wires all this up? If the controller and presenter are different classes: who is injecting the
-presenter into the interactor? This will be answered in one of the next posts about "The Main".
+                    Filter = filter
+                }
+                |> callback
 
+    [<HttpPost>]
+    member this.Backlog (filter) =
+        let request = { 
+            AssignedTo = filter.AssignedTo |> toFilter
+            Category = filter.Category |> categoryOptionToFilter
+            BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
+            ClinicalResponsible = filter.ClinicalResponsible |> toFilter
+            ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+        }
 
+        let presenter = new BacklogPresenter(this.View) :> IOutputPort
+        
+        request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+```
+
+The ```BacklogPresenter``` implements the output port interface and also gets a callback to finally pass the view model 
+to the Asp.Net MVC controller to trigger the rendering of the view. The presenter is passed to the interactor so that
+the interactor can pass the response to the presenter through the output port as discussed above.
+
+DONE! ;-) ... Done? Almost. There is just one tiny issue. The code does not compile. An Asp.Net MVC controller method has
+to return an object of type ```ActionResult```. Unfortunately I have currently no idea how I could implement an output port
+and still return something from the controller method. Maybe I find a solution in one of the next posts.
+Until then I will stick to my pragmatic solution I started with ;-)
 
 
 ## How do others think about controllers and presenters
