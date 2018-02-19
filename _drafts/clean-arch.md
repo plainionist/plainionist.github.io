@@ -115,6 +115,9 @@ who injects the presenter through the output port into the interacotr?
 - what about performance?
 - is it worth the effort?
 
+## pagination
+
+https://stackoverflow.com/questions/48356193/clean-architecture-where-to-implement-pagination-logic
 
 
 # Tests in Clean Architecture

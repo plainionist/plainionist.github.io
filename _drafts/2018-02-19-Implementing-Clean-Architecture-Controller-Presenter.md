@@ -21,29 +21,28 @@ Read on!
 
 ## Definitions
 
-Let me again first look for some definitions. 
+Let me again first look for some definitions ... 
 
-What would be more common for the controller to look it up in the Model-View-Controller (MVC) pattern.
+... and what would be a more classical context to lookup a definition for 'controller' than the Model-View-Controller (MVC) pattern.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller):
 
 > The controller is responsible for responding to the user input and perform interactions on the data model objects. 
 > The controller receives the input, it validates the input and then performs the business operation that modifies the state of the data model.
 
-And the presenter in MVP:
+.. and the counterpart for the 'presenter' would be of course the Model-View-Presenter (MVP) pattern.
 
 [Wikipedia](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter):
 
 > The presenter acts upon the model and the view. It retrieves data from repositories (the model), and formats it for display in the view.
 
-Well, this is about MVC and MVP ... how do the responsibilities change in Clean Architecture?
-
+Well, this is about MVC and MVP - but how do the responsibilities change in the Clean Architecture?
 
 ## Clean Architecture 
 
-in MVC and MVP the controller/presenters are the "hearts of logic".
+In the MVC/MVP patterns the controller/presenter contains most of the business logic. In the Clean Architecture
 
-in clean arch as much logic as possible goes into the use case interactors.
+as much logic as possible goes into the use case interactors.
 
 we earlier looked at this picture ..
 
