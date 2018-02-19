@@ -9,8 +9,8 @@ excerpt_separator: <!--more-->
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.png" class="dynimg"/>
 
-Last time we discussed about use cases and interactors and stopped with the question 
-"Which role is than actually left to the controller and presenter?".
+ [Last time](/Implementing-Clean-Architecture-UseCases/) we discussed about use cases and interactors and 
+ stopped with the question: "Which role is than actually left to the controller and presenter?"
 
 In this post I will take this question up and dive deeper into the world of controllers and presenters
 in the context of the Clean Architecture.
@@ -23,7 +23,7 @@ Read on!
 
 Let me again first look for some definitions ... 
 
-... and what would be a more classical context to lookup a definition for 'controller' than the Model-View-Controller (MVC) pattern.
+... and what would be a better place to lookup a definition for 'controller' than the Model-View-Controller (MVC) pattern.
 
 [MVC (Wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller):
 
@@ -47,15 +47,14 @@ I earlier showed you this picture:
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
-From that we can see already that controllers and presenters live in the "interface adpaters" circle (green color) 
+From that we can already see that controllers and presenters live in the "interface adpaters" circle (green) 
 which gives a strong hint: they are adapters only - and we don't want to have adapers much of logic right? 
-Adapters just map from one world to another.
 
 Let me zoom a little bit out of the picture to get the full context.
 
 <img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
 
-So what do we see here? Following the purple arrow we can see the control flow of a user interaction with 
+What do we see here? Following the purple arrow we can see the control flow of a user interacting with 
 a system:
 
 1. The user interacts with the view.
@@ -393,7 +392,9 @@ The ```BacklogPresenter``` implements the output port interface and also gets a 
 to the Asp.Net MVC controller to trigger the rendering of the view. The presenter is passed to the interactor so that
 the interactor can pass the response to the presenter through the output port as discussed above.
 
-DONE! ;-) ... Done? Almost. There is just one tiny issue. The code does not compile. An Asp.Net MVC controller method has
+DONE! ... Done? Almost ... 
+
+There is just one tiny issue. The code does not compile. An Asp.Net MVC controller method has
 to return an object of type ```ActionResult```. Unfortunately I have currently no idea how I could implement an output port
 and still return something from the controller method. Maybe I find a solution in one of the next posts.
 Until then I will stick to my pragmatic solution I started with ;-)
@@ -406,8 +407,5 @@ Here are some of them:
 
 - [Use case containing the presenter or returning data?](https://softwareengineering.stackexchange.com/questions/357052/clean-architecture-use-case-containing-the-presenter-or-returning-data)
 - [What are the jobs of presenter?](https://stackoverflow.com/questions/46510550/clean-architecture-what-are-the-jobs-of-presenter)
-
-
- https://stackoverflow.com/questions/45921928/use-case-containing-the-presenter-or-returning-data
 
 {% include series.html %}
