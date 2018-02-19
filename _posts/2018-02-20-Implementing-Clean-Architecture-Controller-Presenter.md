@@ -122,8 +122,8 @@ Finally, after this longer part of theory you probably want to see some code, ri
 
 ## How do I implement controllers and presenters?
 
-As you probably remember from the [previous post](/Implementing-Clean-Architecture-UseCases/) that for the *Athena* 
-project I initially decided to have the controller and the presenter in one class as this is a pragmatic solution in 
+As you probably remember from the [previous post](/Implementing-Clean-Architecture-UseCases/), I decided for the *Athena* 
+project to have the controller and the presenter in one class as this is a pragmatic solution in 
 the context of Asp.Net MVC. Let me first describe how I have implemented controllers and presenters in this context and then 
 how it could be done more according to what we have discussed so far.
 
@@ -133,7 +133,7 @@ You probably remember the "Show the ranked backlog with cut-lines" use case from
 <img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
 I showed you how I implemented the business rules with multiple interactors. Now let me show the corresponding
-controller/presenter (Even if you are not used to F# I am pretty sure you can still get the key points from the code).
+controller/presenter (Even if you are not an F# expert, I am pretty sure you can still get the key points from the code).
 
 ```F#
     member this.Backlog () =
@@ -170,7 +170,7 @@ controller/presenter (Even if you are not used to F# I am pretty sure you can st
 ```
 
 The ```GetBacklog``` method takes a filter object as parameter which contains the currently selected values in to combo boxes of the page.
-I convert this request object first into the request model demanded by the interactor and pass it to the same. 
+It converts this request object first into the request model demanded by the interactor and pass it to the same. 
 
 ```F#
 /// Request object passed to the controller
@@ -192,7 +192,7 @@ type ReleaseBacklogRequest = {
 ```
 
 The interactor returns a response model which contains all the data needed to display the page. As this data is still typed 
-and in a form most convenient for the interactor I convert it into a view model as a last step. The view model contains all the 
+and in a form most convenient for the interactor it will be converted into a view model as a last step. The view model contains all the 
 data in a format most convenient for the view.
 
 ```F#
@@ -252,7 +252,7 @@ forward and backward conversion of types:
     let formatAvailability = sprintf "%.2f"
 ```
 
-*Note:* I have kept many details in the code which I have not explained in detail because I think those are not relevant to the discussion
+*Note:* I have kept some details in the code which I have not explained in detail so far because think those are not that relevant to the discussion
 in this post. If you still want to know more about these details please drop my a line.
 
 Quite some code! But in the end my implementation of the controller-presenter-hybrid is very simple. Now here comes the most important 
@@ -263,11 +263,11 @@ question of this post:
 I don't know. As mentioned already, personally I consider my approach as a pragmatic and simple way to combine Asp.Net MVC with the
 Clean Architecture. So I am happy for now ...
 
-But let's assume I would now want to separate controller and presenter. How would i implement that separation?
+But let's assume I would now want to separate controller and presenter. How would I implement that separation?
 
 ## Separating controller and presenter
 
-As a simple first step I would just keep all the code before the call to the interactor in the controller and move everything 
+As a first simple step I would just keep all the code before the call to the interactor in the controller and move everything 
 after that call into the presenter.
 
 ```F#
@@ -306,7 +306,7 @@ after that call into the presenter.
 ```
 
 At least my design is now closer to Single Responsibility Pattern (SRP) - the controller as well as the presenter has only one
-reason to change. But still not matching the picture we started with.again
+reason to change. But still not matching the picture we started with.
 
 <img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
 
@@ -317,16 +317,16 @@ But where are the ports?
 ## How do I implement an input port?
 
 You probably have already noticed that there are two types of arrows in the picture above. The open arrow indicates a 
-"uses" relationship and the closed one indicates a "implements" or "extends" relationship. Interestingly the two closed arrows
+"uses" relationship and the closed one indicates an "implements" or "extends" relationship. Interestingly the two closed arrows
 are both pointing to a port ...
 
 Obviously, an input port has to be an interface or an (abstract) class to be implemented by the interactor with at least one 
-API called by the controller to pass the request model and trigger the processing.
+API called by the controller to pass the request model and to trigger the processing.
 
 So far, I have not used any interfaces on the interactors. I have just called APIs on the interactors directly. Do I really need
 an interface - another abstraction? 
 
-I would see two benefits in introducing interfaces (maybe later on):
+I could see two benefits in introducing interfaces:
 
 1. Testing. If I would want to test the controller without the interactor I would need an abstraction to replace the actual implementation
    with a stub or a mock
