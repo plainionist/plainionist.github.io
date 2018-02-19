@@ -120,6 +120,36 @@ who injects the presenter through the output port into the interacotr?
 https://stackoverflow.com/questions/48356193/clean-architecture-where-to-implement-pagination-logic
 
 
+## Must every interactor return a response model?
+
+==> if we split interactors according to SRP we could ask whether certain interactors can return entities instead of 
+dedicated response models?
+i think this is fine as long as interaction with interactor does NOT cross a circle boundary!!
+- is such a private interactor still an interactor? i dont know what uncle bob thinks about it but i would like to 
+continue reusing this term but it brings nice implications i want to hold true also for "private" interactors.
+of course i have to maintain discipline: as soon as i start using such private interactor from conroller i have to ensure that
+i do not leak entities.
+
+DOUBLE check with the book: this is actually about BOUNDARIES! 
+i think i can pass entities from one internal interactor to another one.
+once this internal interactor becomes public we should again check what is passing a boundary
+
+
+Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
+in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
+
+Uncle Bob:
+> We don't want to cheat and pass Entity objects or database rows. 
+> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
+>
+> [...]
+>
+> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
+
+All methods we have defined on the interactors so far are simple functions which return results.
+Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
+
+
 # Tests in Clean Architecture
 
 - i am lazy and i always struggle to find a good balance between DRY and testing

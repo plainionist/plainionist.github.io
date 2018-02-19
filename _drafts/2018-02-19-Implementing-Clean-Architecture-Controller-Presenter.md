@@ -40,36 +40,57 @@ Well, this is about MVC and MVP - but how do the responsibilities change in the 
 
 ## Clean Architecture 
 
-In the MVC/MVP patterns the controller/presenter contains most of the business logic. In the Clean Architecture
+In the MVC/MVP patterns the controller/presenter contains most of the business logic. In the Clean Architecture all of the 
+business logic goes either into an use case interactor or an entity (we will talk about entities later).
 
-as much logic as possible goes into the use case interactors.
-
-we earlier looked at this picture ..
+We earlier looked at this picture:
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
-and we see already : controllers and presenters live in "interface adapters" circle - which gives already a hint: they are adpaters only!
+From that we can see already that controllers and presenters live in the "interface adpaters" circle (green color) 
+which gives a strong hint: they are adapters only - and we don't want to have adapers much of logic right? 
+Adapters just map from one world to another.
 
-lets add some more details:
+Let me zoom a little bit out of the picture to get the full context.
 
 <img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
 
-todo: describe what we see here with control flow
-- user
-- view (part of the framework - e.g. HTML/JavaScript)
-- controller (adapter)
-- interactor (logic)
-- presenter
-- view
-- user
+So what do we see here? Following the purple arrow we can see the control flow of a user interaction with 
+a system:
 
-todo: describe the dependencies (code level dependencies - arrow means "knows about")
-(see: dependency rule!) - explain different kind of arrows
+1. The user interacts with the view.
+2. The view creates a request (object) which is passed to the controller.
+3. The controller converts the request into a request model and passes it to the use case interactor through
+   its input port.
+4. The use case interactor processes the request model and creates a response model which is passed through the 
+   output port to the presenter.
+5. The presenter converts the response model to view model which is then passed to the view.
+6. The user sees the result of his interaction in the view.
 
-todo: describe special "implemented by" arrows
+But there is more to be explored. We see two vertical boundaries separating the picture into three sections:
 
-so now that we know how the controllers and presenters fit into the complete picture of 
-Clean Architecture lets check out what they are doing there.
+- The most left (blue) section where the frameworks live (e.g. an HTML/Javascript view)
+- The middle (green) section where the adapters live (controllers and presenters)
+- The most right (red) section where the business logic (use case interactors) live
+
+the controllers and presenters are sitting in the middle of this picture
+briding between both worlds 
+
+If we look closer now at the controller and presenter we see even more clearly that they only
+convert data objects into other data objects to "bridge" between the user and the business logic.
+
+---
+** Can u see the Dependency Rule?**
+And we see that the black arrows crossing the boundaries are always (!) going from left to right. 
+These arrows represent code level dependencies which means the code where an arrow starts knows about
+the code the arrow is pointing to. So the arrows perfectly respect the Dependency Rule.
+
+You probably have noticed that there are two types of arrows: The open arrow indicates a "uses" relationship,
+the closed one indicates a "implements" or "extends" relationship. We will look into this difference in more detail soon.
+---
+
+Now that we know how the controllers and presenters fit into the complete picture of the Clean Architecture 
+let's deep dive into their responsiblities.
 
 ## What is the role of the controller? 
 
@@ -108,14 +129,34 @@ probably mostly strings.
 
 there could be multiple presenter per "use case": one for html, one for print, one for wpf ...
 
-## Back to *Athena*
+## How do I implement controllers and presenters?
 
-Controller and Presenter are different objects?
+how do i implement a controller? - i mentioned so far in athena controller and presenter are one class ... as motivated by Asp.Net mvc.
 
+lets first describe how that works and then disuss whether this is clean arch conform and how it could be done differently
+
+remember the backlog use case from [last post]()?
+
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
+
+we discussed what the interactors are doing. This time lets look at some code to figure out what the 
+controller/presenter is doing
+
+==> show code!!
+- just the controller then the filter
+- then how the controller converts the filter into a request model and calls the interactor
+- take response model and convert into view model
+  (then show the view model)
+
+
+is this valid clean arch?
+
+uncle bob in his book says:
 "
 We want to protect the Controller from changes in the Presenters.
 "
 
+i found multiple discussions in the web 
 
 as said: simplified view throught asp.net mvc
 
@@ -128,11 +169,31 @@ patterns allways have to match into context
 
 so i am fine with using simplified view in my simple example in combination with aps.net
 
+
+
 nevertheless my controller/presenter classes will focus on the responsiblities from Clean architecture
 
 
+Controller and Presenter are different objects?
 how would i implement a presenter if i would like to separate my Asp.Net controller?
 
+## Separating controller and presenter
+
+start simple: controller gets all code before we call the interactor, presenter gets the code after we got data from interactor.
+
+CODE controller
+
+CODE presenter
+
+now still this is  not exactly matchting the picture we started with. lets look at it again
+
+<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
+
+we have a controller - we have a presenter.
+we have request (give the name) and a request model (give the name).
+we have a response model (give the name) and a viewmodel (give the name).
+
+where are the ports?
 
 ## how to impl an input port?
 
@@ -162,32 +223,16 @@ Martin, Robert C.. Clean Architecture: A Craftsman's Guide to Software Structure
 ==> again: what about just returning data?
 
 
-## Which data is passed between controller, interactor and presenter? 
+## How to invert to control flow?
 
-DOUBLE check with the book: this is actually about BOUNDARIES! 
-i think i can pass entities from one internal interactor to another one.
-once this internal interactor becomes public we should again check what is passing a boundary
+now controller injects presenter into interactor. but still controller asks for view model form presenter - due to nature 
+of asp.net mvc fremwwork
 
-
-Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
-in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
-
-Uncle Bob:
-> We don't want to cheat and pass Entity objects or database rows. 
-> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
->
-> [...]
->
-> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
-
-All methods we have defined on the interactors so far are simple functions which return results.
-Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
+can we fix that?
 
 
 
-
-
-
+for now we just did it in the controller? is this correct? ... next post.
 
 But who wires all this up? If the controller and presenter are different classes: who is injecting the
 presenter into the interactor? This will be answered in one of the next posts about "The Main".
