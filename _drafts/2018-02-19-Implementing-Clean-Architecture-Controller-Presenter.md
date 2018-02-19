@@ -139,45 +139,139 @@ You probably remember the "Show the ranked backlog with cut-lines" use case from
 <img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
 I showed you how I implemented the business rules with multiple interactors. Now let me show the corresponding
-controller/presenter:
+controller/presenter (Even if you are not used to F# I am pretty sure you can still get the key points from the code).
 
-````F#
+```F#
+    member this.Backlog () =
+        this.Backlog(new BacklogFilter())
+
+    [<HttpPost>]
+    member this.Backlog (filter) =
+        let request = { 
+            AssignedTo = filter.AssignedTo |> toFilter
+            Category = filter.Category |> categoryOptionToFilter
+            BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
+            ClinicalResponsible = filter.ClinicalResponsible |> toFilter
+            ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+        }
+
+        let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+
+        let viewModel = {
+            Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+            BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+            ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+            ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+            AssignedTo = response.AssignedTo |> Mvc.Selects.Create
+
+            Workitems = response.Workitems
+
+            RemainingEffort = response.RemainingEffort |> formatEffort
+            RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+
+            Filter = filter
+        }
+        
+        this.View(viewModel)
 ```
 
-==> show code!!
-- just the controller then the filter
-- then how the controller converts the filter into a request model and calls the interactor
-- take response model and convert into view model
-  (then show the view model)
+The ```GetBacklog``` method takes a filter object as parameter which contains the currently selected values in to combo boxes of the page.
+I convert this request object first into the request model demanded by the interactor and pass it to the same. 
 
+```F#
+/// Request object passed to the controller
+type BacklogFilter() =
+    member val Category = Mvc.Selects.All with get,set
+    member val BacklogSet = Mvc.Selects.All with get,set
+    member val ClinicalResponsible = Mvc.Selects.All with get,set
+    member val ArchitectureResponsible = Mvc.Selects.All with get,set
+    member val AssignedTo = Mvc.Selects.All with get,set
 
-is this valid clean arch?
+/// Request model demanded by the interactor
+type ReleaseBacklogRequest = {
+    Category : ImprovementCategory option Filter
+    BacklogSet : BacklogSet option Filter
+    ClinicalResponsible : string Filter
+    ArchitectureResponsible : string Filter
+    AssignedTo : string Filter
+}
+```
 
-uncle bob in his book says:
-"
-We want to protect the Controller from changes in the Presenters.
-"
+The interactor returns a response model which contains all the data needed to display the page. As this data is still typed 
+and in a form most convenient for the interactor I convert it into a view model as a last step. The view model contains all the 
+data in a format most convenient for the view.
 
-i found multiple discussions in the web 
+```F#
+/// Response model returned by the interactor
+type ReleaseBacklogResponse = {
+    Categories : ImprovementCategory option list
+    BacklogSets : BacklogSet option list
+    ClinicalResponsibles : string list
+    ArchitectureResponsibles : string list
+    AssignedTo : string list
 
-as said: simplified view throught asp.net mvc
+    Workitems : ScopedImprovement list
 
-is this actually correct according to clean architecture to just return data from interactor and pass this to presenter?
-is it ok having the controller know the presenter? just passing data?
-if we look at the picture the architecture clearly says that the presenter "implements" the output port ... arrow asks for polymorphism
+    RemainingEffort : float<PD>
+    RemainingAvailabilty : float<Netto PD>
+}
 
+/// View model passed to the view
+type ReleaseBacklogViewModel = {
+    Categories : SelectListItem list
+    BacklogSets : SelectListItem list
+    ClinicalResponsibles : SelectListItem list
+    ArchitectureResponsibles : SelectListItem list
+    AssignedTo : SelectListItem list
 
-patterns allways have to match into context
+    Workitems : ScopedImprovement list
 
-so i am fine with using simplified view in my simple example in combination with aps.net
+    RemainingEffort : string
+    RemainingAvailabilty : string
 
+    Filter : BacklogFilter
+}
+```
 
+I also have some small helper functions defined - which is much more convenient and concise in F# than in C# ;-) - which I use for the
+forward and backward conversion of types:
 
-nevertheless my controller/presenter classes will focus on the responsiblities from Clean architecture
+```F#
+    let toFilter value = if value = Mvc.Selects.All then Any else value |> Exactly
 
+    let categoryToOption value = ...
 
-Controller and Presenter are different objects?
-how would i implement a presenter if i would like to separate my Asp.Net controller?
+    let categoryOptionToFilter value = ...
+
+    let backlogSetToOption = 
+        function
+        | Some(x) -> x |> Unions.toString
+        | _ -> String.Empty
+
+    let backlogSetOptionToFilter = 
+        function
+        | Mvc.Selects.All -> Any
+        | x -> x |> Unions.fromString |> Exactly
+
+    let formatEffort = sprintf "%.2f"
+    
+    let formatAvailability = sprintf "%.2f"
+```
+
+*Note:* I have kept many details in the code which I have not explained in detail because I think those are not relevant to the discussion
+in this post. If you still want to know more about these details please drop my a line.
+
+Quite some code! But in the end my implementation of the controller-presenter-hybrid is very simple. Now here comes the 1000$ question:
+
+&#8680; What would Uncle Bob say to this pragmatism? ;-)
+
+I don't know. As mentioned already, personally I consider my approach as a pragmatic and simple way to combine Asp.Net MVC with the
+Clean Architecture. So I am happy for now ...
+
+But let's assume I want to convert *Athena* into a more modern Single Page Application (SPA). The frontend would be pure HTML5 with some 
+nice [Javascript framework](http://vuejs.org) and the backend would Asp.Net Core or Suave.IO only knowing about JSON.
+
+How would I implement a separation between controller and presenter then?
 
 ## Separating controller and presenter
 
