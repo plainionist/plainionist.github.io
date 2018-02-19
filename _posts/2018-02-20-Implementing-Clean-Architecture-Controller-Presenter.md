@@ -149,7 +149,9 @@ member this.Backlog (filter) =
         ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
     }
 
-    let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+    let response = 
+        request 
+        |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
 
     let viewModel = {
         Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
@@ -273,20 +275,20 @@ after that call into the presenter.
 ```F#
 module BacklogPresenter =
     let CreateViewModel filter response =
-        {
-            Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
-            BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
-            ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
-            ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
-            AssignedTo = response.AssignedTo |> Mvc.Selects.Create
+      {
+        Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+        BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+        ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+        ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+        AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-            Workitems = response.Workitems
+        Workitems = response.Workitems
 
-            RemainingEffort = response.RemainingEffort |> formatEffort
-            RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+        RemainingEffort = response.RemainingEffort |> formatEffort
+        RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
 
-            Filter = filter
-        }
+        Filter = filter
+      }
 
 [<HttpPost>]
 member this.Backlog (filter) =
@@ -298,7 +300,9 @@ member this.Backlog (filter) =
         ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
     }
 
-    let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+    let response = 
+        request 
+        |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
 
     let viewModel = response |> BacklogPresenter.CreateViewModel filter
         
@@ -356,22 +360,22 @@ type IOutputPort =
 
 type BacklogPresenter(callback) =
     interface IOutputPort with 
-        member this.HandleResponse response = 
-            {
-                Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
-                BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
-                ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
-                ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
-                AssignedTo = response.AssignedTo |> Mvc.Selects.Create
+      member this.HandleResponse response = 
+        {
+          Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+          BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+          ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+          ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+          AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-                Workitems = response.Workitems
+          Workitems = response.Workitems
 
-                RemainingEffort = response.RemainingEffort |> formatEffort
-                RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+          RemainingEffort = response.RemainingEffort |> formatEffort
+          RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
 
-                Filter = filter
-            }
-            |> callback
+          Filter = filter
+        }
+        |> callback
 
 [<HttpPost>]
 member this.Backlog (filter) =
@@ -385,7 +389,8 @@ member this.Backlog (filter) =
 
     let presenter = new BacklogPresenter(this.View) :> IOutputPort
         
-    request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+    request 
+    |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
 ```
 
 The ```BacklogPresenter``` implements the output port interface and also gets a callback to finally pass the view model 
