@@ -91,7 +91,7 @@ let's deep dive into their responsiblities.
 The controller takes user input, converts it into the request model defined by the use case interactor and passes 
 this to the same.
 
-The request object accepted by the controller is also defined by the controller. We do NOT want the controller to depend 
+The request object accepted by the controller is defined by the controller. We do NOT want the controller to depend 
 on the view or types defined in the framework circle. 
 
 Such request objects are usually simple data transfer objects (DTO). Depending on the view technology a
@@ -114,9 +114,9 @@ Finally the controller simply calls an API on the use case interactor to trigger
 
 Is there anything to add? ;-)
 
-Maybe one short word on testing: No matter which view technology you use (WPF, Html, etc) the view will always be hard
+Maybe one short word on testing: No matter which view technology you use (WPF, HTML, etc) the view will always be hard
 to test; at least harder than the code not depending on it. The job of the presenter is to prepare the view model that well
-that the view becomes that dumb that testing the view unnecessary.
+that the view becomes that dumb that testing the view becomes unnecessary.
 
 Finally, after this longer part of theory you probably want to see some code, right? ;-)
 
