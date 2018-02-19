@@ -354,7 +354,7 @@ to the presenter. The interactor is now not only controlling HOW the response lo
 
 Here is my proposal
 
-```F#
+```fsharp
 type IOutputPort = 
     abstract HandleResponse : ReleaseBacklogResponse -> unit
 
