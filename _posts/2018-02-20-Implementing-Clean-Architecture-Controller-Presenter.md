@@ -135,7 +135,7 @@ You probably remember the "Show the ranked backlog with cut-lines" use case from
 I showed you how I implemented the business rules with multiple interactors. Now let me show the corresponding
 controller/presenter (Even if you are not an F# expert, I am pretty sure you can still get the key points from the code).
 
-```F#
+```fsharp
 member this.Backlog () =
     this.Backlog(new BacklogFilter())
 
@@ -174,7 +174,7 @@ member this.Backlog (filter) =
 The ```GetBacklog``` method takes a filter object as parameter which contains the currently selected values in to combo boxes of the page.
 It converts this request object first into the request model demanded by the interactor and pass it to the same. 
 
-```F#
+```fsharp
 /// Request object passed to the controller
 type BacklogFilter() =
     member val Category = Mvc.Selects.All with get,set
@@ -197,7 +197,7 @@ The interactor returns a response model which contains all the data needed to di
 and in a form most convenient for the interactor it will be converted into a view model as a last step. The view model contains all the 
 data in a format most convenient for the view.
 
-```F#
+```fsharp
 /// Response model returned by the interactor
 type ReleaseBacklogResponse = {
     Categories : ImprovementCategory option list
@@ -232,7 +232,7 @@ type ReleaseBacklogViewModel = {
 I also have some small helper functions defined - which is much more convenient and concise in F# than in C# ;-) - which I use for the
 forward and backward conversion of types:
 
-```F#
+```fsharp
 let toFilter value = if value = Mvc.Selects.All then Any else value |> Exactly
 
 let categoryToOption value = ...
@@ -272,7 +272,7 @@ But let's assume I would now want to separate controller and presenter. How woul
 As a first simple step I would just keep all the code before the call to the interactor in the controller and move everything 
 after that call into the presenter.
 
-```F#
+```fsharp
 module BacklogPresenter =
     let CreateViewModel filter response =
       {
