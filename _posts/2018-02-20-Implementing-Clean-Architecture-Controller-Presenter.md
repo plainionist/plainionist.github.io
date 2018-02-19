@@ -136,37 +136,37 @@ I showed you how I implemented the business rules with multiple interactors. Now
 controller/presenter (Even if you are not an F# expert, I am pretty sure you can still get the key points from the code).
 
 ```F#
-    member this.Backlog () =
-        this.Backlog(new BacklogFilter())
+member this.Backlog () =
+    this.Backlog(new BacklogFilter())
 
-    [<HttpPost>]
-    member this.Backlog (filter) =
-        let request = { 
-            AssignedTo = filter.AssignedTo |> toFilter
-            Category = filter.Category |> categoryOptionToFilter
-            BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
-            ClinicalResponsible = filter.ClinicalResponsible |> toFilter
-            ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
-        }
+[<HttpPost>]
+member this.Backlog (filter) =
+    let request = { 
+        AssignedTo = filter.AssignedTo |> toFilter
+        Category = filter.Category |> categoryOptionToFilter
+        BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
+        ClinicalResponsible = filter.ClinicalResponsible |> toFilter
+        ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+    }
 
-        let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+    let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
 
-        let viewModel = {
-            Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
-            BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
-            ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
-            ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
-            AssignedTo = response.AssignedTo |> Mvc.Selects.Create
+    let viewModel = {
+        Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+        BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+        ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+        ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+        AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-            Workitems = response.Workitems
+        Workitems = response.Workitems
 
-            RemainingEffort = response.RemainingEffort |> formatEffort
-            RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+        RemainingEffort = response.RemainingEffort |> formatEffort
+        RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
 
-            Filter = filter
-        }
+        Filter = filter
+    }
         
-        this.View(viewModel)
+    this.View(viewModel)
 ```
 
 The ```GetBacklog``` method takes a filter object as parameter which contains the currently selected values in to combo boxes of the page.
@@ -231,25 +231,25 @@ I also have some small helper functions defined - which is much more convenient 
 forward and backward conversion of types:
 
 ```F#
-    let toFilter value = if value = Mvc.Selects.All then Any else value |> Exactly
+let toFilter value = if value = Mvc.Selects.All then Any else value |> Exactly
 
-    let categoryToOption value = ...
+let categoryToOption value = ...
 
-    let categoryOptionToFilter value = ...
+let categoryOptionToFilter value = ...
 
-    let backlogSetToOption = 
-        function
-        | Some(x) -> x |> Unions.toString
-        | _ -> String.Empty
+let backlogSetToOption = 
+    function
+    | Some(x) -> x |> Unions.toString
+    | _ -> String.Empty
 
-    let backlogSetOptionToFilter = 
-        function
-        | Mvc.Selects.All -> Any
-        | x -> x |> Unions.fromString |> Exactly
+let backlogSetOptionToFilter = 
+    function
+    | Mvc.Selects.All -> Any
+    | x -> x |> Unions.fromString |> Exactly
 
-    let formatEffort = sprintf "%.2f"
+let formatEffort = sprintf "%.2f"
     
-    let formatAvailability = sprintf "%.2f"
+let formatAvailability = sprintf "%.2f"
 ```
 
 *Note:* I have kept some details in the code which I have not explained in detail so far because think those are not that relevant to the discussion
@@ -271,38 +271,38 @@ As a first simple step I would just keep all the code before the call to the int
 after that call into the presenter.
 
 ```F#
-    module BacklogPresenter =
-        let CreateViewModel filter response =
-            {
-                Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
-                BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
-                ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
-                ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
-                AssignedTo = response.AssignedTo |> Mvc.Selects.Create
+module BacklogPresenter =
+    let CreateViewModel filter response =
+        {
+            Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+            BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+            ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+            ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+            AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-                Workitems = response.Workitems
+            Workitems = response.Workitems
 
-                RemainingEffort = response.RemainingEffort |> formatEffort
-                RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+            RemainingEffort = response.RemainingEffort |> formatEffort
+            RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
 
-                Filter = filter
-            }
-
-    [<HttpPost>]
-    member this.Backlog (filter) =
-        let request = { 
-            AssignedTo = filter.AssignedTo |> toFilter
-            Category = filter.Category |> categoryOptionToFilter
-            BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
-            ClinicalResponsible = filter.ClinicalResponsible |> toFilter
-            ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+            Filter = filter
         }
 
-        let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+[<HttpPost>]
+member this.Backlog (filter) =
+    let request = { 
+        AssignedTo = filter.AssignedTo |> toFilter
+        Category = filter.Category |> categoryOptionToFilter
+        BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
+        ClinicalResponsible = filter.ClinicalResponsible |> toFilter
+        ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+    }
 
-        let viewModel = response |> BacklogPresenter.CreateViewModel filter
+    let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+
+    let viewModel = response |> BacklogPresenter.CreateViewModel filter
         
-        this.View(viewModel)
+    this.View(viewModel)
 ```
 
 At least my design is now closer to Single Responsibility Pattern (SRP) - the controller as well as the presenter has only one
@@ -351,41 +351,41 @@ to the presenter. The interactor is now not only controlling HOW the response lo
 Here is my proposal
 
 ```F#
-    type IOutputPort = 
-        abstract HandleResponse : ReleaseBacklogResponse -> unit
+type IOutputPort = 
+    abstract HandleResponse : ReleaseBacklogResponse -> unit
 
-    type BacklogPresenter(callback) =
-        interface IOutputPort with 
-            member this.HandleResponse response = 
-                {
-                    Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
-                    BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
-                    ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
-                    ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
-                    AssignedTo = response.AssignedTo |> Mvc.Selects.Create
+type BacklogPresenter(callback) =
+    interface IOutputPort with 
+        member this.HandleResponse response = 
+            {
+                Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+                BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+                ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+                ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+                AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-                    Workitems = response.Workitems
+                Workitems = response.Workitems
 
-                    RemainingEffort = response.RemainingEffort |> formatEffort
-                    RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+                RemainingEffort = response.RemainingEffort |> formatEffort
+                RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
 
-                    Filter = filter
-                }
-                |> callback
+                Filter = filter
+            }
+            |> callback
 
-    [<HttpPost>]
-    member this.Backlog (filter) =
-        let request = { 
-            AssignedTo = filter.AssignedTo |> toFilter
-            Category = filter.Category |> categoryOptionToFilter
-            BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
-            ClinicalResponsible = filter.ClinicalResponsible |> toFilter
-            ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
-        }
+[<HttpPost>]
+member this.Backlog (filter) =
+    let request = { 
+        AssignedTo = filter.AssignedTo |> toFilter
+        Category = filter.Category |> categoryOptionToFilter
+        BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
+        ClinicalResponsible = filter.ClinicalResponsible |> toFilter
+        ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+    }
 
-        let presenter = new BacklogPresenter(this.View) :> IOutputPort
+    let presenter = new BacklogPresenter(this.View) :> IOutputPort
         
-        request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+    request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
 ```
 
 The ```BacklogPresenter``` implements the output port interface and also gets a callback to finally pass the view model 
