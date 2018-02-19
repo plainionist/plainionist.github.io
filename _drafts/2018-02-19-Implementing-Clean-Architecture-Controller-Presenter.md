@@ -81,12 +81,14 @@ convert data objects into other data objects to "bridge" between the user and th
 
 ---
 ** Can u see the Dependency Rule?**
+
 And we see that the black arrows crossing the boundaries are always (!) going from left to right. 
 These arrows represent code level dependencies which means the code where an arrow starts knows about
 the code the arrow is pointing to. So the arrows perfectly respect the Dependency Rule.
 
 You probably have noticed that there are two types of arrows: The open arrow indicates a "uses" relationship,
 the closed one indicates a "implements" or "extends" relationship. We will look into this difference in more detail soon.
+
 ---
 
 Now that we know how the controllers and presenters fit into the complete picture of the Clean Architecture 
