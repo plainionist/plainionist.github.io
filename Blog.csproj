@@ -36,7 +36,7 @@
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
     <None Include="_posts\2018-02-19-Plainion.GraphViz-2.9.md" />
-    <None Include="_posts\2018-02-17-Library-Design-Principles - Copy.md" />
+    <None Include="_posts\2018-02-17-Library-Design-Principles.md" />
     <None Include="_posts\2018-02-18-Clean-Architecture-And-Design.md" />
     <None Include="_posts\2018-02-10-Plainion.GraphViz-2.8.md" />
     <None Include="_drafts\2018-02-19-Implementing-Clean-Architecture-Controller-Presenter.md" />

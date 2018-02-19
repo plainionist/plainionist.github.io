@@ -43,7 +43,7 @@ Well, this is about MVC and MVP - but how do the responsibilities change in the 
 In the MVC/MVP patterns the controller/presenter contains most of the business logic. In the Clean Architecture all of the 
 business logic goes either into an use case interactor or an entity (we will talk about entities later).
 
-We earlier looked at this picture:
+I earlier showed you this picture:
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
@@ -69,43 +69,46 @@ a system:
 
 But there is more to be explored. We see two vertical boundaries separating the picture into three sections:
 
-- The most left (blue) section where the frameworks live (e.g. an HTML/Javascript view)
+- The left (blue) section where the frameworks live (e.g. an HTML/Javascript view)
 - The middle (green) section where the adapters live (controllers and presenters)
-- The most right (red) section where the business logic (use case interactors) live
+- The right (red) section where the business logic (use case interactors) live
 
-the controllers and presenters are sitting in the middle of this picture
-briding between both worlds 
-
-If we look closer now at the controller and presenter we see even more clearly that they only
-convert data objects into other data objects to "bridge" between the user and the business logic.
+The controller and the presenter are located in the middle of this picture and they appear as a bridge between 
+the user's world (the view) and the business logic's world (interactors). 
 
 > **Can you see the Dependency Rule?**
 >
-> And we see that the black arrows crossing the boundaries are always (!) going from left to right. 
-> These arrows represent code level dependencies which means the code where an arrow starts knows about
-> the code the arrow is pointing to. So the arrows perfectly respect the Dependency Rule.
-> 
+> Let's look even closer at the picture for a moment. We can see quite some arrows between the different boxes.
+> These arrows represent code level dependencies which means the code where an arrow starts knows about the code 
+> the arrow is pointing to. All these arrows fulfill the Dependency Rule as all arrows crossing  the boundaries 
+> are always going from left to right - from the framework circle to the interface adapters circle to the 
+> use case circle.
+>
 > You probably have noticed that there are two types of arrows: The open arrow indicates a "uses" relationship,
 > the closed one indicates a "implements" or "extends" relationship. We will look into this difference in more detail soon.
-
 
 Now that we know how the controllers and presenters fit into the complete picture of the Clean Architecture 
 let's deep dive into their responsiblities.
 
 ## What is the role of the controller? 
 
-the controller takes user input, prepares it for the interactor and pass it to it
-could also take the response from interactor and pass it to the presenter
-"controller coordinates"
+The controller takes user input, converts it into the request model defined by the use case interactor and passes 
+this to the same.
 
-the controller probably receives a "command" from the view with some parameters which trigger the whole scenario.
+The request object accepted by the controller is also defined by the controller. We do NOT want the controller to depend 
+on the view or types defined in the framework circle. 
+
+Such request objects are usually simple data transfer objects (DTO). Depending on the view technology a
+request object may contain typed information (e.g. WPF) or just strings (e.g. HTML). It is the role of the controller
+to convert the given information into a format which is most convenient for and defined by the use case interactor.
+For that the controller may have some simple if-then-else or parser logic but we do not want to have any processing logic
+inside the conroller.
+
+Finally the controller simply calls an API on the use case interactor to trigger the processing.
 
 ## What is the role of the presenter? 
 
-if the use case has all the logic ...
-ideally a presenter is converting data only. It converts data which is most convenient for one layer into data which is most convenient for the other layer.
-
-
+[Uncle Bob says](/Clean-Architecture/):
 "
 The job of the Presenter is to repackage the OutputData into viewable form as the ViewModel, 
 which is yet another plain old Java object. The ViewModel contains mostly Strings and flags that the 
@@ -115,32 +118,31 @@ any other business-related data. Button and MenuItem names are placed in the Vie
 View whether those Buttons and MenuItems should be gray.
 "
 
-decouple view and interactor. none knows about the data format of the other. the presenter is the "adapter"
+Is there anything to add? ;-)
 
-takes the response model and turns it into another data strcuture - one which is most convenient for the view.
-so that the view can be as dump as possible - because the view is very hard to test.
-if we want to test how things are show to the user we want to do it on the presenter
+Maybe one short word on testing: No matter which view technology you use (WPF, Html, etc) the view will always be hard
+to test; at least harder than the code not depending on it. The job of the presenter is to prepare the view model that well
+that the view becomes that dumb that testing the view unnecessary.
 
-presenters are a form of "humble object" pattern - separates behavior easy to test from behavior hard to test.
-is about creating boundaries.
-
-for everything the view needs to know the presenter create a field on the view model in the appropriate format and data type ...
-probably mostly strings.
-
-there could be multiple presenter per "use case": one for html, one for print, one for wpf ...
+Finally, after this longer part of theory you probably want to see some code, right? ;-)
 
 ## How do I implement controllers and presenters?
 
-how do i implement a controller? - i mentioned so far in athena controller and presenter are one class ... as motivated by Asp.Net mvc.
+As you probably remember from the [previous post](/Implementing-Clean-Architecture-UseCases/) that for the *Athena* 
+project I initially decided to have the controller and the presenter in one class as this is a pragmatic solution in 
+the context of Asp.Net MVC. Let me first describe how I have implemented controllers and presenters in this context and then 
+how it could be done more according to what we have discussed so far.
 
-lets first describe how that works and then disuss whether this is clean arch conform and how it could be done differently
-
-remember the backlog use case from [last post]()?
+You probably remember the "Show the ranked backlog with cut-lines" use case from the 
+[previous post](/Implementing-Clean-Architecture-UseCases/):
 
 <img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
-we discussed what the interactors are doing. This time lets look at some code to figure out what the 
-controller/presenter is doing
+I showed you how I implemented the business rules with multiple interactors. Now let me show the corresponding
+controller/presenter:
+
+````F#
+```
 
 ==> show code!!
 - just the controller then the filter
