@@ -109,14 +109,12 @@ Finally the controller simply calls an API on the use case interactor to trigger
 ## What is the role of the presenter? 
 
 [Uncle Bob says](/Clean-Architecture/):
-"
-The job of the Presenter is to repackage the OutputData into viewable form as the ViewModel, 
-which is yet another plain old Java object. The ViewModel contains mostly Strings and flags that the 
-View uses to display the data. Whereas the OutputData may contain Date objects, the Presenter will load the 
-ViewModel with corresponding Strings already formatted properly for the user. The same is true of Currency objects or 
-any other business-related data. Button and MenuItem names are placed in the ViewModel, as are flags that tell the 
-View whether those Buttons and MenuItems should be gray.
-"
+> The job of the Presenter is to repackage the OutputData into viewable form as the ViewModel, 
+> which is yet another plain old Java object. The ViewModel contains mostly Strings and flags that the 
+> View uses to display the data. Whereas the OutputData may contain Date objects, the Presenter will load the 
+> ViewModel with corresponding Strings already formatted properly for the user. The same is true of Currency objects or 
+> any other business-related data. Button and MenuItem names are placed in the ViewModel, as are flags that tell the 
+> View whether those Buttons and MenuItems should be gray.
 
 Is there anything to add? ;-)
 
@@ -261,35 +259,64 @@ forward and backward conversion of types:
 *Note:* I have kept many details in the code which I have not explained in detail because I think those are not relevant to the discussion
 in this post. If you still want to know more about these details please drop my a line.
 
-Quite some code! But in the end my implementation of the controller-presenter-hybrid is very simple. Now here comes the 1000$ question:
+Quite some code! But in the end my implementation of the controller-presenter-hybrid is very simple. Now here comes the most important 
+question of this post:
 
 &#8680; What would Uncle Bob say to this pragmatism? ;-)
 
 I don't know. As mentioned already, personally I consider my approach as a pragmatic and simple way to combine Asp.Net MVC with the
 Clean Architecture. So I am happy for now ...
 
-But let's assume I want to convert *Athena* into a more modern Single Page Application (SPA). The frontend would be pure HTML5 with some 
-nice [Javascript framework](http://vuejs.org) and the backend would Asp.Net Core or Suave.IO only knowing about JSON.
-
-How would I implement a separation between controller and presenter then?
+But let's assume I would now want to separate controller and presenter. How would i implement that separation?
 
 ## Separating controller and presenter
 
-start simple: controller gets all code before we call the interactor, presenter gets the code after we got data from interactor.
+As a simple first step I would just keep all the code before the call to the interactor in the controller and move everything 
+after that call into the presenter.
 
-CODE controller
+```F#
+    module BacklogPresenter =
+        let CreateViewModel filter response =
+            {
+                Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
+                BacklogSets = response.BacklogSets |> Seq.map backlogSetToOption |> Mvc.Selects.Create
+                ClinicalResponsibles = response.ClinicalResponsibles |> Mvc.Selects.Create
+                ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
+                AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-CODE presenter
+                Workitems = response.Workitems
 
-now still this is  not exactly matchting the picture we started with. lets look at it again
+                RemainingEffort = response.RemainingEffort |> formatEffort
+                RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
+
+                Filter = filter
+            }
+
+    [<HttpPost>]
+    member this.Backlog (filter) =
+        let request = { 
+            AssignedTo = filter.AssignedTo |> toFilter
+            Category = filter.Category |> categoryOptionToFilter
+            BacklogSet = filter.BacklogSet |> backlogSetOptionToFilter
+            ClinicalResponsible = filter.ClinicalResponsible |> toFilter
+            ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
+        }
+
+        let response = request |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+
+        let viewModel = response |> BacklogPresenter.CreateViewModel filter
+        
+        this.View(viewModel)
+```
+
+At least my design is now closer to Single Responsibility Pattern (SRP) - the controller as well as the presenter has only one
+reason to change. But still not matching the picture we started with.again
 
 <img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
 
-we have a controller - we have a presenter.
-we have request (give the name) and a request model (give the name).
-we have a response model (give the name) and a viewmodel (give the name).
+We have a controller and an independent presenter now. We have a request object, a request model, a response model and a view model.
 
-where are the ports?
+But where are the ports?
 
 ## how to impl an input port?
 
