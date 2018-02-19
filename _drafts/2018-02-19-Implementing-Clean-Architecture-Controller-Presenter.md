@@ -25,14 +25,14 @@ Let me again first look for some definitions ...
 
 ... and what would be a more classical context to lookup a definition for 'controller' than the Model-View-Controller (MVC) pattern.
 
-[Wikipedia](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller):
+[MVC (Wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller):
 
 > The controller is responsible for responding to the user input and perform interactions on the data model objects. 
 > The controller receives the input, it validates the input and then performs the business operation that modifies the state of the data model.
 
 .. and the counterpart for the 'presenter' would be of course the Model-View-Presenter (MVP) pattern.
 
-[Wikipedia](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter):
+[MVP (Wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter):
 
 > The presenter acts upon the model and the view. It retrieves data from repositories (the model), and formats it for display in the view.
 
@@ -79,8 +79,8 @@ briding between both worlds
 If we look closer now at the controller and presenter we see even more clearly that they only
 convert data objects into other data objects to "bridge" between the user and the business logic.
 
-**Can you see the Dependency Rule?**
-
+> **Can you see the Dependency Rule?**
+>
 > And we see that the black arrows crossing the boundaries are always (!) going from left to right. 
 > These arrows represent code level dependencies which means the code where an arrow starts knows about
 > the code the arrow is pointing to. So the arrows perfectly respect the Dependency Rule.
