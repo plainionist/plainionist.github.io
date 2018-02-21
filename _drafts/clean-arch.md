@@ -7,6 +7,10 @@ the db is a details
 
 we want those details to be plugins into our application architecture.
 
+How do we cut “external” services and entities?
+==> Unit of work
+==> started with rather interactor specific interfaces and then checked whether I could meaningfully consolidate things. If I were in doubt I got them separated - PlanningService
+
 ## But what about the database?
 
 but all meaningful app once does persist s.th. right?
@@ -75,6 +79,8 @@ like it much. i like to work incrementally. i like to have the first usecases up
 but i also like to deferre heavy weight decisions. and so i keep my logic "private to the interactors"
 until i learned enough to realize that certain knowledge is actually "application independenty business rules"
 
+==> When blogging about entities – update details on what is in the interactor implementations
+ (availability becomes entity!)
 
 
 ## Can entities access repositories?
@@ -174,6 +180,11 @@ Therefore we dont need to define input or output ports as interfaces - we can ha
 
 ==> in the end u probably just need a very simple integration test which is running thrugh UI to check
     that everything is wired up correctly. but NO deep logic testing through UI!
+
+Where do I do acceptance testing in clean arch?
+==> On US?
+==> On controller / presenter?
+==> interactor … then simple UT for presenter and controller sufficient (because only doing data convertion)
 
 # relation to other patterns
 
