@@ -226,6 +226,11 @@ show how one scenario would be designed in clean-arch.
 what is usecase, what is gateway, ...
 
 
+# benefits
+
+- after having refactored quite some code from non clean arch to clean arch i can say: "it is unbelievable how the separation of
+  interactor and presenter simplifies the design", "how magically entities occur - interactors have interactor specific requests and response. 
+  everthing generic to these is entities!?"
 
 # Further Learning
 
