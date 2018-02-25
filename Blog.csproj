@@ -101,7 +101,6 @@
     <Content Include="impressum.html" />
     <Content Include="public\css\panel.css" />
     <Content Include="robots.txt" />
-    <Content Include="tags.html" />
     <Content Include="assets\CleanArchitecture.jpg" />
     <Content Include="assets\CoachingHabit.jpg" />
     <Content Include="assets\CodeAsCrimeScene.jpg" />
