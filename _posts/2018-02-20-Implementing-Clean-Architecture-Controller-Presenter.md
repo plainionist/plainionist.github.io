@@ -1,7 +1,9 @@
 ---
 layout: post
 title: Implementing Clean Architecture - Of controllers and presenters
-description: What is the role of the controller in Clean Architecture? What is the role of the presenter in the Clean Architecture? Do I need to separate both?
+description: |
+  What is the role of the controller in Uncle Bob's Clean Architecture? What is the role of the presenter?
+  How do I implement "input ports" and "output port"? Find answers to these and more questions in this post!
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
