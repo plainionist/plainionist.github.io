@@ -110,6 +110,12 @@ who injects the presenter through the output port into the interacotr?
 
 # Where is what? - Example
 
+## Is the presenter view specific?
+
+i think so. if u have an html view the presenter can know about html. see print example from uncle bob.
+or the other way round: if not the presenter is preparing html snippets it means that u have logic in the view
+what we want to avoid - also because of testability.
+
 ## input validation?
 
 - https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
