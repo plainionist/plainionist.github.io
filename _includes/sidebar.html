@@ -7,22 +7,26 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a>
-
-        {% assign pages_list = site.pages | where_exp: "x","x.order != -1" | sort:"order" %}
-        {% for node in pages_list %}
-          {% if node.title != null %}
-            {% if node.layout == "page" %}
-              <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-
         <div class="sidebar-nav-item">
             <label>Popular Posts</label><br />
             <a href="{{ site.baseurl }}/Implementing-Clean-Architecture-Controller-Presenter/">Implementing Clean Architecture - Of controllers and presenters</a><br />
-            <a href="{{ site.baseurl }}/Implementing-Clean-Architecture-UseCases/">Implementing Clean Architecture - Implementing Clean Architecture - What is a use case?</a><br />
+            <a href="{{ site.baseurl }}/Implementing-Clean-Architecture-UseCases/">Implementing Clean Architecture - What is a use case?</a><br />
             <a href="{{ site.baseurl }}/Blogging-with-Jekyll-Intro">Blogging with Jekyll</a><br />
+        </div>
+
+        <div class="sidebar-nav-item">
+            <label>Tags</label><br />
+            {% capture temptags %}
+              {% for tag in site.tags %}
+                {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+              {% endfor %}
+            {% endcapture %}
+            {% assign sortedtemptags = temptags | split:' ' | sort | reverse %}
+            {% for temptag in sortedtemptags %}
+              {% assign tagitems = temptag | split: '#' %}
+              {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
+              <a href="/tag/{{ tagname }}"><code class="highlight"><nobr>{{ tagname }}</nobr></code></a>
+            {% endfor %}
         </div>
 
         <div class="sidebar-nav-item">
@@ -31,6 +35,10 @@
             <a href="https://plainionist.github.io/Plainion.CI/" target="_blank"><img src="{{ site.baseurl }}/images/Plainion.CI.png" /> Plainion.CI</a><br />
             <a href="https://plainionist.github.io/Plainion.Flames/" target="_blank"><img src="{{ site.baseurl }}/images/Plainion.Flames.png" /> Plainion.Flames</a><br />
             <a href="https://plainionist.github.io/Plainion.OneNote/" target="_blank"><img src="{{ site.baseurl }}/images/Plainion.OneNote.png" /> Plainion.OneNote</a><br />
+        </div>
+
+        <div class="sidebar-nav-item">
+            <a href="{{ site.baseurl }}/Archive">Archive</a><br />
         </div>
     </nav>
 
