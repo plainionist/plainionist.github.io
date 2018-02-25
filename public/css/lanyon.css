@@ -608,4 +608,9 @@ footer {
 .dynimg {
     max-width: 100%;
     height: auto;
-} 
+}
+
+.sidebar code {
+    color: #bf616a;
+    background-color: #a9a9a9;
+}
