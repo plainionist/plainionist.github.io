@@ -24,7 +24,7 @@ Why do we let such details impact our project structure so often?
 *[Athena](/Implementing-Clean-Architecture)* has three core use cases
 
 - Show the backlog with projected team capacity (work balance we consider to be a different view on the backlog itself)
-- Calculate a burndown
+- Calculate a burn down chart
 - Ensure backlog conventions via governance rules
 
 In order to let my architecture scream I could create three projects/DLLs accordingly:
@@ -70,11 +70,11 @@ So I have created one "Entities" DLL which gives me now this structure:
 
 Looking into my code base I find code which I want to reuse across the three sub-systems but which are NOT entities, e.g.:
 
-- I have some functions which compile reusable Html snippets.
+- I have some functions which compile reusable HTML snippets.
 - I have some functions to handle dates and times conversions consistently.
 - I have some code which makes it easier to get the relevant data from TFS. 
 
-I would even cosider such code as "framework extensions". But if I would put it in the outer most circle, 
+I would even consider such code as "framework extensions". But if I would put it in the outer most circle, 
 as per the Dependency Rule, I would not be allowed to use it from the "interface adapters" circle where I would need it.
 
 So I decided to create another central "gateways" assembly for such shared "infrastructural" code, which finally gives my this picture:

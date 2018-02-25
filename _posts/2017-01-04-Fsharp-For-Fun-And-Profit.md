@@ -12,7 +12,7 @@ continued with
 
 [The Book of F#: Breaking Free with Managed Functional Programming](https://www.amazon.com/Book-Breaking-Managed-Functional-Programming/dp/1593275528/ref=sr_1_1?ie=UTF8&qid=1483534245&sr=8-1&keywords=book+of+f%23)
 
-and finally read the full 1900+ pages offline edition of
+and finally read the full 1900+ pages off-line edition of
 
 [F# for fun and profit](https://fsharpforfunandprofit.com/)
 
@@ -21,5 +21,5 @@ and i can clearly say:
 
 **THIS IS THE BEST SOURCE TO LEARN F#**  -  ever!!
 
-Thx Scott for this great blo
+Thx Scott for this great blog!
 

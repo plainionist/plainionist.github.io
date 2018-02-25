@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 
 Do your web sites also look ugly because you have no clue about web design?
 
-Bootstrap to the rescue! With Bootstrap you dont need to be a web designer to give your web sites a professional look and feel.
+Bootstrap to the rescue! With Bootstrap you don't need to be a web designer to give your web sites a professional look and feel.
 
 This book ...
 
@@ -22,7 +22,7 @@ This book ...
 You will learn 
 
 - how to layout your pages
-- how to style Html elements including forms and tables
+- how to style HTML elements including forms and tables
 - how to build navigation control
 - ... and many more 
 

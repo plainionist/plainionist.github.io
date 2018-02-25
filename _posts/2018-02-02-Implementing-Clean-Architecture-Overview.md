@@ -18,7 +18,7 @@ Wait! Let me rephrase: Let others briefly summarize what the Clean Architecture 
 (I really like the DRY principle so why should I repeat what others have put together nicely already ;-) )
 
 - [Uncle Bob's original article on Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html).
-  Of course this is the ultimative source. If you have not read it yet, do it right now!
+  Of course this is the ultimate source. If you have not read it yet, do it right now!
 - [Better Software Design with Clean Architecture](https://fullstackmark.com/post/11/better-software-design-with-clean-architecture).
   Mark nicely introduces into Clean Architecture by showing code right away.
   If you thought Uncle Bob's article was missing code then go through Mark's post.

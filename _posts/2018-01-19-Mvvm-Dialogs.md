@@ -21,31 +21,31 @@ The view is just about nicely interacting with the user.
 
 Second, there is a (domain)model. It is data centric, represents the entities of the domain and models the business rules.
 
-Third, there is the viewmodel which acts as a bridge between the view and the model. It converts the data of the model into 
+Third, there is the view model which acts as a bridge between the view and the model. It converts the data of the model into 
 a format which is most convenient for the view. It converts the "events" of the view into actions most convenient for the model.
 
-In most MVVM frameworks the view "notifies" the viewmodel using "commands" and the viewmodel updates the view through "data binding".
+In most MVVM frameworks the view "notifies" the view model using "commands" and the view model updates the view through "data binding".
 
 Very often you can also find "services" which implement use cases - business logic which does not fit into the model.
 
-As you probably have guessed the MVVM pattern fits nicely for data centric apps, apps which load data from a DB, show it
+As you probably have guessed the MVVM pattern fits nicely for data centric applications, applications which load data from a DB, show it
 to the user through some nice UI and provide some "commands" from common CRUD operations.
 
-But most "rich UI" apps are more than that. There are animations, gestures, drag & drop and other nice UX features which make
-the usage of the app "a pleasure for the user".
+But most "rich UI" applications are more than that. There are animations, gestures, drag & drop and other nice UX features which make
+the usage of the application "a pleasure for the user".
 
 ## And sometimes there are dialogs ...
 
 The challenge of dialog handling in the context of MVVM pattern is that a dialog needs to be shown driven by 
-a state change in the viewmodel while the viewmodel does not want to know anything about views (and a dialog obviously is a view/window).
+a state change in the view model while the view model does not want to know anything about views (and a dialog obviously is a view/window).
 
-If you search the internet - or most probably stackoverflow - for that question you will find many proposals how to address 
+If you search the Internet - or most probably Stackoverflow - for that question you will find many proposals how to address 
 this challenge. The solution proposals range from "just open from code behind" to "have a dialog service opening the dialog".
 
-Personally I don't like any of these proposals. I don't want any non-view code to depend on view code. I don't want the viewmodel or a service
+Personally I don't like any of these proposals. I don't want any non-view code to depend on view code. I don't want the view model or a service
 knowing anything about the view. I want to keep the view logic separated.
 
-I also don't like "code-behind" code in MVVM-driven applications because mostly this moves the viewmodel out of the control. I want the view
+I also don't like "code-behind" code in MVVM-driven applications because mostly this moves the view model out of the control. I want the view
 as declarative as possible. I don't to unit test the view so I don't want to have it any logic.
 
 ## InteractionRequests to the rescue
@@ -53,7 +53,7 @@ as declarative as possible. I don't to unit test the view so I don't want to hav
 From my perspective the best way to handle dialogs in MVVM pattern is using "interaction triggers" from System.Windows.Interactivity and
 "interaction request trigger" from [Prism library](https://github.com/PrismLibrary/Prism). The approach works as follows:
 
-You define a interaction request in the Xaml of the view from where you want to open a dialog
+You define a interaction request in the XAML of the view from where you want to open a dialog
 
 ```Xaml
 <i:Interaction.Triggers>
@@ -63,13 +63,13 @@ You define a interaction request in the Xaml of the view from where you want to 
 </i:Interaction.Triggers>
 ```
 
-You an "InteractionRequest" from viewmodel as "SourceObject" like this:
+You an "InteractionRequest" from view model as "SourceObject" like this:
 
 ```C#
 public InteractionRequest<IConfirmation> ConfirmationRequest { get; private set; }
 ```
 
-You can use the interaction request from the viewmodel to open the dialog:
+You can use the interaction request from the view model to open the dialog:
 
 ```C#
 private void OnShowConfirmation()

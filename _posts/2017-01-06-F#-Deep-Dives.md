@@ -12,7 +12,7 @@ I just finished reading
 
 It is a great book about F#!
 
-While it will NOT give you much details about cool latest features of F# language it does give you deep insights in how experienced F# developers
-use the benefits of F# in real world projects.
+While it will NOT give you much details about cool latest features of F# language it does give you deep insights in how experienced 
+F# developers use the benefits of F# in real world projects.
 
 A must read for every developer being interested in more quality with less code and more fun.

@@ -13,22 +13,22 @@ After I have read it I can say it is a rather small book which gives you a good 
 <!--more-->
 It "touches" the following topics:
 
-- Traditional Web Apps vs. Single Page Apps
+- Traditional Web applications vs. Single Page Applications
 - Architectural and design principles, e.g.:
   - separation of concerns
   - dependency inversion
-  - persistance ignorance
+  - persistence ignorance
 - Common web architecture styles, like:
   - layers
   - clean architecture 
 - Client side web technologies (e.g. Angular)
-- How to setup your first ASP.NET Core MVC appapps
+- How to setup your first ASP.NET Core MVC application
   - Structure the code
-  - Sesign cross cutting concerns
+  - Design cross cutting concerns
   - Security
   - Caching
 - How to use EF Core
-- Testing asp.net core mvc apps
+- Testing Asp.net Core MVC applications
 - Azure hosting
 
 Definitively a good one if you are new to ASP.Net Core (MVC).

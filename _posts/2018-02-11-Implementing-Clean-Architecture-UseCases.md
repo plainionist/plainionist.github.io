@@ -33,7 +33,7 @@ As a starting point for answering these questions I like to fish for find some d
 > These use cases orchestrate the flow of data to and from the entities, and direct those entities to use their 
 > Critical Business Rules to achieve the goals of the use case.
 
-Ok, these definitions are rather high-level and nothing concrete. I kinda expected that ;-)
+OK, these definitions are rather high-level and nothing concrete. I kinda expected that ;-)
 
 Enough of theory - let's look at something more practical ...
 
@@ -65,7 +65,7 @@ level of abstraction we want to consider.
 
 Let me rephrase the question: How big should a use case INTERACTOR be?
 
-So what would be a driving priciple for deciding about "size"? Correct: Single Responsibility Pattern (SRP).
+So what would be a driving principle for deciding about "size"? Correct: Single Responsibility Pattern (SRP).
 
 Let's look closer at the list of actions from above ...
 
@@ -90,7 +90,8 @@ Ranking the backlog is definitively about business rules as those define how the
 a very simple task which just sorts workitems by stack rank. 
 But reality is rarely ideal so I could imagine additional rules, e.g.:
 
-- Always rank [MMP](https://agilesoftwareengineer.com/2013/08/28/minimum-viable-product-vs-minimum-marketable-product/) higher than "best effort"
+- Always rank [MMP](https://agilesoftwareengineer.com/2013/08/28/minimum-viable-product-vs-minimum-marketable-product/) higher 
+  than "best effort"
 - Rank workitems without any given rank lowest
 - In case of duplicate ranks, rank one product line over the other product line.
 
@@ -105,7 +106,7 @@ their ramp up and ramp down in head count for one year. Getting this (raw) data 
 
 In a second step I need to calculate the team capacity from the given data. This step is again about business rules:
 
-- Substract corridors like hotfixes for the installed base from the modeled head count
+- Subtract corridors like hot fixes for the installed base from the modeled head count
 - Convert head count into person days by applying an "availability factor" (e.g. remove holidays)
 - Apply correct time frame (e.g. duration of an iteration or software version)
 
@@ -125,7 +126,8 @@ Now that I have a ranked backlog and the capacity I can determine the cut-lines.
 Calculating the cut-lines is a simple algorithm which walks the backlog from top to bottom, sums up estimations and 
 matches these against the capacity. It is clearly about business rules so I will add it to a use case interactor.
 
-&#8680; Considering the existing interactors and my preference of pragmatic decisions I will put this logic into the ```RankingInteractor```.
+&#8680; Considering the existing interactors and my preference of pragmatic decisions I will put this logic into 
+the ```RankingInteractor```.
 
 <img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.2.png" class="dynimg"/>
 
@@ -136,12 +138,12 @@ At first glance this may look like "UI work", but that's not all. Here are furth
 - Validate missing information (missing confidence level, missing estimation)
 - Provide total capacity for reference
 - Provide total effort for reference
-- Compute list of involved team membmers (for the filters)
+- Compute list of involved team members (for the filters)
 
 I want to have these business rules realized in an interactor as well.
 
-&#8680; Even with my preference for pragmatic decisions this logic doesn't fit nicely into any existing interactor without violating SRP. 
-So let me create a new one.
+&#8680; Even with my preference for pragmatic decisions this logic doesn't fit nicely into any existing interactor without 
+violating SRP. So let me create a new one.
 
 <img src="{{ site.url }}/assets/clean-architecture/BacklogInteractor.png" class="dynimg"/>
 
@@ -160,8 +162,8 @@ is involved in combining the other interactors?
 I want the interface adapters (controllers, presenters) rather dumb. So as soon as some logic is involved in combining 
 interactors I prefer having another interactor realizing the combination.
 
-For the use case discussed here I tend to make again a pragmatic decision: I will make the ```BacklogInteractor``` the "conbining interactor"
-which calls the other interactors. 
+For the use case discussed here I tend to make again a pragmatic decision: I will make the ```BacklogInteractor``` the 
+"combining interactor" which calls the other interactors. 
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactors.Collaboration.png" class="dynimg"/>
 
@@ -173,7 +175,8 @@ In his [book](/Clean-Architecture/) Uncle Bob writes about database access:
 > These gateways are polymorphic interfaces that contain methods for every create, read, update, 
 > or delete operation that can be performed by the application on the database. For example, if the 
 > application needs to know the last names of all the users who logged in yesterday, then the UserGateway 
-> interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and returns a list of last names.
+> interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and returns a list 
+> of last names.
 
 For our use case I will define two interfaces. One to get the workitems from TFS and one to get the team capacity information from
 the external service.
@@ -191,7 +194,7 @@ Instead, the use case interactor defines "input ports" and "output ports" to inv
 
 In the use case I have described here the setup is simpler.
 
-- As I use Asp.Net MVC, the controller and the presenter are the same class: the Asp.Net MVC conroller.
+- As I use Asp.Net MVC, the controller and the presenter are the same class: the Asp.Net MVC controller.
 - All methods I have defined on the interactors so far are simple and pure functions which get parameters and 
   return results. So I don't need to define any "ports". I will simply pass DTOs (data transfer objects) around.
 

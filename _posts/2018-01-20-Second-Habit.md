@@ -15,7 +15,7 @@ This habit is one of seven from Stephen Convey's great book "[The 7 Habits of Hi
 
 <!--more-->
 
-The book is the best book I have ever read about personal and organisational success.
+The book is the best book I have ever read about personal and organizational success.
 
 In this book Stephen presents seven habits:
 

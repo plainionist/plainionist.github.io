@@ -13,8 +13,8 @@ Are you missing readers on your blog? Don't make this mistake ...
 
 <!--more-->
 
-Search Engine Optimization (SEO) is about helping Google to present your blog in the its search results. Lukily some 
-[nice guys](https://github.com/jekyll/jekyll-seo-tag) have written a Jekyll plugin which makes it very easy for you to 
+Search Engine Optimization (SEO) is about helping Google to present your blog in the its search results. Luckily some 
+[nice guys](https://github.com/jekyll/jekyll-seo-tag) have written a Jekyll plug-in which makes it very easy for you to 
 do SEO for your Jekyll based blog.
 
 There are just two things to be done:

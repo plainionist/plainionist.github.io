@@ -11,7 +11,7 @@ You don't have to! Just don't do these mistakes ...
 
 1. Using corporate templates
 2. Having content packed slides
-3. Writing full centences
+3. Writing full sentences
 4. Focusing on the slides during presentation
 
 <!--more-->
@@ -50,7 +50,7 @@ You don't get what I am talking about? Watch this:
 Surely I am not on that level yet ... but I keep on trying ;-)
 
 
-How will your next powerpoint look like?
+How will your next Powerpoint look like?
 
 
 

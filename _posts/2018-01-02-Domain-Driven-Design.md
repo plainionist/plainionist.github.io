@@ -13,8 +13,8 @@ weeks I finally took the time get through
 
 [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?s=books&ie=UTF8&qid=1514895832&sr=1-1&keywords=domain+driven+design)
 
-First, I have to admit: not an easy read - at least not for me. Of course the book is well structured and for sure eric knows what he
-is talking about but for me his language is more challenging to read as e.g. Uncle Bob - more advanced english, longer sentences ... 
+First, I have to admit: not an easy read - at least not for me. Of course the book is well structured and for sure Eric knows what he
+is talking about but for me his language is more challenging to read as e.g. Uncle Bob - more advanced English, longer sentences ... 
 but finally i made it ;-)
 
 Now lets focus on content!
@@ -29,8 +29,8 @@ DDD has 3 core statements:
    Both have to be developed together and in iterative way, giving constant feedback to each other.
 2. The domain model is the backbone of a language - the UBIQUITOUS LANGUAGE (UL) - which is used by all team members, technical
    as well as non-technical. The UL is used in diagrams, in documents, in code and in speech. It must not contain any 
-   inconsistancies or ambiguity. A change in the UL is results in a change in the domain model.
-3. The domain model is distilled knowledged, iteratively developed through knowledge crunching and continuous learning.
+   inconsistencies or ambiguity. A change in the UL is results in a change in the domain model.
+3. The domain model is distilled knowledge, iteratively developed through knowledge crunching and continuous learning.
 
 ## Building blocks of model-driven design
 
@@ -45,14 +45,15 @@ Therefore the system should be separated into four basic layers
 DDD uses several core building blocks to build the domain layer:
 
 ASSOCIATIONS describe the interactions between ENTITIES (objects with identity) and VALUE OBJECTS (describe things with attributes).
-Operations which do not naturally fit into the responsiblity of an ENTITY or a VALUE OBJECT	are put into stateless SERVICES. 
+Operations which do not naturally fit into the responsibility of an ENTITY or a VALUE OBJECT	are put into stateless SERVICES. 
 MODULES are use to package conceptual areas which can be reasoned about independently.
 
-AGGREGATES group ENTITIES and VALUE OBJECTS together with one root ENTITY to simplify life cylce handling and design of invariants between objects.
+AGGREGATES group ENTITIES and VALUE OBJECTS together with one root ENTITY to simplify life cycle handling and design of invariants 
+between objects.
 FACTORIES encapsulate the logic required for creating consistent and valid objects.
-REPOSITORIES are used to aquire references to preexisting domain objects. The allow add, remove and query of domain objects with usecase 
+REPOSITORIES are used to acquire references to preexisting domain objects. The allow add, remove and query of domain objects with use case 
 specific interfaces.
-sPECIFICATIONS are predicate-like VALUE OBJECTS which specify business rules for validation, selection and creation of domain objejcts.
+sPECIFICATIONS are predicate-like VALUE OBJECTS which specify business rules for validation, selection and creation of domain objects.
 
 ## Supple Design
 
@@ -67,12 +68,12 @@ STANDALONE CLASSES, CLOSURE OF OPERATIONS and DECLARATIVE DESIGN further help sh
 
 ## Maintaining model integrity
 
-Total unification of the domain model for a large system will not be feasible therfore boundaries have to be drawn.
+Total unification of the domain model for a large system will not be feasible therefore boundaries have to be drawn.
 
 The BOUNDED CONTEXT defines a context within a model applies. The same concept (e.g. a customer) can be expressed differently
 in different BOUNDED CONTEXTS.
-CONTINUOUS INTEGRATION is an improtant technique within BOUNDED CONTEXTS to avoid its fragmentation.
-The CONTEXT MAP describes the points of contact between models (BOUNDED CONTEXTS) and outlines explict translations.
+CONTINUOUS INTEGRATION is an important technique within BOUNDED CONTEXTS to avoid its fragmentation.
+The CONTEXT MAP describes the points of contact between models (BOUNDED CONTEXTS) and outlines explicit translations.
 A SHARED KERNEL can be explicitly defined by teams to share certain parts of the over all domain model across BOUNDED CONTEXTS.
 Sometimes a clear CUSTOMER/SUPPLIER relationship between teams and so subsystems can help.
 
@@ -110,7 +111,7 @@ Large scale structures give an over all structure to the system to allows some u
 without detailed knowledge of the part’s responsibility. 
 To avoid unnatural constraints on the domain model development the guiding principle here is: less is more.
 
-EVOLVING ORDER states that the conceptual large-scale structure should evolve with the appliation following a minimalistic approach.
+EVOLVING ORDER states that the conceptual large-scale structure should evolve with the application following a minimalistic approach.
 This approach could drive the project to completely different type of structure along the way.
 
 The SYSTEM METAPHOR tries to apply a concrete, known analogy to the system to guide development.
@@ -118,7 +119,7 @@ The SYSTEM METAPHOR tries to apply a concrete, known analogy to the system to gu
 RESPONSIBILITY LAYERS reflect the conceptual dependencies in the model. They tell a story of the high-level purpose and design.
 Examples are: "Operational", "Capability", "Decision support" and "Policy".
 The KNOWLEDGE LEVEL consists of a distinct set of objects that can be used to describe and constrain the structure and behavior of 
-the basic model - a meta model comparable to reflection mechanisms in technical frameworks. The metamodel is provided to the customer
+the basic model - a meta model comparable to reflection mechanisms in technical frameworks. The meta model is provided to the customer
 for customization of the rules of the actual model.
 A PLUGGABLE COMPONENT FRAMEWORK require an ABSTRACT CORE and a concrete framework that allows implementations of the ABSTRACT CORE 
 to be freely substituted.

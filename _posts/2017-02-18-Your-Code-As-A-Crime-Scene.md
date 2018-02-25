@@ -8,7 +8,8 @@ Some weeks back I watched this talk by Adam Tornhill
 
 [Seven Secrets of Maintainable Codebases ](https://www.youtube.com/watch?v=0oDporwhToQ)
 
-I was fascinated by the ideas he presented about understanding our code base by analysing how we interact with it instead of looking at the plain source code alone.
+I was fascinated by the ideas he presented about understanding our code base by analyzing how we interact with it instead of looking 
+at the plain source code alone.
 
 
 Finally i bought the book and found time to read it:

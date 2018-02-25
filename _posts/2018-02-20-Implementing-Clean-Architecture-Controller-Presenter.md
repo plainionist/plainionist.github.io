@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Implementing Clean Architecture - Of controllers and presenters
-description: 
+description: What is the role of the controller in Clean Architecture? What is the role of the presenter in the Clean Architecture? Do I need to separate both?
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
@@ -28,13 +28,15 @@ Let me again first look for some definitions ...
 [MVC (Wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller):
 
 > The controller is responsible for responding to the user input and perform interactions on the data model objects. 
-> The controller receives the input, it validates the input and then performs the business operation that modifies the state of the data model.
+> The controller receives the input, it validates the input and then performs the business operation that modifies the state 
+> of the data model.
 
 .. and the counterpart for the 'presenter' would be of course the Model-View-Presenter (MVP) pattern.
 
 [MVP (Wikipedia)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter):
 
-> The presenter acts upon the model and the view. It retrieves data from repositories (the model), and formats it for display in the view.
+> The presenter acts upon the model and the view. It retrieves data from repositories (the model), and formats it for display 
+> in the view.
 
 Well, this is about MVC and MVP - but how do the responsibilities change in the Clean Architecture?
 
@@ -47,8 +49,8 @@ I earlier showed you this picture:
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
 
-From that we can already see that controllers and presenters live in the "interface adpaters" circle (green) 
-which gives a strong hint: they are adapters only - and we don't want to have adapers much of logic right? 
+From that we can already see that controllers and presenters live in the "interface adapters" circle (green) 
+which gives a strong hint: they are adapters only - and we don't want to have adapters much of logic right? 
 
 Let me zoom a little bit out of the picture to get the full context.
 
@@ -84,7 +86,7 @@ the user's world (the view) and the business logic's world (interactors).
 > use case circle.
 
 Now that we know how the controllers and presenters fit into the complete picture of the Clean Architecture 
-let's deep dive into their responsiblities.
+let's deep dive into their responsibilities.
 
 ## What is the role of the controller? 
 
@@ -98,7 +100,7 @@ Such request objects are usually simple data transfer objects (DTO). Depending o
 request object may contain typed information (e.g. WPF) or just strings (e.g. HTML). It is the role of the controller
 to convert the given information into a format which is most convenient for and defined by the use case interactor.
 For that the controller may have some simple if-then-else or parser logic but we do not want to have any processing logic
-inside the conroller.
+inside the controller.
 
 Finally the controller simply calls an API on the use case interactor to trigger the processing.
 
@@ -171,8 +173,9 @@ member this.Backlog (filter) =
     this.View(viewModel)
 ```
 
-The ```GetBacklog``` method takes a filter object as parameter which contains the currently selected values in to combo boxes of the page.
-It converts this request object first into the request model demanded by the interactor and pass it to the same. 
+The ```GetBacklog``` method takes a filter object as parameter which contains the currently selected values in to 
+combo boxes of the page. It converts this request object first into the request model demanded by the interactor and 
+pass it to the same. 
 
 ```fsharp
 /// Request object passed to the controller
@@ -194,8 +197,8 @@ type ReleaseBacklogRequest = {
 ```
 
 The interactor returns a response model which contains all the data needed to display the page. As this data is still typed 
-and in a form most convenient for the interactor it will be converted into a view model as a last step. The view model contains all the 
-data in a format most convenient for the view.
+and in a form most convenient for the interactor it will be converted into a view model as a last step. The view model 
+contains all the data in a format most convenient for the view.
 
 ```fsharp
 /// Response model returned by the interactor
@@ -229,8 +232,8 @@ type ReleaseBacklogViewModel = {
 }
 ```
 
-I also have some small helper functions defined - which is much more convenient and concise in F# than in C# ;-) - which I use for the
-forward and backward conversion of types:
+I also have some small helper functions defined - which is much more convenient and concise in F# than in C# ;-) - which I
+use for the forward and backward conversion of types:
 
 ```fsharp
 let toFilter value = if value = Mvc.Selects.All then Any else value |> Exactly
@@ -254,16 +257,16 @@ let formatEffort = sprintf "%.2f"
 let formatAvailability = sprintf "%.2f"
 ```
 
-*Note:* I have kept some details in the code which I have not explained in detail so far because think those are not that relevant to the discussion
-in this post. If you still want to know more about these details please drop my a line.
+*Note:* I have kept some details in the code which I have not explained in detail so far because think those are not that 
+relevant to the discussion in this post. If you still want to know more about these details please drop my a line.
 
-Quite some code! But in the end my implementation of the controller-presenter-hybrid is very simple. Now here comes the most important 
-question of this post:
+Quite some code! But in the end my implementation of the controller-presenter-hybrid is very simple. Now here comes the most 
+important question of this post:
 
 &#8680; What would Uncle Bob say to this pragmatism? ;-)
 
-I don't know. As mentioned already, personally I consider my approach as a pragmatic and simple way to combine Asp.Net MVC with the
-Clean Architecture. So I am happy for now ...
+I don't know. As mentioned already, personally I consider my approach as a pragmatic and simple way to combine Asp.Net MVC 
+with the Clean Architecture. So I am happy for now ...
 
 But let's assume I would now want to separate controller and presenter. How would I implement that separation?
 
@@ -332,10 +335,10 @@ an interface - another abstraction?
 
 I could see two benefits in introducing interfaces:
 
-1. Testing. If I would want to test the controller without the interactor I would need an abstraction to replace the actual implementation
-   with a stub or a mock
-2. Interface Segregation. If multiple controllers would use different APIs on the same interactor separate input port interfaces would ensure
-   that each controller only knows the parts about the interactor it needs to know.
+1. Testing. If I would want to test the controller without the interactor I would need an abstraction to replace the actual 
+   implementation with a stub or a mock
+2. Interface Segregation. If multiple controllers would use different APIs on the same interactor separate input port interfaces 
+   would ensure that each controller only knows the parts about the interactor it needs to know.
 
 I should probably consider a refactoring step ...
 
@@ -343,12 +346,13 @@ I should probably consider a refactoring step ...
 
 Now that we know what an input port is we can conclude what an output port will be.
 
-An output port needs to be an interface or an (abstract) class implemented by the presenter with at least one API called by the interactor
-to pass the response model.
+An output port needs to be an interface or an (abstract) class implemented by the presenter with at least one API called by the 
+interactor to pass the response model.
 
-Implementing an output port finally means to invert the control flow. Instead of getting a return value from the interactor and asking 
-the presenter to convert it into a view model, the interactor now would "actively" pass the response model through the output port
-to the presenter. The interactor is now not only controlling HOW the response looks like, it also controls WHEN it will be available.
+Implementing an output port finally means to invert the control flow. Instead of getting a return value from the interactor and 
+asking the presenter to convert it into a view model, the interactor now would "actively" pass the response model through the 
+output port to the presenter. The interactor is now not only controlling HOW the response looks like, it also controls WHEN it 
+will be available.
 
 ## How do I invert the controll fow?
 

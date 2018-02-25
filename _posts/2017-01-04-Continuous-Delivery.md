@@ -22,9 +22,12 @@ Have a look at [Plainion.CI](https://github.com/ronin4net/Plainion.CI/blob/maste
 
 ## Update
 
-My major take-away: the approach of Continuous Delivery and the Deployment Pipeline allows you to truly work in an incremental and iterative way.
+My major take-away: the approach of Continuous Delivery and the Deployment Pipeline allows you to truly work in an incremental and 
+iterative way.
 
-You do not need to have everything right at the begining - you just need your basic pipeline working right from the begining and then incrementally improve.
+You do not need to have everything right at the beginning - you just need your basic pipeline working right from the beginning and 
+then incrementally improve.
 
-With a full automated pipeline pushing updates to your users is so easy that delivering small improvements, bug fixes and features becomes fun again ;-)
+With a full automated pipeline pushing updates to your users is so easy that delivering small improvements, bug fixes and features 
+becomes fun again ;-)
 

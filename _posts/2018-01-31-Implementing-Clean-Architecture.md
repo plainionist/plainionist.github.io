@@ -24,24 +24,24 @@ In this blog series I will share with you the questions I had and the experience
 implementing the Clean Architecture.
 
 When I read about the Clean Architecture one of my projects already had an existing code base and 
-has even been released several times. Its quality was basically ok but there was clearly 
+has even been released several times. Its quality was basically OK but there was clearly 
 improvement potential. So I decided that this would be a perfect pick for my experiment ...
 
 ## The project
 
-The project of choise is an "agile backlog visualizer" - I will call it 
+The project of choice is an "agile backlog visualizer" - I will call it 
 [Athena](https://en.wikipedia.org/wiki/Athena) in the context of this series ;-)
 
 *Athena's* mission is to bring maximum transparency into the backlog of our agile teams.
 It fetches all work items from our Team Foundation Server (TFS) and visualizes those
-nicely on an intranet page to give us the views and reports we need ...
+nicely on an intra-net page to give us the views and reports we need ...
 
 ### The Backlog
 
 <img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
 
 *Athena* shows our ranked backlog in a simple table with some filters.
-It also applies the capacity of our teams to illustrate differnt cut-lines in different colors.
+It also applies the capacity of our teams to illustrate different cut-lines in different colors.
 
 You may wonder why we have fruits in our backlog ... this is a different story which I may tell the other day ;-)
 

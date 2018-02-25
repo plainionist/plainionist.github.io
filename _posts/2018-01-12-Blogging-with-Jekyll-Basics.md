@@ -8,8 +8,8 @@ excerpt_separator: <!--more-->
 
 How did I set up the basics of my blog?
 
-Of course there are endless very good posts out there about Markdown + Jekyll + GitHub Pages and I am not going to repeat what others already have 
-nicely documented. So let me just summarize my setup and referring to others for more detailed explainations.
+Of course there are endless very good posts out there about Markdown + Jekyll + GitHub Pages and I am not going to repeat what 
+others already have nicely documented. So let me just summarize my setup and referring to others for more detailed explanations.
 
 <!--more-->
 
