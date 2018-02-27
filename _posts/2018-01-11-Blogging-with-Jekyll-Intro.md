@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Blogging with Jekyll - Introduction
+description: How would a pragmatic programmer write a blog? 
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
@@ -24,6 +25,3 @@ In this series I will briefly describe how I set up my blog.
 
 {% include series.html %}
 
-## Publishing posts
-
-I use [Plainion.CI](https://plainionist.github.io/Plainion.CI/) to publish my posts to GitHub with one click. What do you use?

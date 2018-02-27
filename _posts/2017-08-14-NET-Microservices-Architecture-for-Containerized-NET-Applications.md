@@ -1,6 +1,7 @@
 ---
 layout: post
 title: .NET Microservices - Architecture for Containerized .NET Applications
+description: Looking for an introduction into practical microservices architectures in the .Net eco system? Here is where you should start.
 tags: [book]
 excerpt_separator: <!--more-->
 ---

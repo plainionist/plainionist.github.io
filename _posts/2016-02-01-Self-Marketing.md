@@ -2,6 +2,7 @@
 layout: post
 title: Skills & Self-Marketing
 tags: [skills]
+lint-nowarn: JL0004
 ---
 
 Another great book about "sharpening the saw":

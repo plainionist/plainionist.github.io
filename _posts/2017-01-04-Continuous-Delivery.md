@@ -2,6 +2,7 @@
 layout: post
 title: Continuous Delivery
 tags: [book]
+description: Do you want to learn about Continuous Delivery and wonder where to start? Read the book 'Continuous Delivery'
 ---
 
 A week back i just finished reading

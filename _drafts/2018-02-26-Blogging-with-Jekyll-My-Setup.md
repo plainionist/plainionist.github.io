@@ -23,5 +23,10 @@ excerpt_separator: <!--more-->
 - how to upload Plainion.CI
 - integrate PostLint
 
+```xml
+<Target Name="AfterBuild">  
+  <Exec Command="D:\bin\Plainion.JekyllLint\Plainion.JekyllLint.exe _posts" />
+</Target>  
+```
 
 {% include series.html %}

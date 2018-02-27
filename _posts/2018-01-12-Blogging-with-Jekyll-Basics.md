@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Blogging with Jekyll - Basics
+description: My basics to blog with Jekyll. Short, simple, plainionistic.
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->

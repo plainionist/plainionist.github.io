@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Microservices & UI
+description: Everyone talking about microservices is only mentioning UI less backend services? Here is the answer how to handle the UI.
 tags: [microservices]
 ---
 

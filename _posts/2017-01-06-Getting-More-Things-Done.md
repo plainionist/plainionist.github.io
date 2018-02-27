@@ -2,6 +2,7 @@
 layout: post
 title: Want to get more things done?
 tags: [skills]
+lint-nowarn: JL0004
 ---
 
 You can surely read a bunch of books about it like:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Your Code As a Crime Scene
+description: You have FxCop, you have Sonar and you have Roslyn but still you face code quality issues? Here is the book you should read.
 tags: [book]
 ---
 

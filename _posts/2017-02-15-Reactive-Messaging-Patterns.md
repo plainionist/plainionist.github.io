@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Reactive Messaging Patterns with the Actor Model
+description: Multi-core and many-core programming scares you? Have a look at the actor model and read this pattern book about it.
 tags: [book]
 ---
 

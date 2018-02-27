@@ -3,6 +3,7 @@ layout: post
 title: Teamwork and Indian Culture
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0004
 ---
 
 Even though I am working with Indian colleagues for some years now I only recently realized that I still don't know enough about the 

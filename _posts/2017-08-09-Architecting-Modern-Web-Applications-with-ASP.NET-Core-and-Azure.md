@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Architecting Modern Web Applications with ASP.NET Core and Azure
+description: Looking for a cheap and comprehensive overview on Asp.Net Core? Here is my reading recommendation for you!
 tags: [book]
 excerpt_separator: <!--more-->
 ---

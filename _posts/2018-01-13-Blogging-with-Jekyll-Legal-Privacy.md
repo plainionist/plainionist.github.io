@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Blogging with Jekyll - Legal and privacy
+description: Legal and privacy aspects are important also to a plainionistic programmer.
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->

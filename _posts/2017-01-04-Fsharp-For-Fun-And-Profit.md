@@ -1,6 +1,7 @@
 ---
 layout: post
 title: The best source to learn F#
+description: You are new to functional programming and F# in particular? Check out my reading list for FSharp newbies.
 tags: [book]
 ---
 

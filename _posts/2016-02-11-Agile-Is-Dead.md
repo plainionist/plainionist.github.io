@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Agile is Dead
+lint-nowarn: JL0004
 ---
 
 If your using agile methods & processes you should definitively watch that video and think about it:

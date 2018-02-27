@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Blogging with Jekyll - Tags and Series
+description: How to handle tags and blog post series? Here is a very brief introduction.
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
