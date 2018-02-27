@@ -5,6 +5,7 @@ description: Clean Architecture is screaming by focusing on its core business pu
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 How do I make my architecture "scream"?

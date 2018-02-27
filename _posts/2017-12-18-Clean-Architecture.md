@@ -4,6 +4,7 @@ title: Clean Architecture
 description: Brief review and summary of uncle bobs new book clean architecture.
 tags: [book, clean-architecture]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 ![]({{ site.url }}/assets/CleanArchitecture.jpg)

@@ -4,6 +4,7 @@ title: The second habit
 description: Seven habits is about about effectiveness, about private and public victory.
 tags: [skills]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 This week I had a discussion with a colleague of mine about stakeholder conform communication.

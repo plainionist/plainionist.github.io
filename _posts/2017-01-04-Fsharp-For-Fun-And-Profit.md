@@ -3,6 +3,7 @@ layout: post
 title: The best source to learn F#
 description: You are new to functional programming and F# in particular? Check out my reading list for FSharp newbies.
 tags: [book]
+lint-nowarn: JL0003
 ---
 
 Some months back i started getting my hands dirty with F#. I started my journey with

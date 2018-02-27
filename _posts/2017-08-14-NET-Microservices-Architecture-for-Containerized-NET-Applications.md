@@ -1,9 +1,10 @@
 ---
 layout: post
-title: .NET Microservices - Architecture for Containerized .NET Applications
+title: Architecture for Containerized .NET Applications
 description: Looking for an introduction into practical microservices architectures in the .Net eco system? Here is where you should start.
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Since a while now I am interested in MicroServices architectures, their benefits and how to implement them.

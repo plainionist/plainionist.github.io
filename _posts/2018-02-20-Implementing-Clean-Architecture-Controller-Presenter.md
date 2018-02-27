@@ -7,6 +7,7 @@ description: |
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0002
 ---
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.png" class="dynimg"/>

@@ -2,7 +2,7 @@
 layout: post
 title: Big boys software engineering?
 tags: [software-enginering]
-lint-nowarn: JL0004
+lint-nowarn: JL0004,JL0003
 ---
 
 I find it always very interesting to learn how other companies do software engineering - esp. the "big boys" :)

@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Blogging with Jekyll - Introduction
-description: How would a pragmatic programmer write a blog? 
+description: How would a pragmatic programmer write a blog? Here is my answer.
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 How could one blog the pragmatic, the minimalistic, the "plainionistic" way?

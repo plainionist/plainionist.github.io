@@ -5,6 +5,7 @@ description: Clean Architecture is very much focusing on business by emphasizing
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.UseCase.png" class="dynimg"/>

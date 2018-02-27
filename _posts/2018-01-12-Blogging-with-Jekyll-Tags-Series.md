@@ -5,6 +5,7 @@ description: How to handle tags and blog post series? Here is a very brief intro
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Now that I have my basic blog running I want to tune it a little bit ...

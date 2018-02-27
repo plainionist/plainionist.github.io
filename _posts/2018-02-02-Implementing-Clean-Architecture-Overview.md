@@ -5,6 +5,7 @@ description: A brief overview on Uncle Bobs Clean Architecture you will find her
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Let's briefly summarize what the Clean Architecture is ...

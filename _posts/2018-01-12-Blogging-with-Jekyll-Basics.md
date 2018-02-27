@@ -5,6 +5,7 @@ description: My basics to blog with Jekyll. Short, simple, plainionistic.
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 How did I set up the basics of my blog?

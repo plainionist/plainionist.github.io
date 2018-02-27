@@ -4,6 +4,7 @@ title: Simple things should be simple - complex things possible
 description: When designing a library - open source or commercial - we need to focus on multiple levels of abstraction to make simple things simple and complex things possible.
 tags: [design]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Just recently I found this great article about 

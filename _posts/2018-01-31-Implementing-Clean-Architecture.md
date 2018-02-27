@@ -5,6 +5,7 @@ description: Uncle Bobs recent book Clean Architecture explains nicely how we sh
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Did you enjoy reading Uncle Bob's [Clean Architecture](/Clean-Architecture)? 

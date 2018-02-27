@@ -4,6 +4,7 @@ title: Architecting Modern Web Applications with ASP.NET Core and Azure
 description: Looking for a cheap and comprehensive overview on Asp.Net Core? Here is my reading recommendation for you!
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003,JL0002
 ---
 
 Recently I read in [The week in .Net](https://blogs.msdn.microsoft.com/dotnet/tag/week-in-net/) about some new e-books published by Microsoft 

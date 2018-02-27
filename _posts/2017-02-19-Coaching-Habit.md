@@ -3,6 +3,7 @@ layout: post
 title: The Coaching Habit
 description: Leading without power is more than a marketing slogan for software developers and software architects. A coaching habit you need.
 tags: [book,skills]
+lint-nowarn: JL0003
 ---
 
 If you want to improve your (technical) coaching skills this

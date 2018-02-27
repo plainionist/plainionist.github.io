@@ -4,6 +4,7 @@ title: Vue.js 2 Cookbook
 description: Are you looking for a deep dive into Vue.js? Then have a look at this book.
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 As my expedition in the world of web development (esp. client side web development) continued and my javascript and HTML code base grew,

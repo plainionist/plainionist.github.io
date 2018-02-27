@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Software architecture vs code
-lint-nowarn: JL0004
+lint-nowarn: JL0004,JL0003
 ---
 
 If you are a software architect you definitively want to watch that talk:

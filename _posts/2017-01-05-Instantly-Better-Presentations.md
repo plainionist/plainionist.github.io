@@ -2,7 +2,7 @@
 layout: post
 title: Instantly Better Presentations
 tags: [skills]
-lint-nowarn: JL0004
+lint-nowarn: JL0004,JL0003
 ---
 
 If you do (technical) presentations from time to time you WANT to watch this talk:

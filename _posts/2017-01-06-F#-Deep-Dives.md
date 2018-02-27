@@ -3,6 +3,7 @@ layout: post
 title: F# Deep Dives
 description: You got some idea about F#? Now you wonder for which practical problems it suits best? 'F# Deep Dives' is the right book for you ...
 tags: [book]
+lint-nowarn: JL0003
 ---
 
 I just finished reading

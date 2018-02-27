@@ -4,6 +4,7 @@ title: SurviveJS
 description: New to client side development? Are you confused by the endless JavaScript libraries and frameworks? And how can you ever build and package that stuff? Here is your survival guide.
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 After having spent the recent weeks and months getting deeper into web development and esp. into full stack micro services

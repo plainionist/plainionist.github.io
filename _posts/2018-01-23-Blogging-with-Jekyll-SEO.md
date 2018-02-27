@@ -5,6 +5,7 @@ description: You can also do search engine optimization with jekyll and github p
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Are you missing readers on your blog? Don't make this mistake ...

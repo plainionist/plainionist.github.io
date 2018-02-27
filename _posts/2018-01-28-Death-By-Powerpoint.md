@@ -4,6 +4,7 @@ title: Death by Powerpoint
 description: Powerpoint supported presentations do not have to be boring. Slides do not need to be flooded with text. There is a better way of doing presentations - a much better way.
 tags: [skills]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Are you scared of doing presentations? Especially in front of a bigger audience?

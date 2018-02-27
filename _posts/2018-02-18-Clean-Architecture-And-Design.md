@@ -4,6 +4,7 @@ title: Clean Architecture and Design
 description: Uncle Bobs famous talk about Clean Architecture, its history and how it evolved.
 tags: [clean-architecture]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 While preparing my next post on [Implementing Clean Architecture](/Implementing-Clean-Architecture) I watched again

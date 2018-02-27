@@ -4,6 +4,7 @@ title: An Introduction To Clean Architecture
 description: Repost from NDepend blog about introducing clean architecture
 tags: [clean-architecture]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Today I found a nice article on the [NDepend Blog](https://blog.ndepend.com/):

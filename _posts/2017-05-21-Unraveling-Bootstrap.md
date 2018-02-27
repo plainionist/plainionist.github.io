@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Unraveling Bootstrap
-lint-nowarn: JL0004
+lint-nowarn: JL0004,JL0003
 tags: [book]
 excerpt_separator: <!--more-->
 ---

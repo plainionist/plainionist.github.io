@@ -3,6 +3,7 @@ layout: post
 title: Recommended Reading for Professional Software Engineers
 description: you want to become a professional software developer? Here is your recommended reading list.
 tags: [skills]
+lint-nowarn: JL0003
 ---
 
 ## Must-Read

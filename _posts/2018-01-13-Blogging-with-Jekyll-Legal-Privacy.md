@@ -5,6 +5,7 @@ description: Legal and privacy aspects are important also to a plainionistic pro
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 Legal and privacy topics don't have primary focus on a blog but also such topics are important ...

@@ -4,6 +4,7 @@ title: Domain-Driven Design
 description: Brief review and summary on Eric Evans Domain Driven Design book
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 After having it on the reading list for a long time and having been reminded to read it by several other sources in the recent 

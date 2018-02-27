@@ -4,6 +4,7 @@ title: A Software Engineer Learns HTML5, JavaScript and jQuery
 description: You are and experienced software developer - in the backend area? Now you want to get things done in the frontend? Here is where you should start.
 tags: [book]
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 In order to get my hands even dirtier with Web technologies I wanted to read more about Html5, JavaScript and jQuery.
