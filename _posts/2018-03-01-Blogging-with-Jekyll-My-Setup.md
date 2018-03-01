@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Blogging with Jekyll - Legal and privacy
+title: Blogging with Jekyll - My 'Integrated Blogging Environment (IBE)'
 description: Interested how others set up an efficient blogging environment with Jekyll? Here is mine!
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
