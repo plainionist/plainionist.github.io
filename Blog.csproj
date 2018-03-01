@@ -35,7 +35,7 @@
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
-    <None Include="_drafts\2018-02-26-Blogging-with-Jekyll-My-Setup.md" />
+    <None Include="_posts\2018-03-01-Blogging-with-Jekyll-My-Setup.md" />
     <None Include="_posts\2018-02-19-Plainion.GraphViz-2.9.md" />
     <None Include="_posts\2018-02-17-Library-Design-Principles.md" />
     <None Include="_posts\2018-02-18-Clean-Architecture-And-Design.md" />
@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="AfterBuild">  
+  <Target Name="AfterBuild">
     <Exec Command="D:\bin\Plainion.JekyllLint\Plainion.JekyllLint.exe _posts" />
-  </Target>  
+  </Target>
 </Project>
