@@ -59,6 +59,10 @@ ANY KIND of framework!
 - ...
 
 
+http://stackoverflow.com/q/47446180
+
+
+
 
 # Entities
 
@@ -104,7 +108,15 @@ who injects the presenter through the output port into the interacotr?
   - Strictly speaking, yes: DI frameworks should also not be used in use case or entities circle. (That includes attributes and annotations)
 
 
-
+how to handle too long constructor parameter lists on the use cases?
+- common topic - not specific to clean arch
+- split US or use objects to "bundle" dependencies
+- think of facades
+- if a use cases just does "one thing well" it should not have two many dependnecies
+- if u use "unit of work" and have interfaces to the outer services and repositories also the number
+  of dependencies should be low
+- https://stackoverflow.com/questions/49066847/how-to-inject-into-dynamically-created-use-cases-android-clean-architecture-d/49081113#49081113
+- http://stackoverflow.com/q/48141142
 
 
 
