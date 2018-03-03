@@ -8,7 +8,7 @@ lint-nowarn: JL0003
 
 A week back i just finished reading
 
-![]({{ site.url }}/assets/ContinuousDelivery.jpg)
+![Book: Continuous Delivery]({{ site.url }}/assets/ContinuousDelivery.jpg "Book: Continuous Delivery")
 
 [Continuous Delivery](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1483707145&sr=8-1&keywords=continuous+delivery)
 
