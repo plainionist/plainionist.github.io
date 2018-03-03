@@ -97,6 +97,7 @@
     <Content Include="images\Plainion.CI.png" />
     <Content Include="images\Plainion.Flames.png" />
     <Content Include="images\Plainion.GraphViz.png" />
+    <Content Include="images\Plainion.JekyllLint.png" />
     <Content Include="images\Plainion.OneNote.png" />
     <Content Include="impressum.html" />
     <Content Include="public\css\panel.css" />
