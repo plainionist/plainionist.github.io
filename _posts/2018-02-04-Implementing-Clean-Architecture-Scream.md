@@ -5,6 +5,7 @@ description: Clean Architecture is screaming by focusing on its core business pu
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 How do I make my architecture "scream"?
@@ -29,11 +30,11 @@ Why do we let such details impact our project structure so often?
 
 In order to let my architecture scream I could create three projects/DLLs accordingly:
 
-<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.1.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.1.png" class="dynimg" title="Minimal project setup" alt="One project for each core use case. At least this project setup screams out the business."/>
 
 But there is one more thing to consider when setting up the project structure. The Dependency Rule.
 
-<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg" title="Layers of the Clean Architecture with Dependency Rule" alt="The Clean Architecture consists of multiple layers organized as circles while dependencies are only allowed from outer circles to inner circles. The inner circles contain the business logic. All details, devices and frameworks are in the outer circles."/>
 
 Dependencies between the four circles are only allowed from outer circles to inner circles.
 Creating clear boundaries between these circles is a simple way to support the Dependency Rule.
@@ -42,7 +43,7 @@ at all, this code obviously is free from such unwanted dependencies.
 
 A minimalistic setup respecting both aspects discussed so far could look like this:
 
-<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.2.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.2.png" class="dynimg" title="Minimal Clean Architecture conform project setup" alt="Towards Clean Architecture: Two projects for each core use case. One containing pure business rules witout any dependency to frameworks or devices. A second project for the code with such dependencies."/>
 
 The "UseCases" projects will contain all the framework-free business rules.
 The "Gateways" projects will contain all the different kinds of "interface adapters" like Asp.Net controllers and 
@@ -64,7 +65,7 @@ From my past experience a little code duplication is easier to "fix" than a "to 
 As *Athena* has an existing code base already I can easily identify all domain objects related to teams as central entities.
 So I have created one "Entities" DLL which gives me now this structure:
 
-<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.3.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.3.png" class="dynimg" title="Minimal Clean Architecture conform setup with separate project for entities" alt="Nore Clean Architecture: Two projects per core use case (one for business rules, one for the rest). A single separate project for entities to share the 'enterprise wide' business rules."/>
 
 ## What about infrastructure and helpers?
 
@@ -79,7 +80,7 @@ as per the Dependency Rule, I would not be allowed to use it from the "interface
 
 So I decided to create another central "gateways" assembly for such shared "infrastructural" code, which finally gives my this picture:
 
-<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.4.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.4.png" class="dynimg" title="Clean Architecture conform projects with shared 'infrastructure'" alt="Still Clean Architecture: Two projects per core use case (one for business rules, one for the rest). A single separate project for entities. And one more shared project in the 'interface adapters' circle for shared infrastructure."/>
 
 ## Naming conventions
 

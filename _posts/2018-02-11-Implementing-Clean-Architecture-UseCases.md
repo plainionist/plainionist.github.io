@@ -5,9 +5,10 @@ description: Clean Architecture is very much focusing on business by emphasizing
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
-<img src="{{ site.url }}/assets/clean-architecture/Circle.UseCase.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circle.UseCase.png" class="dynimg" title="Deep diving the use cases circle." alt="From Clean Architectures circles lets take out the 'use cases' one and deep dive into it."/>
 
 Now that my architecture is screaming the business capabilities of my system let's look at those with more detail.
 
@@ -82,7 +83,7 @@ So I want to have this logic in the use cases circle. Guided by the SRP I would 
 
 &#8680; First use case interactor found
 
-<img src="{{ site.url }}/assets/clean-architecture/WorkitemParserInteractor.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/WorkitemParserInteractor.png" class="dynimg" title="API of the WorkitemParserInteractor" alt="The WorkitemParserInteractor provides methods to parse plain text from TFS fields to get domain object like fruits, confidence levels and product lines."/>
 
 ### Action: Rank all workitems
 
@@ -97,7 +98,7 @@ But reality is rarely ideal so I could imagine additional rules, e.g.:
 
 &#8680; As this has nothing to do with backlog conventions and parsing I will add a second interactor.
 
-<img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.1.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.1.png" class="dynimg" title="API of the RankingInteractor" alt="The RankingInteractor provides methods rank a given list of work items."/>
 
 ### Action: Get the team capacity 
 
@@ -112,7 +113,7 @@ In a second step I need to calculate the team capacity from the given data. This
 
 &#8680; As this involves quite different entities than the previous two interactors I will create a third one.
 
-<img src="{{ site.url }}/assets/clean-architecture/TeamCapacityInteractor.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/TeamCapacityInteractor.png" class="dynimg" title="API of the TeamCapacityInteractor" alt="The TeamCapacityInteractor provides methods to calculate the capacity of one or multiple teams"/>
 
 ### Action: Determine the cut-lines
 
@@ -129,7 +130,7 @@ matches these against the capacity. It is clearly about business rules so I will
 &#8680; Considering the existing interactors and my preference of pragmatic decisions I will put this logic into 
 the ```RankingInteractor```.
 
-<img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.2.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/RankingInteractor.2.png" class="dynimg" title="API of the RankingInteractor" alt="The RankingInteractor gets another method to calculate the cut-lines based on a given ranked backlog and team capacity"/>
 
 ### Action: Generate the report
 
@@ -145,7 +146,7 @@ I want to have these business rules realized in an interactor as well.
 &#8680; Even with my preference for pragmatic decisions this logic doesn't fit nicely into any existing interactor without 
 violating SRP. So let me create a new one.
 
-<img src="{{ site.url }}/assets/clean-architecture/BacklogInteractor.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/BacklogInteractor.png" class="dynimg" title="API of the BacklogInteractor" alt="The BacklogInteractor compiles all the information wanted for the backlog page together into one response."/>
 
 ## How do I combine use case interactors?
 
@@ -165,7 +166,7 @@ interactors I prefer having another interactor realizing the combination.
 For the use case discussed here I tend to make again a pragmatic decision: I will make the ```BacklogInteractor``` the 
 "combining interactor" which calls the other interactors. 
 
-<img src="{{ site.url }}/assets/clean-architecture/Interactors.Collaboration.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Interactors.Collaboration.png" class="dynimg" title="Dependencies between the interactors" alt="The controller will only talk to the BacklogInteractor which compiles the complete response model by interacting with other interactors"/>
 
 ## How do I access the database?
 
@@ -175,13 +176,13 @@ In his [book](/Clean-Architecture/) Uncle Bob writes about database access:
 > These gateways are polymorphic interfaces that contain methods for every create, read, update, 
 > or delete operation that can be performed by the application on the database. For example, if the 
 > application needs to know the last names of all the users who logged in yesterday, then the UserGateway 
-> interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and returns a list 
-> of last names.
+> interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and 
+> returns a list of last names.
 
-For our use case I will define two interfaces. One to get the workitems from TFS and one to get the team capacity information from
-the external service.
+For our use case I will define two interfaces. One to get the workitems from TFS and one to get the team capacity 
+information from the external service.
 
-<img src="{{ site.url }}/assets/clean-architecture/Interactors.DataAccess.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Interactors.DataAccess.png" class="dynimg" title="Dependencies between interactors and data stores" alt="Within the use case layer we define an interface IWorkitemRepository and an interface ITeamService. These are used by the interactors to access TFS and the team planning data. These interfaces are implemented in the interface adapter circle."/>
 
 Details about accessing "IO devices" and external systems I will discuss in one of my next posts.
 
@@ -190,7 +191,7 @@ Details about accessing "IO devices" and external systems I will discuss in one 
 According to the Dependency Rule a use case interactor must not depend on a controller or presenter.
 Instead, the use case interactor defines "input ports" and "output ports" to invert the dependencies.
 
-<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg" title="Control flow from Controller to Presenter" alt="The Controller interacts with the interactor through the input port. The interactor passes its response to the presenter through an output port"/>
 
 In the use case I have described here the setup is simpler.
 
