@@ -12,7 +12,7 @@ Bootstrap to the rescue! With Bootstrap you don't need to be a web designer to g
 
 This book ...
 
-![]({{ site.url }}/assets/unraveling-bootstrap.jpg)
+![Book: Unraveling Bootstrap]({{ site.url }}/assets/unraveling-bootstrap.jpg "Book: Unraveling Bootstrap")
 
 [Unraveling Bootstrap](https://www.amazon.com/Unraveling-Bootstrap-Over-Complete-Samples-ebook/dp/B00NA23F3E/ref=sr_1_8?ie=UTF8&qid=1495345475&sr=8-8&keywords=bootstrap)
 <!--more-->

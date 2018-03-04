@@ -15,7 +15,7 @@ Even though the Vue.js online documentation is really great and gave me a good a
 to gain an even better foundation. I finally selected
 
 
-![]({{ site.url }}/assets/VueCookbook.jpg)
+![Book: Vue.js 2 Cookbook]({{ site.url }}/assets/VueCookbook.jpg "Book: Vue.js 2 Cookbook")
 
 [Vue.js 2 Cookbook](https://www.amazon.com/Vue-js-2-Cookbook-Andrea-Passaglia/dp/1786468093/ref=sr_1_1?ie=UTF8&qid=1513430297&sr=8-1&keywords=vue+cookbook)
 <!--more-->

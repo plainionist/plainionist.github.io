@@ -10,7 +10,7 @@ lint-nowarn: JL0003
 In order to get my hands even dirtier with Web technologies I wanted to read more about Html5, JavaScript and jQuery.
 And so I came across this book:
 
-![]({{ site.url }}/assets/html5-javascript-jquery.jpg)
+![Book: A Software Engineer Learns HTML5, JavaScript and jQuery]({{ site.url }}/assets/html5-javascript-jquery.jpg "Book: A Software Engineer Learns HTML5, JavaScript and jQuery")
 
 [A Software Engineer Learns HTML5, JavaScript and jQuery](https://www.amazon.com/Software-Engineer-Learns-JavaScript-jQuery/dp/1493692615/ref=sr_1_4?ie=UTF8&qid=1493896240&sr=8-4&keywords=jquery)
 <!--more-->

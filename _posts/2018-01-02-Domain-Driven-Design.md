@@ -10,7 +10,7 @@ lint-nowarn: JL0003
 After having it on the reading list for a long time and having been reminded to read it by several other sources in the recent 
 weeks I finally took the time get through
 
-![]({{ site.url }}/assets/DomainDrivenDesign.jpg)
+![Book: Domain-Driven Design: Tackling Complexity in the Heart of Software]({{ site.url }}/assets/DomainDrivenDesign.jpg "Book: Domain-Driven Design: Tackling Complexity in the Heart of Software")
 
 [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?s=books&ie=UTF8&qid=1514895832&sr=1-1&keywords=domain+driven+design)
 

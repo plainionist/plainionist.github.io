@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003
 ---
 
-![]({{ site.url }}/assets/CleanArchitecture.jpg)
+![Book: Clean Architecture]({{ site.url }}/assets/CleanArchitecture.jpg "Book: Clean Architecture")
 
 [Clean Architecture](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?ie=UTF8&qid=1513596353&sr=8-1&keywords=clean+architecture)
 
