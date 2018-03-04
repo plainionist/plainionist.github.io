@@ -10,7 +10,7 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0002
 ---
 
-<img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.png" class="dynimg" title="Deep diving controllers and presenters." alt="From Clean Architectures circles lets take out the 'interface adapters' one and deep dive into controllers and presenters."/>
 
  [Last time](/Implementing-Clean-Architecture-UseCases/) we discussed about use cases and interactors and 
  stopped with the question: "Which role is than actually left to the controller and presenter?"
@@ -50,14 +50,14 @@ business logic goes either into an use case interactor or an entity (we will tal
 
 I earlier showed you this picture:
 
-<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Interactor.Controller.Presenter.png" class="dynimg" title="Control flow from Controller to Presenter" alt="The Controller interacts with the interactor through the input port. The interactor passes its response to the presenter through an output port"/>
 
 From that we can already see that controllers and presenters live in the "interface adapters" circle (green) 
 which gives a strong hint: they are adapters only - and we don't want to have adapters much of logic right? 
 
 Let me zoom a little bit out of the picture to get the full context.
 
-<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg" title="Control flow from user through controller, interactor and presenter." alt="The user interacts with the view. The view passes a request (defined in the interface adapter layer) to the controller which converts it into a request model defined in the use case layer. The interactor takes the request model though a input port and produces a response model which gets passed through an output port to the presenter. The presenter converts the response model into a response object defined in the interface adapters layer to the view. The view renders the response for the user"/>
 
 What do we see here? Following the purple arrow we can see the control flow of a user interacting with 
 a system:
@@ -318,7 +318,7 @@ member this.Backlog (filter) =
 At least my design is now closer to Single Responsibility Pattern (SRP) - the controller as well as the presenter has only one
 reason to change. But still not matching the picture we started with.
 
-<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg" title="Control flow from user through controller, interactor and presenter." alt="The user interacts with the view. The view passes a request (defined in the interface adapter layer) to the controller which converts it into a request model defined in the use case layer. The interactor takes the request model though a input port and produces a response model which gets passed through an output port to the presenter. The presenter converts the response model into a response object defined in the interface adapters layer to the view. The view renders the response for the user"/>
 
 We have a controller and an independent presenter now. We have a request object, a request model, a response model and a view model.
 

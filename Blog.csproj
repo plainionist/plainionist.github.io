@@ -140,6 +140,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Exec Command="D:\bin\Plainion.JekyllLint\Plainion.JekyllLint.exe -error-to-warning _posts" />
+    <Exec Command="D:\bin\Plainion.JekyllLint\Plainion.JekyllLint.exe -warning-to-error _posts" />
   </Target>
 </Project>
