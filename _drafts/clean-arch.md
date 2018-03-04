@@ -5,6 +5,8 @@ https://softwareengineering.stackexchange.com/questions/366930/android-clean-arc
 
 
 
+
+
 # The Web and the Database and other Details
 
 the web is a detail!
@@ -15,6 +17,13 @@ we want those details to be plugins into our application architecture.
 How do we cut “external” services and entities?
 ==> Unit of work
 ==> started with rather interactor specific interfaces and then checked whether I could meaningfully consolidate things. If I were in doubt I got them separated - PlanningService
+
+consider:
+- http://stackoverflow.com/q/48141142
+- http://stackoverflow.com/q/48139897
+- http://stackoverflow.com/q/47903739
+- http://stackoverflow.com/q/47446180
+
 
 ## But what about the database?
 
@@ -106,6 +115,9 @@ who instanciates interactors?
 https://softwareengineering.stackexchange.com/questions/364424/crossing-boundaries-in-clean-architecture?answertab=votes#tab-top
 
 who injects the presenter through the output port into the interacotr?
+
+consider:
+- https://stackoverflow.com/questions/49066847
 
 ## Dependency Injection?
 
