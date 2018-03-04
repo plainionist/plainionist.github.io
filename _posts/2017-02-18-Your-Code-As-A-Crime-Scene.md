@@ -16,7 +16,7 @@ at the plain source code alone.
 
 Finally i bought the book and found time to read it:
 
-![]({{ site.url }}/assets/CodeAsCrimeScene.jpg)
+![Book: Your Code As a Crime Scene]({{ site.url }}/assets/CodeAsCrimeScene.jpg "Book: Your Code As a Crime Scene")
 
 [Your Code As a Crime Scene](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384/ref=sr_1_1?ie=UTF8&qid=1487424204&sr=8-1&keywords=Your+Code+As+a+Crime+Scene)
 

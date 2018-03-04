@@ -1,4 +1,9 @@
 
+https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945
+
+==> update the "scream" post with discussion about "composable UI"
+
+
 
 # The Web and the Database and other Details
 

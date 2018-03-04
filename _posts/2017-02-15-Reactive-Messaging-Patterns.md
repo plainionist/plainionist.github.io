@@ -7,7 +7,7 @@ lint-nowarn: JL0003
 ---
 
 
-![]({{ site.url }}/assets/ReactiveMessagingPatterns.jpg)
+![Book: Reactive Messaging Patterns with the Actor Model]({{ site.url }}/assets/ReactiveMessagingPatterns.jpg "Book: Reactive Messaging Patterns with the Actor Model")
 
 [Reactive Messaging Patterns with the Actor Model](https://www.amazon.com/Reactive-Messaging-Patterns-Actor-Model/dp/0133846830/ref=sr_1_fkmr0_4?s=books&ie=UTF8&qid=1487153776&sr=1-4-fkmr0&keywords=reactive+message)
 

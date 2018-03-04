@@ -8,7 +8,7 @@ lint-nowarn: JL0003
 
 If you want to improve your (technical) coaching skills this
 
-![]({{ site.url }}/assets/CoachingHabit.jpg)
+![Book: The Coaching Habit: Say Less, Ask More & Change the Way You Lead Forever]({{ site.url }}/assets/CoachingHabit.jpg "Book: The Coaching Habit: Say Less, Ask More & Change the Way You Lead Forever")
 
 [The Coaching Habit: Say Less, Ask More & Change the Way You Lead Forever](https://www.amazon.com/Coaching-Habit-Less-Change-Forever/dp/0978440749/ref=sr_1_1?ie=UTF8&qid=1487424234&sr=8-1&keywords=coaching+habit)
 

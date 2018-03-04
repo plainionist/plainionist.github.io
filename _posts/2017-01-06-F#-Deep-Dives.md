@@ -8,7 +8,7 @@ lint-nowarn: JL0003
 
 I just finished reading
 
-![]({{ site.url }}/assets/FSharpDeepDives.jpg)
+![Book: F# Deep Dives]({{ site.url }}/assets/FSharpDeepDives.jpg "Book: F# Deep Dives")
 
 [F# Deep Dives](https://www.amazon.com/F-Deep-Dives-Tomas-Petricek/dp/1617291323/ref=sr_1_1?ie=UTF8&qid=1483706640&sr=8-1&keywords=f%23+deep+dives)
 

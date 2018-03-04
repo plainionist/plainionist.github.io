@@ -8,7 +8,7 @@ lint-nowarn: JL0003
 
 This tiny little book 
 
-![]({{ site.url }}/assets/MicroservicesArchitecture.jpg)
+![Book: Microservices architecture - Make the architecture of a software as simple as possible]({{ site.url }}/assets/MicroservicesArchitecture.jpg "Book: Microservices architecture - Make the architecture of a software as simple as possible")
 
 [Microservices architecture - Make the architecture of a software as simple as possible](https://www.amazon.com/Microservices-Architecture-architecture-software-possible/dp/153000053X/ref=sr_1_3?ie=UTF8&qid=1484161399&sr=8-3&keywords=Microservices+architecture)
 
