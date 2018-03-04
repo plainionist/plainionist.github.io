@@ -10,7 +10,7 @@ lint-nowarn: JL0003
 
 Let's briefly summarize what the Clean Architecture is ...
 
-<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg" title="Layers of the Clean Architecture with Dependency Rule" alt="The Clean Architecture consists of multiple layers organized as circles while dependencies are only allowed from outer circles to inner circles. The inner circles contain the business logic. All details, devices and frameworks are in the outer circles."/>
 
 <!--more-->
 

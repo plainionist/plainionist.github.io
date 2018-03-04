@@ -10,7 +10,7 @@ lint-nowarn: JL0003
 
 Did you enjoy reading Uncle Bob's [Clean Architecture](/Clean-Architecture)? 
 
-![]({{ site.url }}/assets/CleanArchitecture.jpg)
+![Book: Clean Architecture]({{ site.url }}/assets/CleanArchitecture.jpg "Book: Clean Architecture")
 
 I did! As with every book from Uncle Bob's it is motivating and inspiring, right?
 
@@ -39,7 +39,7 @@ nicely on an intra-net page to give us the views and reports we need ...
 
 ### The Backlog
 
-<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg" title="Ranked backlog with cut lines" alt="Our backlog is ranked and has multiple cut lines due to usage of confidence levels. The cut lines are visualized with the background color of the row. The darker the color gets the less likely the feature can be delivered for this release."/>
 
 *Athena* shows our ranked backlog in a simple table with some filters.
 It also applies the capacity of our teams to illustrate different cut-lines in different colors.
@@ -48,13 +48,13 @@ You may wonder why we have fruits in our backlog ... this is a different story w
 
 ### Work balance
 
-<img src="{{ site.url }}/assets/clean-architecture/work-balance.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/work-balance.png" class="dynimg" title="Availability compared to remaining work per team" alt="Having multiple teams working on the backlog we are looking for a balance of the remaining work compared to the teams availability across all teams."/>
 
 As we have multiple teams working on that backlog we want to know how the different teams are loaded.
 
 ### The Burndown
 
-<img src="{{ site.url }}/assets/clean-architecture/burndown.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/burndown.png" class="dynimg" title="Burn down of remaining work across all teams." alt="Our burn downs visualze the burned efforts as well as the projected burn down based on the past velocity. We have 'touch down lines' which show how work packages got re-scoped during the development."/>
 
 And of course we want to track our remaining work using a burn down.
 

@@ -43,7 +43,7 @@ To recap, *[Athena](/Implementing-Clean-Architecture)* is an "agile backlog visu
 It provides various reports to improve the overall transparency in a software project. One major report is showing the
 ranked backlog with cut-lines:
 
-<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg" title="Ranked backlog with cut lines" alt="Our backlog is ranked and has multiple cut lines due to usage of confidence levels. The cut lines are visualized with the background color of the row. The darker the color gets the less likely the feature can be delivered for this release."/>
 
 Is providing this report a use case? On the most highest and abstract level: yes.
 The simplified "list of actions" is:

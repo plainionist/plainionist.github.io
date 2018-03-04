@@ -135,7 +135,7 @@ how it could be done more according to what we have discussed so far.
 You probably remember the "Show the ranked backlog with cut-lines" use case from the 
 [previous post](/Implementing-Clean-Architecture-UseCases/):
 
-<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg"/>
+<img src="{{ site.url }}/assets/clean-architecture/backlog.png" class="dynimg" title="Ranked backlog with cut lines" alt="Our backlog is ranked and has multiple cut lines due to usage of confidence levels. The cut lines are visualized with the background color of the row. The darker the color gets the less likely the feature can be delivered for this release."/>
 
 I showed you how I implemented the business rules with multiple interactors. Now let me show the corresponding
 controller/presenter (Even if you are not an F# expert, I am pretty sure you can still get the key points from the code).

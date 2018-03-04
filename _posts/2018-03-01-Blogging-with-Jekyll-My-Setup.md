@@ -1,10 +1,11 @@
 ---
 layout: post
-title: Blogging with Jekyll - My 'Integrated Blogging Environment (IBE)'
+title: Blogging with Jekyll - My IBE
 description: Interested how others set up an efficient blogging environment with Jekyll? Here is mine!
 tags: [jekyll, blogging]
 series: "Blogging with Jekyll"
 excerpt_separator: <!--more-->
+lint-nowarn: JL0003
 ---
 
 After having blogged with Jekyll for some while now I have found some convenient setup which makes me feel quite effective.
