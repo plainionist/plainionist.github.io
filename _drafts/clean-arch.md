@@ -137,6 +137,20 @@ how to handle too long constructor parameter lists on the use cases?
 
 
 
+# Cheat Sheet
+
+now that we discussed all layers including the main module here is the cheat sheet
+
+- first put all logic in the use cases
+- make the controllers and presenters dump data converters  
+  - request to request model, response model to response
+- no logic in the views at all
+- main is about composition only
+- repositories and services focus on accessing details only
+- entities get these rules which do not change across use cases
+- 
+
+
 # Where is what? - Example
 
 ## Is the presenter view specific?
@@ -148,6 +162,7 @@ what we want to avoid - also because of testability.
 ## input validation?
 
 - https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
+- http://stackoverflow.com/q/47860684
 
 
 # partial boundaries
@@ -247,6 +262,9 @@ Where do I do acceptance testing in clean arch?
 - is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
 - is it the "screaming" architecture?
 
+# how to apply clean architecture to command line apps
+
+- Plainion.JekyllLint
 
 # Athena
 
