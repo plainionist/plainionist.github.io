@@ -7,6 +7,26 @@ https://softwareengineering.stackexchange.com/questions/366930/android-clean-arc
 
 
 
+# other blogs
+
+read again and reblog
+
+- https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/
+- http://five.agency/android-architecture-part-3-applying-clean-architecture-android/
+- http://five.agency/android-architecture-part-4-applying-clean-architecture-on-android-hands-on/
+- https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
+- https://www.thedroidsonroids.com/blog/android/rosie-lets-dive-into-clean-architecture
+- https://www.entropywins.wtf/blog/2016/11/24/implementing-the-clean-architecture/
+- http://tech.edreamsodigeo.com/clean-architecture-android/
+- [Better Software Design with Clean Architecture](https://fullstackmark.com/post/11/better-software-design-with-clean-architecture).
+- [clean-architecture-example](https://github.com/mattia-battiston/clean-architecture-example) 
+- [Clean Architecture is Screaming](http://tidyjava.com/clean-architecture-screaming/) 
+- https://beberlei.de/2012/08/13/oop_business_applications_entity_boundary_interactor.html
+- https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
+- https://dzone.com/articles/clean-architecture-is-screaming
+
+
+
 # The Web and the Database and other Details
 
 the web is a detail!
