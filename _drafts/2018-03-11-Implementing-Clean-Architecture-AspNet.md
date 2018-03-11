@@ -1,23 +1,25 @@
 ---
 layout: post
-title: Implementing Clean Architecture - Where to put Asp.Net controllers?
+title: Implementing Clean Architecture - Are Asp.Net controllers "clean" controllers?
 description: |
   Controller and presenter in Uncle Bob's Clean Architecture belong to the "interface adapters" layer and bridge
-  between the UI framework and the business rules located in the use case interactors. But an Asp.Net controller
-  depends on the Asp.Net framework. Respecting the Dependency Rule - Is the controller still a valid adapter?
+  between the UI framework and the business rules located in the use case interactors. But in Asp.Net controllers
+  derive from Asp.Net classes and so depend on the Asp.Net framework. Respecting the Dependency Rule: Are Asp.Net
+  controllers valid contollers in the context of Clean Architecture?
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-<img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.png" class="dynimg" title="Deep diving controllers and presenters." alt="From Clean Architectures circles lets take out the 'interface adapters' one and deep dive into controllers and presenters."/>
+<img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.AspNet.png" class="dynimg" title="Asp.Net in the context of Clean Architecture." alt="How do Asp.Net Controllers fit into the context of Clean Architecture? Do they belong to the interface adapter layer?"/>
 
 [Last time](/Implementing-Clean-Architecture-Controller-Presenter/) we discussed about controllers and presenters.
-I have shown how I have implemented controllers and presenters in the context of Asp.Net and F#.
+I have shown how I have implemented my controllers and presenters in the *[Athena](/Implementing-Clean-Architecture)* project.
 
-I have left one question open: how to revert the control flow.
-but there is one more was one more thing which puzzled me:
+In general I was quite happy with my design but there was one thing which puzzled me:
+
 a controller in the asp.net world derives from a asp.net fw class. which creates a dependency from my controller to 
+
 asp.net fw. taking the dependency rule strict means:
 - this is either an invalid design
 - or my controller actually belongs to the fw layer
@@ -29,8 +31,6 @@ https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulder
 
 in this post i am showing how i solved the puzzle ...
 
-Read on!
-
 <!--more-->
 
 in the previous post i have shown u this picture
@@ -41,31 +41,42 @@ and then a lot of f# code which nicely illustrates how the code is structured an
 realized in code - what it does not show - also be cause of the conciseness of f# - which dependencies the code has.
 look at this picture
 
-[class picture showing all dependencies]
-
-
-# Clean Architecture and Asp.Net
-
-- https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture
-
-- how to do it 100% correct
-- how to decide? size of project?
-- separation helps to migrate from classic "asp.net mvc" to "asp.net core mvc" and to "asp.net webapi" 
-  or asp.net core webapi
-
 PIC today
 (i abstracted backlogpresenter away because it is actually still kind of private class as known and called by controller.
 controller still in control flow)
 
+now there are basically 3 options
+
+## 1. keep it as it is and accept the small violation
+
+- violation of dependency rule means data mapping logic in controller/presenter is impacted
+  when switching to new framework
+- might be a cheap pragmatic decision where u would benefit most from framework convenience
+- ignore the small dependency to FW as s.th. which can be easily refactored e.g. i would want to migrate to
+  Asp.Net Core WebApi 
+- may lead to presenter code being elsewhere - ViewAPI!!!
+
+## 2. keep the design but move the code into the framework layer
+
+- accept that interface adapter layer is empty with that aspect
+- maybe moving to a different assembly?
+
+PIC packaging athena
+- for athena i would at least rename the gateway assembly
+- basically same pros and cons as 1. but just make it explicit in the code (namespaces) and package structure
+
+## 3. separate the concerns
+
 PIC separation
 
+- Asp.Net controllers as thin adapter
+- my controller and presenter about converting DTOs. this logic not impacted when making even more dramatic switch 
+  from Asp.Net MVC to WebApi with Html5/JavaScript FE
 
 CODE even now my controller does not need to know about the presenter
 just the asp.net controller just wires things up 
 
-
-
-## how to separate assemblies then?
+### how to separate assemblies then?
 
 so far i am going for this:
 
@@ -81,7 +92,15 @@ now with the new insight on separating controller and asp.net Fw further, how do
 - to simplify: keep gateways and framework together - requires discipline - in f# simpler
 
 
+## which way to go?
 
+- how to decide? size of project?
+- separation helps to migrate from classic "asp.net mvc" to "asp.net core mvc" and to "asp.net webapi" 
+  or asp.net core webapi
+
+==> ensure that logic is in interactors
+==> avoid view helpers and have all logic in presenter (only return strings and other primitives)
+==> then probably decide based on size and future of the project
 
 
 
