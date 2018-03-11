@@ -33,6 +33,15 @@ Read on!
 
 <!--more-->
 
+in the previous post i have shown u this picture
+
+<img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg" title="Control flow from user through controller, interactor and presenter." alt="The user interacts with the view. The view passes a request (defined in the interface adapter layer) to the controller which converts it into a request model defined in the use case layer. The interactor takes the request model though a input port and produces a response model which gets passed through an output port to the presenter. The presenter converts the response model into a response object defined in the interface adapters layer to the view. The view renders the response for the user"/>
+
+and then a lot of f# code which nicely illustrates how the code is structured and how the controll flow is 
+realized in code - what it does not show - also be cause of the conciseness of f# - which dependencies the code has.
+look at this picture
+
+[class picture showing all dependencies]
 
 
 # Clean Architecture and Asp.Net

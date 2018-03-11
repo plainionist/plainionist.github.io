@@ -1,5 +1,15 @@
 
 
+# one more thing i was cheating
+
+- my controller passes scopedimprovement to view
+- this is wrong as this is an object from use case layer and i so bypass the interface adapter layer
+- side effect: i have some helper code in the framework layer which is like a presenter converting the
+  the objects into strings finally
+==> fix that by doing it all in the presenter and passing a view model only containing strings
+
+
+
 
 # other blogs
 
