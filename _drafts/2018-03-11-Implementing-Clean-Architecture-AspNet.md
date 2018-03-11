@@ -53,6 +53,18 @@ look at this picture
 - separation helps to migrate from classic "asp.net mvc" to "asp.net core mvc" and to "asp.net webapi" 
   or asp.net core webapi
 
+PIC today
+(i abstracted backlogpresenter away because it is actually still kind of private class as known and called by controller.
+controller still in control flow)
+
+PIC separation
+
+
+CODE even now my controller does not need to know about the presenter
+just the asp.net controller just wires things up 
+
+
+
 ## how to separate assemblies then?
 
 so far i am going for this:
@@ -67,6 +79,8 @@ now with the new insight on separating controller and asp.net Fw further, how do
 - then gateways for controller
 - then use cases and entities
 - to simplify: keep gateways and framework together - requires discipline - in f# simpler
+
+
 
 
 

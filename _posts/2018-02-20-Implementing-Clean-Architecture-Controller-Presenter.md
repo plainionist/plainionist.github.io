@@ -394,22 +394,22 @@ member this.Backlog (filter) =
         ArchitectureResponsible = filter.ArchitectureResponsible |> toFilter
     }
 
-    let presenter = new BacklogPresenter(this.View) :> IOutputPort
+    let mutable vm = null
+    let presenter = new BacklogPresenter(fun x -> vm <- x) :> IOutputPort
         
     request 
     |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+
+    vm
 ```
 
-The ```BacklogPresenter``` implements the output port interface and also gets a callback to finally pass the view model 
-to the Asp.Net MVC controller to trigger the rendering of the view. The presenter is passed to the interactor so that
+The ```BacklogPresenter``` implements the output port interface. The presenter is passed to the interactor so that
 the interactor can pass the response to the presenter through the output port as discussed above.
 
-DONE! ... Done? Almost ... 
-
-There is just one tiny issue. The code does not compile. An Asp.Net MVC controller method has
-to return an object of type ```ActionResult```. Unfortunately I have currently no idea how I could implement an output port
-and still return something from the controller method. Maybe I find a solution in one of the next posts.
-Until then I will stick to my pragmatic solution I started with ;-)
+As in Asp.Net the MVC controller has to return the view model to trigger rendering of the view I had
+to pass a callback to the ```BacklogPresenter``` to get the view model from there and return it as return value.
+This is a little bit "unclean" as the controller is still in the control flow from the presenter to the view but 
+it is an acceptable pragmatic solution from my perspective ;-)
 
 
 ## How do others think about controllers and presenters
