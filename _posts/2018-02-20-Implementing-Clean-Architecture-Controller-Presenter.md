@@ -12,8 +12,8 @@ lint-nowarn: JL0002
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.png" class="dynimg" title="Deep diving controllers and presenters." alt="From Clean Architectures circles lets take out the 'interface adapters' one and deep dive into controllers and presenters."/>
 
- [Last time](/Implementing-Clean-Architecture-UseCases/) we discussed about use cases and interactors and 
- stopped with the question: "Which role is than actually left to the controller and presenter?"
+[Last time](/Implementing-Clean-Architecture-UseCases/) we discussed about use cases and interactors and 
+stopped with the question: "Which role is than actually left to the controller and presenter?"
 
 In this post I will take this question up and dive deeper into the world of controllers and presenters
 in the context of the Clean Architecture.

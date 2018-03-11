@@ -19,6 +19,8 @@ So let's take his ideas and realize these in our projects to gain what he is pro
 But how do I start? 
 How do I transform an existing code base - following a layered (web) architecture - into the Clean Architecture?
 
+<img src="{{ site.url }}/assets/clean-architecture/Circles.png" class="dynimg" title="Layers of the Clean Architecture with Dependency Rule" alt="The Clean Architecture consists of multiple layers organized as circles while dependencies are only allowed from outer circles to inner circles. The inner circles contain the business logic. All details, devices and frameworks are in the outer circles."/>
+
 <!--more-->
 
 In this blog series I will share with you the questions I had and the experiences I made when

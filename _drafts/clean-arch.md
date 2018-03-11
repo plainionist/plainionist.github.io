@@ -1,15 +1,11 @@
 
-https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945
-
-==> update the "scream" post with discussion about "composable UI"
-
-
-
 
 
 # other blogs
 
-read again and reblog
+- https://www.codingblocks.net/tag/clean-architecture/
+
+
 
 - https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/
 - http://five.agency/android-architecture-part-3-applying-clean-architecture-android/
@@ -25,6 +21,11 @@ read again and reblog
 - https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
 - https://dzone.com/articles/clean-architecture-is-screaming
 
+# Update: Make your architecture scream
+
+https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945
+
+==> update the "scream" post with discussion about "composable UI"
 
 
 # The Web and the Database and other Details
@@ -305,11 +306,5 @@ what is usecase, what is gateway, ...
   interactor and presenter simplifies the design", "how magically entities occur - interactors have interactor specific requests and response. 
   everthing generic to these is entities!?"
 
-# Further Learning
 
-- https://www.codingblocks.net/tag/clean-architecture/
-
-# Open Questions
-
-- https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture
 
