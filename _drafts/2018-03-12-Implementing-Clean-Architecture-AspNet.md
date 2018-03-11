@@ -33,7 +33,7 @@ In this post i will share what i have learned and how i solved the puzzle ...
 
 ## From control flow ...
 
-In the [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) i have shown u this picture
+In the [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) I have shown you this picture:
 
 <img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg" title="Control flow from user through controller, interactor and presenter." alt="The user interacts with the view. The view passes a request (defined in the interface adapter layer) to the controller which converts it into a request model defined in the use case layer. The interactor takes the request model though a input port and produces a response model which gets passed through an output port to the presenter. The presenter converts the response model into a response object defined in the interface adapters layer to the view. The view renders the response for the user"/>
 
@@ -44,6 +44,7 @@ I have then shown you some F# code which basically implemented this picture. In 
 and response objects, request and response models, a controller and a presenter.
 
 What I have not shown you explicitly were the dependencies the code had to the Asp.Net framework. Let me do this now
+
 
 PIC today
 (i abstracted backlogpresenter away because it is actually still kind of private class as known and called by controller.
@@ -56,8 +57,8 @@ Now I basically see three options ...
 
 ## 1. Keep the design and accept the violation of the Dependency Rule
 
-- implement clean architecture conroller as asp.net controlleer
-- fine with controll flow and my class dependencies
+- implement clean architecture controller as asp.net controller
+- fine with control flow and my class dependencies
 - accept violation by binding to asp.net in the interface adapter layer
 - violation of dependency rule means data mapping logic in controller/presenter is impacted
   when switching to new framework
