@@ -13,42 +13,52 @@ excerpt_separator: <!--more-->
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.AspNet.png" class="dynimg" title="Asp.Net in the context of Clean Architecture." alt="How do Asp.Net Controllers fit into the context of Clean Architecture? Do they belong to the interface adapter layer?"/>
 
-[Last time](/Implementing-Clean-Architecture-Controller-Presenter/) we discussed about controllers and presenters.
+In the [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) I have discussed controllers and presenters.
 I have shown how I have implemented my controllers and presenters in the *[Athena](/Implementing-Clean-Architecture)* project.
 
 In general I was quite happy with my design but there was one thing which puzzled me:
 
-a controller in the asp.net world derives from a asp.net fw class. which creates a dependency from my controller to 
-
-asp.net fw. taking the dependency rule strict means:
+a controller in the asp.net world derives from a asp.net fw class which creates a dependency from my controller to 
+asp.net fw. taking the dependency rule strict means
 - this is either an invalid design
 - or my controller actually belongs to the fw layer
 
-i posted a question here
-- https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture
-and started a discussion with
-https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/
+In order to learn what others think about it i have posted a question at 
+[StackOverflow](https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture)
+and had a discussion with [](https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/)
 
-in this post i am showing how i solved the puzzle ...
+In this post i will share what i have learned and how i solved the puzzle ...
 
 <!--more-->
 
-in the previous post i have shown u this picture
+## From control flow ...
+
+In the [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) i have shown u this picture
 
 <img src="{{ site.url }}/assets/clean-architecture/User.Interactor.Flow.png" class="dynimg" title="Control flow from user through controller, interactor and presenter." alt="The user interacts with the view. The view passes a request (defined in the interface adapter layer) to the controller which converts it into a request model defined in the use case layer. The interactor takes the request model though a input port and produces a response model which gets passed through an output port to the presenter. The presenter converts the response model into a response object defined in the interface adapters layer to the view. The view renders the response for the user"/>
 
-and then a lot of f# code which nicely illustrates how the code is structured and how the controll flow is 
-realized in code - what it does not show - also be cause of the conciseness of f# - which dependencies the code has.
-look at this picture
+It illustrates very clearly how the control flow from the user to the interface adapter and back to the user works
+in the Clean Architecture. It also shows how code dependencies should be organized.
+ 
+I have then shown you some F# code which basically implemented this picture. In the end of the post i had request
+and response objects, request and response models, a controller and a presenter.
+
+What I have not shown you explicitly were the dependencies the code had to the Asp.Net framework. Let me do this now
 
 PIC today
 (i abstracted backlogpresenter away because it is actually still kind of private class as known and called by controller.
 controller still in control flow)
 
-now there are basically 3 options
+This picture makes it rather obvious: control flow and dependencies between my classes are pretty much conform with
+Clean Architecture - the dependencies from my code to the Asp.Net framework are breaking the Dependency Rule.
 
-## 1. keep it as it is and accept the small violation
+Now I basically see three options ...
 
+## 1. Keep the design and accept the violation of the Dependency Rule
+
+- implement clean architecture conroller as asp.net controlleer
+- fine with controll flow and my class dependencies
+- accept violation by binding to asp.net in the interface adapter layer
 - violation of dependency rule means data mapping logic in controller/presenter is impacted
   when switching to new framework
 - might be a cheap pragmatic decision where u would benefit most from framework convenience
