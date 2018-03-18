@@ -14,15 +14,15 @@ lint-nowarn: JL0002
 <img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.AspNet.png" class="dynimg" title="Asp.Net in the context of Clean Architecture." alt="How do Asp.Net Controllers fit into the context of Clean Architecture? Do they belong to the interface adapter layer?"/>
 
 In the [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) I have discussed controllers and presenters.
-I have shown how I have implemented my controllers and presenters in the *[Athena](/Implementing-Clean-Architecture)* project.
+I have shown you how I have implemented my controllers and presenters in the *[Athena](/Implementing-Clean-Architecture)* project.
 
 I was quite happy with my design so far but there was one thing which puzzled me ...
 
-In Asp.Net MVC a controller derives from ```System.Web.Mvc.Controller``` which creates dependency from my controller to the Asp.Net 
-framework. Taking the Dependency Rule strict either means this is an invalid design or my controller actually belongs to the 
+In Asp.Net MVC a controller derives from ```System.Web.Mvc.Controller``` which creates a dependency from my controller to the Asp.Net 
+framework. Taking the Dependency Rule strict that either means my design is invalid or my controller actually belongs to the 
 "frameworks" circle.
 
-In order to learn what others think about this situation I have posted a question at 
+In order to learn what others think about this design I have posted my question at 
 [StackOverflow](https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture)
 and had a discussion with [@herbertograca](https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/).
 
@@ -58,7 +58,7 @@ I see basically three options to handle this situation ...
 
 ## Option 1: Keep the design and accept the violation of the Dependency Rule
 
-Choosing this options means that I would continue implementing my Clean Architecture controllers as derived classes from Asp.Net Controller
+Choosing this option means that I would continue implementing my Clean Architecture controllers as derived classes from Asp.Net Controller
 and that I would continue using Asp.Net view model classes like ```SelectListItem```. I would continue ensuring that the control flow
 and the dependencies between my own classes matches Clean Architecture and Dependency Rule. And of course I would have to accept this
 (small) violation of the Dependency Rule.
@@ -68,7 +68,7 @@ and I could continue using the benefits of Asp.Net framework.
 
 But of course there are drawbacks. The more I use the convenience of the Asp.Net framework the more my code of course depends on the 
 framework. If I would ever want to migrate to another framework - like Asp.Net Core or [Suave.IO](https://suave.io/) or 
-[NancyFx](http://nancyfx.org/) - this would have quite some impact on my controller and presenter implementation. 
+[NancyFx](http://nancyfx.org/) - this would have quite some impact on my controller and presenter implementations. 
 
 Another aspect would be testing. Today I don't do much testing on controller and presenter layer. As all my business logic is in the 
 interactors I have focused most of my testing efforts on these interactors. Even if my controllers and presenters do data conversion
@@ -112,7 +112,7 @@ custom types. The ```BacklogAspNetController``` would then convert the ```Releas
 ```ReleaseBacklogAspNetViewModel``` in case I would want to continue using the Asp.Net rendering helper functions in the Razor templates.
 In turn, if I would stop using these functions the ```ReleaseBacklogAspNetViewModel``` would not be needed.
 
-This approach adds some more classes to the design in order to make it conform with the Dependency Rule again. 
+This approach adds some more classes to the design in order to make it conform with the Dependency Rule. 
 It even does more than just that. It also addresses testability: adding tests for the data conversions is now pretty easy as this logic
 has no dependency to the Asp.Net framework anymore. And this approach also addresses portability: If I would want to migrate to Asp.Net 
 WebApi with pure HTML/JavaScript UI, my controller and presenter logic would be no longer impacted (ignoring the functions in the Razor
@@ -122,7 +122,7 @@ templates for a second).
 
 And there is even more. 
 
-The [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) I finished with an approach separating controller and presenter
+The [previous post](/Implementing-Clean-Architecture-Controller-Presenter/) I closed with an approach separating controller and presenter
 in the context of Asp.Net MVC framework. This is the code I came up with:
 
 ```fsharp
@@ -172,7 +172,7 @@ type BacklogAspNetController() =
         vm
 
 module BacklogController =
-    let CreateBacklog interacotr filter =
+    let CreateBacklog interactor filter =
         let request = { 
             // data conversion logic skipped
         }
@@ -180,41 +180,58 @@ module BacklogController =
         request |> interactor 
 ```
 
-describe the code!!
+The ```BacklogPresenter``` is still injected into the use case interactor. This is now done in the ```BacklogAspNetController```.
+The ```BacklogInteractor``` is then injected into the ```BacklogController```.
 
+> Note: In F# we use [partial function application](https://fsharpforfunandprofit.com/posts/partial-application/) as a kind of 
+> dependency injection. 
 
-we would then just pass the presenter to the interactor and the interactor to the controller. this should actualy be in main module
-but this is a topic for an own post.
+With this approach the application controller does not know any thing about the presenter and so get's even closer to the
+Clean Architecture. The ```BacklogAspNetController``` does not only bridge between Asp.Net framework and application, it also 
+takes care of wiring controller, presenter and interactor. Actually this should be the responsibility of the MAIN module but this 
+is a topic for an own post.
 
-rather small cosmetic change but makes the application controller even more Clean Architecture conform
+### Project structure - Reloaded
 
-### how to separate assemblies then?
-
-so far i am going for this:
+As discussed in [this post](/Implementing-Clean-Architecture-Scream/) the current project structure of 
+*[Athena](/Implementing-Clean-Architecture)* looks like this:
 
 <img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.4.png" class="dynimg" title="Clean Architecture conform projects with shared 'infrastructure'" alt="Still Clean Architecture: Two projects per core use case (one for business rules, one for the rest). A single separate project for entities. And one more shared project in the 'interface adapters' circle for shared infrastructure."/>
 
-good balance between drawing borders and pragmatism
+I have considered this as a good compromise between the need for borders in the architecture and pragmatism.
+Now with the new insights on separating application controllers and Asp.Net framework, does the picture change?
 
-now with the new insight on separating controller and asp.net Fw further, how do we continue?
+[Previously](/Implementing-Clean-Architecture-Scream/) I haven't created projects in the "frameworks" layer as I haven't seen
+much code which would go there. The simplest approach to incorporate the new insight would be to add a new project in the frameworks
+layer per business aspect.
 
-- safe choise: own "frameworks" assembly like "Athena.AspNet.dll"
-- then gateways for controller
-- then use cases and entities
-- to simplify: keep gateways and framework together - requires discipline - in f# simpler
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.5.png" class="dynimg" title="Clean Architecture conform projects with frameworks layer" alt="Clean Architecture with frameworks layer: Three projects per core use case (one for business rules, one for the adapters and one for Asp.Net depending code). A single separate project for entities. And one more shared project in the 'interface adapters' circle for shared infrastructure."/>
 
+This would result in quite some projects. Can we simplify this?
+
+The discussion in this post has shown how important borders are in an architecture. With that in mind a simplified project 
+structure should draw a border between framework independent code and framework dependent code. That would give us
+
+- one project per business aspect containing framework depending code
+- one project per business aspect containing interface adapters and use cases
+- single project containing entities
+
+This approach clearly draws the two most important boarders between frameworks and application and between application
+specific logic and enterprise business rules (entities).
 
 ## Which option should I choose?
 
-- how to decide? size of project?
-- separation helps to migrate from classic "asp.net mvc" to "asp.net core mvc" and to "asp.net webapi" 
-  or asp.net core webapi
+Now that we have discussed multiple options with pros and cons - what would be the best option? As usual when talking about architecture
+and design there is only one correct answer: It depends.
 
-==> ensure that logic is in interactors
-==> avoid view helpers and have all logic in presenter (only return strings and other primitives)
-==> then probably decide based on size and future of the project
+It depends on the concrete project. It depends on the size of the project. Borders are more important in a project with 500 developers 
+than in a project with one developer. It depends on the future plans of the project. Portability to new frameworks is not equally important
+for all project. It depends on the skills of your teams. More experienced developers see borders in the code even if they are not enforced
+with separate projects.
 
-For *[Athena](/Implementing-Clean-Architecture)* i currently still have Option 1 in the code base but i plan to migrate to Option 3 as i anyhow want
-to migrate from Asp.Net MVC to Asp.Net WebApi + pure Html/Javascript UI. probably using vue.js.
+For *[Athena](/Implementing-Clean-Architecture)* I currently still have Option 1 implemented in the code base but I plan to 
+migrate to Option 3 as I anyhow want to migrate from Asp.Net MVC to Asp.Net WebApi with pure HTML/Javascript UI. 
+
+How would you decide?
 
 {% include series.html %}
