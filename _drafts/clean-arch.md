@@ -9,6 +9,44 @@
 ==> fix that by doing it all in the presenter and passing a view model only containing strings
 
 
+# frameworks
+
+how do we handle frameworks in the sense of libraries? everywhere i am allowed to use .net fw.
+but what is the diff between .net datacontract serializer and newtonsoft.json?
+should "framework" be seen only in that sense that app is extending it, is pluged in?
+are libraries in general OK if they are encapsulated?
+where is the border
+
+"
+Frameworks and Drivers.
+
+The outermost layer is generally composed of frameworks and tools such as the Database, the Web Framework, etc. Generally you don’t write much code in this layer other than glue code that communicates to the next circle inwards.
+
+This layer is where all the details go. The Web is a detail. The database is a detail. We keep these things on the outside where they can do little harm.
+"
+
+
+"
+from Uncle Bob’s book I understood that dependency injection frameworks should be handled as any other framework?—?in the framework layouer only:
+
+from the book
+
+“
+
+It is in this Main component that dependencies should be injected by a Dependency Injection framework. Once they are injected into Main, Main should distribute those dependencies normally, without using the framework.
+
+“
+
+(i also found other places in the book where he points similar direction: no DI framework outside frameworks layer)
+
+i would tend to agree?—?at least if the framework uses some kind of annotations in the code?—?because then once introduced and it got distributed all over the code base it is hard to get rid of it again.
+
+"
+
+https://medium.com/@stephanhoekstra/thanks-thats-cool-i-ll-make-sure-to-read-your-stuff-258dc57adbbe
+
+
+maybe it is also a question of risk? how risky is a bad design with allowing certain third party references on a project?
 
 
 # other blogs
