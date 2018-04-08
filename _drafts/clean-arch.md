@@ -54,8 +54,6 @@ maybe it is also a question of risk? how risky is a bad design with allowing cer
 - https://www.codingblocks.net/tag/clean-architecture/
 
 
-
-- https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/
 - http://five.agency/android-architecture-part-3-applying-clean-architecture-android/
 - http://five.agency/android-architecture-part-4-applying-clean-architecture-on-android-hands-on/
 - https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
@@ -68,6 +66,7 @@ maybe it is also a question of risk? how risky is a bad design with allowing cer
 - https://beberlei.de/2012/08/13/oop_business_applications_entity_boundary_interactor.html
 - https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
 - https://dzone.com/articles/clean-architecture-is-screaming
+
 
 # Update: Make your architecture scream
 

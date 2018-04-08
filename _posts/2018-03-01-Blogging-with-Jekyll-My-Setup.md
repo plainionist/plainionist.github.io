@@ -32,6 +32,24 @@ I finally decided to install this [MarkdownEditor](https://marketplace.visualstu
 It gives me a nice preview right in Visual Studio. It will not produce exactly the same output as Jekyll on GitHub pages will do but
 for me it is sufficient enough.
 
+### Update 2018-04-08
+
+I got a hint to [Portable Jekyll](https://github.com/madhur/PortableJekyll) on 
+[my question on stackoverflow](https://stackoverflow.com/questions/49588553/jekyll-on-windows-without-installation). I have tried it
+today. Even though the project is unfortunately quite outdated it basically works.
+I am now able to nicely preview a complete post including pictures ;-)
+
+If you want to try it on you own here are the minimal steps to success
+
+- [download zip](https://github.com/madhur/PortableJekyll/archive/master.zip)
+- start ```setpath.cmd```
+- run ```jekyll build --source [blog sources] --destination c:\temp\blog```
+- for each post a sub folder is generated. Double-click the index.html to preview the post
+
+Note: Until I have figured out how to install further Jekyll plug-ins in the portable environment
+I had to disable all plug-ins in ```_config.yml``` - that's the only small drawback I have
+found so far.
+
 ## How to include diagrams?
 
 I am a big fan of simple and pragmatic solutions, also when it comes to diagrams. I really don't like UML and I hate the 
