@@ -49,6 +49,10 @@ https://medium.com/@stephanhoekstra/thanks-thats-cool-i-ll-make-sure-to-read-you
 maybe it is also a question of risk? how risky is a bad design with allowing certain third party references on a project?
 
 
+i would also use 3rd party libs in usecases - encapsulated - if it is about business rules. examples numerics library for calculation.
+never use third party types in public apis - also not in gateways
+
+
 # other blogs
 
 - https://www.codingblocks.net/tag/clean-architecture/
