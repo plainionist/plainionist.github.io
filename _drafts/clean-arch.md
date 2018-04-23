@@ -8,6 +8,10 @@
   the objects into strings finally
 ==> fix that by doing it all in the presenter and passing a view model only containing strings
 
+==> in general emphasize again that presenters should produce viewmodels which allow us to make the view 
+extremely dumb
+==> should we do an update on the "presenters" post?
+
 
 # frameworks
 
@@ -52,6 +56,8 @@ maybe it is also a question of risk? how risky is a bad design with allowing cer
 i would also use 3rd party libs in usecases - encapsulated - if it is about business rules. examples numerics library for calculation.
 never use third party types in public apis - also not in gateways
 
+should be ok to have assembly which contains shared "framework" code which can then be used by multiple repository implementations
+as these encapsulate the lib again
 
 # other blogs
 
@@ -170,7 +176,7 @@ but i also like to deferre heavy weight decisions. and so i keep my logic "priva
 until i learned enough to realize that certain knowledge is actually "application independenty business rules"
 
 ==> When blogging about entities – update details on what is in the interactor implementations
- (availability becomes entity!)
+ ("availability calculation" becomes entity!)
 
 
 ## Can entities access repositories?
