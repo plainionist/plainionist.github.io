@@ -19,8 +19,8 @@
   the objects into strings finally
 ==> fix that by doing it all in the presenter and passing a view model only containing strings
 
-==> in general emphasize again that presenters should produce viewmodels which allow us to make the view 
-extremely dumb
+==> in general emphasize again that presenters should produce view models which allow us to make the 
+    view extremely dumb
 ==> should we do an update on the "presenters" post?
 
 
