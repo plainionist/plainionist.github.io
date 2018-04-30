@@ -1,5 +1,16 @@
 
 
+# open
+
+- did we say that presenters should create view model with only strings?
+- "gateway" restricted to adapters to repository and services? sould we rename
+  assemblies also holding controller and presetner to "adapters"? and should we 
+  recommend to separate these assemblies?
+- where to do threading? in gateways (service adapters)
+- clean architecture supports greatly to defer decisions about UI, DB, cache, etc 
+  we could just start with bdd tests as "driver" for use cases
+
+
 # one more thing i was cheating
 
 - my controller passes scopedimprovement to view
