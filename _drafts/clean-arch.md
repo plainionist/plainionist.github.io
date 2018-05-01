@@ -2,38 +2,6 @@
 
 
 
-# Update: Make your architecture scream
-
-lets write it as "update" and keep finally decision is open (until athena is fully refactored and we can give clear recommendation)
-
-https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945
-
-==> update the "scream" post with discussion about "composable UI"
-
-
-- "gateway" restricted to adapters to repository and services? should we rename
-  assemblies also holding controller and presetner to "adapters"? and should we 
-  recommend to separate these assemblies?
-  ==> check in the book first
-
-consider also conclusion from asp.net discussion
-
-"
-The discussion in this post has shown how important borders are in an architecture. With that in mind a simplified project 
-structure should draw a border between framework independent code and framework dependent code. That would give us
-
-- one project per business aspect containing framework depending code
-- one project per business aspect containing interface adapters and use cases
-- single project containing entities
-
-This approach clearly draws the two most important boarders between frameworks and application and between application
-specific logic and enterprise business rules (entities).
-"
-
-
-
-
-
 # DataAccess
 
 the database is a detail!

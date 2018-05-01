@@ -121,4 +121,29 @@ the referenced libraries in the inner circles.
 
 This would be then a question of discipline ...
 
+## Update 2018-05-01
+
+### Gateways
+
+So far I used the term "gateway" as a general abstraction for controllers, presenters, repositories - any kind of 
+"interface adapter". After having dug even deeper into Clean Architecture i think "gateway" is best fitting for 
+repositories and adapters to external services only. I am currently considering renaming my "gateway" projects into
+something like "adapters".
+
+### Frameworks
+
+As discussed [Are Asp.Net controllers "Clean"?](/Implementing-Clean-Architecture-AspNet/) I learned that it is better 
+to draw a rather hard border between frameworks and interface adapters. This is probably best achieved by
+just not linking to framework projects in the "interface adapters" project. This extends the project setup as follows:
+
+<img src="{{ site.url }}/assets/clean-architecture/Athena.Projects.5.png" class="dynimg" title="Clean Architecture conform projects with frameworks layer" alt="Clean Architecture with frameworks layer: Three projects per core use case (one for business rules, one for the adapters and one for Asp.Net depending code). A single separate project for entities. And one more shared project in the 'interface adapters' circle for shared infrastructure."/>
+
+### Composable UI
+
+A [question on stackoverflow](https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945)
+reminded me to emphasize that a screaming architecture is not limited to the backend! Modern desktop UI frameworks
+like [Prism](https://prismlibrary.github.io/) as well as modern web frameworks like [AngularJS](https://angularjs.org/), 
+[ReactJS](https://reactjs.org/) or [VueJS](https://vuejs.org/) are able compose UIs from various, not linked, components.
+
+
 {% include series.html %}

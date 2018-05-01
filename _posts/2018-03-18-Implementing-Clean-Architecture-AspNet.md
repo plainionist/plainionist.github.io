@@ -118,6 +118,19 @@ has no dependency to the Asp.Net framework anymore. And this approach also addre
 WebApi with pure HTML/JavaScript UI, my controller and presenter logic would be no longer impacted (ignoring the functions in the Razor
 templates for a second).
 
+> *Note:* There is still a small design flaw in the refactored design. The ```ReleaseBacklogViewModel``` returns 
+> ```ScopedImprovement``` which is a class defined in the use case layer. Reusing this class in the presenter - something
+> which Uncle Bob considers as cheating - looks very convenient initially. The consequence of this design that I need some logic
+> in the view to do the job of the presenter and "render" the properties of ```ScopedImprovement``` which makes the view smart 
+> again. But, in Clean Architecture, we want the view to be as dumb as possible so that there is no logic left which needs to be
+> tested.
+> 
+> Of course the Asp.Net MVC framework didn't force me to choose this design but such frameworks provide some very convenient 
+> "magic" to get things done "fast" which in the longer run can slow you down. That's why frameworks should be used with care.
+> 
+> I will later fix my design by simply using the helpers in the presenter directly instead of from the views, make the view model
+> properties "stings only" and so the view dumb again.
+
 
 ### Separating controller and presenter - Reloaded
 
