@@ -1,17 +1,9 @@
 
-
-# open
+# updates on presenters
 
 - did we say that presenters should create view model with only strings?
-- "gateway" restricted to adapters to repository and services? sould we rename
-  assemblies also holding controller and presetner to "adapters"? and should we 
-  recommend to separate these assemblies?
-- where to do threading? in gateways (service adapters)
-- clean architecture supports greatly to defer decisions about UI, DB, cache, etc 
-  we could just start with bdd tests as "driver" for use cases
 
-
-# one more thing i was cheating
+## one more thing i was cheating
 
 - my controller passes scopedimprovement to view
 - this is wrong as this is an object from use case layer and i so bypass the interface adapter layer
@@ -24,7 +16,24 @@
 ==> should we do an update on the "presenters" post?
 
 
-# frameworks
+
+# Update: Make your architecture scream
+
+https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945
+
+==> update the "scream" post with discussion about "composable UI"
+
+
+- "gateway" restricted to adapters to repository and services? should we rename
+  assemblies also holding controller and presetner to "adapters"? and should we 
+  recommend to separate these assemblies?
+  ==> check in the book first
+
+
+
+# Implementing Gateways: frameworks vs. libraries
+
+check in the book: is "gateway" the reserved word for adapters to db and external services only?
 
 how do we handle frameworks in the sense of libraries? everywhere i am allowed to use .net fw.
 but what is the diff between .net datacontract serializer and newtonsoft.json?
@@ -35,27 +44,28 @@ where is the border
 "
 Frameworks and Drivers.
 
-The outermost layer is generally composed of frameworks and tools such as the Database, the Web Framework, etc. Generally you don’t write much code in this layer other than glue code that communicates to the next circle inwards.
+The outermost layer is generally composed of frameworks and tools such as the Database, the Web Framework, etc. 
+Generally you don’t write much code in this layer other than glue code that communicates to the next circle inwards.
 
-This layer is where all the details go. The Web is a detail. The database is a detail. We keep these things on the outside where they can do little harm.
+This layer is where all the details go. The Web is a detail. The database is a detail. We keep these things on the 
+outside where they can do little harm.
 "
 
 
 "
-from Uncle Bob’s book I understood that dependency injection frameworks should be handled as any other framework?—?in the framework layouer only:
+from Uncle Bob’s book I understood that dependency injection frameworks should be handled as any other framework?—?in the framework layer only:
 
 from the book
 
-“
-
-It is in this Main component that dependencies should be injected by a Dependency Injection framework. Once they are injected into Main, Main should distribute those dependencies normally, without using the framework.
-
-“
+'
+It is in this Main component that dependencies should be injected by a Dependency Injection framework. Once they are injected into Main, 
+Main should distribute those dependencies normally, without using the framework.
+'
 
 (i also found other places in the book where he points similar direction: no DI framework outside frameworks layer)
 
-i would tend to agree?—?at least if the framework uses some kind of annotations in the code?—?because then once introduced and it got distributed all over the code base it is hard to get rid of it again.
-
+i would tend to agree?—?at least if the framework uses some kind of annotations in the code?—?because then once introduced and it got 
+distributed all over the code base it is hard to get rid of it again.
 "
 
 https://medium.com/@stephanhoekstra/thanks-thats-cool-i-ll-make-sure-to-read-your-stuff-258dc57adbbe
@@ -70,42 +80,31 @@ never use third party types in public apis - also not in gateways
 should be ok to have assembly which contains shared "framework" code which can then be used by multiple repository implementations
 as these encapsulate the lib again
 
-# other blogs
 
-- https://www.codingblocks.net/tag/clean-architecture/
-
-
-- http://five.agency/android-architecture-part-3-applying-clean-architecture-android/
-- http://five.agency/android-architecture-part-4-applying-clean-architecture-on-android-hands-on/
-- https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
-- https://www.thedroidsonroids.com/blog/android/rosie-lets-dive-into-clean-architecture
-- https://www.entropywins.wtf/blog/2016/11/24/implementing-the-clean-architecture/
-- http://tech.edreamsodigeo.com/clean-architecture-android/
-- [Better Software Design with Clean Architecture](https://fullstackmark.com/post/11/better-software-design-with-clean-architecture).
-- [clean-architecture-example](https://github.com/mattia-battiston/clean-architecture-example) 
-- [Clean Architecture is Screaming](http://tidyjava.com/clean-architecture-screaming/) 
-- https://beberlei.de/2012/08/13/oop_business_applications_entity_boundary_interactor.html
-- https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
-- https://dzone.com/articles/clean-architecture-is-screaming
+i would interpret it this way:
+the DB itself in in framework and driver layer. with ISqlCommand and SQL we do not depend on the conrete DB - the concrete DB is injected into
+the repository (ISqlCommand vs SqliteCommand)
+And what if u need specific commands from SqliteCommand? - then we could consider creating an interface in adapters layer implemented by an 
+adapter in framework layer - is it worth another level of indirection? in small projects probably not. having the repository depend on 
+sqlitecommand is not great but ok-ish. in bigger projects where u could have tens of units of work the dependency to sqlite starts spreading
+across the code base - still only in adapter layer but easily in multiple assemblies - in that case i would consider one more abstraction in the 
+single assembly which plugs in sqlite into the app
 
 
-# Update: Make your architecture scream
-
-https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945
-
-==> update the "scream" post with discussion about "composable UI"
 
 
-# The Web and the Database and other Details
 
-the web is a detail!
-the db is a details
+# DataAccess
+
+the database is a detail!
 
 we want those details to be plugins into our application architecture.
 
 How do we cut “external” services and entities?
 ==> Unit of work
-==> started with rather interactor specific interfaces and then checked whether I could meaningfully consolidate things. If I were in doubt I got them separated - PlanningService
+==> started with rather interactor specific interfaces and then checked whether I could meaningfully consolidate things. 
+    If I were in doubt I got them separated - PlanningService
+    (depends how clear ur understanding of your units of work already is - personally i prefer to start locally and small and then refactor)
 
 consider:
 - http://stackoverflow.com/q/48141142
@@ -254,6 +253,9 @@ what we want to avoid - also because of testability.
 - http://stackoverflow.com/q/47860684
 
 
+- where to do threading? in gateways (service adapters)
+
+
 # partial boundaries
 
 - do i really have to create all those DTOs?
@@ -345,15 +347,25 @@ Where do I do acceptance testing in clean arch?
 - ddd says more about how to model entities and usecases
 - ddd also talks about iterative and framework independence .
 
+
 # what is really the benefit/difference to clean architecture?
 
 - is it the independency to frameworks?
 - is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
 - is it the "screaming" architecture?
 
+- after having refactored quite some code from non clean arch to clean arch i can say: "it is unbelievable how the separation of
+  interactor and presenter simplifies the design", "how magically entities occur - interactors have interactor specific requests and response. 
+  everthing generic to these is entities!?"
+
+- clean architecture supports greatly to defer decisions about UI, DB, cache, etc 
+  we could just start with bdd tests as "driver" for use cases
+
+
 # how to apply clean architecture to command line apps
 
 - Plainion.JekyllLint
+
 
 # Athena
 
@@ -368,11 +380,23 @@ show how one scenario would be designed in clean-arch.
 what is usecase, what is gateway, ...
 
 
-# benefits
-
-- after having refactored quite some code from non clean arch to clean arch i can say: "it is unbelievable how the separation of
-  interactor and presenter simplifies the design", "how magically entities occur - interactors have interactor specific requests and response. 
-  everthing generic to these is entities!?"
 
 
+# other blogs
+
+- https://www.codingblocks.net/tag/clean-architecture/
+
+
+- http://five.agency/android-architecture-part-3-applying-clean-architecture-android/
+- http://five.agency/android-architecture-part-4-applying-clean-architecture-on-android-hands-on/
+- https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
+- https://www.thedroidsonroids.com/blog/android/rosie-lets-dive-into-clean-architecture
+- https://www.entropywins.wtf/blog/2016/11/24/implementing-the-clean-architecture/
+- http://tech.edreamsodigeo.com/clean-architecture-android/
+- [Better Software Design with Clean Architecture](https://fullstackmark.com/post/11/better-software-design-with-clean-architecture).
+- [clean-architecture-example](https://github.com/mattia-battiston/clean-architecture-example) 
+- [Clean Architecture is Screaming](http://tidyjava.com/clean-architecture-screaming/) 
+- https://beberlei.de/2012/08/13/oop_business_applications_entity_boundary_interactor.html
+- https://blog.sourced-bvba.be/article/2017/02/14/thoughts-on-clean-architecture/
+- https://dzone.com/articles/clean-architecture-is-screaming
 
