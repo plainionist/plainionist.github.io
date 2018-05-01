@@ -46,8 +46,8 @@ What I have not shown you explicitly were the dependencies the code had to the A
 
 <img src="{{ site.url }}/assets/clean-architecture/AspNet.Controllers.png" class="dynimg" title="Dependencies of the BacklogController" alt="The BacklogController is derived from the Asp.Net Controller class and so creates a dependency to the Asp.Net framework. The ReleaseBacklogViewModel uses SelectListItem from Asp.Net framework to create ComboBoxes with with Asp.Net helpers in the Razor view. By that it also creates a dependency to the Asp.Net framework."/>
 
-(Note: In this picture the BacklogPresenter is part of the BacklogController as it is still kind of "private" class controlled
-by the BacklogController.)
+*Note:* In this picture the BacklogPresenter is part of the BacklogController as it is still kind of "private" class controlled
+by the BacklogController.
 
 This picture clearly shows that on the one hand the control flow and the dependencies between my classes from 
 *[Athena](/Implementing-Clean-Architecture)* project are pretty much conform with the Clean Architecture and the Dependency Rule.
@@ -118,6 +118,7 @@ has no dependency to the Asp.Net framework anymore. And this approach also addre
 WebApi with pure HTML/JavaScript UI, my controller and presenter logic would be no longer impacted (ignoring the functions in the Razor
 templates for a second).
 
+
 ### Separating controller and presenter - Reloaded
 
 And there is even more. 
@@ -183,7 +184,7 @@ module BacklogController =
 The ```BacklogPresenter``` is still injected into the use case interactor. This is now done in the ```BacklogAspNetController```.
 The ```BacklogInteractor``` is then injected into the ```BacklogController```.
 
-> Note: In F# we use [partial function application](https://fsharpforfunandprofit.com/posts/partial-application/) as a kind of 
+> *Note:* In F# we use [partial function application](https://fsharpforfunandprofit.com/posts/partial-application/) as a kind of 
 > dependency injection. 
 
 With this approach the application controller does not know any thing about the presenter and so get's even closer to the

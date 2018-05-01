@@ -35,6 +35,7 @@
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
+    <None Include="_drafts\2018-05-01-Implementing-Clean-Architecture-Libraries.md" />
     <None Include="_posts\2018-03-18-Implementing-Clean-Architecture-AspNet.md" />
     <None Include="_posts\2018-03-03-Plainion.JekyllLint-1.1.md" />
     <None Include="_posts\2018-03-01-Blogging-with-Jekyll-My-Setup.md" />

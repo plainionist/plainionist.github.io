@@ -46,7 +46,7 @@ If you want to try it on you own here are the minimal steps to success
 - run ```jekyll build --source [blog sources] --destination c:\temp\blog```
 - for each post a sub folder is generated. Double-click the index.html to preview the post
 
-Note: Until I have figured out how to install further Jekyll plug-ins in the portable environment
+*Note:* Until I have figured out how to install further Jekyll plug-ins in the portable environment
 I had to disable all plug-ins in ```_config.yml``` - that's the only small drawback I have
 found so far.
 

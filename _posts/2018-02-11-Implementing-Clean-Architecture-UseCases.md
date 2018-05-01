@@ -119,7 +119,7 @@ In a second step I need to calculate the team capacity from the given data. This
 
 Now that I have a ranked backlog and the capacity I can determine the cut-lines.
 
-> *Side note*: You may wonder why I talk about multiple cut-lines. This comes from the confidence levels. Each confidence level
+> *Note:* You may wonder why I talk about multiple cut-lines. This comes from the confidence levels. Each confidence level
 > defines a certain percentage by which the actual estimation is correct, e.g. confidence level "low" could be defined  as "+/- 50%" 
 > which means that the actual estimation could be "50% too expensive" or "50% too cheap". This approach basically gives three 
 > numbers for each estimation: an optimistic, a pessimistic and a realistic one. Hence, we have three cut-lines.

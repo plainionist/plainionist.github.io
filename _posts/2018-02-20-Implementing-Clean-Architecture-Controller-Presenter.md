@@ -357,7 +357,7 @@ asking the presenter to convert it into a view model, the interactor now would "
 output port to the presenter. The interactor is now not only controlling HOW the response looks like, it also controls WHEN it 
 will be available.
 
-## How do I invert the controll fow?
+## How do I invert the control fow?
 
 Here is my proposal
 
