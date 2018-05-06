@@ -2,29 +2,31 @@
 layout: post
 title: Implementing Clean Architecture - Frameworks vs. Libraries
 description: |
-  the dependency rule forbids dependencies from frameworks to adapters
-  but what is a framework which is restricted by that rule? how to implement a repository without 
-  referencing third party code?
+  In Clean Architecture the Dependency Rule forbits usage of frameworks outside of the outermost circle.
+  Does this mean that the usage of any third partly library in the implementation of a gateway or repository
+  is a violation to the Dependency Rule?
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 lint-nowarn: 
 ---
 
-<img src="{{ site.url }}/assets/clean-architecture/Circle.Presenters.AspNet.png" class="dynimg" title="Asp.Net in the context of Clean Architecture." alt="How do Asp.Net Controllers fit into the context of Clean Architecture? Do they belong to the interface adapter layer?"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circle.Frameworks.png" class="dynimg" title="Frameworks and libraries in the context of Clean Architecture." alt="In Clean Architecture the usage of frameworks is restricted to the outermost circle. But what is a framework? Is every third party library a framework? How to implement gateways without using third party libraries?"/>
 
 have been some while since last post as i was busy with refactoring *[Athena](/Implementing-Clean-Architecture)* towards
 [recent insights](/Implementing-Clean-Architecture-AspNet/)
 
+In Clean Architecture the usage of frameworks is restricted to the outermost circle. But what is a framework? Is every third party library a framework? How to implement gateways without using third party libraries?
+
 what is a framework? what is a library? 
 how to implement a repository? with jsondatacontractserializer? is that ok? what about newtownsoft.json? is that third party?
 
-In this post ...
+In this post I am trying to answer this question.
 
 <!--more-->
 
 
-check in the book: is "gateway" the reserved word for adapters to db and external services only?
+check in the book: is "gateway" the reserved word for adapters to db and external services only -> yes
 
 how do we handle frameworks in the sense of libraries? everywhere i am allowed to use .net fw.
 but what is the diff between .net datacontract serializer and newtonsoft.json?
