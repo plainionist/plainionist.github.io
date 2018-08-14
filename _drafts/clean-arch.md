@@ -235,6 +235,12 @@ Where do I do acceptance testing in clean arch?
 ==> On controller / presenter?
 ==> interactor … then simple UT for presenter and controller sufficient (because only doing data convertion)
 
+
+- bdd is a natural fit
+  - Bdd only works for inner two circles (this is where the business is and we don’t want technical terms in bdd spec)
+  - The rest is technical an can be best tested with unit tests …
+
+
 # relation to other patterns
 
 ## What to put in Entities in a micro services architecture?
