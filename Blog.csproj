@@ -37,12 +37,9 @@
     <None Include="_config.yml" />
     <None Include="_drafts\2018-05-01-Implementing-Clean-Architecture-Libraries.md" />
     <None Include="_posts\2018-03-18-Implementing-Clean-Architecture-AspNet.md" />
-    <None Include="_posts\2018-03-03-Plainion.JekyllLint-1.1.md" />
     <None Include="_posts\2018-03-01-Blogging-with-Jekyll-My-Setup.md" />
-    <None Include="_posts\2018-02-19-Plainion.GraphViz-2.9.md" />
     <None Include="_posts\2018-02-17-Library-Design-Principles.md" />
     <None Include="_posts\2018-02-18-Clean-Architecture-And-Design.md" />
-    <None Include="_posts\2018-02-10-Plainion.GraphViz-2.8.md" />
     <None Include="_posts\2018-02-20-Implementing-Clean-Architecture-Controller-Presenter.md" />
     <None Include="_posts\2018-02-13-Clean-Architecture-NDepend.md" />
     <None Include="_posts\2018-02-11-Implementing-Clean-Architecture-UseCases.md" />
@@ -55,9 +52,7 @@
     <None Include="_posts\2018-01-20-Second-Habit.md" />
     <None Include="_posts\2018-01-19-Mvvm-Dialogs.md" />
     <None Include="_posts\2016-01-12-Welcome.md" />
-    <None Include="_posts\2016-01-13-Plainion-Repositories.md" />
     <None Include="_posts\2016-01-14-Recommended-Reading.md" />
-    <None Include="_posts\2016-01-14-Time.md" />
     <None Include="_posts\2016-02-01-Self-Marketing.md" />
     <None Include="_posts\2016-02-11-Agile-Is-Dead.md" />
     <None Include="_posts\2016-02-11-Architecture-vs-Code.md" />
