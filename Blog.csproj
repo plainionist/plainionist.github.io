@@ -38,7 +38,6 @@
     <None Include="_drafts\2018-05-01-Implementing-Clean-Architecture-Libraries.md" />
     <None Include="_posts\2018-03-18-Implementing-Clean-Architecture-AspNet.md" />
     <None Include="_posts\2018-03-01-Blogging-with-Jekyll-My-Setup.md" />
-    <None Include="_posts\2018-02-17-Library-Design-Principles.md" />
     <None Include="_posts\2018-02-18-Clean-Architecture-And-Design.md" />
     <None Include="_posts\2018-02-20-Implementing-Clean-Architecture-Controller-Presenter.md" />
     <None Include="_posts\2018-02-13-Clean-Architecture-NDepend.md" />
@@ -50,12 +49,9 @@
     <None Include="_posts\2018-01-28-Death-By-Powerpoint.md" />
     <None Include="_posts\2018-01-23-Blogging-with-Jekyll-SEO.md" />
     <None Include="_posts\2018-01-20-Second-Habit.md" />
-    <None Include="_posts\2018-01-19-Mvvm-Dialogs.md" />
     <None Include="_posts\2016-01-12-Welcome.md" />
     <None Include="_posts\2016-01-14-Recommended-Reading.md" />
-    <None Include="_posts\2016-02-01-Self-Marketing.md" />
     <None Include="_posts\2016-02-11-Agile-Is-Dead.md" />
-    <None Include="_posts\2016-02-11-Architecture-vs-Code.md" />
     <None Include="_posts\2017-01-04-Continuous-Delivery.md" />
     <None Include="_posts\2017-01-04-Fsharp-For-Fun-And-Profit.md" />
     <None Include="_posts\2017-01-05-Instantly-Better-Presentations.md" />
@@ -71,7 +67,6 @@
     <None Include="_posts\2017-11-01-SurviveJS.md" />
     <None Include="_posts\2017-08-14-NET-Microservices-Architecture-for-Containerized-NET-Applications.md" />
     <None Include="_posts\2017-08-09-Architecting-Modern-Web-Applications-with-ASP.NET-Core-and-Azure.md" />
-    <None Include="_posts\2017-08-07-Software-Engineering-at-Google.md" />
     <None Include="_posts\2017-05-21-Unraveling-Bootstrap.md" />
     <None Include="_posts\2017-05-01-Html5-JavaScript-JQuery.md" />
     <None Include="_posts\2017-03-01-Teamwork-and-Indian-Culture.md" />
@@ -80,7 +75,6 @@
     <None Include="_posts\2017-02-18-Your-Code-As-A-Crime-Scene.md" />
     <None Include="_posts\2017-01-29-Microservices-UI.md" />
     <None Include="_posts\2017-01-11-Microservices-Architecture.md" />
-    <None Include="_posts\2017-01-06-Getting-More-Things-Done.md" />
     <None Include="_posts\2017-01-06-F#-Deep-Dives.md" />
   </ItemGroup>
   <ItemGroup>
