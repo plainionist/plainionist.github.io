@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Book Review - Continuous Delivery
+title: "Book Review: Continuous Delivery"
 description: Do you want to learn about Continuous Delivery and wonder where to start? Read the book 'Continuous Delivery'
 tags: [book]
 lint-nowarn: JL0003
