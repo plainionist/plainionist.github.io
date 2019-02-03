@@ -23,6 +23,5 @@ Finally i bought the book and found time to read it:
 
 And the only thing I can say is:
 
-**Shutdown your SONAR instance, buy a copy of this book and read it in 24h!**
+**SonarCube was yesterday** - "Your Code as a Crime Scene" is the future ;-)
 
-It will open your eyes.

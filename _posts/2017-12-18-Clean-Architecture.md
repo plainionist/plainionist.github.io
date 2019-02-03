@@ -16,19 +16,17 @@ As with every book by Uncle Bob it was fun to read it ... so I finished it in 2 
 As the title states and in contrast to his other recent books this book is really focusing on architecture. 
 He clearly describes what architecture is about and what good architecture is, from his perspective.
 
-Having read his [Clean Architecture article](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) already 3 
-times for me there were no fundamental news in the book, but still gave me some more insights here and there.
+Even if you have read his [Clean Architecture article](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
+already I strongly recommend reading the book. It goes much more into details and so brings more insights
+relevant when you try realizing Clean Architecture in one of you next projects ...
+
 <!--more-->
-So if you haven't studied "The Clean Architecture" already in detail the book is a must read! 
-(what else? - it is by Uncle Bob! ;-) )
 
-## Update 2018-01-02
+## Brief Summary
 
-I felt I should add some more detailed summary about the book - for me later and maybe for others:
+Part 1 gives a general introduction into design and architecture.
 
-Part 1 gives a general introduction into design and architecture - a nice warm up :)
-
-Part 2 gives a nice overview on the different programming paradigms - warm up second round :)
+Part 2 gives a nice overview on the different programming paradigms.
 
 Part 3 discusses the SOLID principles briefly - not as deeply as in [Agile Principles, Patterns, and Practices in C#](https://www.amazon.com/Agile-Principles-Patterns-Practices-C/dp/0131857258/ref=sr_1_1?ie=UTF8&qid=1514894364&sr=8-1&keywords=agile+patterns+and+practices)
 but clearly deep enough to understand them. If you have read  [Agile Principles, Patterns, and Practices in C#](https://www.amazon.com/Agile-Principles-Patterns-Practices-C/dp/0131857258/ref=sr_1_1?ie=UTF8&qid=1514894364&sr=8-1&keywords=agile+patterns+and+practices)
@@ -46,6 +44,8 @@ Finally chapter 22 and the subsequent chapters describes the "Clean Architecture
 
 Part 6 completes the picture on the "Clean Architecture" by looking at "the details" like the database and the web.
 
+## How to implement Clean Architecture?
 
-And now it is time to realize the "Clean Architecture" in the next project ;-)
-
+Of course the book contains practical examples but it doesn't go too much into detail. When you try to 
+realize the Clean Architecture the first time you probably will have still questions which I try to 
+answer in my blog series on [How to implement the Clean Architecture?](/Implementing-Clean-Architecture).
