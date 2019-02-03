@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Vue.js 2 Cookbook
+title: "Book Review: Vue.js 2 Cookbook"
 description: Are you looking for a deep dive into Vue.js? Then have a look at this book.
 tags: [book]
 excerpt_separator: <!--more-->

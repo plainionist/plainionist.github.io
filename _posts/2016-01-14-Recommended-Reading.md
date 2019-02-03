@@ -8,7 +8,7 @@ lint-nowarn: JL0003
 
 ## Must-Read
 
-If you haven't read these books below - DON'T change code written by real professional software engineers!
+If you haven't read these books yet, get your fingers of your keyboard and start reading.
 
 - Methodology : "The Pragmatic Programmer" by Andrew Hunt and David Thomas
   ([Amazon](http://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X/ref=sr_1_1?ie=UTF8&qid=1452759962&sr=8-1&keywords=pragmatic+programmer))

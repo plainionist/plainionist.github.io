@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You Dont Know JS - Up and Going
+title: "Book Review: You Dont Know JS - Up and Going"
 description: Wanna learn real JavaScript? Then here is a reading recommendation ...
 tags: [book]
 lint-nowarn: JL0003

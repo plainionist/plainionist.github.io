@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SurviveJS
+title: "Book Review: SurviveJS"
 description: New to client side development? Are you confused by the endless JavaScript libraries and frameworks? And how can you ever build and package that stuff? Here is your survival guide.
 tags: [book]
 excerpt_separator: <!--more-->

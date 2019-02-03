@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Teamwork and Indian Culture
+title: "Book Review: Teamwork and Indian Culture"
 tags: [book]
 excerpt_separator: <!--more-->
 lint-nowarn: JL0004,JL0003

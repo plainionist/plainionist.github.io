@@ -20,7 +20,7 @@ You don't have to! Just don't do these mistakes ...
 If you do the opposite I promise your audience will love you ;-)
 
 I will have a presentation in the next days and I will need to prepare some slides for it.
-In order to get my mind set up accordingly I watched again a video I have seen already [more than a year ago](/Instantly-Better-Presentations):
+In order to get my mind set up accordingly I watched again a video I have seen already more than a year ago:
 
 [Instantly Better Presentations](https://www.youtube.com/watch?v=W_i_DrWic88)
 

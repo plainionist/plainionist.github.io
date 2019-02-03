@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Software Engineer Learns HTML5, JavaScript and jQuery
+title: "Book Review: A Software Engineer Learns HTML5, JavaScript and jQuery"
 description: You are and experienced software developer - in the backend area? Now you want to get things done in the frontend? Here is where you should start.
 tags: [book]
 excerpt_separator: <!--more-->

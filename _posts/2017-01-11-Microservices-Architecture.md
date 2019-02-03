@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Microservices Architecture
+title: "Book Review: Microservices Architecture"
 description: You want to get a quick but comprehensive overview on microservices? Here is a reading recommendation for you.
 tags: [book,microservices]
 lint-nowarn: JL0003
