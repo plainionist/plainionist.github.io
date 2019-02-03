@@ -56,7 +56,7 @@ From my perspective the best way to handle dialogs in MVVM pattern is using "int
 
 You define a interaction request in the XAML of the view from where you want to open a dialog
 
-```XML
+```xml
 <i:Interaction.Triggers>
   <prism:InteractionRequestTrigger SourceObject="{Binding ConfirmationRequest, Mode=OneWay}">
     <prism:PopupWindowAction/>
@@ -88,7 +88,7 @@ is passed to the delegate given to the Raise method.
 
 Of course you can also define custom dialog content:
 
-```XML
+```xml
 <i:Interaction.Triggers>
   <prism:InteractionRequestTrigger SourceObject="{Binding ConfirmationRequest, Mode=OneWay}">
     <prism:PopupWindowAction>
@@ -128,7 +128,7 @@ System dialogs like
 
 are a little bit special if you want to have the "native" look & feel. But also this can be done with MVVM and interaction requests:
 
-```XML
+```xml
 <i:Interaction.Triggers>
   <prism:InteractionRequestTrigger SourceObject="{Binding OpenFileRequest, Mode=OneWay}">
     <pn:PopupCommonDialogAction FileDialogType="{x:Type win32:OpenFileDialog}"/>
