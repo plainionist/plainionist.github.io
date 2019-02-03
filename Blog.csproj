@@ -36,6 +36,7 @@
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
     <None Include="_drafts\2018-05-01-Implementing-Clean-Architecture-Libraries.md" />
+    <None Include="_posts\2018-01-19-Mvvm-Dialogs.md" />
     <None Include="_posts\2019-02-03-Accelerate.md" />
     <None Include="_posts\2019-02-02-Manage-Your-Day-To-Day.md" />
     <None Include="_posts\2018-03-18-Implementing-Clean-Architecture-AspNet.md" />
