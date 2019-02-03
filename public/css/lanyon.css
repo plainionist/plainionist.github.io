@@ -191,7 +191,7 @@ a.sidebar-nav-item:focus {
 }
 
 .sidebar-bullet {
-    margin-top: .5rem
+    margin-top: .4rem
 }
 
 @media (min-width: 48em) {
