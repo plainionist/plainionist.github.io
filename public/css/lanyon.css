@@ -190,6 +190,10 @@ a.sidebar-nav-item:focus {
   border-color: transparent;
 }
 
+.sidebar-bullet {
+    margin-top: .5rem
+}
+
 @media (min-width: 48em) {
   .sidebar-item {
     padding: 1.5rem;
