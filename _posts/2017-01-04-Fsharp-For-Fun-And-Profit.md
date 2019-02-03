@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Book Review: The best source to learn F#"
+title: "Book Review: F# for Fun and Profit"
 description: You are new to functional programming and F# in particular? Check out my reading list for FSharp newbies.
 tags: [book]
 lint-nowarn: JL0003
