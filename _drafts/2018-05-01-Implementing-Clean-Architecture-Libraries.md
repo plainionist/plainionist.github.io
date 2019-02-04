@@ -13,8 +13,6 @@ lint-nowarn:
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.Frameworks.png" class="dynimg" title="Frameworks and libraries in the context of Clean Architecture." alt="In Clean Architecture the usage of frameworks is restricted to the outermost circle. But what is a framework? Is every third party library a framework? How to implement gateways without using third party libraries?"/>
 
-have been some while since last post as i was busy with refactoring *[Athena](/Implementing-Clean-Architecture)* towards
-[recent insights](/Implementing-Clean-Architecture-AspNet/)
 
 In Clean Architecture the usage of frameworks is restricted to the outermost circle. But what is a framework? Is every third party library a framework? How to implement gateways without using third party libraries?
 
@@ -96,7 +94,6 @@ data sources (fsharp.data, sqlite pacakge) in the gateway directly
 04.03.2018	Does R count as an android dependency?	https://stackoverflow.com/questions/4909301	add link once posted about gateway to framework dependencies
 
 02.02.2018 18:56	Dependency from Gateway to Framework in Clean Architecture	http://stackoverflow.com/q/48589192	add link to post once blogged
-
 
 
 https://stackoverflow.com/questions/50017576/how-to-separate-business-logic-from-rx
