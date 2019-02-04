@@ -2,6 +2,8 @@
 
 
 
+
+
 # DataAccess
 
 the database is a detail!
@@ -102,6 +104,7 @@ until i learned enough to realize that certain knowledge is actually "applicatio
 https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repository
 
 
+https://stackoverflow.com/questions/50943510/should-entities-in-clean-architecture-know-of-persistence-mechanisms
 
 
 # The Main module
@@ -299,7 +302,7 @@ what is usecase, what is gateway, ...
 # other blogs
 
 - https://www.codingblocks.net/tag/clean-architecture/
-
+- https://manuel.kiessling.net/2012/09/28/applying-the-clean-architecture-to-go-applications/
 
 - http://five.agency/android-architecture-part-3-applying-clean-architecture-android/
 - http://five.agency/android-architecture-part-4-applying-clean-architecture-on-android-hands-on/

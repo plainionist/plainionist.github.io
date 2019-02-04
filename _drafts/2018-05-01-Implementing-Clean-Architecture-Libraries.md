@@ -99,6 +99,6 @@ data sources (fsharp.data, sqlite pacakge) in the gateway directly
 
 
 
-
+https://stackoverflow.com/questions/50017576/how-to-separate-business-logic-from-rx
 
 {% include series.html %}
