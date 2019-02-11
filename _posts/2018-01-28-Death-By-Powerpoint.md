@@ -27,8 +27,8 @@ In order to get my mind set up accordingly I watched again a video I have seen a
 Damian is really good in doing presentations. He gives you all the tools you need to build great slides 
 and to hold great presentations. Since I have watched him, my presentations became much better ...
 
-Recently a colleague of mine pointed me to the videos from David JP Phillips. He is really a great speaker and presenter.
-If you just have 20 minutes to invest watch his talk about
+Recently a colleague of mine pointed me to the videos from David JP Phillips. He is really a great speaker and
+presenter. If you just have 20 minutes to invest watch his talk about
 
 [How to avoid death By PowerPoint](https://www.youtube.com/watch?v=Iwpi1Lm6dFo)
 
@@ -43,15 +43,14 @@ If you only have 20 seconds to invest (which is really sad) here are his key mes
 
 Once you managed the guidelines above there is one last step to master:
 
-Ensure that your audience will have an "angels cocktail" during your presentation ... and never a "devils cocktail".
-You don't get what I am talking about? Watch this:
+Ensure that your audience will have an "angels cocktail" during your presentation ... and never a
+"devils cocktail". You don't get what I am talking about? Watch this:
 
 [The magical science of storytelling](https://www.youtube.com/watch?v=Nj-hdQMa3uA)
 
 Surely I am not on that level yet ... but I keep on trying ;-)
 
-
-How will your next Powerpoint look like?
+How will your next PowerPoint look like?
 
 
 
