@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Book Review: Clean Architecture"
-description: Brief review and summary of uncle bobs new book clean architecture.
+description: Brief review and summary of Uncle Bobs new book Clean Architecture.
 tags: [book, clean-architecture]
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003

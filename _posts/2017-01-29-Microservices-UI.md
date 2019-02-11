@@ -1,16 +1,18 @@
 ---
 layout: post
-title: Microservices & UI
-description: Everyone talking about microservices is only mentioning UI less backend services? Here is the answer how to handle the UI.
+title: MicroServices & UI
+description: Everyone talking about MicroServices is only mentioning UI less back-end services? Here is the answer how to handle the UI.
 tags: [microservices]
 lint-nowarn: JL0003
 ---
 
-Here is a great video about microservices and UI:
+Does your micro services have a monolithic front-end? Does this make sense?
 
-[Wait, what? Our microservices have actual human users?](https://www.youtube.com/watch?v=jJxmi8nrHwg)
+Here is a great video about MicroServices and UI:
 
-"Vertical slicing" is key. The talk shows great examples how to do this with HTML and Javascript.
+[Wait, what? Our MicroServices have actual human users?](https://www.youtube.com/watch?v=jJxmi8nrHwg)
+
+"Vertical slicing" is key. The talk shows great examples how to do this with HTML and JavaScript.
 
 For WPF based applications you want to try out [Prism](https://github.com/PrismLibrary/Prism).
 

@@ -7,12 +7,15 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003,JL0002
 ---
 
-Recently I read in [The week in .Net](https://blogs.msdn.microsoft.com/dotnet/tag/week-in-net/) about some new e-books published by Microsoft 
-about web, cloud and container development and one of these books was
+Recently I read in [The week in .Net](https://blogs.msdn.microsoft.com/dotnet/tag/week-in-net/) about some new
+e-books published by Microsoft about web, cloud and container development and one of these books was
 [Architecting Modern Web Applications with ASP.NET Core and Azure](https://www.microsoft.com/net/download/thank-you/aspnet-ebook).
 
-After I have read it I can say it is a rather small book which gives you a good but very basic overview about ASP.Net Core MVC development.
+After I have read it I can say it is a rather small book which gives you a good but very basic overview 
+about ASP.Net Core MVC development.
+
 <!--more-->
+
 It "touches" the following topics:
 
 - Traditional Web applications vs. Single Page Applications

@@ -73,7 +73,7 @@ a system:
 
 But there is more to be explored. We see two vertical boundaries separating the picture into three sections:
 
-- The left (blue) section where the frameworks live (e.g. an HTML/Javascript view)
+- The left (blue) section where the frameworks live (e.g. an HTML/JavaScript view)
 - The middle (green) section where the adapters live (controllers and presenters)
 - The right (red) section where the business logic (use case interactors) live
 

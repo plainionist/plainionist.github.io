@@ -14,7 +14,7 @@ If you want to improve your (technical) coaching skills this
 
 is a book you may want to read. It is short. It is easy to read ... and it is great!
 
-In the end you'll have learned to ask the seven essential questions:
+In the end you will have learned to ask the seven essential questions:
 
 1. What's on your mind?
 2. And what else?
@@ -24,4 +24,4 @@ In the end you'll have learned to ask the seven essential questions:
 6. What will you say No to if you're truly saying Yes to this?
 7. What was most useful for you?
 
-And you'll have learned how to put the questions and handle the answers right!
+If you want to improve your collaboration with your peers this book is definitively of benefit for you.

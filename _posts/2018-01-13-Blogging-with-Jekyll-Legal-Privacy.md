@@ -32,8 +32,8 @@ The easiest way to achieve this is to
 
 ## Robots.txt
 
-Even though you write a blog to share content with your readers you may have pages you don't want to share with Google, e.g. imprint.
-In order to hide such pages just create a robots.txt your Jekyll root:
+Even though you write a blog to share content with your readers you may have pages you don't want to share
+with Google, e.g. imprint. In order to hide such pages just create a robots.txt your Jekyll root:
 
 ```
 ---

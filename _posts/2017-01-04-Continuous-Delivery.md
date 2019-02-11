@@ -18,12 +18,6 @@ completely describing the topic.
 __If you are not doing Continuous Delivery yet: get a copy of this book, read it and apply the learnings 
 to your projects.__
 
-You want to try out these concepts in your private one-man projects? 
-Have a look at [Plainion.CI](https://github.com/ronin4net/Plainion.CI/blob/master/README.md)
-
-
-## Update
-
 My major take-away: the approach of Continuous Delivery and the Deployment Pipeline allows you to truly 
 work in an incremental and iterative way.
 
@@ -32,4 +26,7 @@ right from the beginning and then incrementally improve.
 
 With a full automated pipeline pushing updates to your users is so easy that delivering small improvements, 
 bug fixes and features becomes fun again ;-)
+
+You want to try out these concepts in your private one-man projects? 
+Have a look at [Plainion.CI](https://github.com/ronin4net/Plainion.CI/blob/master/README.md)
 

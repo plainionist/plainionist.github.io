@@ -244,7 +244,7 @@ for all project. It depends on the skills of your teams. More experienced develo
 with separate projects.
 
 For *[Athena](/Implementing-Clean-Architecture)* I currently still have Option 1 implemented in the code base but I plan to 
-migrate to Option 3 as I anyhow want to migrate from Asp.Net MVC to Asp.Net WebApi with pure HTML/Javascript UI. 
+migrate to Option 3 as I anyhow want to migrate from Asp.Net MVC to Asp.Net WebApi with pure HTML/JavaScript UI. 
 
 How would you decide?
 

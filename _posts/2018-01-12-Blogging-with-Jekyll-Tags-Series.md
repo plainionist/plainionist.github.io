@@ -14,8 +14,8 @@ Now that I have my basic blog running I want to tune it a little bit ...
 
 ## Tags
 
-Every blog needs tags. This gives the reader an easy way to find content related posts. After some research i found this great post about
-how to include tags in a Jekyll and GitHub Pages based blog:
+Every blog needs tags. This gives the reader an easy way to find content related posts. After some research I
+found this great post about how to include tags in a Jekyll and GitHub Pages based blog:
 
 [Jekyll Tags on Github Pages](http://longqian.me/2017/02/09/github-jekyll-tag/)
 

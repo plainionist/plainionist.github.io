@@ -21,6 +21,7 @@ consider:
 - http://stackoverflow.com/q/48139897
 - http://stackoverflow.com/q/47903739
 - http://stackoverflow.com/q/47446180
+- http://stackoverflow.com/q/54317893
 
 
 ## But what about the database?
@@ -226,8 +227,8 @@ Therefore we dont need to define input or output ports as interfaces - we can ha
 
 ==> so no testing of html needed
 
-- but what about all the smart javascript in a modern SPA?
-- maybe u can use frameworks to keep also the javascript as simple as possible - i dont want to test it :)
+- but what about all the smart JavaScript in a modern SPA?
+- maybe u can use frameworks to keep also the JavaScript as simple as possible - i dont want to test it :)
 - what about vue or react and binding?
 
 ==> in the end u probably just need a very simple integration test which is running thrugh UI to check

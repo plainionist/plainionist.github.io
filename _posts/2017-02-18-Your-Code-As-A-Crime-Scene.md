@@ -10,9 +10,8 @@ Some weeks back I watched this talk by Adam Tornhill
 
 [Seven Secrets of Maintainable Codebases ](https://www.youtube.com/watch?v=0oDporwhToQ)
 
-I was fascinated by the ideas he presented about understanding our code base by analyzing how we interact with it instead of looking 
-at the plain source code alone.
-
+I was fascinated by the ideas he presented about understanding our code base by analyzing how we interact 
+with it instead of looking at the plain source code alone.
 
 Finally i bought the book and found time to read it:
 
@@ -20,8 +19,6 @@ Finally i bought the book and found time to read it:
 
 [Your Code As a Crime Scene](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384/ref=sr_1_1?ie=UTF8&qid=1487424204&sr=8-1&keywords=Your+Code+As+a+Crime+Scene)
 
-
 And the only thing I can say is:
 
-**SonarCube was yesterday** - "Your Code as a Crime Scene" is the future ;-)
-
+**SonarCube was yesterday** - "Your Code as a Crime Scene" is the future! Get yourself a copy and read it ...

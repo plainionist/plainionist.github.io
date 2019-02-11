@@ -2,7 +2,7 @@
 layout: post
 title: Implementing Clean Architecture - Frameworks vs. Libraries
 description: |
-  In Clean Architecture the Dependency Rule forbits usage of frameworks outside of the outermost circle.
+  In Clean Architecture the Dependency Rule forbids usage of frameworks outside of the outermost circle.
   Does this mean that the usage of any third partly library in the implementation of a gateway or repository
   is a violation to the Dependency Rule?
 tags: [clean-architecture]

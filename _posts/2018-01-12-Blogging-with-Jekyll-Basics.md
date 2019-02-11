@@ -10,21 +10,23 @@ lint-nowarn: JL0003
 
 How did I set up the basics of my blog?
 
-Of course there are endless very good posts out there about Markdown + Jekyll + GitHub Pages and I am not going to repeat what 
-others already have nicely documented. So let me just summarize my setup and referring to others for more detailed explanations.
+Of course there are endless very good posts out there about Markdown + Jekyll + GitHub Pages and I am not going
+to repeat what others already have nicely documented. So let me just summarize my setup and referring to
+others for more detailed explanations.
 
 <!--more-->
 
 ## Theme
 
 I wanted a simple and "content focused" theme with a sidebar where I could refer to other resources.
-I finally decided for [Lanyon](http://lanyon.getpoole.com/) which is pretty much what I would consider as a "plainionistic" design :)
+I finally decided for [Lanyon](http://lanyon.getpoole.com/) which is pretty much what I would consider as
+a "plainionistic" design :)
 
 
 ## Excerpts
 
-I think having excerpts of the most recent posts on the start page of the blog provides a nice overview to the visitor.
-So I changed the index.html from
+I think having excerpts of the most recent posts on the start page of the blog provides a nice overview to
+the visitor. So I changed the index.html from
 
 ```
 {% raw %}
@@ -50,12 +52,12 @@ And what is a blog without the option to leave comments?
 {% if site.disqus %}
 <div class="comments">
 	<div id="disqus_thread"></div>
-	<script type="text/javascript">
+	<script type="text/JavaScript">
 
 	    var disqus_shortname = '{{ site.disqus }}';
 
 	    (function() {
-	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        var dsq = document.createElement('script'); dsq.type = 'text/JavaScript'; dsq.async = true;
 	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	    })();

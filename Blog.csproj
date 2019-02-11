@@ -80,12 +80,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\7habits.jpg" />
+    <Content Include="assets\Accelerate.jpg" />
     <Content Include="assets\clean-architecture\backlog.png" />
     <Content Include="assets\clean-architecture\burndown.png" />
     <Content Include="assets\clean-architecture\Circles.png" />
     <Content Include="assets\clean-architecture\Circles.xml" />
     <Content Include="assets\clean-architecture\Github.CleanArch.png" />
     <Content Include="assets\clean-architecture\work-balance.png" />
+    <Content Include="assets\ManageYourDayToDay.jpg" />
+    <Content Include="assets\Mvvm\Mvvm.png" />
+    <Content Include="assets\Mvvm\Mvvm.xml" />
     <Content Include="atom.xml" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\Plainion.CI.png" />
@@ -133,6 +137,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
-    <Exec Command="D:\bin\Plainion.JekyllLint\Plainion.JekyllLint.exe -warning-to-error _posts" />
+    <Exec Command="\bin\Plainion.JekyllLint\Plainion.JekyllLint.exe -warning-to-error _posts" />
   </Target>
 </Project>
