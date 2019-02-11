@@ -17,7 +17,7 @@ Here is how I handle dialogs with MVVM pattern ...
 
 ## The core of MVVM
 
-<img src="{{ site.url }}/assets/mvvm/MvvM.png" class="dynimg" title="MVVM pattern overview" alt="The MVVM pattern consists of the View, the Model and the ViewModel as bridge between both. Often Services are used to encapsulate furhter business and/or application logic."/>
+<img src="{{ site.url }}/assets/Mvvm/Mvvm.png" class="dynimg" title="MVVM pattern overview" alt="The MVVM pattern consists of the View, the Model and the ViewModel as bridge between both. Often Services are used to encapsulate furhter business and/or application logic."/>
 
 The core idea of MVVM is three fold.
 
