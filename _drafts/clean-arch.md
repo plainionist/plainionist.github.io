@@ -298,6 +298,13 @@ show how one scenario would be designed in clean-arch.
 what is usecase, what is gateway, ...
 
 
+# authentication
+
+http://stackoverflow.com/q/54695384
+http://stackoverflow.com/q/52298738
+http://stackoverflow.com/q/53143359
+http://stackoverflow.com/q/52298738
+
 
 
 # other blogs
