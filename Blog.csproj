@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="404.md" />
+    <None Include="great-resources.md" />
     <None Include="tag\blogging.md" />
     <None Include="tag\design.md" />
     <None Include="tag\jekyll.md" />
@@ -55,7 +56,6 @@
     <None Include="_posts\2016-01-12-Mission.md" />
     <None Include="_posts\2016-01-14-Recommended-Reading.md" />
     <None Include="_posts\2017-01-04-Continuous-Delivery.md" />
-    <None Include="_posts\2017-01-04-Fsharp-For-Fun-And-Profit.md" />
     <None Include="_posts\2017-02-15-Reactive-Messaging-Patterns.md" />
     <None Include="_posts\2017-04-17-Pro-Asp.Net-Mvc-5.md" />
     <None Include="_posts\2018-01-13-Blogging-with-Jekyll-Legal-Privacy.md" />
@@ -123,7 +123,7 @@
     <Content Include="_includes\analytics.html" />
     <Content Include="_includes\disqus.html" />
     <Content Include="_includes\head.html" />
-    <Content Include="archive.html" />
+    <None Include="archive.md" />
     <Content Include="_includes\sidebar.html" />
     <Content Include="_includes\collecttags.html" />
     <Content Include="_includes\series.html" />
