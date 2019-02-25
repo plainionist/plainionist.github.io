@@ -123,7 +123,7 @@
     <Content Include="_includes\analytics.html" />
     <Content Include="_includes\disqus.html" />
     <Content Include="_includes\head.html" />
-    <None Include="archive.md" />
+    <Content Include="archive.html" />
     <Content Include="_includes\sidebar.html" />
     <Content Include="_includes\collecttags.html" />
     <Content Include="_includes\series.html" />

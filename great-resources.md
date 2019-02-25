@@ -5,13 +5,18 @@ description: Looking for great resources to become a better developer and delive
 ---
 
 On this page I am collecting all the great resources I come across on my journey as a software
-craftsman which can help us to become better developers and delivering better software.
+craftsman which can help us to become better developers and to deliver better software.
 
 
 ## Trunk Based Development
 
-The web page https://trunkbaseddevelopment.com/ gives a great overview as well as detailed
-insights on "true continuous integration": trunk based development. 
+According to https://trunkbaseddevelopment.com/ trunk based development is the foundation
+for "true" Continuous Integration and so for Continuous Delivery. 
+Considering Continuous Delivery as desirable - maybe even mandatory? - for each project we 
+should definitively learn how trunk based development can be implemented.
+ 
+This web page gives an easy and comprehensive introduction into the topic. Reading through it
+should already give sufficient information to start with trunk based development in any project.
 
 
 ## F# for fun and profit    
