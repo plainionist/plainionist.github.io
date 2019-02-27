@@ -10,7 +10,7 @@ craftsman which can help us to become better developers and to deliver better so
 
 ## Trunk Based Development
 
-According to https://trunkbaseddevelopment.com/ trunk based development is the foundation
+According to <https://trunkbaseddevelopment.com/> trunk based development is the foundation
 for "true" Continuous Integration and so for Continuous Delivery. 
 Considering Continuous Delivery as desirable - maybe even mandatory? - for each project we 
 should definitively learn how trunk based development can be implemented.
