@@ -19,8 +19,9 @@ craftsmanship needs to be based on.
   [Clean Code: A Handbook of Agile Software Craftsmanship](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=sr_1_1?ie=UTF8&qid=1452760030&sr=8-1&keywords=clean+code)
   
 - Learn how to craft a software design from "Uncle Blob" with 
-  [Agile Principles, Patterns, and Practices](http://www.amazon.com/Agile-Principles-Patterns-Practices-C/dp/0131857258/ref=sr_1_1?ie=UTF8&qid=1452784187&sr=8-1&keywords=agile+patterns+and+practices)
-
+  [Agile Principles, Patterns, and Practices](http://www.amazon.com/Agile-Principles-Patterns-Practices-C/dp/0131857258/ref=sr_1_1?ie=UTF8&qid=1452784187&sr=8-1&keywords=agile+patterns+and+practices).
+  Initially focus on the first part of the book, the SOLID principles. Come back to the second 
+  part, the packaging principles, once you have mastered SOLID in practice.
   
 ## Recommended Reading
 
