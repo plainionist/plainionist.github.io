@@ -1,8 +1,6 @@
 
 
-
-
-
+==========================================================================================================================================
 
 # DataAccess
 
@@ -23,6 +21,11 @@ consider:
 - http://stackoverflow.com/q/47446180
 - http://stackoverflow.com/q/54317893
 
+
+isnt it easier to write gateways/adapters with dependencies on frameworks? is it even possible to 
+always keep the dependency rule valid when writing adapters? or does it mean that adpaters have to 
+live in framworks layser to agreat deal?
+see also: SO (https://stackoverflow.com/questions/48589192/dependency-from-gateway-to-framework-in-clean-architecture)
 
 ## But what about the database?
 
@@ -74,8 +77,10 @@ ANY KIND of framework!
 
 http://stackoverflow.com/q/47446180
 
+How to implement a repository in clean architecture without violating dependency rule?
 
 
+==========================================================================================================================================
 
 # Entities
 
@@ -107,8 +112,9 @@ https://stackoverflow.com/questions/47896909/should-a-domain-entity-call-a-repos
 
 https://stackoverflow.com/questions/50943510/should-entities-in-clean-architecture-know-of-persistence-mechanisms
 
+==========================================================================================================================================
 
-# The Main module
+# The Main component
 
 how do i wire up all the things?
 who instanciates interactors?
@@ -136,6 +142,7 @@ how to handle too long constructor parameter lists on the use cases?
 - http://stackoverflow.com/q/48141142
 
 
+==========================================================================================================================================
 
 # Cheat Sheet
 
@@ -148,7 +155,9 @@ now that we discussed all layers including the main module here is the cheat she
 - main is about composition only
 - repositories and services focus on accessing details only
 - entities get these rules which do not change across use cases
-- 
+
+
+==========================================================================================================================================
 
 
 # Where is what? - Example
@@ -167,6 +176,7 @@ what we want to avoid - also because of testability.
 
 - where to do threading? in gateways (service adapters)
 
+==========================================================================================================================================
 
 # partial boundaries
 
@@ -208,6 +218,7 @@ Uncle Bob:
 All methods we have defined on the interactors so far are simple functions which return results.
 Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
 
+==========================================================================================================================================
 
 # Tests in Clean Architecture
 
@@ -244,6 +255,7 @@ Where do I do acceptance testing in clean arch?
   - Bdd only works for inner two circles (this is where the business is and we don’t want technical terms in bdd spec)
   - The rest is technical an can be best tested with unit tests …
 
+==========================================================================================================================================
 
 # relation to other patterns
 
@@ -265,8 +277,11 @@ Where do I do acceptance testing in clean arch?
 - ddd says more about how to model entities and usecases
 - ddd also talks about iterative and framework independence .
 
+==========================================================================================================================================
 
 # what is really the benefit/difference to clean architecture?
+
+so now that i have to put so much additional effort into to appart from just make it work: why should i do so?
 
 - is it the independency to frameworks?
 - is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
@@ -279,11 +294,14 @@ Where do I do acceptance testing in clean arch?
 - clean architecture supports greatly to defer decisions about UI, DB, cache, etc 
   we could just start with bdd tests as "driver" for use cases
 
+==========================================================================================================================================
+
 
 # how to apply clean architecture to command line apps
 
 - Plainion.JekyllLint
 
+==========================================================================================================================================
 
 # Athena
 
@@ -297,6 +315,7 @@ separate domain objects for backlog and burndown and governance
 show how one scenario would be designed in clean-arch.
 what is usecase, what is gateway, ...
 
+==========================================================================================================================================
 
 # authentication
 
@@ -306,8 +325,11 @@ http://stackoverflow.com/q/53143359
 http://stackoverflow.com/q/52298738
 
 
+==========================================================================================================================================
 
 # other blogs
+
+try to fold this in here and there and write a summary page for further reading for everything which does not fit
 
 - https://www.codingblocks.net/tag/clean-architecture/
 - https://manuel.kiessling.net/2012/09/28/applying-the-clean-architecture-to-go-applications/

@@ -98,4 +98,8 @@ data sources (fsharp.data, sqlite pacakge) in the gateway directly
 
 https://stackoverflow.com/questions/50017576/how-to-separate-business-logic-from-rx
 
+
+
+https://stackoverflow.com/questions/54986932/using-bitmap-in-a-java-library
+
 {% include series.html %}
