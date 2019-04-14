@@ -156,67 +156,7 @@ now that we discussed all layers including the main module here is the cheat she
 - repositories and services focus on accessing details only
 - entities get these rules which do not change across use cases
 
-
-==========================================================================================================================================
-
-
-# Where is what? - Example
-
-## Is the presenter view specific?
-
-i think so. if u have an html view the presenter can know about html. see print example from uncle bob.
-or the other way round: if not the presenter is preparing html snippets it means that u have logic in the view
-what we want to avoid - also because of testability.
-
-## input validation?
-
-- https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
-- http://stackoverflow.com/q/47860684
-
-
-- where to do threading? in gateways (service adapters)
-
-==========================================================================================================================================
-
-# partial boundaries
-
-- do i really have to create all those DTOs?
-- what about performance?
-- is it worth the effort?
-
-## pagination
-
-https://stackoverflow.com/questions/48356193/clean-architecture-where-to-implement-pagination-logic
-
-
-## Must every interactor return a response model?
-
-==> if we split interactors according to SRP we could ask whether certain interactors can return entities instead of 
-dedicated response models?
-i think this is fine as long as interaction with interactor does NOT cross a circle boundary!!
-- is such a private interactor still an interactor? i dont know what uncle bob thinks about it but i would like to 
-continue reusing this term but it brings nice implications i want to hold true also for "private" interactors.
-of course i have to maintain discipline: as soon as i start using such private interactor from conroller i have to ensure that
-i do not leak entities.
-
-DOUBLE check with the book: this is actually about BOUNDARIES! 
-i think i can pass entities from one internal interactor to another one.
-once this internal interactor becomes public we should again check what is passing a boundary
-
-
-Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
-in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
-
-Uncle Bob:
-> We don't want to cheat and pass Entity objects or database rows. 
-> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
->
-> [...]
->
-> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
-
-All methods we have defined on the interactors so far are simple functions which return results.
-Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
+(add links to all other detailed pages)
 
 ==========================================================================================================================================
 
@@ -257,6 +197,96 @@ Where do I do acceptance testing in clean arch?
 
 ==========================================================================================================================================
 
+# what is really the benefit/difference to clean architecture?
+
+so now that i have to put so much additional effort into to appart from just make it work: why should i do so?
+
+- is it the independency to frameworks?
+- is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
+- is it the "screaming" architecture?
+
+- after having refactored quite some code from non clean arch to clean arch i can say: "it is unbelievable how the separation of
+  interactor and presenter simplifies the design", "how magically entities occur - interactors have interactor specific requests and response. 
+  everthing generic to these is entities!?"
+
+- clean architecture supports greatly to defer decisions about UI, DB, cache, etc 
+  we could just start with bdd tests as "driver" for use cases
+
+
+==========================================================================================================================================
+
+# partial boundaries
+
+- do i really have to create all those DTOs?
+- what about performance?
+- is it worth the effort?
+
+
+## Must every interactor return a response model?
+
+==> if we split interactors according to SRP we could ask whether certain interactors can return entities instead of 
+dedicated response models?
+i think this is fine as long as interaction with interactor does NOT cross a circle boundary!!
+- is such a private interactor still an interactor? i dont know what uncle bob thinks about it but i would like to 
+continue reusing this term but it brings nice implications i want to hold true also for "private" interactors.
+of course i have to maintain discipline: as soon as i start using such private interactor from conroller i have to ensure that
+i do not leak entities.
+
+DOUBLE check with the book: this is actually about BOUNDARIES! 
+i think i can pass entities from one internal interactor to another one.
+once this internal interactor becomes public we should again check what is passing a boundary
+
+
+Interactors define input DTOs (Data transfer objects) and output DTOs which are most convenient for the use case. 
+in his book uncle bob writes that entities should not be passed to use cases or returned from use cases
+
+Uncle Bob:
+> We don't want to cheat and pass Entity objects or database rows. 
+> We don't want the data structures to have any kind of dependency that violates the Dependency Rule.
+>
+> [...]
+>
+> Thus, when we pass data across a boundary, it is always in the form that is most convenient for the inner circle.
+
+All methods we have defined on the interactors so far are simple functions which return results.
+Therefore we dont need to define input or output ports as interfaces - we can have simple DTOs for input and output.
+
+## must every interactor have a request model?
+
+even if i just need to pass one parameter
+
+
+==========================================================================================================================================
+
+# Catching up with remaining lose ends
+
+## Is the presenter view specific?
+
+i think so. if u have an html view the presenter can know about html. see print example from uncle bob.
+or the other way round: if not the presenter is preparing html snippets it means that u have logic in the view
+what we want to avoid - also because of testability.
+
+## input validation?
+
+- https://softwareengineering.stackexchange.com/questions/351419/clean-architecture-validation-in-domain-vs-data-persistence-layer
+- http://stackoverflow.com/q/47860684
+
+
+- where to do threading? in gateways (service adapters)
+
+## pagination
+
+https://stackoverflow.com/questions/48356193/clean-architecture-where-to-implement-pagination-logic
+
+## authentication
+
+http://stackoverflow.com/q/54695384
+http://stackoverflow.com/q/52298738
+http://stackoverflow.com/q/53143359
+http://stackoverflow.com/q/52298738
+
+==========================================================================================================================================
+
 # relation to other patterns
 
 ## What to put in Entities in a micro services architecture?
@@ -279,31 +309,10 @@ Where do I do acceptance testing in clean arch?
 
 ==========================================================================================================================================
 
-# what is really the benefit/difference to clean architecture?
-
-so now that i have to put so much additional effort into to appart from just make it work: why should i do so?
-
-- is it the independency to frameworks?
-- is it the focus on the usecases? (not driven by UI or DB - driven by the usecase of the domain)
-- is it the "screaming" architecture?
-
-- after having refactored quite some code from non clean arch to clean arch i can say: "it is unbelievable how the separation of
-  interactor and presenter simplifies the design", "how magically entities occur - interactors have interactor specific requests and response. 
-  everthing generic to these is entities!?"
-
-- clean architecture supports greatly to defer decisions about UI, DB, cache, etc 
-  we could just start with bdd tests as "driver" for use cases
-
-==========================================================================================================================================
-
-
-# how to apply clean architecture to command line apps
-
-- Plainion.JekyllLint
-
-==========================================================================================================================================
-
 # Athena
+
+Finally that we have discussed many conrete aspects on how to impl clean arch lets have one complete overview
+how Athena finally looks like. where did we made compromises. where do we need imporve
 
 ## overview
 
@@ -317,13 +326,10 @@ what is usecase, what is gateway, ...
 
 ==========================================================================================================================================
 
-# authentication
+# how to apply clean architecture to command line apps
 
-http://stackoverflow.com/q/54695384
-http://stackoverflow.com/q/52298738
-http://stackoverflow.com/q/53143359
-http://stackoverflow.com/q/52298738
-
+- another case study: does clean architecture make sense for small console apps (tools) as well?
+- Plainion.JekyllLint
 
 ==========================================================================================================================================
 
