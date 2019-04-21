@@ -10,7 +10,8 @@ lint-nowarn: JL0003
 
 <img src="{{ site.url }}/assets/clean-architecture/Circle.UseCase.png" class="dynimg" title="Deep diving the use cases circle." alt="From Clean Architectures circles lets take out the 'use cases' one and deep dive into it."/>
 
-Now that my architecture is screaming the business capabilities of my system let's look at those with more detail.
+Now that [my architecture is screaming](/Implementing-Clean-Architecture-Scream) the business capabilities 
+of [my system](/Implementing-Clean-Architecture) let's look at those with more detail.
 
 In the Clean Architecture all the application specific business rules go into the use cases circle.
 

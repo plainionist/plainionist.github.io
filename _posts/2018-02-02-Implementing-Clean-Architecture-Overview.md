@@ -34,7 +34,7 @@ Brief enough?
 
 # Update 2018-04-08
 
-- [a Clean Architecture in .Net](https://medium.com/@stephanhoekstra/clean-architecture-in-net-8eed6c224c50) is a great post about 
+- [A Clean Architecture in .Net](https://medium.com/@stephanhoekstra/clean-architecture-in-net-8eed6c224c50) is a great post about 
   realizing Clean Architecture in .Net in an Asp.Net environment - quite similar to my setup ;-) Definitively
   worth reading if you want to start implementing Clean Architecture.
 
