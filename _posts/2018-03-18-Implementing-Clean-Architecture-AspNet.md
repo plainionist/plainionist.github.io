@@ -2,7 +2,7 @@
 layout: post
 title: Implementing Clean Architecture - Are Asp.Net controllers "Clean"?
 description: |
-  In the Clean Architecture conrollers belong to the "interface adapters" and bridge between UI framework 
+  In the Clean Architecture controllers belong to the "interface adapters" and bridge between UI framework 
   and business rules. In Asp.Net controllers derive from Asp.Net base classes. 
   By that, are controllers in Asp.Net violating the Dependency Rule?
 tags: [clean-architecture]

@@ -23,7 +23,7 @@ How do I transform an existing code base - following a layered (web) architectur
 
 <!--more-->
 
-In this blog series I will share with you the questions I had and the experiences I made when
+In this Blog series I will share with you the questions I had and the experiences I made when
 implementing the Clean Architecture.
 
 When I read about the Clean Architecture one of my projects already had an existing code base and 
@@ -54,7 +54,7 @@ You may wonder why we have fruits in our backlog ... this is a different story w
 
 As we have multiple teams working on that backlog we want to know how the different teams are loaded.
 
-### The Burndown
+### The Burn down
 
 <img src="{{ site.url }}/assets/clean-architecture/burndown.png" class="dynimg" title="Burn down of remaining work across all teams." alt="Our burn downs visualze the burned efforts as well as the projected burn down based on the past velocity. We have 'touch down lines' which show how work packages got re-scoped during the development."/>
 

@@ -165,7 +165,7 @@ member this.Backlog (filter) =
         ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
         AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-        Workitems = response.Workitems
+        WorkItems = response.Workitems
 
         RemainingEffort = response.RemainingEffort |> formatEffort
         RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
@@ -212,7 +212,7 @@ type ReleaseBacklogResponse = {
     ArchitectureResponsibles : string list
     AssignedTo : string list
 
-    Workitems : ScopedImprovement list
+    WorkItems : ScopedImprovement list
 
     RemainingEffort : float<PD>
     RemainingAvailabilty : float<Netto PD>
@@ -226,7 +226,7 @@ type ReleaseBacklogViewModel = {
     ArchitectureResponsibles : SelectListItem list
     AssignedTo : SelectListItem list
 
-    Workitems : ScopedImprovement list
+    WorkItems : ScopedImprovement list
 
     RemainingEffort : string
     RemainingAvailabilty : string
@@ -288,7 +288,7 @@ module BacklogPresenter =
         ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
         AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-        Workitems = response.Workitems
+        WorkItems = response.Workitems
 
         RemainingEffort = response.RemainingEffort |> formatEffort
         RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
@@ -357,7 +357,7 @@ asking the presenter to convert it into a view model, the interactor now would "
 output port to the presenter. The interactor is now not only controlling HOW the response looks like, it also controls WHEN it 
 will be available.
 
-## How do I invert the control fow?
+## How do I invert the control flow?
 
 Here is my proposal
 
@@ -375,7 +375,7 @@ type BacklogPresenter(callback) =
           ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
           AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-          Workitems = response.Workitems
+          WorkItems = response.Workitems
 
           RemainingEffort = response.RemainingEffort |> formatEffort
           RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability

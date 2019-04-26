@@ -50,8 +50,8 @@ ranked backlog with cut-lines:
 Is providing this report a use case? On the most highest and abstract level: yes.
 The simplified "list of actions" is:
 
-1. Get all workitems from TFS (Team Foundation Server)
-2. Rank all workitems
+1. Get all work items from TFS (Team Foundation Server)
+2. Rank all work items
 3. Get the team capacity 
 4. Determine the cut-lines
 5. Generate the report (including all further details like TFS links and hints for missing information)
@@ -71,7 +71,7 @@ So what would be a driving principle for deciding about "size"? Correct: Single 
 
 Let's look closer at the list of actions from above ...
 
-### Action: Get all workitems from TFS
+### Action: Get all work items from TFS
 
 This is clearly data access, isn't it? 
 
@@ -86,15 +86,15 @@ So I want to have this logic in the use cases circle. Guided by the SRP I would 
 
 <img src="{{ site.url }}/assets/clean-architecture/WorkitemParserInteractor.png" class="dynimg" title="API of the WorkitemParserInteractor" alt="The WorkitemParserInteractor provides methods to parse plain text from TFS fields to get domain object like fruits, confidence levels and product lines."/>
 
-### Action: Rank all workitems
+### Action: Rank all work items
 
 Ranking the backlog is definitively about business rules as those define how the ranking should happen. Ideally this is 
-a very simple task which just sorts workitems by stack rank. 
+a very simple task which just sorts work items by stack rank. 
 But reality is rarely ideal so I could imagine additional rules, e.g.:
 
 - Always rank [MMP](https://agilesoftwareengineer.com/2013/08/28/minimum-viable-product-vs-minimum-marketable-product/) higher 
   than "best effort"
-- Rank workitems without any given rank lowest
+- Rank work items without any given rank lowest
 - In case of duplicate ranks, rank one product line over the other product line.
 
 &#8680; As this has nothing to do with backlog conventions and parsing I will add a second interactor.
@@ -180,7 +180,7 @@ In his [book](/Clean-Architecture/) Uncle Bob writes about database access:
 > interface will have a method named getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and 
 > returns a list of last names.
 
-For our use case I will define two interfaces. One to get the workitems from TFS and one to get the team capacity 
+For our use case I will define two interfaces. One to get the work items from TFS and one to get the team capacity 
 information from the external service.
 
 <img src="{{ site.url }}/assets/clean-architecture/Interactors.DataAccess.png" class="dynimg" title="Dependencies between interactors and data stores" alt="Within the use case layer we define an interface IWorkitemRepository and an interface ITeamService. These are used by the interactors to access TFS and the team planning data. These interfaces are implemented in the interface adapter circle."/>

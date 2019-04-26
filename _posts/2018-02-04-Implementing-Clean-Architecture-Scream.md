@@ -141,7 +141,7 @@ just not linking to framework projects in the "interface adapters" project. This
 ### Composable UI
 
 A [question on stackoverflow](https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945)
-reminded me to emphasize that a screaming architecture is not limited to the backend! Modern desktop UI frameworks
+reminded me to emphasize that a screaming architecture is not limited to the back-end! Modern desktop UI frameworks
 like [Prism](https://prismlibrary.github.io/) as well as modern web frameworks like [AngularJS](https://angularjs.org/), 
 [ReactJS](https://reactjs.org/) or [VueJS](https://vuejs.org/) are able compose UIs from various, not linked, components.
 
