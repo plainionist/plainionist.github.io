@@ -412,7 +412,7 @@ This is a little bit "unclean" as the controller is still in the control flow fr
 it is an acceptable pragmatic solution from my perspective ;-)
 
 
-## How do others think about controllers and presenters
+## How do others think about controllers and presenters?
 
 During research for this post I came along many other discussions about controllers and presenters in the Clean Architecture.
 Here are some of them:
