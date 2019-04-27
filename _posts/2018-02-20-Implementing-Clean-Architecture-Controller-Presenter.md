@@ -156,7 +156,7 @@ member this.Backlog (filter) =
 
     let response = 
         request 
-        |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+        |> BacklogInteractor.GetBacklog IoC.PlanningSerivce IoC.WorkItemRepository
 
     let viewModel = {
         Categories = response.Categories |> Seq.map categoryToOption |> Mvc.Selects.Create
@@ -165,7 +165,7 @@ member this.Backlog (filter) =
         ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
         AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-        WorkItems = response.Workitems
+        WorkItems = response.WorkItems
 
         RemainingEffort = response.RemainingEffort |> formatEffort
         RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
@@ -288,7 +288,7 @@ module BacklogPresenter =
         ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
         AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-        WorkItems = response.Workitems
+        WorkItems = response.WorkItems
 
         RemainingEffort = response.RemainingEffort |> formatEffort
         RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
@@ -308,7 +308,7 @@ member this.Backlog (filter) =
 
     let response = 
         request 
-        |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository
+        |> BacklogInteractor.GetBacklog IoC.PlanningSerivce IoC.WorkItemRepository
 
     let viewModel = response |> BacklogPresenter.CreateViewModel filter
         
@@ -375,7 +375,7 @@ type BacklogPresenter(callback) =
           ArchitectureResponsibles = response.ArchitectureResponsibles |> Mvc.Selects.Create
           AssignedTo = response.AssignedTo |> Mvc.Selects.Create
 
-          WorkItems = response.Workitems
+          WorkItems = response.WorkItems
 
           RemainingEffort = response.RemainingEffort |> formatEffort
           RemainingAvailabilty = response.RemainingAvailabilty |> formatAvailability
@@ -398,7 +398,7 @@ member this.Backlog (filter) =
     let presenter = new BacklogPresenter(fun x -> vm <- x) :> IOutputPort
         
     request 
-    |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+    |> BacklogInteractor.GetBacklog IoC.PlanningSerivce IoC.WorkItemRepository presenter
 
     vm
 ```

@@ -84,7 +84,7 @@ So I want to have this logic in the use cases circle. Guided by the SRP I would 
 
 &#8680; First use case interactor found
 
-<img src="{{ site.url }}/assets/clean-architecture/WorkitemParserInteractor.png" class="dynimg" title="API of the WorkitemParserInteractor" alt="The WorkitemParserInteractor provides methods to parse plain text from TFS fields to get domain object like fruits, confidence levels and product lines."/>
+<img src="{{ site.url }}/assets/clean-architecture/WorkitemParserInteractor.png" class="dynimg" title="API of the WorkItemParserInteractor" alt="The WorkItemParserInteractor provides methods to parse plain text from TFS fields to get domain object like fruits, confidence levels and product lines."/>
 
 ### Action: Rank all work items
 
@@ -135,7 +135,7 @@ the ```RankingInteractor```.
 
 ### Action: Generate the report
 
-At first glance this may look like "UI work", but that's not all. Here are further business rules to consider:
+At first glance this may look like "UI work" but that's not all. Here are further business rules to consider:
 
 - Validate missing information (missing confidence level, missing estimation)
 - Provide total capacity for reference
@@ -183,7 +183,7 @@ In his [book](/Clean-Architecture/) Uncle Bob writes about database access:
 For our use case I will define two interfaces. One to get the work items from TFS and one to get the team capacity 
 information from the external service.
 
-<img src="{{ site.url }}/assets/clean-architecture/Interactors.DataAccess.png" class="dynimg" title="Dependencies between interactors and data stores" alt="Within the use case layer we define an interface IWorkitemRepository and an interface ITeamService. These are used by the interactors to access TFS and the team planning data. These interfaces are implemented in the interface adapter circle."/>
+<img src="{{ site.url }}/assets/clean-architecture/Interactors.DataAccess.png" class="dynimg" title="Dependencies between interactors and data stores" alt="Within the use case layer we define an interface IWorkItemRepository and an interface ITeamService. These are used by the interactors to access TFS and the team planning data. These interfaces are implemented in the interface adapter circle."/>
 
 Details about accessing "IO devices" and external systems I will discuss in one of my next posts.
 

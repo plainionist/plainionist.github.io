@@ -161,7 +161,7 @@ member this.Backlog (filter) =
     let presenter = new BacklogPresenter(fun x -> vm <- x) :> IOutputPort
         
     request 
-    |> BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+    |> BacklogInteractor.GetBacklog IoC.PlanningSerivce IoC.WorkItemRepository presenter
 
     vm
 ```
@@ -177,7 +177,7 @@ type BacklogAspNetController() =
     member this.Backlog (filter) =
         let mutable vm = null
         let presenter = new BacklogPresenter(fun x -> vm <- x) :> IOutputPort
-        let interactor = BacklogInteractor.GetScopedReleaseBacklog IoC.PlanningSerivce IoC.WorkitemRepository presenter
+        let interactor = BacklogInteractor.GetBacklog IoC.PlanningSerivce IoC.WorkItemRepository presenter
         
         filter 
         |> BacklogController.CreateBacklog interactor
