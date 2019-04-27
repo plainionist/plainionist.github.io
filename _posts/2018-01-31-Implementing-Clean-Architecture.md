@@ -54,7 +54,7 @@ You may wonder why we have fruits in our backlog ... this is a different story w
 
 As we have multiple teams working on that backlog we want to know how the different teams are loaded.
 
-### The Burn down
+### The Burn Down
 
 <img src="{{ site.url }}/assets/clean-architecture/burndown.png" class="dynimg" title="Burn down of remaining work across all teams." alt="Our burn downs visualze the burned efforts as well as the projected burn down based on the past velocity. We have 'touch down lines' which show how work packages got re-scoped during the development."/>
 

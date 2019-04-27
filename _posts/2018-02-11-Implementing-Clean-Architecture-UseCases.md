@@ -23,7 +23,7 @@ Read on!
 
 ## Definitions
 
-As a starting point for answering these questions I like to fish for find some definitions ...
+As a starting point for answering these questions I like to fish for some definitions ...
 
 [Wikipedia](https://en.wikipedia.org/wiki/Use_case):
 
