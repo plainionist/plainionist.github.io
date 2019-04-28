@@ -36,6 +36,14 @@
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
+    <None Include="_drafts\2019-05-01-Implementing-Clean-Architecture-Frameworks.md" />
+    <None Include="_drafts\2019-05-07-Implementing-Clean-Architecture-Database.md" />
+    <None Include="_drafts\2019-05-14-Implementing-Clean-Architecture-Entities.md" />
+    <None Include="_drafts\2019-05-21-Implementing-Clean-Architecture-Main.md" />
+    <None Include="_drafts\2019-05-30-Implementing-Clean-Architecture-Cheat-Sheet.md" />
+    <None Include="_drafts\2019-06-01-Implementing-Clean-Architecture-Testing.md" />
+    <None Include="_drafts\2019-06-07-Implementing-Clean-Architecture-Lost-And-Found.md" />
+    <None Include="_drafts\2019-06-14-Implementing-Clean-Architecture-Retrospective.md" />
     <None Include="_drafts\CleanArchitecture.md" />
     <None Include="_posts\2018-01-19-Mvvm-Dialogs.md" />
     <None Include="_posts\2019-02-03-Accelerate.md" />
