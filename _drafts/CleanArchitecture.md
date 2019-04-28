@@ -8,14 +8,7 @@ Next Steps:
 
 
 
-update on "scream"?
 
-"
-The second solution implies that the component structure is volatile in the presence of changing requirements.
-
-The issues we have discussed so far lead to an inescapable conclusion: The component structure cannot be designed from the top down.
-It is not one of the first things about the system that is designed, but rather evolves as the system grows and changes.
-"
 
 
 

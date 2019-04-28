@@ -133,10 +133,18 @@ just not linking to framework DLLs/assemblies in the "interface adapters" projec
 
 ### Composable UI
 
-A [question on stackoverflow](https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945)
+A [question on StackOverflow](https://softwareengineering.stackexchange.com/questions/366930/android-clean-architecture-best-way-to-structure-packages/366945?noredirect=1#comment800927_366945)
 reminded me to emphasize that a screaming architecture is not limited to the back-end! Modern desktop UI frameworks
 like [Prism](https://prismlibrary.github.io/) as well as modern web frameworks like [AngularJS](https://angularjs.org/), 
 [ReactJS](https://reactjs.org/) or [VueJS](https://vuejs.org/) are able to compose UIs from various, not "linked", components.
+
+## Update 2019-04-28
+
+After having read "Clean Architecture" the second time I found a great conclusion I want to share:
+
+> [...] lead to an inescapable conclusion: The component structure cannot be designed from the top down.
+> It is not one of the first things about the system that is designed, but rather evolves as the system grows and changes.
+
 
 
 {% include series.html %}
