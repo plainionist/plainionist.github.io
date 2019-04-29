@@ -32,7 +32,7 @@ Uncle Bob says:
 > Keep it at arm's length. Treat the framework as a detail that belongs in one of the outer circles of the 
 > architecture. Don’t let it into the inner circles.
 
-Hhmm ... does this mean that any third party library is a framework which has to banned to the outermost circle?
+Hhmm ... does this mean that any third party library is a framework which has to exiled to the outermost circle?
 Is really every framework equal or are some frameworks more equal then others?
 
 Let's have a look at some examples to get some idea ...
@@ -161,31 +161,38 @@ and [AutoFac](https://autofac.org/).
 
 ## What about Object-Relational mapping (ORM) frameworks?
 
-Clearly the database itself belongs to the frameworks circle but what about the repository accessing it?
+Clearly the database itself belongs to the frameworks circle but what about the repository (adapter) accessing it?
+We want to use these cool ORM frameworks like [Entity Framework](https://docs.microsoft.com/en-us/ef/) or 
+[Hibernate](http://hibernate.org/) for repository implementation, right? I mean: who wants to write plain SQL
+queries manually in 2019? Instead, we just put some annotations to our entities, derive our repository implementation
+from some framework's base class and the magic happens!
 
-We want to use these cool ORM frameworks for repository implementation right? because who wants to write 
-SQL manually in 2019? 
+We just got married - to the framework! Assuming that we have more than one entity and more than one repository in
+non-trivial project moving to a different framework in some future becomes a real pain easily. Not talking about 
+difficulties in testing the repositories ...
 
-We want to use Entity Framework and Hybernate and DataContractSerializer and ...
+### How to implement a repository with ORM?
 
-it is so easy - we just put attributes on our entity members/properties and we are done!
+Okay, so we want to keep dependencies to such ORM frameworks in the frameworks circle. How do I implement a 
+repository then? Do I really have to fall back to SQL? Not necessarily. We can use the same trick as we used it for 
+the UI frameworks: we invert the dependency. We define interfaces and simple data objects in the adapters circle without 
+dependency to any ORM framework and add some code to the frameworks circle which implements these interfaces and 
+works with these DTOs.
 
-but what do we do with this decision? we marry the framwork! we let it into our inner circles.
-we dont want that.
-we dont want "DbContext" in our adapters layer and maybe even derive our repository from it
+(IMAGE - example UML about TFS work items with "simple fields")
 
+The drawback of this approach is that it involves quite some effort. 
 
-how to implement a repository without depending on the SQL access library? --> interface
+- We have our domain model entities.
+- we have some data objects in frameworks circle which are used for mapping by the ORM framework.
+- we have the data objects defined in adapters layer to pass data from frameworks layer to adapters layer.
 
-(IMAGE - interface ISqlClient in adapters layer)
+Cannot we make it simpler? We could think of skipping the last point but that would require the frameworks code to work
+with our domain entities which would practically result in having the whole repository implementation in the frameworks
+circle. This might not be preferable as we have then more code depending on the ORM framework and from testing 
+perspective.
 
-how to benefit form ORM without depending on it in any cirlce outside the frameworks circle?
---> dedicated objects (maybe simpler ones, closer to the optimal storage for the DB technology - sql or document)
-- we again could define interfaces in adapers layer and do the mapping to our "real entities" in the repository pattern.
-
-(IMAGE - example UML about TFS workitems with "simple fields")
-
-> Note: in TFS workitems are rather generic ...
+### What about ORM without "side effects"?
 
 but what about persistency frameworks which do not require any attributation which just
 provide some API to serialize/deserialize data?
@@ -206,7 +213,7 @@ APIs to access data without any "side effect" on the design decision outside the
 - F# type providers. (Excel) - luckily i can truely encapsulate it.
 - System.Data.Sqlite (local caching for burn down)
  
-Are these frameworks which have to be banned to the outermost circle? is it really worth the effort?
+Are these frameworks which have to be exiled to the outermost circle? is it really worth the effort?
 
 Lets ask again ...
 
