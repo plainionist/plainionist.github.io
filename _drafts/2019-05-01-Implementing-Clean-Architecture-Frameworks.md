@@ -70,48 +70,127 @@ For *Athena* I have decided to marry only the .NET framework, F# and the FSharp.
 
 ## What about the UI?
 
-UI frameworks dictate quite some decisions to the app - maybe even patterns like MVVM or MVC we have to take.
-UI frameworks we definitively do not want to marry because
-- UI technologies change frequently
-- testing through UI is challenging
-- want to support different UIs
+As we have seen [earlier](/Implementing-Clean-Architecture-AspNet/) with the example of Asp.Net MVC,
+UI frameworks tend to dictate quite some rules to an application. These frameworks want us to derive from 
+their base classes, to implement our business logic as plug-ins to them and even come with patterns like 
+[MVC](https://en.wikipedia.org/wiki/Model–view–controller) or [MVVM](https://en.wikipedia.org/wiki/Model–view–viewmodel) 
+we have to follow.
+Same is true other modern UI frameworks like [WPF](https://docs.microsoft.com/en-us/dotnet/framework/wpf/) or 
+[VueJS](https://vuejs.org/).
 
-we discussed already in previous post: we want to keep it away from business logic. we definitively do not want
-it in the usecase/entities layers and we want to avoid mixing it with controllers/presenters as migration to 
-new UI technologies is painful ... u know how often UI framework changes!
+Modern UI frameworks allow a fast and convenient development of applications but there are clear disadvantages
+if we couple our applications to tight to them
 
-same is true for: WPF. Swing. Ruby on rails. AngularJS and all these nice UI frameworks.
-try to keep ans independent as possible!
+- UI technologies change frequently and migrating to a completely different framework is expensive and painful
+- Writing reliable UI based tests is challenging
+- Quite often multiple UIs are needed (desktop, web, mobile)
 
+Clearly we want to *use* UI frameworks but we definitively do not want to *marry* them!
 
-but then the UI stuff has to be in the frameworks circle, right?
+So how do we keep these frameworks "at arm's length"?
 
-we could do it like with asp.net post: minimal stuff in frameworks layer
-which calls adapters layer
+In most UI frameworks the View completely depends on the framework, e.g.
+
+- The Asp.Net MVC ".cshtml" Razor template cannot live outside the Asp.Net MVC framework
+- The WPF XAML window or control completely consists of WPF framework elements
+- the VueJS component completely depends to the VueJS framework to call its hooks
+
+So we have to keep the View in the frameworks circle completely.
+
+The Controller and/or ViewModel on the other hand is usually less coupled to the framework. So we can follow
+the approach of the previous post and extract those code parts which depend on the UI framework, keep them in 
+the frameworks circle and let it call the framework independent parts which will live in the interface adapters
+circle.
+
+<img src="{{ site.url }}/assets/clean-architecture/AspNet.Controllers.Clean.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
+
+In case we need to communicate from the adapters circle back to the frameworks circle we can simply provide
+an interface in the adapters layer which will be implemented by the frameworks circle code and so we maintain 
+the Dependency Rule. All arrows crossing the border are pointing "inwards".
+
+<img src="{{ site.url }}/assets/clean-architecture/Adapter.Framework.Inversion.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
+
+Is it worth the effort? It depends on how much of your Controller's and ViewModel's code you want to keep independent
+from the specific UI framework. If there isn't much such code you could also decide to move the Controller and ViewModel
+to the frameworks circle completely. However I would not recommend to let the UI framework into your interface adapters
+circle. Maintain a strict border remain the framework and your adapters otherwise the framework will "take over" this
+circle as well over time!
 
 
 ## What about Dependency Injection frameworks?
 
-but we want to use a DI container in a modern software project to wire up all those classes we carefully crafted
-following SRP, right? We do not do such things by hand in 2019, right?
-sure ... but a DI framework we want to marry? 
-
-we do not want framework specific annotations everywhere in our business lines code. we want to be able to 
-replace DI container as easily as possible.
+I think everyone agrees that we want to use a dependency injection (DI) framework in a modern software project to 
+wire up all those classes we carefully crafted following [SOLID principles](https://en.wikipedia.org/wiki/SOLID), right?
+We do not do such things by hand in 2019, right? Sure, but do we want to marry the DI framework? 
 
 Uncle Bob says:
-> It is in this Main component that dependencies should be injected by a Dependency Injection framework. Once they are injected into Main, 
-> Main should distribute those dependencies normally, without using the framework.
+> It is in this Main component that dependencies should be injected by a Dependency Injection framework.
+> Once they are injected into Main, Main should distribute those dependencies normally, without using the framework.
 
-==> another post
+What is the "Main component"? I will leave the answer to this question to another post but we definitively do not
+want any DI framework specific code anywhere in the inner circles, not in the entities, not in the interactors
+and even not in the adapters!
 
-but what about DI frameworks without any annotation? like Asp.Net CORE? 
-then we still use it in MAIN component only and probably its impl is simpler as we dont have to pass many deps manually.
-but still details belong to MAIN only.
+We do not want to use DI framework specific annotations in the inner circles like 
+with [MEF](https://docs.microsoft.com/en-us/dotnet/framework/mef/):
+
+```csharp
+[Export(typeof(IWorkItemRepository))]
+class WorkItemRepository : IWorkItemRepository
+{
+	...
+}
+
+class BackLogController
+{
+	[ImportingConstrctor]
+	public BackLogController(IWorkItemRepository)
+	{
+		...
+	}
+}
+```
+
+And we do not want to use DI framework specific [ServiceLocator](https://en.wikipedia.org/wiki/Service_locator_pattern)
+in the inner circles like this:
+
+```csharp
+class BackLogController
+{
+	public BackLogController(IServiceLocator serviceLocator)
+	{
+		var repository = serviceLocator.Resolve<IWorkItemRepository>();
+	}
+}
+```
+
+Luckily DI framework authors recently have accepted that we do not pollute our business logic with their annotations
+and have provided alternatives which work entirely without such annotations. Examples are 
+[Asp.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2)
+and [AutoFac](https://autofac.org/).
+
+
+## What about ORM and persistency frameworks?
+
+i dont need ORM as MS has API ... which is kind of ORM actually
+
+we do not want any ORM "framework" code in our most inner cirlces.
+
+we want to bann it to outermost circle or truely encapsulate in adapter.
+
+in athena i use s.th. similar: F# type providers. (Excel) - luckily i can truely encapsulate it.
+
+EF allows "code first" which does not require any dependencies from entities to EF.
+we can use it as implmenation detail of the repository.
+
+- we do not want to have any "Json" attributes on our entities
+- no "hypernate" attributes
+- 
 
 
 
 ## What about data access libraries?
+
 
 so the database itself is a detail living in the outermost circle. but what about the repository accessing it?
 
