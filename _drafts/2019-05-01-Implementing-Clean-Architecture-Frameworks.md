@@ -32,7 +32,7 @@ Uncle Bob says:
 > Keep it at arm's length. Treat the framework as a detail that belongs in one of the outer circles of the 
 > architecture. Don’t let it into the inner circles.
 
-Hhmm ... does this mean that any third party library is a framework which has to exiled to the outermost circle?
+Hhmm ... does this mean that every third party code is a framework which has to exiled to the outermost circle?
 Is really every framework equal or are some frameworks more equal then others?
 
 Let's have a look at some examples to get some idea ...
@@ -171,6 +171,7 @@ We just got married - to the framework! Assuming that we have more than one enti
 non-trivial project moving to a different framework in some future becomes a real pain easily. Not talking about 
 difficulties in testing the repositories ...
 
+
 ### How to implement a repository with ORM?
 
 Okay, so we want to keep dependencies to such ORM frameworks in the frameworks circle. How do I implement a 
@@ -187,35 +188,36 @@ The drawback of this approach is that it involves quite some effort.
 - we have some data objects in frameworks circle which are used for mapping by the ORM framework.
 - we have the data objects defined in adapters layer to pass data from frameworks layer to adapters layer.
 
-Cannot we make it simpler? We could think of skipping the last point but that would require the frameworks code to work
-with our domain entities which would practically result in having the whole repository implementation in the frameworks
-circle. This might not be preferable as we have then more code depending on the ORM framework and from testing 
-perspective.
+Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks circle 
+to work with our domain entities which would practically mean to put the whole repository implementation in the frameworks circle.
+That might be okay if like 90% of your repository implementation depends on the ORM framework anyhow and there is not much 
+benefit in separating the other 10% (e.g. with respect to testing).
+
 
 ### What about ORM without "side effects"?
 
-but what about persistency frameworks which do not require any attributation which just
-provide some API to serialize/deserialize data?
+But what about a persistence framework which does not require any annotations or requires any other dependency of our
+inner layers to it? What about things like
+[Entity Framework Fluent API](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties) or
+[Hibernate persistence mapping file](http://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#bootstrap-jpa-xml-files)?
 
-what about "EF Fluent API" or configuration file like in hybernate?
+This might be a good alternative but consider that
 
-might be a good option BUT
-- double check that the framework does not force u to follow other conventions like all setters public and 
-  constrctores without parameters. you may not want these conventions in ur domain model/entities (personally
-  i like to create as many immutable objects as possible)
-- "external" mapping might be a problem with refactoring. EF fluent API does it in code so refactoring works.
-  external Xml files might become a maintenance hell.
+- Such frameworks often still require you to follow certain conventions, e.g. public setters for all properties or
+  existence of parameterless constructors. You may find this conflicting with other design tactics like immutability
+- "External" mapping might become a problem with refactoring if those are not well supported by your IDE
 
-it turns out that again not all frameworks are equal. in athena i use the following libraries which provide simple
-APIs to access data without any "side effect" on the design decision outside the repository impl
+It seems that again not all frameworks are equal. In *Athena* I use the following libraries to access data sources:
 
-- Microsoft.TeamFoundation.WorkitemTracking.Client (to access work items from TFS)
-- F# type providers. (Excel) - luckily i can truely encapsulate it.
-- System.Data.Sqlite (local caching for burn down)
- 
-Are these frameworks which have to be exiled to the outermost circle? is it really worth the effort?
+- Microsoft.TeamFoundation.WorkitemTracking.Client to access work items from TFS
+- F# type providers to read team configurations from an Microsoft Excel sheet
+- System.Data.Sqlite as a local cache of burn down data
+
+These libraries just provide simple APIs to read and write data without any "side effect" on any design decision outside
+the actual repository implementation. Are these libraries "frameworks" which have to be exiled to the outermost circle?
 
 Lets ask again ...
+
 
 ## What is a framework and what is a library?
 
@@ -231,65 +233,51 @@ application which is controlling when and how to call these APIs.
 With this definition all the three examples above are just "libraries" so i would NOT put them into 
 outermost circle but use those in the repository implementations.
 
-BUT: always take care that types of the third party libraries become part of any of my public APIs.
-i want to keep it truly encapsulated so that i can easily replace one implementation with another one if needed.
-
-
-Alternative: define interface in adapters layer and create a minimal
-wrapper implementation in frameworks layer. by that actual repository
-implementation can be in adapters layer without dependencies to any 
-"third partly" libraries or other "details"
-
-==> which alternative to choose?
-
-personally i dont see much benefit in this additional interface 
-in adapers layer and adapter in frameworks layer AS LONG AS i can 
-full encapsulate the detail in the adapters layer impl itself.
-
 do i "marry the framework" if i use a library in my repository implementation?
-==> no (as long as it is truely encapsulated (interface is free from any third party types)
+==> no (as long as it is truely encapsulated and (interface is free from any third party types) there is almost no impact
+on the other circles
 
 (SHOW CODE?)
 
+==> what is the benefit compared to just keep the impl in the frameworks layer?
+
+
 ## Libraries in use case interactors?
 
-Uncle bob would probably shout: "NO - NEVER" ...
+Uncle bob would probably shout: "NEVER !!" ... and i would tend to agree in most cases but in Athena there was one 
+use case where i needed a [numerics library}( https://numerics.mathdotnet.com/ ) for some linear interpolation.
 
-in Athena i use a third party "numerics library": https://numerics.mathdotnet.com/ for linear interpolation. i use it 
-to calc the ramp up. is this a violation to the dependency rule?
+of course i could have decided to define an interface and put the implementation in the frameworks layer - as usual - but i
+decided that this would be "overkill" and went for a more pragmatic solution: i just used the library but completely 
+encapsulated it in a function - no third party dependency outside this function.
 
 (SHOW CODE)
 
-surely i could make a "service" out of it. i could create an interface in the usecase layer and
-put the imple in the frameworks layer ... but why should i do it? again "do i marry the framework"? is it controlling me?
-no. i am controlling it and if i ever want to replace it is very easy
+in that case i also dont see much issue with testing as i wanted this code to be "part of" my tests anyhow.
 
-I have encapsulated it --> ok
-i am in control
-
+Probably not 100% "Clean" ... but "pragmatic" ;-)
 
 ## Conclusion
 
-i finally mailed Uncle bob and he responded
-"
-"
+I finally mailed Uncle Bob about my confusion and he responded that
 
-i tend to be more pragmatic:
-- carefully decide which framework to marry. tend to marry as less as possible
+> The trick to this is to add code to the outer circle that implements interfaces defined in the adapters layer.
+
+However I tend to be more pragmatic if possible. My recommendation would be:
+
+- carefully decide which framework to marry. only marry if you really want to keep it until lifetime of your project.
 - keep true frameworks (which control your application) in the outermost circle
-- use libraries (APIs u control) in adapters and even interactors but  never let any third party types into 
-  "out" of ur encapsultation: use it in gateways and interactors but never make it part of ur public API.
-
+- use libraries (APIs u control) in adapters and even interactors but  never let any third party types 
+  "out" of your encapsulation (no third party type in any public api)
 
 
 ## How do others think about usage of frameworks and libraries?
 
-during my research ....
+During my research for this post I found some other interesting discussions about usage of frameworks and libraries which 
+I would like to share:
 
-- https://stackoverflow.com/questions/4909301
-- http://stackoverflow.com/q/48589192	
-- https://stackoverflow.com/questions/50017576/how-to-separate-business-logic-from-rx
-- https://stackoverflow.com/questions/54986932/using-bitmap-in-a-java-library
+- [How to separate business logic from Rx](https://stackoverflow.com/questions/50017576/how-to-separate-business-logic-from-rx)
+- [Using bitmap in a java library](https://stackoverflow.com/questions/54986932/using-bitmap-in-a-java-library)
 
 
 {% include series.html %}
