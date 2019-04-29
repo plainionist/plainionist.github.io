@@ -229,8 +229,8 @@ Lets ask again ...
 (IMAGE from fw vs lib)
 
 From my perspective the difference between a framework and a library is "who is controlling whom?" 
-A framework requires you to implement plugins. u write a controller for asp.net and by that plugin ur logic
-into the asp.net framework. my code implments SPIs.
+A framework requires you to implement plug-ins. u write a controller for asp.net and by that plug-in your logic
+into the asp.net framework. my code implements SPIs.
 
 a library like newtonsoft.json just provides APIs. It is passive. it does not control anything. it is the 
 application which is controlling when and how to call these APIs.
@@ -239,12 +239,18 @@ With this definition all the three examples above are just "libraries" so i woul
 outermost circle but use those in the repository implementations.
 
 do i "marry the framework" if i use a library in my repository implementation?
-==> no (as long as it is truely encapsulated and (interface is free from any third party types) there is almost no impact
+==> no (as long as it is truly encapsulated and (interface is free from any third party types) there is almost no impact
 on the other circles
 
 (SHOW CODE?)
 
-==> what is the benefit compared to just keep the impl in the frameworks layer?
+==> but hey why not just put it into frameworks layer and strictly stick to the dependency rule?
+(as discussed before)
+- pro: logically gateways/repositories belong to the adapters layer (rather weak argument)
+- pro: keep the code separated from "true" frameworks 
+- con: project hosting such "hybrid" adapters need dependencies to such libraries so there is no strong barrier anymore to
+  other - otherwise dependency free - code
+- pro: possible to be called by other classes in the adapters layer without further indirections
 
 
 ## Libraries in use case interactors?
