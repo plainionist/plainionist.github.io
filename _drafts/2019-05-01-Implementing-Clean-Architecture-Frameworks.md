@@ -30,7 +30,7 @@ Uncle Bob says:
 
 > Don't marry the framework! Oh, you can use the framework - just don't couple to it. 
 > Keep it at arm's length. Treat the framework as a detail that belongs in one of the outer circles of the 
-> architecture. Don’t let it into the inner circles.
+> architecture. Don't let it into the inner circles.
 
 Hhmm ... does this mean that every third party code is a framework which has to exiled to the outermost circle?
 Is really every framework equal or are some frameworks more equal then others?
@@ -46,7 +46,7 @@ on top of the .NET framework. Of course that does not mean that my whole project
 Uncle Bob says:
 
 > There are some frameworks that you simply must marry. If you are using C++, for example, you will likely
-> have to marry STL—it’s hard to avoid. If you are using Java, you will almost certainly have to marry the
+> have to marry STL - it's hard to avoid. If you are using Java, you will almost certainly have to marry the
 > standard library.
 
 Okay, obviously some frameworks are more equal then others. It doesn't make much sense to write modern C++ code without
@@ -182,16 +182,21 @@ works with these DTOs.
 
 (IMAGE - example UML about TFS work items with "simple fields")
 
-The drawback of this approach is that it involves quite some effort. 
+The drawback of this approach is that it involves quite some effort and requires a bunch of new types to be created:
 
 - We have our domain model entities.
-- we have some data objects in frameworks circle which are used for mapping by the ORM framework.
-- we have the data objects defined in adapters layer to pass data from frameworks layer to adapters layer.
+- we need some data objects defined in frameworks circle which are used for mapping by the ORM framework.
+- we need some data objects defined in adapters circle to pass data from frameworks circle to adapters circle without
+  breaking the Dependency Rule.
 
 Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks circle 
 to work with our domain entities which would practically mean to put the whole repository implementation in the frameworks circle.
-That might be okay if like 90% of your repository implementation depends on the ORM framework anyhow and there is not much 
-benefit in separating the other 10% (e.g. with respect to testing).
+That might be a good pragmatic alternative if most of your repository implementation depends on the ORM framework anyhow and 
+there is not much code left to be separated out into the adapters layer.
+
+On the other hand, if you can keep quite some code of your repository implementations independent from ORM framework dependencies
+it might be worth the effort as it pays off in terms of testability, portability to another ORM framework and even
+complexity.
 
 
 ### What about ORM without "side effects"?
@@ -204,7 +209,7 @@ inner layers to it? What about things like
 This might be a good alternative but consider that
 
 - Such frameworks often still require you to follow certain conventions, e.g. public setters for all properties or
-  existence of parameterless constructors. You may find this conflicting with other design tactics like immutability
+  existence of parameterless constructors. This might be still some kind of marriage ...
 - "External" mapping might become a problem with refactoring if those are not well supported by your IDE
 
 It seems that again not all frameworks are equal. In *Athena* I use the following libraries to access data sources:
