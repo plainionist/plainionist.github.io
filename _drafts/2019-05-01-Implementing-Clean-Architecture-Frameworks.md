@@ -134,34 +134,23 @@ and even not in the adapters!
 We do not want to use DI framework specific annotations in the inner circles like 
 with [MEF](https://docs.microsoft.com/en-us/dotnet/framework/mef/):
 
-```csharp
-[Export(typeof(IWorkItemRepository))]
-class WorkItemRepository : IWorkItemRepository
-{
+```fsharp
+[<Export(typeof<IWorkItemRepository>)>]
+type WorkItemRepository() = 
+	interface IWorkItemRepository
 	...
-}
 
-class BackLogController
-{
-	[ImportingConstrctor]
-	public BackLogController(IWorkItemRepository)
-	{
-		...
-	}
-}
+type BackLogController() =
+	[Import]
+	member val WorkItemRepository = null with get, set
 ```
 
 And we do not want to use DI framework specific [ServiceLocator](https://en.wikipedia.org/wiki/Service_locator_pattern)
 in the inner circles like this:
 
-```csharp
-class BackLogController
-{
-	public BackLogController(IServiceLocator serviceLocator)
-	{
-		var repository = serviceLocator.Resolve<IWorkItemRepository>();
-	}
-}
+```fsharp
+type BackLogController(serviceLocator:IServiceLocator) =
+	let myRepository = serviceLocator.Resolve<IWorkItemRepository>()
 ```
 
 Luckily DI framework authors recently have accepted that we do not pollute our business logic with their annotations
@@ -170,50 +159,60 @@ and have provided alternatives which work entirely without such annotations. Exa
 and [AutoFac](https://autofac.org/).
 
 
-## What about ORM and persistency frameworks?
+## What about Object-Relational mapping (ORM) frameworks?
 
-i dont need ORM as MS has API ... which is kind of ORM actually
+Clearly the database itself belongs to the frameworks circle but what about the repository accessing it?
 
-we do not want any ORM "framework" code in our most inner cirlces.
+We want to use these cool ORM frameworks for repository implementation right? because who wants to write 
+SQL manually in 2019? 
 
-we want to bann it to outermost circle or truely encapsulate in adapter.
+We want to use Entity Framework and Hybernate and DataContractSerializer and ...
 
-in athena i use s.th. similar: F# type providers. (Excel) - luckily i can truely encapsulate it.
+it is so easy - we just put attributes on our entity members/properties and we are done!
 
-EF allows "code first" which does not require any dependencies from entities to EF.
-we can use it as implmenation detail of the repository.
-
-- we do not want to have any "Json" attributes on our entities
-- no "hypernate" attributes
-- 
+but what do we do with this decision? we marry the framwork! we let it into our inner circles.
+we dont want that.
+we dont want "DbContext" in our adapters layer and maybe even derive our repository from it
 
 
+how to implement a repository without depending on the SQL access library? --> interface
 
-## What about data access libraries?
+(IMAGE - interface ISqlClient in adapters layer)
 
+how to benefit form ORM without depending on it in any cirlce outside the frameworks circle?
+--> dedicated objects (maybe simpler ones, closer to the optimal storage for the DB technology - sql or document)
+- we again could define interfaces in adapers layer and do the mapping to our "real entities" in the repository pattern.
 
-so the database itself is a detail living in the outermost circle. but what about the repository accessing it?
+(IMAGE - example UML about TFS workitems with "simple fields")
 
-"
-Similarly, data is converted, in this layer [interface adapters layer], from the form most convenient for entities
-and use cases, to the form most convenient for whatever persistence framework is being used (i.e., the database). 
-No code inward of this circle should know anything at all about the database. If the database is a SQL database, 
-then all SQL should be restricted to this layer and in particular to the parts of this layer that have to do with
-the database. Also in this layer is any other adapter necessary to convert data from some external form, such as
-an external service, to the internal form used by the use cases and entities.
-"
+> Note: in TFS workitems are rather generic ...
 
-but in order to access the DB i usually use "libraries" like
+but what about persistency frameworks which do not require any attributation which just
+provide some API to serialize/deserialize data?
 
-- System.Data.Sqlite (local caching for burn down)
-- Newtonsoft.Json (local stored data)
+what about "EF Fluent API" or configuration file like in hybernate?
+
+might be a good option BUT
+- double check that the framework does not force u to follow other conventions like all setters public and 
+  constrctores without parameters. you may not want these conventions in ur domain model/entities (personally
+  i like to create as many immutable objects as possible)
+- "external" mapping might be a problem with refactoring. EF fluent API does it in code so refactoring works.
+  external Xml files might become a maintenance hell.
+
+it turns out that again not all frameworks are equal. in athena i use the following libraries which provide simple
+APIs to access data without any "side effect" on the design decision outside the repository impl
+
 - Microsoft.TeamFoundation.WorkitemTracking.Client (to access work items from TFS)
+- F# type providers. (Excel) - luckily i can truely encapsulate it.
+- System.Data.Sqlite (local caching for burn down)
  
-Are these frameworks which have to be banned to the outermost circle?
+Are these frameworks which have to be banned to the outermost circle? is it really worth the effort?
+
+Lets ask again ...
+
+## What is a framework and what is a library?
 
 (IMAGE from fw vs lib)
-
-## Again: What is a framework and what is a library?
 
 From my perspective the difference between a framework and a library is "who is controlling whom?" 
 A framework requires you to implement plugins. u write a controller for asp.net and by that plugin ur logic
