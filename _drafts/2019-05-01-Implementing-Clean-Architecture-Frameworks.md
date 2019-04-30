@@ -245,12 +245,22 @@ on the other circles
 (SHOW CODE?)
 
 ==> but hey why not just put it into frameworks layer and strictly stick to the dependency rule?
-(as discussed before)
-- pro: logically gateways/repositories belong to the adapters layer (rather weak argument)
-- pro: keep the code separated from "true" frameworks 
-- con: project hosting such "hybrid" adapters need dependencies to such libraries so there is no strong barrier anymore to
-  other - otherwise dependency free - code
-- pro: possible to be called by other classes in the adapters layer without further indirections
+true - that would be the fully in line with dependency rule (as discussed before)
+however i would see a few benefits in keeping such impl in the adapters layer:
+
+- pro: logically gateways/repositories belong to the adapters layer (rather weak argument) - even if some implementation details
+ create invalid dependencies
+- pro: keep the code separated from "true" frameworks and so avoid getting coupled to s.th. we clearly do not want to marry
+- pro: possible to be called by other classes in the adapters layer without further indirections (e.g. for unit of work
+  facades we may call "low level gateways" or some caching we want to keep in adapters layer we can easily call the real
+  implementation)
+
+for sure all these aspects can be realized with more clear separation - with interfaces in adapters layer and impl in 
+frameworks layer but still it might be more pragmatic and still clean enough to do it this way.
+
+in the end you need to decide what you want to optimize for and how strict you want to or need to draw borders in 
+your architecture. in a project with many and new developers I would for sure draw borders more strict than in a 2 man
+show of experiences software craftsmen.
 
 
 ## Libraries in use case interactors?
@@ -274,21 +284,17 @@ I finally mailed Uncle Bob about my confusion and he responded that
 
 > The trick to this is to add code to the outer circle that implements interfaces defined in the adapters layer.
 
-However I tend to be more pragmatic if possible. My recommendation would be:
+However I tend to be more pragmatic - if feasible. My recommendation would be:
 
 - carefully decide which framework to marry. only marry if you really want to keep it until lifetime of your project.
 - keep true frameworks (which control your application) in the outermost circle
-- use libraries (APIs u control) in adapters and even interactors but  never let any third party types 
-  "out" of your encapsulation (no third party type in any public api)
+- decide how strict you want or u need to draw borders in ur architecture. depending on that using libraries within 
+  adapters/gateways might be a pragmatic solution - but never let these pragmatic solutions take over control of
+  your architecture (e.g. keep away from public api)
+  and change your decisions if its baseline changes (e.g. many new developers join the project)
 
 
-## How do others think about usage of frameworks and libraries?
-
-During my research for this post I found some other interesting discussions about usage of frameworks and libraries which 
-I would like to share:
-
-- [How to separate business logic from Rx](https://stackoverflow.com/questions/50017576/how-to-separate-business-logic-from-rx)
-- [Using bitmap in a java library](https://stackoverflow.com/questions/54986932/using-bitmap-in-a-java-library)
-
+Do you agree to my pragmatic conclusion or do you prefer more strict boundaries?
+Feel free to share your thoughts below ...
 
 {% include series.html %}
