@@ -190,16 +190,25 @@ We can use the same trick as we used for the UI frameworks: we invert the depend
 simple data objects in the adapters circle without dependency to any ORM framework and add some code to the frameworks 
 circle which implements these interfaces and works with these data objects.
 
+Let's imagine all the data we need for *Athena* (work items, teams, planning information) would be stored in
+an SQL database and we would like to use the
+[Entity Framework](https://docs.microsoft.com/en-us/ef/)
+to access this data. Then the "Clean" design would look like this.
+
 (IMAGE - DataMapper with "entities", data objects, repositories, entities )
 
 The ```DataMapper``` lives in the framework layer and uses the ORM framework to do the "object-rational mapping" with
 the help of the "ORM Entities" which depend on ORM framework specific annotations. In order to be usable by 
 the ```Repository``` which lives in the adapters layer, the ```DataMapper```implements "IDataMapper" 
 
+SqlEntities are structured most convenient for persistence. optimized for space maybe
+
 so the frameworks impl would do the TFS access and minimal data conversion. we want as less logic as possible there
 as it is hard to test and bound to the framework (migration cost). the repository in the adapter layer would take 
 the simple DTOs and does the actual creation of entities. maybe even validation - depending on whtherht we consider
 thsi validation to be business logic or just data consistency checks.
+
+and of course the interactor finally uses the tfsrepo through interface
 
 benefits:
 code depending on framework limited (hard to test) and repository impl can be easily tested.

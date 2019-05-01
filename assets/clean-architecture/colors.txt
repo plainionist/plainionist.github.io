@@ -1,0 +1,4 @@
+Framework  = 00CCCC
+Gateway    = 00FF80
+Interactor = FF9999
+Entities   = FFFFCC
