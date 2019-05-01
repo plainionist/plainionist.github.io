@@ -294,36 +294,50 @@ But wait! Isn't that still a violation to the Dependency Rule? Strictly speaking
 ```TfsWorkItemRepository``` to ```Microsoft.TeamFoundation.WorkitemTracking.Client``` proves it.
 In order to fix this violation we would have to chose one of the approaches discussed above.
 
-However, I see some benefits in keeping such an implementations in the adapters layer:
+However, I see some benefits in keeping such implementations in the interface adapters circle which are
 
-- Logically gateways/repositories belong to the adapters layer 
-- even uncle bob says: all data conversion should be restricted to this layer
-- Keep the code separated from "true" frameworks and so avoid getting coupled to s.th. we clearly do not want to marry
-- Possible to be called by other classes in the adapters layer without further indirections (e.g. for unit of work
-  facades we may call "low level gateways" or some caching we want to keep in adapters layer we can easily call the real
-  implementation)
-- i feel there should be a border between things i control and things controlling me
+- Maintaining a clear border between the "harmful frameworks" which I definitively do not want to marry from the 
+  comparable "harmless libraries"
+- Possibly easier reuse of the "encapsulated library" among other gateways in the interface adapters layer 
+  (thinking of facades, [Unit of Work](https://www.martinfowler.com/eaaCatalog/unitOfWork.html) and similar patterns)
+- Keeping "gateways" (repository) in the interface adapters circle just feels more correct than putting it in 
+  the frameworks circle
 
-I agree these points are no strong arguments for violating the Dependency Rule. Nevertheless for *Athena* I decided
-for now to follow this separation between frameworks and libraries and allow usage of third party libraries in the 
-adapters layer. This is the job of an architect, to decide where to draw strict borders and where to be more pragmatic
-and such decisions may change over time.
+These arguments might not be strong enough to justify a violation of the Dependency Rule. However, for *Athena* I 
+decided to follow this separation between frameworks and libraries and allow usage of third party libraries in the
+adapters layer (if those are completely hidden behind some interface). 
+Let's see how long this decision will last ;-)
 
 
 ## Libraries in use case interactors?
 
-Let me go even one step further. In *Athena* I need a [math library](https://numerics.mathdotnet.com/) to do some
-linear interpolation for some calculation done by a use case interactor. In order to make use of that library in 
-a clean way I would have to define some interfaces and maybe even data objects in the use case circle and put the 
-implementation of that interface to the frameworks layer to restrict the usage of that library to that layer.
-Maybe I even should have some "adapters" in between. From my perspective this brings unnecessary effort and complexity
-in that case. I could easily encapsulate the usage of that library in single function without any impact on the 
-outside design.
+Let me go even one step further ...
 
-(SHOW CODE)
+In *Athena* I need a [math library](https://numerics.mathdotnet.com/) to do some linear interpolation for some 
+calculation done by a use case interactor. In order to make use of that library in a clean way I would have to define 
+some interfaces and maybe even data objects in the use case circle and put the implementation of that interface to 
+the frameworks layer to restrict the usage of that library to that layer (as discussed above). 
+Maybe I even should have some "adapters" in between?
 
-I finally decided to go this path for the sake of simplicity. Probably not 100% "Clean" ... but "pragmatic" ;-)
+However, in this particular case, I think this adds unnecessary effort and complexity. Instead, I decided to just use
+this library from within the interactor directly by completely encapsulate its usage in a single function.
 
+```fsharp
+let GetAvailabilityInRange (getHeads:GetHeads) (fromDate:DateTime, toDate:DateTime) team =
+    // xAxis: all months of project lifetime
+    // yAxis: available team's head count for each month
+
+    let interpolation = Interpolate.Linear (xAxis, yAxis)
+    
+    // interpolate head count from "fromDate" to "toDate" and calculate total sum
+    let totalHeads = 
+        [ fromDate .. toDate ]
+        |> Seq.map interpolation.Interpolate
+        |> Seq.sum
+     
+    // convert head count into "availability"
+    totalHeads * team.AvailabilityFactor
+```
 
 ## Conclusion
 
@@ -335,7 +349,9 @@ Keeping frameworks "at arm's lengths" comes with some cost.
 
 Encapsulating usage of a library in an adapter might be a pragmatic way to reduce the cost without marriage.
 
-In the end you have to decide about the right borders in your architecture.
+Finally it all comes to finding the "right" borders in a particular architecture.
+
+Your turn ;-)
 
 
 {% include series.html %}
