@@ -10,7 +10,7 @@ series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 ---
 
-<img src="../assets/clean-architecture/Circle.Frameworks.png" class="dynimg" title="Frameworks and libraries in the context of Clean Architecture." alt="In Clean Architecture the usage of frameworks is restricted to the outermost circle. But what is a framework? Is every third party library a framework? How to implement gateways without using third party libraries?"/>
+<img src="{{ site.url }}/assets/clean-architecture/Circle.Frameworks.png" class="dynimg" title="Frameworks and libraries in the context of Clean Architecture." alt="In Clean Architecture the usage of frameworks is restricted to the outermost circle. But what is a framework? Is every third party library a framework? How to implement gateways without using third party libraries?"/>
 
 It has been a while since [my last post](/Implementing-Clean-Architecture-AspNet/) on "Implementing Clean Architecture"
 but I wasn't lazy ;-) In fact I was - apart from my day job - working on getting 
@@ -109,13 +109,13 @@ the approach of the [previous post](/Implementing-Clean-Architecture-AspNet/) an
 depend on the UI framework, keep them in the frameworks circle and let it call the framework independent parts 
 which will live in the interface adapters circle.
 
-<img src="../assets/clean-architecture/AspNet.Controllers.Clean.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
+<img src="{{ site.url }}/assets/clean-architecture/AspNet.Controllers.Clean.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
 
 In case we need to communicate from the adapters circle back to the frameworks circle we can simply provide
 an interface in the adapters layer which will be implemented by the code in the framework circle and so maintain 
 the Dependency Rule: All border crossing arrows are pointing "inwards".
 
-<img src="../assets/clean-architecture/Adapter.Framework.Inversion.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
+<img src="{{ site.url }}/assets/clean-architecture/Adapter.Framework.Inversion.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
 
 Is it worth the effort? It depends on how much of your Controller's and ViewModel's code you want to keep independent
 from the specific UI framework. If there isn't much such code you could also decide to move the Controller and ViewModel
@@ -193,7 +193,7 @@ circle which implements these interfaces and works with these data objects.
 Let's imagine all the work items we want to process in *Athena* would be stored in an SQL database and we would like
 to use the [Entity Framework](https://docs.microsoft.com/en-us/ef/) to access those. A "Clean" design would look like this.
 
-<img src="../assets/clean-architecture/Frameworks.DataAccess-Clean.png" class="dynimg" title="Separating repository implementation from the ORM framework" alt="ITfsDataMapper interface and TfsWorkItem data object are introduced to separate the repository implementation TfsWorkItemRepository from the ORM framework."/>
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-Clean.png" class="dynimg" title="Separating repository implementation from the ORM framework" alt="ITfsDataMapper interface and TfsWorkItem data object are introduced to separate the repository implementation TfsWorkItemRepository from the ORM framework."/>
 
 On the one hand we have the interactor which is dealing with our domain entities only and which does not care about 
 persistence at all. It gets the entities through ```IWorkItemRepository``` which is implemented by the 
@@ -223,7 +223,7 @@ Is there no way to make it simpler? We could think of skipping the concept of ``
 ```TfsWorkItemRepository``` into the frameworks layer and let it create our domain entities from the ORM 
 framework data objects directly.
 
-<img src="../assets/clean-architecture/Frameworks.DataAccess-NoDataMapper.png" class="dynimg" title="Repository implementation in frameworks layer without DataMapper" alt="In order to avoid the complexity and cost of the ITfsDataMapper, the repository implementation gets moved into the frameworks layer directly"/>
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-NoDataMapper.png" class="dynimg" title="Repository implementation in frameworks layer without DataMapper" alt="In order to avoid the complexity and cost of the ITfsDataMapper, the repository implementation gets moved into the frameworks layer directly"/>
 
 This way the Dependency Rule remains intact at lower cost. Of course we loose the benefits of having a repository
 implementation which is independent from the ORM framework which are mainly portability and testability.
@@ -242,7 +242,7 @@ of our inner layers to it? What about e.g.
 With such approaches we could avoid additional interfaces and data objects and map our entities directly from and to the 
 database and still keep the inner circles free from dependencies to the ORM framework. 
 
-<img src="../assets/clean-architecture/Frameworks.DataAccess-NoSideEffects.png" class="dynimg" title="Using side effects free ORM mapper" alt="Side effects free ORM mapper would allow us to use domain entities directly for mapping to database tables."/>
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-NoSideEffects.png" class="dynimg" title="Using side effects free ORM mapper" alt="Side effects free ORM mapper would allow us to use domain entities directly for mapping to database tables."/>
 
 The ```TfsWorkItemRepository``` would again live in the frameworks layer as it would access the ORM framework directly 
 (in this example it would derive from Entity Framework's ```DbContext```). This would not be any issue as probably there
@@ -268,7 +268,7 @@ Let's ask again ...
 
 ## What is a framework? What is a library?
 
-<img src="../assets/clean-architecture/Frameworks.Vs.Libraries.png" class="dynimg" title="Framework vs Library" alt="How does the application interact with a framework and how does it interact with a library?"/>
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.Vs.Libraries.png" class="dynimg" title="Framework vs Library" alt="How does the application interact with a framework and how does it interact with a library?"/>
 
 From my perspective there is a major difference between a "framework" and a "library" which is the direction of control.
 
@@ -288,7 +288,7 @@ with another one, I simply replace that implementation of the interface with ano
 
 Could that be a pragmatic way of implementing gateways and repositories in the adapters layer?
 
-<img src="../assets/clean-architecture/Frameworks.DataAccess-Libraries.png" class="dynimg" title="Using data access libraries for repository implementation" alt="TfsWorkItemRepository accesses TFS through the TFS data access library without any addition interfaces or data objects"/>
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-Libraries.png" class="dynimg" title="Using data access libraries for repository implementation" alt="TfsWorkItemRepository accesses TFS through the TFS data access library without any addition interfaces or data objects"/>
 
 But wait! Isn't that still a violation to the Dependency Rule? Strictly speaking: yes it is. The arrow from 
 ```TfsWorkItemRepository``` to ```Microsoft.TeamFoundation.WorkitemTracking.Client``` proves it.
