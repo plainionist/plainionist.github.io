@@ -15,10 +15,18 @@ lint-nowarn:
 
 It has been a while since [my last post](/Implementing-Clean-Architecture-AspNet/) on "Implementing Clean Architecture"
 but I wasn't lazy ;-) In fact I was - apart from my day job - working on getting *[Athena](/Implementing-Clean-Architecture)*
-closer to the Clean Architecture. And there was one thing which puzzled me for a while when implementing "repositories":
+closer to the Clean Architecture. And there was one thing which puzzled me for a while when implementing 
+[repositories](https://deviq.com/repository-pattern/):
 
-How do I implement a repository in the interface adapter circle which accesses the TFS which lives in the frameworks 
-circle using the official Microsoft TFS APIs? Isn't that a violation to the Dependency Rule?
+In Clean Architecture
+- all details are restricted to the frameworks layer. the database is a detail. 
+- all data conversion from the format most convenient for entities and use cases, to the format most convenient 
+  for what ever persistence framework, happens in the adapters layer. in case of sql database all sql should 
+  be restricted to this layer
+
+How do I implement a repository in the interface adapter circle which accesses the TFS database using the 
+Microsoft TFS framework APIs? Isn't that a violation to the Dependency Rule? In fact, isn't any usage of a third party
+API outside the frameworks circle a violation to the Dependency Rule?
 
 In this post I am trying to answer this question.
 
@@ -98,9 +106,9 @@ In most UI frameworks the View completely depends on the framework, e.g.
 So we have to keep the View in the frameworks circle completely.
 
 The Controller and/or ViewModel on the other hand is usually less coupled to the framework. So we can follow
-the approach of the previous post and extract those code parts which depend on the UI framework, keep them in 
-the frameworks circle and let it call the framework independent parts which will live in the interface adapters
-circle.
+the approach of the [previous post](/Implementing-Clean-Architecture-AspNet/) and extract those code parts which
+depend on the UI framework, keep them in the frameworks circle and let it call the framework independent parts 
+which will live in the interface adapters circle.
 
 <img src="{{ site.url }}/assets/clean-architecture/AspNet.Controllers.Clean.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
 
@@ -175,26 +183,32 @@ difficulties in testing the repositories ...
 ### How to implement a repository with ORM?
 
 Okay, so we want to keep dependencies to such ORM frameworks in the frameworks circle. How do I implement a 
-repository then? Do I really have to fall back to SQL? Not necessarily. We can use the same trick as we used it for 
-the UI frameworks: we invert the dependency. We define interfaces and simple data objects in the adapters circle without 
-dependency to any ORM framework and add some code to the frameworks circle which implements these interfaces and 
-works with these DTOs.
+repository then? Do I really have to fall back to plain SQL (which would be strings only)? Not necessarily. 
+
+We can use the same trick as we used it for the UI frameworks: we invert the dependency. We define interfaces and 
+simple data objects in the adapters circle without dependency to any ORM framework and add some code to the frameworks 
+circle which implements these interfaces and works with these DTOs.
 
 (IMAGE - example UML about TFS work items with "simple fields")
+
+so the frameworks impl would do the TFS access and minimal data conversion. we want as less logic as possible there
+as it is hard to test and bound to the framework (migration cost). the repository in the adapter layer would take 
+the simple DTOs and does the actual creation of entities. maybe even validation - depending on whtherht we consider
+thsi validation to be business logic or just data consistency checks.
 
 The drawback of this approach is that it involves quite some effort and requires a bunch of new types to be created:
 
 - We have our domain model entities.
 - we need some data objects defined in frameworks circle which are used for mapping by the ORM framework.
 - we need some data objects defined in adapters circle to pass data from frameworks circle to adapters circle without
-  breaking the Dependency Rule.
+  breaking the Dependency Rule. (remember we want the real entity creation and so data conversion in the adapters layer
+  but we cannot depend to the objects of the frameworks layer in the adapters layer and we cannot define the objects
+  in the adapters layer because of annotations)
 
 Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks
 circle to work with our domain entities which would practically mean to put the whole repository implementation in 
 the frameworks circle. That might be a good pragmatic alternative if most of your repository implementation depends 
 on the ORM framework anyhow and there is not much code left to be separated out into the adapters layer.
-
-(WHAT ABOUT data passing borders?)
 
 On the other hand, if quite some code of your repository implementation would be independent from the ORM framework,
 it might be worth the effort as it pays off in terms of testability, portability to another ORM framework and even
@@ -256,6 +270,7 @@ Sure, that would still be the most "clean" solution. However I see a few benefit
 implementations in the adapters layer:
 
 - Logically gateways/repositories belong to the adapters layer 
+- even uncle bob says: all data conversion should be restricted to this layer
 - Keep the code separated from "true" frameworks and so avoid getting coupled to s.th. we clearly do not want to marry
 - Possible to be called by other classes in the adapters layer without further indirections (e.g. for unit of work
   facades we may call "low level gateways" or some caching we want to keep in adapters layer we can easily call the real
