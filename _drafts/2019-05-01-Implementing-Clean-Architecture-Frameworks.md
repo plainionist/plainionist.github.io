@@ -20,9 +20,9 @@ closer to the Clean Architecture. And there was one thing which puzzled me for a
 
 In Clean Architecture
 - all details are restricted to the frameworks layer. the database is a detail. 
-- all data conversion from the format most convenient for entities and use cases, to the format most convenient 
-  for what ever persistence framework, happens in the adapters layer. in case of sql database all sql should 
-  be restricted to this layer
+- all data conversion from the format most convenient for what ever persistence framework to the format
+  most convenient for entities and use cases, happens in the adapters layer. In case of an SQL database all SQL should
+  be restricted to this layer.
 
 How do I implement a repository in the interface adapter circle which accesses the TFS database using the 
 Microsoft TFS framework APIs? Isn't that a violation to the Dependency Rule? In fact, isn't any usage of a third party
@@ -40,10 +40,10 @@ Uncle Bob says:
 > Keep it at arm's length. Treat the framework as a detail that belongs in one of the outer circles of the 
 > architecture. Don't let it into the inner circles.
 
-Hhmm ... does this mean that every third party code is a framework which has to exiled to the outermost circle?
-Is really every framework equal or are some frameworks more equal then others?
+Hhmm ... Do we have to handle each third party API in that way? 
+Is every framework equal or are some frameworks more equal then others?
 
-Let's have a look at some examples to get some idea ...
+Let's look at some examples to get some idea ...
 
 
 ## What about the .NET framework?
@@ -189,12 +189,14 @@ We can use the same trick as we used it for the UI frameworks: we invert the dep
 simple data objects in the adapters circle without dependency to any ORM framework and add some code to the frameworks 
 circle which implements these interfaces and works with these DTOs.
 
-(IMAGE - example UML about TFS work items with "simple fields")
+(IMAGE - UML showing ORM mapper, ORM entities, DTOS )
 
 so the frameworks impl would do the TFS access and minimal data conversion. we want as less logic as possible there
 as it is hard to test and bound to the framework (migration cost). the repository in the adapter layer would take 
 the simple DTOs and does the actual creation of entities. maybe even validation - depending on whtherht we consider
 thsi validation to be business logic or just data consistency checks.
+code depending on framework limited (hard to test) and repository impl can be easily tested.
+independent of frameowkr and not affected when choosing different data soruce (no-sql) or persistence frameowkr
 
 The drawback of this approach is that it involves quite some effort and requires a bunch of new types to be created:
 
@@ -207,7 +209,11 @@ The drawback of this approach is that it involves quite some effort and requires
 
 Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks
 circle to work with our domain entities which would practically mean to put the whole repository implementation in 
-the frameworks circle. That might be a good pragmatic alternative if most of your repository implementation depends 
+the frameworks circle. 
+
+(IMAGE - ORM repository create entities directly without additional DTOs)
+
+That might be a good pragmatic alternative if most of your repository implementation depends 
 on the ORM framework anyhow and there is not much code left to be separated out into the adapters layer.
 
 On the other hand, if quite some code of your repository implementation would be independent from the ORM framework,
@@ -222,6 +228,8 @@ inner layers to it? What about things like
 [Entity Framework Fluent API](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties) or
 [Hibernate persistence mapping file](http://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#bootstrap-jpa-xml-files)?
 
+With that we could avoid additional interfaces and data objects and map our entities directly from and to the 
+database and still keep the inner circles free from dependencies to the ORM frameowrk.
 This might be a good alternative but consider that
 
 - Such frameworks often still require you to follow certain conventions, e.g. public setters for all properties or
