@@ -30,4 +30,3 @@ do excel "traditional software development" with respect to software delivery pe
 
 So give your boss a hint - it might be beneficial for you, your department and eventually for your whole organization ...
 
-DONE
