@@ -190,38 +190,38 @@ We can use the same trick as we used for the UI frameworks: we invert the depend
 simple data objects in the adapters circle without dependency to any ORM framework and add some code to the frameworks 
 circle which implements these interfaces and works with these data objects.
 
-Let's imagine all the data we need for *Athena* (work items, teams, planning information) would be stored in
-an SQL database and we would like to use the
-[Entity Framework](https://docs.microsoft.com/en-us/ef/)
-to access this data. Then the "Clean" design would look like this.
+Let's imagine all the work items we want to process in *Athena* would be stored in an SQL database and we would like
+to use the [Entity Framework](https://docs.microsoft.com/en-us/ef/) to access those. A "Clean" design would look like this.
 
-(IMAGE - DataMapper with "entities", data objects, repositories, entities )
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-Clean.png" class="dynimg" title="Separating repository implementation from the ORM framework" alt="ITfsDataMapper interface and TfsWorkItem data object are introduced to separate the repository implementation TfsWorkItemRepository from the ORM framework."/>
 
-The ```DataMapper``` lives in the framework layer and uses the ORM framework to do the "object-rational mapping" with
-the help of the "ORM Entities" which depend on ORM framework specific annotations. In order to be usable by 
-the ```Repository``` which lives in the adapters layer, the ```DataMapper```implements "IDataMapper" 
+On the one hand we have the interactor which is dealing with our domain entities only and which does not care about 
+persistence at all. It gets the entities through ```IWorkItemRepository``` which is implemented by the 
+```TfsWorkItemRepository``` in the adapters layer.
 
-SqlEntities are structured most convenient for persistence. optimized for space maybe
+On the other hand we have the SQL database which stores all the information in a nice normalized way, optimized
+for IO performance and minimal storage space. We use the [Entity Framework](https://docs.microsoft.com/en-us/ef/)
+to map the rows of the database tables into objects like ```SqlWorkItem``` and ```SqlAreaPath``` which can use
+annotations and any other feature provided by the [Entity Framework](https://docs.microsoft.com/en-us/ef/) take 
+care of correct serialization.
 
-so the frameworks impl would do the TFS access and minimal data conversion. we want as less logic as possible there
-as it is hard to test and bound to the framework (migration cost). the repository in the adapter layer would take 
-the simple DTOs and does the actual creation of entities. maybe even validation - depending on whtherht we consider
-thsi validation to be business logic or just data consistency checks.
+In order to maintain the Dependency Rule we define ```ITfsDataMapper``` interface in the adapters layer which 
+will be used by the ```TfsWorkItemRepository``` and implemented by a ```SqlDataMapper``` class in the frameworks
+layer. The ```SqlDataMapper``` contains minimal logic to convert the "Entity Framework aware" objects into 
+"ORM framework neutral" objects (```TfsWorkItem```). The ```TfsWorkItemRepository``` finally consumes the
+```TfsWorkItem``` objects and takes care of proper creation of our domain entities.
 
-and of course the interactor finally uses the tfsrepo through interface
+With this approach the code depending on the ORM framework contains minimal logic which requires less (if any at all)
+expensive testing and makes migration to other data sources or ORM frameworks later on quite easy. The actual 
+implementation of the repository remains independent of any ORM framework dependency and so can be tested easily 
+and is not effected when the data source needs to be changed.
 
-benefits:
-code depending on framework limited (hard to test) and repository impl can be easily tested.
-independent of frameowkr and not affected when choosing different data soruce (no-sql) or persistence frameowkr
+The major drawback of this approach is that it is more complex and more expensive as additional interfaces and
+data objects are involved.
 
-The drawback of this approach is that it involves quite some effort and requires a bunch of new types to be created:
+Is there no way to make it simpler?
 
-- We have our domain model entities.
-- we need some data objects defined in frameworks circle which are used for mapping by the ORM framework.
-- we need some data objects defined in adapters circle to pass data from frameworks circle to adapters circle without
-  breaking the Dependency Rule. (remember we want the real entity creation and so data conversion in the adapters layer
-  but we cannot depend to the objects of the frameworks layer in the adapters layer and we cannot define the objects
-  in the adapters layer because of annotations)
+
 
 
 Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks
