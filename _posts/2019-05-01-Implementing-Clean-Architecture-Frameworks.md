@@ -75,3 +75,53 @@ with it until the project's life ends.
 For *Athena* I have decided to marry only the .NET framework, F# and the FSharp.Core library.
 
 
+## What about the UI?
+
+As we have seen [earlier](/Implementing-Clean-Architecture-AspNet/) in the example with Asp.Net MVC,
+UI frameworks tend to dictate quite some rules to an application. These frameworks want us to derive from 
+their base classes, to implement our business logic as plug-ins to them and even come with patterns like 
+[MVC](https://en.wikipedia.org/wiki/Model-view–controller) or [MVVM](https://en.wikipedia.org/wiki/Model-view-viewmodel) 
+we have to follow.
+Same is true other modern UI frameworks like [WPF](https://docs.microsoft.com/en-us/dotnet/framework/wpf/) or 
+[VueJS](https://vuejs.org/).
+
+Modern UI frameworks allow a fast and convenient development of applications but there are clear disadvantages
+if we couple our applications to tight to them
+
+- UI technologies change frequently and migrating to a completely different framework is expensive and painful
+- Writing reliable UI based tests is challenging
+- Quite often multiple UIs are needed (desktop, web, mobile)
+
+Clearly we want to *use* UI frameworks as they provide a lot of benefits but we definitively do not want 
+to *marry* them!
+
+So how do we keep these frameworks "at arm's length"?
+
+In most UI frameworks the View completely depends on the framework, e.g.
+
+- The Asp.Net MVC ".cshtml" Razor template cannot live outside the Asp.Net MVC framework
+- The WPF XAML window or control completely consists of WPF framework elements
+- the VueJS component completely depends to the VueJS framework to call its hooks
+
+So we have to keep the View in the frameworks circle completely.
+
+The Controller and/or ViewModel on the other hand is usually less coupled to the framework. So we can follow
+the approach of the [previous post](/Implementing-Clean-Architecture-AspNet/) and extract those code parts which
+depend on the UI framework, keep them in the frameworks circle and let it call the framework independent parts 
+which will live in the interface adapters circle.
+
+<img src="{{ site.url }}/assets/clean-architecture/AspNet.Controllers.Clean.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
+
+In case we need to communicate from the adapters circle back to the frameworks circle we can simply provide
+an interface in the adapters layer which will be implemented by the code in the framework circle and so maintain 
+the Dependency Rule: All border crossing arrows are pointing "inwards".
+
+<img src="{{ site.url }}/assets/clean-architecture/Adapter.Framework.Inversion.png" class="dynimg" title="Separating framework dependent and framework independent code of the controller" alt="The BacklogController does not derive from Asp.Net Controller any longer and contains most of the data conversion logic. BacklogAspNetController derives from Asp.Net Controller, converts data between Asp.Net and application and calls the BacklogController. Asp.Net dependencies are factored out of ReleaseBacklogViewModel into ReleaseBacklogAspNetViewModel"/>
+
+Is it worth the effort? It depends on how much of your Controller's and ViewModel's code you want to keep independent
+from the specific UI framework. If there isn't much such code you could also decide to move the Controller and ViewModel
+to the frameworks circle completely. However I would not recommend to let the UI framework into your interface adapters
+circle. Maintain a strict border between the framework and your adapters otherwise the framework will "take over" this
+circle as well over time!
+
+
