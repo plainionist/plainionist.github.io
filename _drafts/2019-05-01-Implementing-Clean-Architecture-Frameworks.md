@@ -219,55 +219,56 @@ and is not effected when the data source needs to be changed.
 The major drawback of this approach is that it is more complex and more expensive as additional interfaces and
 data objects are involved.
 
-Is there no way to make it simpler?
+Is there no way to make it simpler? We could think of skipping the concept of ```ITfsDataMapper```, put the 
+```TfsWorkItemRepository``` into the frameworks layer and let it create our domain entities from the ORM 
+framework data objects directly.
+
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-NoDataMapper.png" class="dynimg" title="Repository implementation in frameworks layer without DataMapper" alt="In order to avoid the complexity and cost of the ITfsDataMapper, the repository implementation gets moved into the frameworks layer directly"/>
+
+This way the Dependency Rule remains intact at lower cost. Of course we loose the benefits of having a repository
+implementation which is independent from the ORM framework which are mainly portability and testability.
+
+The key question here seems to be: How much ORM framework independent code does exist in the repository
+implementation?
 
 
+### What about an ORM framework without "side effects"?
 
-
-Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks
-circle to work with our domain entities which would practically mean to put the whole repository implementation in 
-the frameworks circle. 
-
-(IMAGE - ORM repository create entities directly without additional DTOs)
-
-That might be a good pragmatic alternative if most of your repository implementation depends 
-on the ORM framework anyhow and there is not much code left to be separated out into the adapters layer.
-
-On the other hand, if quite some code of your repository implementation would be independent from the ORM framework,
-it might be worth the effort as it pays off in terms of testability, portability to another ORM framework and even
-complexity.
-
-
-### What about ORM without "side effects"?
-
-But what about a persistence framework which does not require any annotations or requires any other dependency of our
-inner layers to it? What about things like
+But what about a persistence framework which does not require any annotations or requires any other dependency
+of our inner layers to it? What about things like
 [Entity Framework Fluent API](https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties) or
 [Hibernate persistence mapping file](http://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html#bootstrap-jpa-xml-files)?
 
-With that we could avoid additional interfaces and data objects and map our entities directly from and to the 
-database and still keep the inner circles free from dependencies to the ORM frameowrk.
-This might be a good alternative but consider that
+With such approaches we could avoid additional interfaces and data objects and map our entities directly from and to the 
+database and still keep the inner circles free from dependencies to the ORM framework. 
+
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-NoSideEfforts.png" class="dynimg" title="Using side effects free ORM mapper" alt="Side effects free ORM mapper would allow us to use domain entities directly for mapping to database tables."/>
+
+The ```TfsWorkItemRepository``` would again live in the frameworks layer as it would access the ORM framework directly 
+(In this example it would derive from Entity Framework's ```DbContext```). This would not be any issue as probably there
+would anyhow be no ORM framework independent logic as the whole mapping is now done by the ORM framework directly.
+
+This approach might look like a simple and clean alternative but consider that
 
 - Such frameworks often still require you to follow certain conventions, e.g. public setters for all properties or
-  existence of parameterless constructors. This might be still some kind of marriage ...
+  existence of parameterless constructors. That might still feel like some kind of marriage ...
 - "External" mapping might become a problem with refactoring if those are not well supported by your IDE
 
 It seems that again not all frameworks are equal. In *Athena* I use the following frameworks to access data sources:
 
-- Microsoft.TeamFoundation.WorkitemTracking.Client to access work items from TFS
+- ```Microsoft.TeamFoundation.WorkitemTracking.Client``` to access work items from TFS
 - F# type providers to read team configurations from a Microsoft Excel sheet
-- System.Data.Sqlite to access a SQLite database acting as a local cache for burn down data
+- ```System.Data.Sqlite``` to access a SQLite database acting as a local cache for burn down data
 
-These frameworks just provide simple APIs to read and write data without any "side effect" on any design decision outside
-the actual repository implementation. Do I have to exile these "frameworks" to the outermost circle as well?
+These frameworks just provide simple APIs to read and write data without influencing the architecture of the
+application. Do I have to exile these "frameworks" to the outermost circle as well?
 
 Let's ask again ...
 
 
 ## What is a framework? What is a library?
 
-(IMAGE about framework vs library)
+img src="{{ site.url }}/assets/clean-architecture/Frameworks.Vs.Libraries.png" class="dynimg" title="Framework vs Library" alt="How does the application interact with a framework and how does it interact with a library?"/>
 
 From my perspective there is a difference between a "framework" and a "library" which is the direction of control.
 
@@ -287,12 +288,13 @@ with another one I simply replace that implementation of the interface with anot
 
 Could that be a pragmatic way of implementing gateways and repositories in the adapters layer?
 
-(IMAGE - interface of WorkItemRepository with implementation depending on TFS)
+<img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-Libraries.png" class="dynimg" title="Using data access libraries for repository implementation" alt="TfsWorkItemRepository accesses TFS through the TFS data access library without any addition interfaces or data objects"/>
 
-But wait! Isn't that still a violation to the Dependency Rule? Why not just keeping that interface in the adapters 
-layer and putting the implementation of the gateway/repository into the frameworks layer as discussed before?
-Sure, that would still be the most "clean" solution. However I see a few benefits in keeping such kind of 
-implementations in the adapters layer:
+But wait! Isn't that still a violation to the Dependency Rule? Strictly speaking: yes it is. The arrow from 
+```TfsWorkItemRepository``` to ```Microsoft.TeamFoundation.WorkitemTracking.Client``` proves it.
+In order to fix this violation we would have to chose one of the approaches discussed above.
+
+However, I see some benefits in keeping such an implementations in the adapters layer:
 
 - Logically gateways/repositories belong to the adapters layer 
 - even uncle bob says: all data conversion should be restricted to this layer
