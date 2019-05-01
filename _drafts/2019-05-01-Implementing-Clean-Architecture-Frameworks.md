@@ -19,10 +19,9 @@ closer to the Clean Architecture. And there was one thing which puzzled me for a
 [repositories](https://deviq.com/repository-pattern/):
 
 In Clean Architecture
-- all details are restricted to the frameworks layer. the database is a detail. 
+- all details are restricted to the frameworks layer. The database is a detail.
 - all data conversion from the format most convenient for what ever persistence framework to the format
-  most convenient for entities and use cases, happens in the adapters layer. In case of an SQL database all SQL should
-  be restricted to this layer.
+  most convenient for entities and use cases, happens in the interface adapters layer. 
 
 How do I implement a repository in the interface adapter circle which accesses the TFS database using the 
 Microsoft TFS framework APIs? Isn't that a violation to the Dependency Rule? In fact, isn't any usage of a third party
@@ -93,7 +92,8 @@ if we couple our applications to tight to them
 - Writing reliable UI based tests is challenging
 - Quite often multiple UIs are needed (desktop, web, mobile)
 
-Clearly we want to *use* UI frameworks but we definitively do not want to *marry* them!
+Clearly we want to *use* UI frameworks as they provide a lot of benefits but we definitively do not want 
+to *marry* them!
 
 So how do we keep these frameworks "at arm's length"?
 
@@ -135,7 +135,7 @@ Uncle Bob says:
 > It is in this Main component that dependencies should be injected by a Dependency Injection framework.
 > Once they are injected into Main, Main should distribute those dependencies normally, without using the framework.
 
-What is the "Main component"? I will leave the answer to this question to another post but we definitively do not
+What is the "Main component"? Let's leave the answer to this question to another post but we definitively do not
 want any DI framework specific code anywhere in the inner circles, not in the entities, not in the interactors
 and even not in the adapters!
 
@@ -169,7 +169,8 @@ and [AutoFac](https://autofac.org/).
 
 ## What about Object-Relational mapping (ORM) frameworks?
 
-Clearly the database itself belongs to the frameworks circle but what about the repository (adapter) accessing it?
+As already stated, the database itself is a detail which belongs to the frameworks circle but what about the
+repository accessing it?
 We want to use these cool ORM frameworks like [Entity Framework](https://docs.microsoft.com/en-us/ef/) or 
 [Hibernate](http://hibernate.org/) for repository implementation, right? I mean: who wants to write plain SQL
 queries manually in 2019? Instead, we just put some annotations to our entities, derive our repository implementation
@@ -183,18 +184,24 @@ difficulties in testing the repositories ...
 ### How to implement a repository with ORM?
 
 Okay, so we want to keep dependencies to such ORM frameworks in the frameworks circle. How do I implement a 
-repository then? Do I really have to fall back to plain SQL (which would be strings only)? Not necessarily. 
+repository then? Do I really have to fall back to plain SQL? Not necessarily. 
 
-We can use the same trick as we used it for the UI frameworks: we invert the dependency. We define interfaces and 
+We can use the same trick as we used for the UI frameworks: we invert the dependency. We define interfaces and 
 simple data objects in the adapters circle without dependency to any ORM framework and add some code to the frameworks 
-circle which implements these interfaces and works with these DTOs.
+circle which implements these interfaces and works with these data objects.
 
-(IMAGE - UML showing ORM mapper, ORM entities, DTOS )
+(IMAGE - DataMapper with "entities", data objects, repositories, entities )
+
+The ```DataMapper``` lives in the framework layer and uses the ORM framework to do the "object-rational mapping" with
+the help of the "ORM Entities" which depend on ORM framework specific annotations. In order to be usable by 
+the ```Repository``` which lives in the adapters layer, the ```DataMapper```implements "IDataMapper" 
 
 so the frameworks impl would do the TFS access and minimal data conversion. we want as less logic as possible there
 as it is hard to test and bound to the framework (migration cost). the repository in the adapter layer would take 
 the simple DTOs and does the actual creation of entities. maybe even validation - depending on whtherht we consider
 thsi validation to be business logic or just data consistency checks.
+
+benefits:
 code depending on framework limited (hard to test) and repository impl can be easily tested.
 independent of frameowkr and not affected when choosing different data soruce (no-sql) or persistence frameowkr
 
@@ -206,6 +213,7 @@ The drawback of this approach is that it involves quite some effort and requires
   breaking the Dependency Rule. (remember we want the real entity creation and so data conversion in the adapters layer
   but we cannot depend to the objects of the frameworks layer in the adapters layer and we cannot define the objects
   in the adapters layer because of annotations)
+
 
 Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks
 circle to work with our domain entities which would practically mean to put the whole repository implementation in 
