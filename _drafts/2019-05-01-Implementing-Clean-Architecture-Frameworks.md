@@ -167,8 +167,8 @@ We want to use these cool ORM frameworks like [Entity Framework](https://docs.mi
 queries manually in 2019? Instead, we just put some annotations to our entities, derive our repository implementation
 from some framework's base class and the magic happens!
 
-We just got married - to the framework! Assuming that we have more than one entity and more than one repository in
-non-trivial project moving to a different framework in some future becomes a real pain easily. Not talking about 
+We just got married - to the framework! Assuming that a non-trivial project would have more than one entity and 
+more than one repository, moving to a different framework in some future becomes a real pain easily. Not talking about 
 difficulties in testing the repositories ...
 
 
@@ -189,12 +189,14 @@ The drawback of this approach is that it involves quite some effort and requires
 - we need some data objects defined in adapters circle to pass data from frameworks circle to adapters circle without
   breaking the Dependency Rule.
 
-Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks circle 
-to work with our domain entities which would practically mean to put the whole repository implementation in the frameworks circle.
-That might be a good pragmatic alternative if most of your repository implementation depends on the ORM framework anyhow and 
-there is not much code left to be separated out into the adapters layer.
+Can't we make it simpler? We could think of skipping the last point but that would require the code in the frameworks
+circle to work with our domain entities which would practically mean to put the whole repository implementation in 
+the frameworks circle. That might be a good pragmatic alternative if most of your repository implementation depends 
+on the ORM framework anyhow and there is not much code left to be separated out into the adapters layer.
 
-On the other hand, if you can keep quite some code of your repository implementations independent from ORM framework dependencies
+(WHAT ABOUT data passing borders?)
+
+On the other hand, if quite some code of your repository implementation would be independent from the ORM framework,
 it might be worth the effort as it pays off in terms of testability, portability to another ORM framework and even
 complexity.
 
@@ -212,89 +214,86 @@ This might be a good alternative but consider that
   existence of parameterless constructors. This might be still some kind of marriage ...
 - "External" mapping might become a problem with refactoring if those are not well supported by your IDE
 
-It seems that again not all frameworks are equal. In *Athena* I use the following libraries to access data sources:
+It seems that again not all frameworks are equal. In *Athena* I use the following frameworks to access data sources:
 
 - Microsoft.TeamFoundation.WorkitemTracking.Client to access work items from TFS
-- F# type providers to read team configurations from an Microsoft Excel sheet
-- System.Data.Sqlite as a local cache of burn down data
+- F# type providers to read team configurations from a Microsoft Excel sheet
+- System.Data.Sqlite to access a SQLite database acting as a local cache for burn down data
 
-These libraries just provide simple APIs to read and write data without any "side effect" on any design decision outside
-the actual repository implementation. Are these libraries "frameworks" which have to be exiled to the outermost circle?
+These frameworks just provide simple APIs to read and write data without any "side effect" on any design decision outside
+the actual repository implementation. Do I have to exile these "frameworks" to the outermost circle as well?
 
-Lets ask again ...
+Let's ask again ...
 
 
-## What is a framework and what is a library?
+## What is a framework? What is a library?
 
-(IMAGE from fw vs lib)
+(IMAGE about framework vs library)
 
-From my perspective the difference between a framework and a library is "who is controlling whom?" 
-A framework requires you to implement plug-ins. u write a controller for asp.net and by that plug-in your logic
-into the asp.net framework. my code implements SPIs.
+From my perspective there is a difference between a "framework" and a "library" which is the direction of control.
 
-a library like newtonsoft.json just provides APIs. It is passive. it does not control anything. it is the 
-application which is controlling when and how to call these APIs.
+A framework requires the application to provide its business logic as plug-ins by implementing 
+[SPIs](https://en.wikipedia.org/wiki/Service_provider_interface). We need to derive from an Asp.Net MVC
+controller in order to get our business logic executed on a HTTP request. The framework is dictating the control flow
+within the application. The application can "passively participate" by providing plug-ins. 
 
-With this definition all the three examples above are just "libraries" so i would NOT put them into 
-outermost circle but use those in the repository implementations.
+A library just provides [APIs](https://en.wikipedia.org/wiki/Application_programming_interface). The application needs
+to call these APIs "actively" in order to make use of it. The control flow is clearly directed by the application.
 
-do i "marry the framework" if i use a library in my repository implementation?
-==> no (as long as it is truly encapsulated and (interface is free from any third party types) there is almost no impact
-on the other circles
+Based on this definition, the three "frameworks" I use in *Athena* for data access are just "libraries".
+I do not have to "marry" them in order to benefit from their usage. Instead I could just encapsulate them in a class
+or a component, hide them behind an interface and never let any library type pass this border. This way the usage of
+the library has no impact on any decision outside that component or class. If I want to replace the library in future
+with another one I simply replace that implementation of the interface with another one.
 
-(SHOW CODE?)
+Could that be a pragmatic way of implementing gateways and repositories in the adapters layer?
 
-==> but hey why not just put it into frameworks layer and strictly stick to the dependency rule?
-true - that would be the fully in line with dependency rule (as discussed before)
-however i would see a few benefits in keeping such impl in the adapters layer:
+(IMAGE - interface of WorkItemRepository with implementation depending on TFS)
 
-- pro: logically gateways/repositories belong to the adapters layer (rather weak argument) - even if some implementation details
- create invalid dependencies
-- pro: keep the code separated from "true" frameworks and so avoid getting coupled to s.th. we clearly do not want to marry
-- pro: possible to be called by other classes in the adapters layer without further indirections (e.g. for unit of work
+But wait! Isn't that still a violation to the Dependency Rule? Why not just keeping that interface in the adapters 
+layer and putting the implementation of the gateway/repository into the frameworks layer as discussed before?
+Sure, that would still be the most "clean" solution. However I see a few benefits in keeping such kind of 
+implementations in the adapters layer:
+
+- Logically gateways/repositories belong to the adapters layer 
+- Keep the code separated from "true" frameworks and so avoid getting coupled to s.th. we clearly do not want to marry
+- Possible to be called by other classes in the adapters layer without further indirections (e.g. for unit of work
   facades we may call "low level gateways" or some caching we want to keep in adapters layer we can easily call the real
   implementation)
+- i feel there should be a border between things i control and things controlling me
 
-for sure all these aspects can be realized with more clear separation - with interfaces in adapters layer and impl in 
-frameworks layer but still it might be more pragmatic and still clean enough to do it this way.
-
-in the end you need to decide what you want to optimize for and how strict you want to or need to draw borders in 
-your architecture. in a project with many and new developers I would for sure draw borders more strict than in a 2 man
-show of experiences software craftsmen.
+I agree these points are no strong arguments for violating the Dependency Rule. Nevertheless for *Athena* I decided
+for now to follow this separation between frameworks and libraries and allow usage of third party libraries in the 
+adapters layer. This is the job of an architect, to decide where to draw strict borders and where to be more pragmatic
+and such decisions may change over time.
 
 
 ## Libraries in use case interactors?
 
-Uncle bob would probably shout: "NEVER !!" ... and i would tend to agree in most cases but in Athena there was one 
-use case where i needed a [numerics library}( https://numerics.mathdotnet.com/ ) for some linear interpolation.
-
-of course i could have decided to define an interface and put the implementation in the frameworks layer - as usual - but i
-decided that this would be "overkill" and went for a more pragmatic solution: i just used the library but completely 
-encapsulated it in a function - no third party dependency outside this function.
+Let me go even one step further. In *Athena* I need a [math library](https://numerics.mathdotnet.com/) to do some
+linear interpolation for some calculation done by a use case interactor. In order to make use of that library in 
+a clean way I would have to define some interfaces and maybe even data objects in the use case circle and put the 
+implementation of that interface to the frameworks layer to restrict the usage of that library to that layer.
+Maybe I even should have some "adapters" in between. From my perspective this brings unnecessary effort and complexity
+in that case. I could easily encapsulate the usage of that library in single function without any impact on the 
+outside design.
 
 (SHOW CODE)
 
-in that case i also dont see much issue with testing as i wanted this code to be "part of" my tests anyhow.
+I finally decided to go this path for the sake of simplicity. Probably not 100% "Clean" ... but "pragmatic" ;-)
 
-Probably not 100% "Clean" ... but "pragmatic" ;-)
 
 ## Conclusion
 
-I finally mailed Uncle Bob about my confusion and he responded that
+Not all frameworks are equal - some are more equal than others.
 
-> The trick to this is to add code to the outer circle that implements interfaces defined in the adapters layer.
+Some frameworks we have to marry while others we never want to at any cost.
 
-However I tend to be more pragmatic - if feasible. My recommendation would be:
+Keeping frameworks "at arm's lengths" comes with some cost. 
 
-- carefully decide which framework to marry. only marry if you really want to keep it until lifetime of your project.
-- keep true frameworks (which control your application) in the outermost circle
-- decide how strict you want or u need to draw borders in ur architecture. depending on that using libraries within 
-  adapters/gateways might be a pragmatic solution - but never let these pragmatic solutions take over control of
-  your architecture (e.g. keep away from public api)
-  and change your decisions if its baseline changes (e.g. many new developers join the project)
+Encapsulating usage of a library in an adapter might be a pragmatic way to reduce the cost without marriage.
 
+In the end you have to decide about the right borders in your architecture.
 
-Do you agree to my pragmatic conclusion or do you prefer more strict boundaries?
-Feel free to share your thoughts below ...
 
 {% include series.html %}
