@@ -161,8 +161,8 @@ type BackLogController(serviceLocator:IServiceLocator) =
 	let myRepository = serviceLocator.Resolve<IWorkItemRepository>()
 ```
 
-Luckily DI framework authors recently have accepted that we do not want to pollute our business logic with their annotations
-and have provided alternatives which work entirely without such annotations. Examples are 
+Luckily DI framework authors recently have accepted that we do not want to pollute our business logic with their 
+annotations and have provided alternatives which work entirely without such annotations. Examples are 
 [Asp.Net Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2)
 and [AutoFac](https://autofac.org/).
 
@@ -187,11 +187,12 @@ Okay, so we want to keep dependencies to such ORM frameworks in the frameworks c
 repository then? Do I really have to fall back to plain SQL? Not necessarily. 
 
 We can use the same trick as we used for the UI frameworks: we invert the dependency. We define interfaces and 
-simple data objects in the adapters circle without any dependency to the ORM framework and add some code to the frameworks 
-circle which implements these interfaces and works with these data objects.
+simple data objects in the adapters circle without any dependency to the ORM framework and add some code to the 
+frameworks circle which implements these interfaces and works with these data objects.
 
 Let's imagine all the work items we want to process in *Athena* would be stored in an SQL database and we would like
-to use the [Entity Framework](https://docs.microsoft.com/en-us/ef/) to access those. A "Clean" design would look like this.
+to use the [Entity Framework](https://docs.microsoft.com/en-us/ef/) to access those. A "Clean" design would look 
+like this.
 
 <img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-Clean.png" class="dynimg" title="Separating repository implementation from the ORM framework" alt="ITfsDataMapper interface and TfsWorkItem data object are introduced to separate the repository implementation TfsWorkItemRepository from the ORM framework."/>
 
@@ -245,8 +246,8 @@ database and still keep the inner circles free from dependencies to the ORM fram
 <img src="{{ site.url }}/assets/clean-architecture/Frameworks.DataAccess-NoSideEffects.png" class="dynimg" title="Using side effects free ORM mapper" alt="Side effects free ORM mapper would allow us to use domain entities directly for mapping to database tables."/>
 
 The ```TfsWorkItemRepository``` would again live in the frameworks layer as it would access the ORM framework directly 
-(in this example it would derive from Entity Framework's ```DbContext```). This would not be any issue as probably there
-would be no ORM framework independent logic anyhow as the whole mapping is now done by the ORM framework directly.
+(in this example it would derive from Entity Framework's ```DbContext```). This would not be any issue as probably
+there would be no ORM framework independent logic anyhow as the whole mapping is now done by the ORM framework directly.
 
 This approach might look like a simple and clean alternative but consider that
 
@@ -348,7 +349,8 @@ Some frameworks we have to marry while others we never want to at any cost.
 
 Keeping frameworks "at arm's lengths" comes with additional cost but also with benefits.
 
-Encapsulating usage of a library in an adapter might be a pragmatic way to reduce the cost without risking an unwanted marriage.
+Encapsulating usage of a library in an adapter might be a pragmatic way to reduce the cost without risking an 
+unwanted marriage.
 
 Finally, it all comes down to finding the "right" borders in a particular architecture and 
 adjusting those if circumstances change.
