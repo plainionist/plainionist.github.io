@@ -1,22 +1,36 @@
 ---
 layout: post
 title: Implementing Clean Architecture - About the database and other details
-description: 
+description: |
+    In Clean Architecture we focus a lot on the inner circles like use cases circle and entities.
+    But to make the application useful it has to interact with the outer world - but how?
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 lint-nowarn: 
 ---
 
-
 (IMAGE)
 
-so now that we have clarified (LINK) what difference between framework and library is and which principles we want 
-to follow, lets discuss now how we want to integrate with libraries and frameworks
+Last time (LINK) we talked a lot about how to integrate "details" like frameworks into the clean architecture
+in different very clean but also pragmatic ways.
+
+No i want to become more practical again and show u i concretely did it for *Athena*.
 
 <!--more-->
 
-one key aspect here is that the interface belongs to the use case interactor. 
+To remember the basic idea is to create an interface in an inner circle and an implementation in an outer circle.
+whether that should be adapters layer or frameworks layer - pls refer to previous post.
+
+One  key aspect here is - compared to traditional architecture - that the interface "belongs" to the more inner circle.
+by that i dont mean only the locatio no the interface - i also mean its design.
+
+the interface "needed" by a use case and implmented by an adapter will be primarily shaped by the interactor.
+the interactor defines which methods it should have and which not. we do NOT want to have component driven interfaces
+which are primarily shaped by the capabilities of its implmentation.
+
+- we do not want dump CRUD interfaces
+- we want "unit of work" interfaces
 
 uncle bob says:
 "
@@ -29,6 +43,11 @@ getLastNamesOfUsersWhoLoggedInAfter that takes a Date as its argument and return
 (summarize with own words)
 
 ## Corner stones
+
+what different types of "adapters"?
+- repository
+- service
+- ...
 
 - that reminds me of unit of work
 - still pure data access logic only! and data conversion from "sql rows" to "entities"!
@@ -55,19 +74,6 @@ and we do not want to let any DB specific types out
 
 http://stackoverflow.com/q/47903739 (which objects to return)
 
-
-### What about ORM?
-
-i dont need ORM as MS has API ... which is kind of ORM actually
-
-we do not want any ORM "framework" code in our most inner cirlces.
-
-we want to bann it to outermost circle or truely encapsulate in adapter.
-
-in athena i use s.th. similar: F# type providers. (Excel) - luckily i can truely encapsulate it.
-
-EF allows "code first" which does not require any dependencies from entities to EF.
-we can use it as implmenation detail of the repository.
 
 ### How do i handle transactions?
 
