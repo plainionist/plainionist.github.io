@@ -56,6 +56,8 @@ and dependencies are not clearly visible.
 
 (CODE of IoC)
 
+HOW do i DI with Asp.Net MVC ?
+
 ## Next steps
 
 I ll once migrate to Asp.Net Core and use dependency injection. then i ll register the interactors as well as "services" and "repositories"

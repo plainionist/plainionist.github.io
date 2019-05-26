@@ -56,10 +56,49 @@ what different types of "adapters"?
 - but we do not want to have any complex logic which goes beyond filtering and converting rows to entities
 - explicitly NOT one repository per entity (http://stackoverflow.com/q/52292717)
 
+## Method
+
 - i followed this approach in athena and first blindly created a new interface for each interactor. then
   i refactored the code and consolidated a few repositories
+- i went for Usecase specific first
+- then consolidated a lot
+- then realized that a few interfaces go together most of the time so i crated facades again
+
+i tend to prefer "repositories" for any kind of data access. for me that makes the intend pretty clear.
+however for *athena* situation is different. handling workitems is no CRUD
+"
+- Does it really make sense to strictly separate between service and repository if we have no “Create-update-delete” but just read?
+  - Maybe we should merge iworkitemrepository and iworkitemservice
+"
+==> i finally decided to keep it separate as the repository is used by interactors while the service
+is "only" used by the controllers/presenters
 
 let me show u how this looks like
+
+### REPOSITORIES/Services/Gateways
+
+- Must be rather dump
+  - Must not have any logic
+  - Must not call any interactor
+- Still provide APIs convenient for the interactor (unit of work)
+- If logic is required then interactor calls interactor
+  - This way the logic remains in interactors only and we don’t need to search multiple indirections to understand a usecase
+  - ==> document in “design decision” and on “plainionist blog”
+
+==> We should also be carefull with injecting interactor into another interactor through generic interface – semantic might be lost but important
+- Check with some examples
+- Question is probably whether the “abstraction” is losing imporant info/context or not
+
+
+
+## HOW to cache results of an interactor?
+(does this fit here?)
+
+- the cache impl is definitively a detail (e.g. HttpRuntime.Cache in my case for Asp.Net MVC)
+- two possibilities
+  - a) i pass cache through an interface to interactors
+  - b) i hide caching behind a service and ask interactors to use service instead of interactor directly
+- finally decided to go for b) (favor inversion of control)
 
 ## Accessing the TFS (database)
 
