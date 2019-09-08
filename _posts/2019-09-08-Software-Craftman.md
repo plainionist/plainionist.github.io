@@ -13,7 +13,7 @@ lint-nowarn: JL0003, JL0002
 If you think you don't have time, even not to learn and practice, here is the one book you need
 to take time for:
 
-![Book: The Software Craftsman: Professionalism, Pragmatism, Pride]({{ site.url }}/assets/Software.Craftsman.jpg "Book: The Software Craftsman: Professionalism, Pragmatism, Pride")
+![Book: The Software Craftsman: Professionalism, Pragmatism, Pride]({{ site.url }}/assets/software.craftsman.jpg "Book: The Software Craftsman: Professionalism, Pragmatism, Pride")
 
 [The Software Craftsman: Professionalism, Pragmatism, Pride](https://www.amazon.com/Software-Craftsman-Professionalism-Pragmatism-Robert/dp/0134052501/ref=sr_1_1?keywords=software+craftsman&qid=1567453637&s=gateway&sr=8-1)
 
