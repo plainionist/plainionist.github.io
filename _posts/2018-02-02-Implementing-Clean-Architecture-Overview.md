@@ -25,8 +25,6 @@ Wait! Let me rephrase: Let others briefly summarize what the Clean Architecture 
   If you thought Uncle Bob's article was missing code then go through Mark's post.
 - [clean-architecture-example](https://github.com/mattia-battiston/clean-architecture-example) is a GitHub
   project which describes Clean Architecture "by example". It has great documentation and of course code :)
-- [Clean Architecture is Screaming](http://tidyjava.com/clean-architecture-screaming/) is another brief
-  summary on the Clean Architecture. Short and very much focused on the core.
 - [Clean Architecture: Standing on the shoulders of giants](https://herbertograca.com/2017/09/28/clean-architecture-standing-on-the-shoulders-of-giants/) 
   explains Clean Architecture by comparing it other approaches like Hexagonal and Onion Architectures. 
 
