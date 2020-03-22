@@ -8,6 +8,20 @@ excerpt_separator: <!--more-->
 lint-nowarn: 
 ---
 
+i have never been a fan of TDD. to me it always felt like doing things twice.
+writing tests was usually complex, took a lot of effort and delivered far too less benefit.
+only recently i noticied that this was because i wrote the wrong tests wrong ;-)
+
+after having followed uncle bobs recommendation of a testAPI and developed it further (TDK)
+writing test became fun again ;-)
+my tests are now acceptance tests which are very simple due to following rules
+- always talk to SUT through testAPI which is bridging between data types convenient for test and 
+  the actual architecture of SUT. by that make tests very independent from SUT
+- only use entities in tests - those are - in DDD terms - objects of the domain and rarely change and
+  are also known by domain experts when reviewing tests
+- write a TDK which makes tests even more expressive
+- only work with data in tests (no mocks of interfaces - no komplex mocking frameworks - this is what
+  the TestAPI is for)
 
 - i am lazy and i always struggle to find a good balance between DRY and testing
 - "what is simple enough that writing a test would violate DRY"?
