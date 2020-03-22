@@ -23,6 +23,17 @@ my tests are now acceptance tests which are very simple due to following rules
 - only work with data in tests (no mocks of interfaces - no komplex mocking frameworks - this is what
   the TestAPI is for)
 
+
+how to develop TestAPI and TDK?
+- iterative process
+- i tend to start with the test because those should be easy to understand from domain expert, easy to maintain and expressive
+- the tests drive the TDK - the test dictates which functions and data types are needed (besides entities)
+- the TDK wants to talk to the product which demands TestAPIs 
+- the TestAPI will never expose any SUT API or data type unless it is entity
+- so the TestAPI will create new response models
+- which may lead to some complexity in TDK
+- finally there will be multiple cycles mostly between TDK and TestAPI unless a good compromise is found
+
 - i am lazy and i always struggle to find a good balance between DRY and testing
 - "what is simple enough that writing a test would violate DRY"?
 - with this strange idea in mind i currently try to put - as i also think i read it in uncle bobs post - all code in the usecases/entities and test it
