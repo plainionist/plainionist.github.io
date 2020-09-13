@@ -9,6 +9,11 @@ lint-nowarn:
 ---
 
 
+domain could be layered
+- iworkitem
+- improvement
+
+
 (IMAGE - entities circle)
 
 After circling around the center of the clean architecture image for a long time we finally reached the center ;-)

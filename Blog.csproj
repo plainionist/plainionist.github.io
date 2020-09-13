@@ -36,6 +36,7 @@
     <None Include="tag\microservices.md" />
     <None Include="tag\book.md" />
     <None Include="_config.yml" />
+    <None Include="_posts\2020-09-13-Domain-Modeling-Made-Functional.md" />
     <None Include="_posts\2019-09-08-Software-Craftman.md" />
     <None Include="_posts\2019-05-01-Implementing-Clean-Architecture-Frameworks.md" />
     <None Include="_drafts\2019-05-07-Implementing-Clean-Architecture-Database.md" />
