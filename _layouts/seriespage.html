@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="post">
+    <h1>Series: {{ page.series }}</h1>
+    <ul>
+        {% for post in site.posts %}
+        {% if post.series == page.series %}
+        <li>
+            <a href="{{ post.url }}">{{ post.title }}</a> ({{ post.date | date_to_string }})<br>
+            {{ post.description }}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>

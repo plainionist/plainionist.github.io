@@ -26,5 +26,6 @@ Clean Code principles and especially the Boy Scout Rule already while reading co
 
 More to come! Stay tuned!
 
+<!--more-->
 
 {% include series.html %}
