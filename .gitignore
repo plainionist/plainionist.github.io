@@ -12,3 +12,4 @@ package.json
 /obj
 /*.suo
 /plainionist.github.io.gc.*
+/.ionide
