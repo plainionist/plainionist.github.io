@@ -175,4 +175,5 @@ The key - from my perspective - is to just follow:
 1. Separation of Concerns (decision making, formatting, external devices)
 2. Dependency Rule
 
-  
+
+{% include series.html %}
