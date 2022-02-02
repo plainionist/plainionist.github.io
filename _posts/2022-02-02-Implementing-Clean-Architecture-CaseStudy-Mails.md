@@ -9,7 +9,6 @@ tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002
-hidden: true
 ---
 
 During my day job we recently did a code review of a small feature of an application which aims
@@ -173,7 +172,7 @@ Actually pretty straight forward, isn't it? ;-)
 
 The key - from my perspective - is to just follow:
 
-1) Separation of Concerns (decision making, formatting, external devices)
-2) Dependency Rule
+1. Separation of Concerns (decision making, formatting, external devices)
+2. Dependency Rule
 
   
