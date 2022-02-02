@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36175335-89F2-42BF-9325-8EDA7B412C20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Blog</RootNamespace>
+    <AssemblyName>Blog</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="_ignore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="404.md" />
+    <None Include="great-resources.md" />
+    <None Include="tag\blogging.md" />
+    <None Include="tag\design.md" />
+    <None Include="tag\jekyll.md" />
+    <None Include="tag\skills.md" />
+    <None Include="tag\clean-architecture.md" />
+    <None Include="tag\tools.md" />
+    <None Include="tag\WPF.md" />
+    <None Include="tag\software-enginering.md" />
+    <None Include="tag\microservices.md" />
+    <None Include="tag\book.md" />
+    <None Include="_config.yml" />
+    <None Include="_posts\2020-09-13-Domain-Modeling-Made-Functional.md" />
+    <None Include="_posts\2019-09-08-Software-Craftman.md" />
+    <None Include="_posts\2019-05-01-Implementing-Clean-Architecture-Frameworks.md" />
+    <None Include="_posts\2018-01-19-Mvvm-Dialogs.md" />
+    <None Include="_posts\2019-02-03-Accelerate.md" />
+    <None Include="_posts\2019-02-02-Manage-Your-Day-To-Day.md" />
+    <None Include="_posts\2018-03-18-Implementing-Clean-Architecture-AspNet.md" />
+    <None Include="_posts\2018-03-01-Blogging-with-Jekyll-My-Setup.md" />
+    <None Include="_posts\2018-02-18-Clean-Architecture-And-Design.md" />
+    <None Include="_posts\2018-02-20-Implementing-Clean-Architecture-Controller-Presenter.md" />
+    <None Include="_posts\2018-02-13-Clean-Architecture-NDepend.md" />
+    <None Include="_posts\2018-02-11-Implementing-Clean-Architecture-UseCases.md" />
+    <None Include="_posts\2018-02-02-Implementing-Clean-Architecture-Overview.md" />
+    <None Include="_posts\2018-02-04-Implementing-Clean-Architecture-Scream.md" />
+    <None Include="_posts\2018-01-31-Implementing-Clean-Architecture.md" />
+    <None Include="_posts\2018-01-28-Death-By-Powerpoint.md" />
+    <None Include="_posts\2018-01-23-Blogging-with-Jekyll-SEO.md" />
+    <None Include="_posts\2018-01-20-Second-Habit.md" />
+    <None Include="_posts\2016-01-12-Mission.md" />
+    <None Include="_posts\2016-01-14-Recommended-Reading.md" />
+    <None Include="_posts\2017-01-04-Continuous-Delivery.md" />
+    <None Include="_posts\2017-02-15-Reactive-Messaging-Patterns.md" />
+    <None Include="_posts\2017-04-17-Pro-Asp.Net-Mvc-5.md" />
+    <None Include="_posts\2018-01-13-Blogging-with-Jekyll-Legal-Privacy.md" />
+    <None Include="_posts\2018-01-12-Blogging-with-Jekyll-Tags-Series.md" />
+    <None Include="_posts\2018-01-12-Blogging-with-Jekyll-Basics.md" />
+    <None Include="_posts\2018-01-11-Blogging-with-Jekyll-Intro.md" />
+    <None Include="_posts\2018-01-02-Domain-Driven-Design.md" />
+    <None Include="_posts\2017-12-18-Clean-Architecture.md" />
+    <None Include="_posts\2017-12-16-VueCookbook.md" />
+    <None Include="_posts\2017-11-01-SurviveJS.md" />
+    <None Include="_posts\2017-08-14-NET-Microservices-Architecture-for-Containerized-NET-Applications.md" />
+    <None Include="_posts\2017-08-09-Architecting-Modern-Web-Applications-with-ASP.NET-Core-and-Azure.md" />
+    <None Include="_posts\2017-05-21-Unraveling-Bootstrap.md" />
+    <None Include="_posts\2017-05-01-Html5-JavaScript-JQuery.md" />
+    <None Include="_posts\2017-03-01-Teamwork-and-Indian-Culture.md" />
+    <None Include="_posts\2017-02-23-JDKJS-Up-And-Going.md" />
+    <None Include="_posts\2017-02-19-Coaching-Habit.md" />
+    <None Include="_posts\2017-02-18-Your-Code-As-A-Crime-Scene.md" />
+    <None Include="_posts\2017-01-29-Microservices-UI.md" />
+    <None Include="_posts\2017-01-11-Microservices-Architecture.md" />
+    <None Include="_posts\2017-01-06-F#-Deep-Dives.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\7habits.jpg" />
+    <Content Include="assets\Accelerate.jpg" />
+    <Content Include="assets\clean-architecture\backlog.png" />
+    <Content Include="assets\clean-architecture\burndown.png" />
+    <Content Include="assets\clean-architecture\Circles.png" />
+    <Content Include="assets\clean-architecture\Circles.xml" />
+    <Content Include="assets\clean-architecture\Github.CleanArch.png" />
+    <Content Include="assets\clean-architecture\work-balance.png" />
+    <Content Include="assets\ManageYourDayToDay.jpg" />
+    <Content Include="assets\Mvvm\Mvvm.png" />
+    <Content Include="assets\Mvvm\Mvvm.xml" />
+    <Content Include="assets\software.craftsman.jpg" />
+    <Content Include="atom.xml" />
+    <Content Include="images\logo.jpg" />
+    <Content Include="images\Plainion.CI.png" />
+    <Content Include="images\Plainion.Flames.png" />
+    <Content Include="images\Plainion.GraphViz.png" />
+    <Content Include="images\Plainion.JekyllLint.png" />
+    <Content Include="images\Plainion.OneNote.png" />
+    <Content Include="impressum.html" />
+    <Content Include="public\css\panel.css" />
+    <Content Include="robots.txt" />
+    <Content Include="assets\CleanArchitecture.jpg" />
+    <Content Include="assets\CoachingHabit.jpg" />
+    <Content Include="assets\CodeAsCrimeScene.jpg" />
+    <Content Include="assets\ContinuousDelivery.jpg" />
+    <Content Include="assets\DomainDrivenDesign.jpg" />
+    <Content Include="assets\FSharpDeepDives.jpg" />
+    <Content Include="assets\html5-javascript-jquery.jpg" />
+    <Content Include="assets\MicroservicesArchitecture.jpg" />
+    <Content Include="assets\pro.asp.net.mvc.5.jpg" />
+    <Content Include="assets\ReactiveMessagingPatterns.jpg" />
+    <Content Include="assets\surviveJS.jpg" />
+    <Content Include="assets\TeamworkAndIndianCulture.jpg" />
+    <Content Include="assets\unraveling-bootstrap.jpg" />
+    <Content Include="assets\VueCookbook.jpg" />
+    <Content Include="assets\YDKJS-UpAndGoing.jpg" />
+    <Content Include="images\404.jpg" />
+    <Content Include="index.html" />
+    <Content Include="public\css\lanyon.css" />
+    <Content Include="public\css\poole.css" />
+    <Content Include="public\css\syntax.css" />
+    <Content Include="_includes\analytics.html" />
+    <Content Include="_includes\disqus.html" />
+    <Content Include="_includes\head.html" />
+    <Content Include="archive.html" />
+    <Content Include="_includes\sidebar.html" />
+    <Content Include="_includes\collecttags.html" />
+    <Content Include="_includes\series.html" />
+    <Content Include="_includes\svg-icons.html" />
+    <Content Include="_includes\cookieconsent.html" />
+    <Content Include="_layouts\default.html" />
+    <Content Include="_layouts\page.html" />
+    <Content Include="_layouts\tagpage.html" />
+    <Content Include="_layouts\post.html" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Exec Command="dotnet \bin\Plainion.JekyllLint\Plainion.JekyllLint.dll -warning-to-error _posts" />
+  </Target>
+</Project>

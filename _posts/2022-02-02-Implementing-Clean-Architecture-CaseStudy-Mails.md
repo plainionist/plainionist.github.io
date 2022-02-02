@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Implementing Clean Architecture - Case Study: Sending EMails"
+title: "Implementing Clean Architecture - Case Study: Sending e-mails"
 description: |
   This case study shows how a small feature could be designed according to the rules of 
   Clean Architecture. We will explore which code should be located in which layer and how
@@ -8,7 +8,7 @@ description: |
 tags: [clean-architecture]
 series: "Implementing Clean Architecture"
 excerpt_separator: <!--more-->
-lint-nowarn: JL0003
+lint-nowarn: JL0003, JL0002
 hidden: true
 ---
 
@@ -40,15 +40,11 @@ test failures could not be processed properly because of e.g.:
   or a programming error)
 - The database storing the test failures from our CI/CD pipeline is down
 
-<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Context.drawio.png" class="dynimg" 
-  title="Context of the application" 
-  alt="CI/CD pipeline stores test results in a test database, application analysis the test failures and creates defect in defect database based on configuration. Additionally the application can send emails."/>
+<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Context.drawio.png" class="dynimg" title="Context of the application" alt="CI/CD pipeline stores test results in a test database, application analysis the test failures and creates defect in defect database based on configuration. Additionally the application can send emails."/>
 
 # Iteration 1 - Getting started
 
-<img src="{{ site.url }}/assets/clean-architecture/Circles.png" width="50%" class="dynimg" 
-  title="Layers of the Clean Architecture with Dependency Rule" 
-  alt="The Clean Architecture consists of multiple layers organized as circles while dependencies are only allowed from outer circles to inner circles. The inner circles contain the business logic. All details, devices and frameworks are in the outer circles."/>
+<img src="{{ site.url }}/assets/clean-architecture/Circles.png" width="50%" class="dynimg" title="Layers of the Clean Architecture with Dependency Rule" alt="The Clean Architecture consists of multiple layers organized as circles while dependencies are only allowed from outer circles to inner circles. The inner circles contain the business logic. All details, devices and frameworks are in the outer circles."/>
 
 In line with agile principles let's develop the design incrementally starting with the "core" of any 
 application: the business logic.
@@ -80,9 +76,7 @@ in case of some internal application error the exception details have to be part
 
 This is the design we end up with after the first iteration:
 
-<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step1.drawio.png" class="dynimg" 
-  title="Separating business logic from mail client" 
-  alt="The interactor is the center of the design in the use case layer. It interacts with its environment through interfaces which are designed to be most convenient for the interactor itself. The result of the interactor are multiple type-safe response objects."/>
+<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step1.drawio.png" class="dynimg" title="Separating business logic from mail client" alt="The interactor is the center of the design in the use case layer. It interacts with its environment through interfaces which are designed to be most convenient for the interactor itself. The result of the interactor are multiple type-safe response objects."/>
 
 # Iteration 2 - Communicating to the outer world
 
@@ -107,9 +101,7 @@ This component Uncle Bob calls the "Main component":
 
 The design now looks like this:
 
-<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step2.drawio.png" class="dynimg" 
-  title="Connecting to outer world" 
-  alt="In order to communicate from the interactor to the external devices implementations of the previously defined interfaces are added. The Main component composes the feature by wiring up implementations and interactor through the interfaces."/>
+<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step2.drawio.png" class="dynimg" title="Connecting to outer world" alt="In order to communicate from the interactor to the external devices implementations of the previously defined interfaces are added. The Main component composes the feature by wiring up implementations and interactor through the interfaces."/>
 
 # Iteration 3 - Formatting HTML e-mails 
 
@@ -142,9 +134,7 @@ but I couldn't come up with a better name so far. Do you have one? Leave a comme
 
 Finally we will change the Main component accordingly.
 
-<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step3.drawio.png" class="dynimg" 
-  title="Adding presenter for HTML formatting" 
-  alt="The MailClientAdapter is added to the adapters layer to take over the role of a presenter which builds HTML e-mails from the response objects of the interactor. The dependencies of the Main component is changed accordingly."/>
+<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step3.drawio.png" class="dynimg" title="Adding presenter for HTML formatting" alt="The MailClientAdapter is added to the adapters layer to take over the role of a presenter which builds HTML e-mails from the response objects of the interactor. The dependencies of the Main component is changed accordingly."/>
 
 # Iteration 4 - Adding some tests we should ...
 
@@ -175,9 +165,7 @@ This setup enables simple and fast tests, focusing on testing as well as documen
 e-mail feature from customer perspective 
 (see [BDD](https://automationpanda.com/2017/01/25/bdd-101-introducing-bdd/)).
 
-<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step4.drawio.png" class="dynimg" 
-  title="Adding testability through a TestAPI" 
-  alt="A TestAPI is introduced in the adapters layer to serve as an dedicated interface for testing. Tests only interact with the application and the feature through that TestAPI."/>
+<img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step4.drawio.png" class="dynimg" title="Adding testability through a TestAPI" alt="A TestAPI is introduced in the adapters layer to serve as an dedicated interface for testing. Tests only interact with the application and the feature through that TestAPI."/>
 
 # Conclusion
 
