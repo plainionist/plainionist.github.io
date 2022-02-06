@@ -175,5 +175,13 @@ The key - from my perspective - is to just follow:
 1. Separation of Concerns (decision making, formatting, external devices)
 2. Dependency Rule
 
+# Update
+
+In this video I show how an implementation of this design could look like:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6hIg86y9HuE" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 {% include series.html %}
