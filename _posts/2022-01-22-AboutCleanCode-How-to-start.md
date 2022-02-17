@@ -1,6 +1,6 @@
 ---
 layout: post
-title: AboutCleanCode - How to start Clean Code?
+title: This is how you should start with Clean Code ...
 description: |
   Clean Code already starts when reading code. In fact, whenever you starting reading code
   in order to change it later on, think of doing a code review. In this video I want to show

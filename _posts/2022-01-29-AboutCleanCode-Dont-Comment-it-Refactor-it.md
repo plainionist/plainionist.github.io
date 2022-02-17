@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AboutCleanCode - Don't comment it! Refactor it!"
+title: "Don't comment it! Refactor it!"
 description: |
   While good code comments can be extremely helpful to understand the purpose of the code,
   bad comments are useless at best and confusing at worst. This video shows some simple technique
