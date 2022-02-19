@@ -6,7 +6,7 @@ description: |
   bad comments are useless at best and confusing at worst. This video shows some simple technique
   how to improve the readability of your code by documenting less.
 tags: [clean-code]
-series: "AboutCleanCode"
+series: "CleanCode"
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003
 ---

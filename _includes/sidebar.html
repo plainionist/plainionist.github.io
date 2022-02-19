@@ -31,12 +31,18 @@
                 <a href="/series/ImplementingCleanArchitecture">Implementing Clean Architecture</a>
             </div>
             <div class="sidebar-bullet">
-                <a href="/series/AboutCleanCode">About Clean Code</a>
+                <a href="/series/CleanCode">Clean Code</a>
             </div>
         </div>
 
         <div class="sidebar-nav-item">
-            <a href="{{ site.baseurl }}/great-resources">Great Resources</a>
+            <label>YouTube</label>
+            <div class="sidebar-bullet">
+                <a href="https://youtube.com/playlist?list=PLby1BKAzwnsFAaLCt--kofuHOfRIOGtPi">Implementing Clean Architecture</a>
+            </div>
+            <div class="sidebar-bullet">
+                <a href="https://youtube.com/playlist?list=PLby1BKAzwnsF2a2o0lwL4RjHizg1KgetU">Clean Code</a>
+            </div>
         </div>
 
         <div class="sidebar-nav-item">
@@ -61,6 +67,10 @@
             {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
             <a href="/tag/{{ tagname }}"><code class="highlight"><nobr>{{ tagname }}</nobr></code></a>
             {% endfor %}
+        </div>
+
+        <div class="sidebar-nav-item">
+            <a href="{{ site.baseurl }}/great-resources">Great Resources</a>
         </div>
 
         <div class="sidebar-nav-item">

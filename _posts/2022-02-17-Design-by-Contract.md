@@ -5,7 +5,7 @@ description: |
   Assumptions are evil in source code, aren't these? Well, in this video we want to discuss how to turn bad assumptions
   in to good assumption using a simple, pretty old but very effective concept called "Design-by-Contract".
 tags: [clean-code]
-series: "AboutCleanCode"
+series: "CleanCode"
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003
 ---

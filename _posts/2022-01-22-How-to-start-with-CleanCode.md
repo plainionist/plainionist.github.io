@@ -6,7 +6,7 @@ description: |
   in order to change it later on, think of doing a code review. In this video I want to show
   you some simple refactorings you can already apply while reading existing code.
 tags: [clean-code]
-series: "AboutCleanCode"
+series: "CleanCode"
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003
 ---
