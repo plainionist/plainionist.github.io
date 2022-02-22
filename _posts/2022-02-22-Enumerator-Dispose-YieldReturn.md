@@ -116,7 +116,7 @@ treats a method with ```yield return``` statements. Inspecting the compiled code
 a [dnSpy](https://github.com/dnSpy/dnSpy) reveals that the generated code looks much different
 than what we have typed:
 
-```cs
+```csharp
 public class Repository
 {
   public int TransactionsCount
