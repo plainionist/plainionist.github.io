@@ -305,7 +305,7 @@ public static bool Any<TSource>(this IEnumerable<TSource> source) {
 }
 ```
 
-(From: [https://github.com/microsoft/referencesource/blob/master/System.Core/System/Linq/Enumerable.cs](Microsoft Reference Source))
+(From: [Microsoft Reference Source](https://github.com/microsoft/referencesource/blob/master/System.Core/System/Linq/Enumerable.cs))
 
 Now that the root cause is understood it is also clear how to fix the custom ```Any``` 
 implementation:
