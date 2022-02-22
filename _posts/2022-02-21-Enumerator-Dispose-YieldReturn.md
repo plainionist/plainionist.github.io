@@ -2,7 +2,8 @@
 layout: post
 title: "How I made my finally block not being called (.Net)"
 description: |
-
+  It is widely expected that the compiler or the CLR takes care that the finally block of a try-finally 
+  statement is called in all cases - even if an exception occurs. But this is not entirely true. 
 tags: [coding-tips]
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003
