@@ -108,16 +108,16 @@ class CellValue
 
     public void Match(Action<Id> onId, Action<WildcardId> onWildcardId, Action onEmptyCell)
     {
-        if (this is Id id) onId(id);
-        else if (this is WildcardId wildcard) onWildcardId(wildcard);
+        if (this is IdCell id) onId(id.Value);
+        else if (this is WildcardIdCell wildcard) onWildcardId(wildcard.Value);
         else if (this is EmptyCell empty) onEmptyCell();
         else throw new NotSupportedException($"Unknown CellValue: {this.GetType()}");
     }
 
     public T Select<T>(Func<Id, T> onId, Func<WildcardId, T> onWildcardId, Func<T> onEmptyCell)
     {
-        if (this is Id id) return onId(id);
-        else if (this is WildcardId wildcard) return onWildcardId(wildcard);
+        if (this is IdCell id) return onId(id.Value);
+        else if (this is WildcardIdCell wildcard) return onWildcardId(wildcard.Value);
         else if (this is EmptyCell empty) return onEmptyCell();
         else throw new NotSupportedException($"Unknown CellValue: {this.GetType()}");
     }
