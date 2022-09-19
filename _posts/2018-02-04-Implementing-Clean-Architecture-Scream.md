@@ -8,6 +8,18 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003
 ---
 
+**Update 2022-09-19**
+
+I have created a YouTube video explaining in detail how I would setup a project following
+the Clean Architecture and how I would scale the structure as the code base grows:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1IE8RC-IOSE" 
+  title="YouTube video player" frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+-----
+
 How do I make my architecture "scream"?
 
 According to Uncle Bob an architecture "screams" when it clearly expresses its core business purpose.
@@ -144,16 +156,5 @@ After having read "Clean Architecture" the second time I found a great conclusio
 
 > [...] lead to an inescapable conclusion: The component structure cannot be designed from the top down.
 > It is not one of the first things about the system that is designed, but rather evolves as the system grows and changes.
-
-## Update 2022-09-19
-
-I have created a YouTube video explaining in detail how I would setup a project following
-the Clean Architecture and how I would scale the structure as the code base grows:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1IE8RC-IOSE" 
-  title="YouTube video player" frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-
 
 {% include series.html %}
