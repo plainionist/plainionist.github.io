@@ -18,6 +18,7 @@ for example
 
 - dependencies between architectural layers are only allowed in one direction
 - avoid coupling between individual components or features
+- code creating "painful dependencies" should kept outside of the business logic assemblies
 
 But how to ensure that those rules are followed in the daily business of a software project?
 
@@ -32,8 +33,8 @@ new developer in the team ...
 
 BUT
 
-Even if we assume the most disciplined team there are reasons why having good documentation is not enough,
-for example:
+... even if we assume the most disciplined team there are reasons why having good documentation
+is not enough, for example:
 
 - Mistakes happen, that's why writing down functional requirements is not enough - we write tests to 
   verify our software.
@@ -45,43 +46,136 @@ for example:
   can be learned, memorized and followed by day one.
   Governance simply reduces load from a developers brain and memory.
 
-## how to set it up?
+## How should such governance be set up?
 
-- not enough that some architect sporadically does an analysis
-- fixes are cheaper the earlier found - might especially true for arch relevant issues
-- it has to be automated 
-- i do not recommend any "scheduled" run at weekend because that blame after checking
-- best is to have it as early as possible in CI/CD pipeline and actually in IDE of developers
-  so that we get immediate feedback and not get blamed later on
+One theoretical approach would be a regular code review session performed by the
+software architect or the complete team, analyzing whether the implementation still matches
+the architecture rules.
 
-## options?
+Even though code reviews are a great tool for knowledge sharing, it is certainly not the 
+best tool for regular (!) governance of rules.
 
-### compiler 
+Even if such review sessions are supported by tools like [NDepend](https://www.ndepend.com/), 
+[SonarQube](https://www.sonarqube.org/) or [Plainion.GraphViz](http://www.plainionist.net/Plainion.GraphViz/),
+this would still not be optimal as the developer would not get immediate feedback on any violation
+introduced.
 
-the compiler can provide such governance regarding "internal" key word and 
-cyclic references only if we separate individual components into separate assemblies. 
+Clearly, such governance - maybe even every governance? - has to be automated, means it has 
+to be integrated into the CI/CD pipeline to be really, practically effective.
 
-so as code grows and we want to ensure that deps only go according dependency rule we may split
-one assembly into multiple to make use of compiler features.
+## Automation options
 
-## tools 
+### Compiler 
 
-- in .net one common one: ndepend
-- thx to roslyn: custom tools
-  - show the ut to ut rule from coding bot
-- but avoid reinvent the wheel: NsDepCop
+The first - and to some extend simplest - option to automate the dependency governance is the compiler.
+
+The compiler will simply not compile a project if a class tries to use internal APIs of another 
+class in another assembly (unless those are "friend assemblies", defined with "InternalsVisibleTo" attribute).
+
+The compiler will also simply not compile a project if it creates cyclic dependencies to other projects.
+
+But of course this approach has quite some limitations. We may not want to move every little component into
+its own assembly just to make use of those compiler features and we can also not enforce any "semantical" rules
+like layer A should not depend on layer B, this way.
+
+### NDepend 
+
+NDepend is probably the most used tool for analyzing .NET code. It has a very powerful query language which
+probably allows implementing almost every governance rule we could think of.
+
+NDepend can also be integrated in the CI/CD pipeline and so could be used to enforce any governance rules
+during code integration.
+
+I never tried integrating NDepend rules into Visual Studio so I do not know whether those rules could be 
+integrated into the developers workflow easily so that every developer can verify any change already before
+submitting. 
+
+If you have experiences on that topic please share it in the comments.
+
+### Custom Roslyn rules
+
+Since Microsoft has released their compiler framework "Roslyn" it is pretty easy to implement custom
+"code analyzer" which integrate seamlessly into MsBuild and so into any CI/CD pipeline.
+
+We could develop custom code analyzers which verify the dependency rules based on source code analysis 
+during the build of each project.
+
+Here is an example on how to verify that unit test project are not referenced by any other (unit test) project:
+
+``` csharp
+[DiagnosticAnalyzer(LanguageNames.CSharp)]
+public class UnitTestAssembliesMustNotBeReferenced : DiagnosticAnalyzer
+{
+    public const string DiagnosticId = "Architecture";
+
+    private static DiagnosticDescriptor Descriptor { get; } =
+        new DiagnosticDescriptor("AR0001", 
+            "UnitTest assemblies must not be referenced by other assemblies",
+            "The assembly '{0}' references the unit test assembly: {1}",
+            category: "Architecture",
+            defaultSeverity: DiagnosticSeverity.Error,
+            isEnabledByDefault: true);
+
+    public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
+        ImmutableArray.Create(Descriptor);
+
+    public override void Initialize(AnalysisContext context)
+    {
+        context.EnableConcurrentExecution();
+        context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
+        context.RegisterCompilationAction(AnalyzeCompilation);
+    }
+
+    private void AnalyzeCompilation(CompilationAnalysisContext context)
+    {
+        foreach (var item in context.Compilation.References)
+        {
+            if (Path.GetFileNameWithoutExtension(item.Display)
+              .EndsWith(".UnitTests", StringComparison.OrdinalIgnoreCase))
+            {
+                context.ReportDiagnostic(
+                  Diagnostic.Create(
+                      Descriptor,
+                      null,
+                      context.Compilation.AssemblyName,
+                      Path.GetFileNameWithoutExtension(item.Display)));
+            }
+        }
+    }
+}
+```
 
 ## NsDepCop
 
-NsDepCop (https://github.com/realvizu/NsDepCop/issues/28)
+One nice little tool I recently discovered and started using is [NsDepCop](https://github.com/realvizu/NsDepCop/).
 
-goes on namespaces
-- independent from assembly structure which may have other drivers as performance or deployment
-- whilelisting or blacklisting
-- config inheritance
+It will be integrated in each project by simply adding a NuGet package reference and by providing a 
+configuration file where allowed and disallowed dependencies can be specified based on namespaces. 
 
-- sample of a project
-- sample of inheritance (if u have clear conventions in your project)
+Here is a simple example, showing how to ensure that the business logic and the domain layer
+remain independent from the infrastructure layer:
 
-how to implement it exactly ==> YT vidoe on my chanel  soon
+```xml
+<NsDepCopConfig IsEnabled="true" ChildCanDependOnParentImplicitly="true">
 
+  <Allowed From="*" To="System.*" />
+
+  <Allowed From="App.BusinessLogic.*" To="App.Domain.*" />
+  <Allowed From="App.Infrastructure.*" To="App.BusinessLogic.*" />
+  <Allowed From="App.Infrastructure.*" To="App.Persistance.*" />
+  
+</NsDepCopConfig>
+```
+
+How exactly a governance, e.g. of the Dependency Rule in the Clean Architecture,
+could be implemented using NsDepCop I will explain in the next video on my
+[YouTube channel](https://www.youtube.com/c/AboutCleanCode). Stay tuned.
+
+## Conclusion
+
+In my reality, architectural rules - esp. dependency rules - are only effective if those come
+with automatic governance. Nowadays there are various options available to automate a governance
+of simple as well as highly sophisticated rules, so there is no excuse for not having any
+automated governance at all ;-)
+
+Which tools do you use to ensure that dependency rules are followed in your project?
