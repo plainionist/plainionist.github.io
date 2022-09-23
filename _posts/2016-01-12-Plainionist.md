@@ -1,15 +1,8 @@
 ---
 layout: post
-title: Mission
+title: Plainionist?
 lint-nowarn: JL0004,JL0003
 ---
-
-<p style="margin:3rem;font-size:2rem;font-family:Script">
-    Become a Better Developer,<br/>
-    Deliver Better Software
-</p>
-
-## Why "Plainionist"?
 
 ### Plain
 
