@@ -168,8 +168,12 @@ remain independent from the infrastructure layer:
 ```
 
 How exactly a governance, e.g. of the Dependency Rule in the Clean Architecture,
-could be implemented using NsDepCop I will explain in the next video on my
-[YouTube channel](https://www.youtube.com/c/AboutCleanCode). Stay tuned.
+could be implemented using NsDepCop I explain in this video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rkU7Hx20Dc0" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 
 ## Conclusion
 
