@@ -32,7 +32,7 @@ footer-links:
 disqus: blog-jjyol5kzmx
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: UA-112127128-1
+google_analytics: G-3Y68GC7VT1
 
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
