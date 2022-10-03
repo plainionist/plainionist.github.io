@@ -12,9 +12,9 @@ lint-nowarn: JL0003, JL0002, JL0006, JL0007
 
 ![](../assets/thread-collaboration/overview.png)
 
-When it comes to concurrency my main axiom is: concurrency issues like race-conditions or 
-update-loss problems have to be avoided by design because detecting those via testing is pretty 
-hard and actually close to be impossible.
+When it comes to concurrency my main axiom is: concurrency issues like race-conditions 
+have to be avoided by design because detecting those via testing is pretty 
+hard and actually close to impossible.
 
 So how can we design the collaboration of concurrently executed parts of a software system in 
 a way that classic concurrency issues are avoided?
@@ -24,7 +24,7 @@ a way that classic concurrency issues are avoided?
 ## Types of Concurrency
 
 Before discussing how concurrently executed components could communicate with each other,
-let's take a look at different types of concurrency and the needs for collaboration
+let's take a look at different types of concurrency and the particular needs for collaboration
 these might have.
 
 ### Fire & Forget
@@ -35,11 +35,12 @@ Imagine there is a task to be performed which takes longer and which does not pr
 a result relevant to the "main control flow" of the application. 
 
 An example could be sending an e-mail to inform the users of the application about 
-the availability of some result. If we assume that potential errors are logged by that 
-component directly, this component would not produce any relevant result.
+the availability of some result. If we assume that potential errors are handled by that 
+component directly, this component would not produce any result relevant for the main thread.
 
-In such a case the "main control flow" could just "fire" some concurrent task, e.g. spawn a thread,
-and "forget" about it immediately, so no collaboration across threads would be needed.
+In such a case the "main control flow" could just "fire" some concurrent task, e.g. 
+spawn a thread, and "forget" about it immediately, so no collaboration across threads
+would be needed.
 
 ### Parallel.ForEach
 
@@ -48,7 +49,7 @@ and "forget" about it immediately, so no collaboration across threads would be n
 Another type of concurrency would be the parallel processing of some data without causing
 side-effects. This means, the data can be split into independent chunks which can be processed
 individually and the partial results of each chunk can finally be joined to get the
-complete results.
+complete result.
 
 An example could be the reading and parsing of a bunch of log files.
 
@@ -65,8 +66,8 @@ One nowadays quite popular approach of handling concurrency is
 [Promise](https://en.wikipedia.org/wiki/Futures_and_promises) or 
 [continuation](https://en.wikipedia.org/wiki/Continuation).
 
-Simply speaking this means an asynchronous task is started and a function or delegate 
-is passed which will be called after the asynchronous task has completed to continue
+Simply speaking, this means an asynchronous task is started and a function or delegate 
+is passed which will be called after the asynchronous task has completed, to continue
 the processing of the result of that task.
 
 If such a continuation causes a side effect, e.g. the result of the task is written
@@ -114,36 +115,38 @@ So if passing references from one thread to another is not a good idea, how coul
 communicate and exchange data then?
 
 Plain vanilla threads simply cannot communicate with each other without using some kind of 
-shared data. As discussed, such a data structure should be dedicated for inter-thread communication
-and has to be safe for being accessed from multiple threads. Most programming frameworks already provide
-ready to use thread-safe container implementations. In .NET such containers can be found in the
+shared data. As discussed, such a data structure should be dedicated for inter-thread
+communication and has to be safe for being accessed from multiple threads.
+Most programming frameworks already provide ready to use thread-safe data structures like
+thread-safe container implementations. In .NET such containers can be found in the
 ```System.Collections.Concurrent``` namespace.
 
-Additionally to a thread-safe data structure we usually also need some "thread synchronization event"
-to communicate from a "producer thread" to a "consumer thread" that new data has been added to 
-this data structure. In .NET examples of such events are 
+Additionally to a thread-safe data structures we usually also need some
+"thread synchronization events" to communicate from a "producer thread" to a
+"consumer thread" that new data has been added to this data structure.
+In .NET examples of such events are 
 the [ManualResetEvent](https://learn.microsoft.com/en-us/dotnet/api/system.threading.manualresetevent?view=net-6.0)
 and the [AutoResetEvent](https://learn.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0).
 
-If we now combine the thread-safe data structure with such a thread synchronization event and
-[FIFO](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)) semantics we get a thread 
-with a message queue a single communication API. 
+If we now combine a thread-safe data structure with such a thread synchronization event and
+[FIFO](https://en.wikipedia.org/wiki/FIFO_(computing_and_electronics)) semantics,
+we get a thread with a message queue as single communication API. 
 
-Such a design exists in many software systems under names like "actors", "message pumps", "mailbox processors"
-and "agents" and it provides an elegant way to add concurrency to a software design without 
-drastically increasing complexity.
+Such a design exists in many software systems under names like "actors", "message pumps",
+"mailbox processors" and "agents" and it provides an elegant way to add concurrency
+to a software design without drastically increasing complexity.
 
 ## Agent Design 
 
 A simple design approach to encapsulate the thread and the message queue is to provide
-a base class which calls a method implemented by derived class whenever a new message
+a base class which calls a method implemented by a derived class whenever a new message
 arrives. 
 
 ![](../assets/thread-collaboration/agent-design.png)
 
-The base class would also implement two interfaces. One interface which will only used
-by the infrastructure to life-cycle the agent and another interface used to send 
-messages to such an agent.
+The base class would also implement two interfaces. One interface which will only be used
+by the infrastructure to life-cycle the agent and another interface used to send messages
+to such an agent.
 
 I would recommend to put the actual message queue implement behind some interface as
 well so that it can later be replaced, e.g. by a persistent queue implementation or
@@ -165,24 +168,25 @@ As already stated, agents only communicate through messages. A message is usuall
 "event" if it informs about something already happened. A message is usually called 
 "command" if it requests the agent to do something.
 
-Besides the semantical meaning, messages are always only about data and must not
+Besides the semantical meaning, messages always only consist of data and must not
 contain any function pointers. In fact, messages should not contain any pointers or
-references to data structures which are shared with other components at all.
-To avoid any kind of threading issues by design, messages must only consist of 
-data copies which are only owned by one particular message.
+references to any data structure at all which is accessible from other components. 
+In other words, all data contained in a message have to be owned by that message which 
+means this data is either exclusively created or explicitly copied for that 
+particular message.
 
-To ensure this concept of "data copies only" in a bigger code base it might be
+To ensure this concept of "pass by value" in a bigger code base it can be
 helpful to serialize a message e.g. into JSON when it is put into the message queue 
 and to deserialize it when it is taken from the queue by the agent. As this 
-certainly impacts performance this feature could be implemented as a 
+certainly impacts performance such a diagnostics feature should be implemented as a 
 [decorator](https://youtu.be/e_-bf93vx10)
-to the message queue which is only active in the development environment.
-This way any violation to the "data copies only" concept would be detected early.
+of the message queue which is only active in the development environment.
+This way any violation to the "pass by value" concept would be detected early on.
 
 ## Are Agents really Bulletproof?
 
 If the agent implementation follows the design rules described above, the code of the agent,
-the data owned by the agent, the input and output communicate is "bulletproof".
+the data owned by the agent, the input and output communication is "bulletproof".
 
 But there are still pitfalls.
 
@@ -190,11 +194,12 @@ In a pure agent based system those agents would only communicate with messages. 
 practically useful system has to interact with the "outer world", there would be dedicated
 agents "owning" these input ports from and the output ports to the outer world. To ensure
 this ownership by design these agents would even create and initialize the communication 
-to some external service or device, e.g. an agent owning a database connection would create
-this connection and may not even share the connection string with any other agent.
+to such external services or devices, e.g. an agent owning a database connection would
+create this connection by itself and may not even share the connection string with
+any other agent.
 
-In reality agents often have dependencies, references to components or services passed to the
-agent during construction. Such components and services either need to be thread-safe or
+In reality agents often have dependencies, references to components or services passed to
+the agent during construction. Such components and services either need to be thread-safe or
 it has to be ensured during composition of the application that each dependency is owned
 by a single agent, so no other agent uses the same dependency. Depending on the size of the
 software system it might worth the effort to invent some static code checking rules which
@@ -207,16 +212,17 @@ ensure this ownership of dependencies.
 When it comes to actually sending a message to an agent there are basically two 
 communication patterns we could use:
 
-1) Direct messaging. The sender either has a reference to the receiver agent or the agent system
+1) *Direct messaging:* The sender either has a reference to the receiver agent or the agent system
    has some form of agent discovery, so that the sender can send a message to the receiver agent 
    directly.
-2) Publish/Subscribe. This usually requires some kind of "broker", "bus" or "mediator". Agents being
-   interested in some type of message would register to the broker. A sender would then send a 
-   message to this broker and the broker would deliver this message to all interested agents.
+2) *Publish/Subscribe:* This usually requires some kind of "broker", "bus" or "mediator".
+   Agents being interested in some type of message would register to the broker. A sender
+   would then send a message to the broker which would then deliver this message to
+   all interested agents.
 
-Each pattern has its own pros and cons. One criteria to decide would certainly be the question
-whether many-to-many communication is needed. Another criteria could be how much agents should 
-be decoupled, so should not make assumptions about the topology of the "agent network".
+Each pattern has its own pros and cons. One decision criteria would certainly be the need for many-to-many communication. Another criteria could be how decoupled agents should be, means
+how much knowledge an agent should have or needs to have about the topology of the
+"agent network".
 
 ## Micro Services?
 
@@ -224,29 +230,30 @@ be decoupled, so should not make assumptions about the topology of the "agent ne
 
 If an agent is designed and implemented such that
 
-- it has no dependency to any other part of the system
+- it has no dependency (reference) to any other part of the system
 - no other part of the system has any dependency (pointer or reference) to it
 - it effectively only communicates via messages
 
-then it would only be a small step move this agent to its own process and so make it individually 
-deployable.
+then it would only be a small step to move this agent to a container - could be a process
+or some "real" container technology - and so make it individually deployable.
 
-Such an agent we could call "micro service" then ...
+Some may call this a "micro service" then ...
 
 ## Conclusion
 
 As to my observation in object-oriented programming developers focus too much on calling APIs,
 telling an object to do something or asking an object for an intermediate (synchronous) result.
 This approach does not work well when we need to decouple "what gets done from when it gets done".
-A message based design much better addresses this need but it also requires a different mental model.
-In a message based system communication is always asynchronous, messages have no return values, instead
-a response method may arrive in some point of time.
-This may sound quite complex initially but it usually leads to a much more decoupled design and so 
-eventually leads to less complexity over time.
+
+A message based design much better addresses this need but it also requires a different 
+mental model. In a message based system communication is always asynchronous - messages have
+no return values, instead a response message may arrive in some point of time.
+This may sound quite complex initially but it actually leads to a much more decoupled design
+and so eventually leads to less complexity over time.
 
 Of course many other design tactics and patterns exist to ensure correctness of concurrent code.
-Agents so far are my favorite choice when it comes to concurrency which also requires collaboration
-of concurrently executed components.
+Agents are so far still my favorite choice when it comes to concurrency which also requires
+collaboration of concurrently executed components.
 
 If you are looking for a concrete example how to implement such agents then consider 
 [subscribing to my YouTube channel](https://www.youtube.com/c/AboutCleanCode) 
