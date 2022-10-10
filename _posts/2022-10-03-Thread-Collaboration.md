@@ -255,6 +255,11 @@ Of course many other design tactics and patterns exist to ensure correctness of 
 Agents are so far still my favorite choice when it comes to concurrency which also requires
 collaboration of concurrently executed components.
 
-If you are looking for a concrete example how to implement such agents then consider 
-[subscribing to my YouTube channel](https://www.youtube.com/c/AboutCleanCode) 
-because such a video will be published soon ;-)
+If you are looking for a concrete example how to implement such agents then check out 
+this video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W8x0cQoABYk" 
+   title="YouTube video player" frameborder="0"
+   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+   allowfullscreen>
+</iframe>
