@@ -263,3 +263,13 @@ this video:
    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
    allowfullscreen>
 </iframe>
+
+## Update 2022-10-18
+
+If you wonder how such a system should scale then I have this answer for you:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NvyCbHfm1s4"
+   title="YouTube video player" frameborder="0"
+   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+   allowfullscreen>
+</iframe>
