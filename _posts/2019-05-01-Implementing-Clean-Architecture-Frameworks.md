@@ -358,5 +358,16 @@ adjusting those if circumstances change.
 
 Your turn ;-)
 
+**Update 2022-11-08**
+
+I have created a YouTube video discussing in detail why most intuitive repository implementations are 
+not fully compliant with the rules of the Clean Architecture and how this can be fixed:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pfhDO_hZixw" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+
+
 
 {% include series.html %}
