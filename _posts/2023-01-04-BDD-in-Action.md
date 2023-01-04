@@ -21,50 +21,32 @@ But actually BDD is much, much more as this book illustrates:
 
 <!--more-->
 
-- short overview on BDD
+The book starts with a quick tour on what BDD is really about and already there it becomes clear that 
+it is much more than just writing tests with GIVEN-WHEN-THEN phrases.
+The rest of the book is divided into four parts.
 
-## First Part
+The first part is all about the business. It explains how to define the business goals (the "why") and
+the capabilities (the "how") of the system to be built. It continues explaining how to come up with
+features (the "what") and how those can be broken down into stories and illustrated by concrete examples.
+The emphasis is thereby always on communication and collaboration between business/domain experts and the team.
+In essence, it is all about "building the right system".
 
-- is about how to define business goals and break down those into features
-- vision - goals - capabilities - features - stories - acceptance criteria - examples - code
-  - goals (why): how to earn money (how to come up with good goals)
-  - capabilities (how): what does the system need to provide to achieve those goals
-  - features (what): implemented components that deliver capabilities
-  - stories: chunks of features 
-- focus on communication and collaboration between business/domain experts and the team.
-- ensure to "build the right system"
-- features illustrated by concrete examples to avoid misunderstandings
+The second part describes how features and examples are turned into acceptance criteria and how those
+are turned into "executable specification". The key message is: "Don't write tests, write executable
+specifications". To achieve this, this part gives an overview on Gherkin and how to write good BDD
+scenarios.
 
-## Second part
+The third part focuses on how to automate the scenarios written in Gherkin. It explains design aspects
+as well as how to use different automation frameworks in different programming languages.
+If finally shows that the idea of "executable specifications" is not limited to automating (business)
+acceptance criteria but that it can also be beneficial when being used for describing and verifying 
+lower level technical aspects. 
 
-- from features and examples "acceptance criteria" which are turned into "executable specifications"
-- dont write tests - exectuable specifications
-- feature files with scenarios
-- here we use gherkin (given when then)
-- focus on WHAT not on HOW (key difference from executable spec to tests), less is more
-- living documentation: always up to date, reports progress, 
+The last part of the book shows how BDD can even support project management to track the progress of the project
+and how it can be integrated into any CI/CD pipeline.
 
-## Third part
+In summary, BDD is not just about writing tests using GIVEN-WHEN-THEN. 
+Instead, it is what the name already indicates: a complete software development approach.
 
-- third part: how to automate
-- there are tools
-- design: feature files, steps, test abstractions
-- initialization and cleanup
-- separate the what from how
-- can be on UI layer but most should focus on business rules layer
-- also on lower (more technical level, unit tests) focus is on "executable specification" and not on test
-- shows tools and libraries how to practically do it
-
-## Fourth part
-
-- last part shows how BDD can even support project management to track progress of the project
-- and how to integrate BDD (specs) in the CI/CD pipeline
-
-## Conclusion
-
-in sumary: BDD is not just given-when-then it is really what the name states a "software development method"
-
-if u want to get max out of BDD - this book is worth reading - even if u have used Gherkin or any 
-of the BDD tools already
-
-
+If you want to get the maximum benefit out of BDD for your project, this book is worth reading,
+even if you have some practical experience with Gherkin and BDD tools already.
