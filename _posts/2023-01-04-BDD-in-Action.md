@@ -21,8 +21,8 @@ But actually BDD is much, much more as this book illustrates:
 
 <!--more-->
 
-The book starts with a quick tour on what BDD is really about and already there it becomes clear that 
-it is much more than just writing tests with GIVEN-WHEN-THEN phrases.
+The book starts with a quick tour on what BDD is really about and already there it gets clear that 
+BDD is much more than just writing tests with GIVEN-WHEN-THEN phrases.
 The rest of the book is divided into four parts.
 
 The first part is all about the business. It explains how to define the business goals (the "why") and
