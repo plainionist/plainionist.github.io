@@ -15,7 +15,7 @@ If you have at least some professional software engineering experience you proba
 and probability is high that you just think of Gherkin and GIVEN-WHEN-THEN when you think of BDD.
 But actually BDD is much, much more as this book illustrates:
 
-![Book: BDD in Action]({{ site.url }}/assets/BDD-in-action.jpg "Book: BDD in Action")
+![Book: BDD in Action]({{ site.url }}/assets/BDD-in-action.png "Book: BDD in Action")
 
 [BDD in Action](https://www.amazon.com/-/de/dp/161729165X/ref=sr_1_1?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2IBJHADUUJ2V7&keywords=bdd+in+action&qid=1672747172&sprefix=bdd+in+action%2Caps%2C264&sr=8-1)
 
