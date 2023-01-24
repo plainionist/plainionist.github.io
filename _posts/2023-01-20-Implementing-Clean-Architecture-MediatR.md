@@ -101,7 +101,7 @@ When we visualize the dependencies between these classes we get this picture:
 
 The Asp.Net controller obviously depends on MediatR due to the usage of the ```IMediator```
 interface to send the request. As the Asp.Net controller is located in the frameworks layer
-- due to its dependency to the Asp.Net framework - this dependency to MediatR is valid according
+(due to its dependency to the Asp.Net framework) this dependency to MediatR is valid according
 to the Dependency Rule.
 
 But we also see that the ```ForecastHandler``` as well as the ```ForecastRequest``` - both
@@ -155,7 +155,7 @@ Visualizing the dependencies between these classes results in the following pict
 
 The ```RegistrationApplicationService``` clearly depends on MediatR due to its usage of the ```IMediator```
 interface. But also the ```RegistrationRequest``` and even the ```RegistrationSucceededDomainEvent``` 
-- located in the domain layer - depends on MediatR due to the interfaces both classes implement.
+(located in the domain layer) depends on MediatR due to the interfaces both classes implement.
  Again, these dependencies clearly violate the Dependency Rule!
 
 ## Shouldn't we be pragmatic?
