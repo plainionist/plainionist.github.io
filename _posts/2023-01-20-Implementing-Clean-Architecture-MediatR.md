@@ -225,8 +225,12 @@ In case of MediatR there are three aspects for which we would have to provide an
 From these thoughts we can conclude: the "classic approach" of providing adapters is not that easy to realize
 in this case.
 Nevertheless, if you are interested in how such adapters could be implemented without 
-violating the Dependency Rule then stay tuned: I will publish a video soon, explaining the necessary steps
-in detail. I will link it to this article once published.
+violating the Dependency Rule then check out this video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JGgeoB-tXJw" 
+  title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 
 In the meantime, let's explore other options ...
 
