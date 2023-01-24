@@ -232,7 +232,7 @@ violating the Dependency Rule then check out this video:
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
 
-In the meantime, let's explore other options ...
+For the purpose of this article, let's explore other options ...
 
 ## MediatR alternative without marker interfaces?
 
