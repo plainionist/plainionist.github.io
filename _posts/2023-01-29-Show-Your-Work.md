@@ -13,7 +13,7 @@ What does software development mean to you?
 Is it an engineering discipline? It is called "Computer Science", so is it a science?
 And what about the "software craftsmanship" movement? Or is it actually art?
 
-![Books by Austin Kleon]({{ site.url }}/AustinKleon.png "Books by Austin Kleon")
+![Books by Austin Kleon]({{ site.url }}/assets/AustinKleon.png "Books by Austin Kleon")
 
 <!--more-->
 
