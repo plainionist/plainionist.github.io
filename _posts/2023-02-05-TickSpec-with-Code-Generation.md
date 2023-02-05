@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Lean BDD with Code Generation"
+title: "Lean BDD and Code Generation"
 description: |
     TickSpec is a lean BDD framework with powerful F# integration but the resulting tests are not
     nicely visualized in the TestExplorer of Visual Studio. This is were code generation comes
@@ -35,7 +35,7 @@ And this is how my journey went so far ...
 As already said, so far I tried practicing BDD without any framework based on feature files and Gherkin language.
 Even though the feature files look nice and are easy to read, even by non-technical stakeholders, tests written 
 using this approach have a severe drawback: there is no compiler which ensures that the steps, used to describe a 
-scenario. are actually compatible. This means, we can only detect at run-time that e.g. the "output" produced
+scenario are actually compatible. This means, we can only detect at run-time that e.g. the "output" produced
 by a particular GIVEN step is not compatible to the "input" required by a particular WHEN step.
 
 For me, valuing a lot the idea of avoiding bugs by design and with the help of the compiler (type safety) 
@@ -57,7 +57,7 @@ Here is an example of such a scenario:
 module ``Reading remaining work`` =
 
     [<Test>]
-    let ``WorkItem not implemented or done, empty remaining work field treated as missing estimation`` () =
+    let ``WorkItem not implemented/done, empty Remaining Work treated as missing estimation`` () =
         WorkItem.Create(WorkItemTypeNames.WorkPackage, [
             WorkItems.Fields.State, "In Work"
             WorkItems.Fields.RemainingWork, null
@@ -87,19 +87,19 @@ Time to evaluate the alternative ...
 The almost standard framework and tool for Gherkin based BDD in .NET is [SpecFlow](https://specflow.org/).
 It is definitively a great BDD framework and I even use it in another, C# based, project.
 Unfortunately the F# support is quite limited, so I continued my research and finally found 
-[TickSpec](https://github.com/fsprojects/TickSpec) which even claims in the one sentence project description
+[TickSpec](https://github.com/fsprojects/TickSpec) which even claims in the project description
 on GitHub to provide a "powerful F# integration".
 
 The "killer feature" from my perspective: TickSpec allows passing values "directly" from one step 
-to the next. There is still no compiler which ensures that steps used are actually compatible but
+to the next. There is still no compiler which ensures that the steps used are actually compatible but
 at least the required "inputs" of a step are make explicit on its "API surface".
 
 # Getting Started with TickSpec
 
 Getting started with TickSpec turned out to be pretty simple. I installed the respective
-[NuGet package](https://www.nuget.org/packages/TickSpec) and wrote my first Gherkin based scenario.
+[NuGet package](https://www.nuget.org/packages/TickSpec) and wrote my first Gherkin based scenario:
 
-```Gherkin
+```Cucumber
 Feature: Best Effort work items explicitly accepted should be highlighted in the backlog
 
 Scenario: Rendering the initiative backlog
@@ -112,7 +112,7 @@ Scenario: Rendering the initiative backlog
 
 The respective feature file I included in the Visual Studio project ".fsproj" as embedded resource:
 
-```
+```xml
     <EmbeddedResource Include="AcceptingBestEffortImprovements.feature" />
 ```
 
@@ -187,7 +187,7 @@ As mentioned above, I converted the generic test fixture into a base class which
 feature file as parameters. This means the T4 template simply would have to 
 
 - find all the "*.feature" files in the project
-- for each feature file create a derived class
+- create a derived class for each feature file
 - extract the name of each derived class from the respective feature file 
 
 After a few attempts this is the template I came up with:
@@ -224,7 +224,7 @@ Note that I had to specify ``hostspecific="true"```` in order to be able to pass
 
 [Mono.TextTemplating](https://github.com/mono/t4) provides a command line tool "dotnet-t4" to generate code 
 using a T4 template but to get the code generation easier integrated into the build process of my project and 
-to have flexibility later on I decided to use the library and host the template engine in my own CLI.
+to have more flexibility later on, I decided to use the library and host the template engine in my own CLI.
 
 First, I tried [Mono.TextTemplating nuget](https://www.nuget.org/packages/Mono.TextTemplating) package in a 
 F# based command line program but this failed at run-time, complaining that the proper ".NET hosting" was not
@@ -271,7 +271,9 @@ open System.Reflection
 type ``Best Effort work items explicitly accepted should be highlighted in the backlog``() = 
     inherit AbstractFeatures()
 
-    static member Scenarios = AbstractFeatures.GetScenarios(Assembly.GetExecutingAssembly(), "AcceptingBestEffortImprovements.feature")
+    static member Scenarios = 
+        AbstractFeatures.GetScenarios(Assembly.GetExecutingAssembly(), 
+            "AcceptingBestEffortImprovements.feature")
 ```
 
 When I executed my scenarios in the Test Explorer again I got those grouped and visualized as expected: 
@@ -283,8 +285,8 @@ scenarios below the respective feature and the features (test classes) properly 
 
 The final step left was to integrate my little code generator into the build process of my project so that 
 new derived classes get generated whenever I create a new feature file. 
-The simples approach is to create a new target in the test project and use the ```BeforeTargets``` attribute to hook
-it into right place of the build process:
+The simples approach was to create a new target in the test project and use the ```BeforeTargets``` attribute to hook
+it into the right place of the build process:
 
 ```xml
 <Target Name="GenerateFeatures" BeforeTargets="BeforeBuild;BeforeRebuild">
@@ -319,5 +321,4 @@ extensions.
 
 And with this setup I now feel fully enabled to write all new tests using the new Gherkin and
 TickSpec based approach and I will also migrate all existing scenarios to the new approach step-by-step.
-
 
