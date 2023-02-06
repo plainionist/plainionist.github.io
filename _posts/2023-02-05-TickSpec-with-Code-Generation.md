@@ -99,7 +99,7 @@ at least the required "inputs" of a step are make explicit on its "API surface".
 Getting started with TickSpec turned out to be pretty simple. I installed the respective
 [NuGet package](https://www.nuget.org/packages/TickSpec) and wrote my first Gherkin based scenario:
 
-```Cucumber
+```gherkin
 Feature: Best Effort work items explicitly accepted should be highlighted in the backlog
 
 Scenario: Rendering the initiative backlog
