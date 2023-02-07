@@ -301,10 +301,14 @@ it into the right place of the build process:
 
 Hint: "FileWrites" tells MsBuild that these files should be cleaned up during a "clean build".
 
-Of course this build script can be further improved, e.g. to support incremental compile, and 
+Of course this build script can be further improved, e.g. to support incremental compile and 
 certainly should be factored out so that it can be reused for other test projects in the code base.
-These improvements and further details I'll cover in my next video which will be published on my
-[YouTube channel](https://www.youtube.com/c/AboutCleanCode) soon.
+These improvements and further details I have covered in this video:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/s-4ogN6B5x8" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
 
 # Conclusion
 
