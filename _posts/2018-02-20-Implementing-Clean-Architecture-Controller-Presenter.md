@@ -420,4 +420,15 @@ Here are some of them:
 - [Use case containing the presenter or returning data?](https://softwareengineering.stackexchange.com/questions/357052/clean-architecture-use-case-containing-the-presenter-or-returning-data)
 - [What are the jobs of presenter?](https://stackoverflow.com/questions/46510550/clean-architecture-what-are-the-jobs-of-presenter)
 
+## Update 2023-02-16
+
+In this video I discuss some of the aspects in more detail, like the importance of 
+having controllers, presenters and view models as an anti-corruption layer for your
+application and domain model design:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iD4wns3yH44" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+
 {% include series.html %}
