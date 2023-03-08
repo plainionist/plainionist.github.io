@@ -326,3 +326,4 @@ extensions.
 And with this setup I now feel fully enabled to write all new tests using the new Gherkin and
 TickSpec based approach and I will also migrate all existing scenarios to the new approach step-by-step.
 
+**Update: ** The journey continues [here](/_posts/TickSpec-More-CodeGen)
