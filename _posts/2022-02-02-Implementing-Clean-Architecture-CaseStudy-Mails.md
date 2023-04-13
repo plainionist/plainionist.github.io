@@ -24,7 +24,7 @@ So here we go ...
 
 <!--more-->
 
-# Setting the context
+## Setting the context
 
 The application, this feature is designed for, analyzes test failures from our CI/CD 
 pipeline (stored in some test database) and creates defects in our defect database. 
@@ -41,7 +41,7 @@ test failures could not be processed properly because of e.g.:
 
 <img src="{{ site.url }}/assets/clean-architecture/sending-emails/Context.drawio.png" class="dynimg" title="Context of the application" alt="CI/CD pipeline stores test results in a test database, application analysis the test failures and creates defect in defect database based on configuration. Additionally the application can send emails."/>
 
-# Iteration 1 - Getting started
+## Iteration 1 - Getting started
 
 <img src="{{ site.url }}/assets/clean-architecture/Circles.png" width="50%" class="dynimg" title="Layers of the Clean Architecture with Dependency Rule" alt="The Clean Architecture consists of multiple layers organized as circles while dependencies are only allowed from outer circles to inner circles. The inner circles contain the business logic. All details, devices and frameworks are in the outer circles."/>
 
@@ -77,7 +77,7 @@ This is the design we end up with after the first iteration:
 
 <img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step1.drawio.png" class="dynimg" title="Separating business logic from mail client" alt="The interactor is the center of the design in the use case layer. It interacts with its environment through interfaces which are designed to be most convenient for the interactor itself. The result of the interactor are multiple type-safe response objects."/>
 
-# Iteration 2 - Communicating to the outer world
+## Iteration 2 - Communicating to the outer world
 
 In Clean Architecture the test database, the configuration file as well as the e-mail server are considered as
 "external devices" which are located in the most outer circle, the [Frameworks layer](/Implementing-Clean-Architecture-Frameworks).
@@ -102,7 +102,7 @@ The design now looks like this:
 
 <img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step2.drawio.png" class="dynimg" title="Connecting to outer world" alt="In order to communicate from the interactor to the external devices implementations of the previously defined interfaces are added. The Main component composes the feature by wiring up implementations and interactor through the interfaces."/>
 
-# Iteration 3 - Formatting HTML e-mails 
+## Iteration 3 - Formatting HTML e-mails 
 
 Ok, so far so good. The application can now send e-mails and all dependencies follow the Dependency Rule
 of the Clean Architecture. 
@@ -135,7 +135,7 @@ Finally we will change the Main component accordingly.
 
 <img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step3.drawio.png" class="dynimg" title="Adding presenter for HTML formatting" alt="The MailClientAdapter is added to the adapters layer to take over the role of a presenter which builds HTML e-mails from the response objects of the interactor. The dependencies of the Main component is changed accordingly."/>
 
-# Iteration 4 - Adding some tests we should ...
+## Iteration 4 - Adding some tests we should ...
 
 Of course we could have - and maybe even should have? - started the whole feature by writing the tests first.
 On the other hand, this post is not about test driven development but about how to design a feature according 
@@ -166,7 +166,7 @@ e-mail feature from customer perspective
 
 <img src="{{ site.url }}/assets/clean-architecture/sending-emails/Step4.drawio.png" class="dynimg" title="Adding testability through a TestAPI" alt="A TestAPI is introduced in the adapters layer to serve as an dedicated interface for testing. Tests only interact with the application and the feature through that TestAPI."/>
 
-# Conclusion
+## Conclusion
 
 Actually pretty straight forward, isn't it? ;-)
 
@@ -175,7 +175,7 @@ The key - from my perspective - is to just follow:
 1. Separation of Concerns (decision making, formatting, external devices)
 2. Dependency Rule
 
-# Update
+## Update
 
 In this video I show how an implementation of this design could look like:
 

@@ -30,7 +30,7 @@ And this is how my journey went so far ...
 
 <!--more-->
 
-# From Internal DSL to Gherkin
+## From Internal DSL to Gherkin
 
 As already said, so far I tried practicing BDD without any framework based on feature files and Gherkin language.
 Even though the feature files look nice and are easy to read, even by non-technical stakeholders, tests written 
@@ -82,7 +82,7 @@ without any prior F# knowledge. Well, maybe I was a bit too optimistic ;-)
 
 Time to evaluate the alternative ...
 
-# Specflow vs TickSpec
+## Specflow vs TickSpec
 
 The almost standard framework and tool for Gherkin based BDD in .NET is [SpecFlow](https://specflow.org/).
 It is definitively a great BDD framework and I even use it in another, C# based, project.
@@ -94,7 +94,7 @@ The "killer feature" from my perspective: TickSpec allows passing values "direct
 to the next. There is still no compiler which ensures that the steps used are actually compatible but
 at least the required "inputs" of a step are make explicit on its "API surface".
 
-# Getting Started with TickSpec
+## Getting Started with TickSpec
 
 Getting started with TickSpec turned out to be pretty simple. I installed the respective
 [NuGet package](https://www.nuget.org/packages/TickSpec) and wrote my first Gherkin based scenario:
@@ -143,7 +143,7 @@ I copied the provided
 [FeatureFixture.fs for NUnit](https://github.com/fsprojects/TickSpec/blob/master/Examples/ByFramework/NUnit/FSharp.NUnit/FeatureFixture.fs)
 and got my first scenarios running within a few minutes.
 
-# Executing the Specification
+## Executing the Specification
 
 I executed my scenarios in Visual Studio using the built-in Test Explorer. The scenarios turned
 green and it confirmed that passing data from one step to the other work as promised.
@@ -171,7 +171,7 @@ Simple, but a clear violation of the DRY principle.
 
 And this is where code generation comes into the picture ...
 
-# Code Generation
+## Code Generation
 
 I recently read about [Source Generators](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview)
 in .NET 6 but unfortunately these only support C#.
@@ -281,7 +281,7 @@ scenarios below the respective feature and the features (test classes) properly 
 
 <img src="{{ site.url }}/assets/BDD/TestExplorer-after.png" class="dynimg" title="Test organization in Test Explorer" alt="VS Test Explorer showing organization of the generated test cases"/>
 
-# Build Integration
+## Build Integration
 
 The final step left was to integrate my little code generator into the build process of my project so that 
 new derived classes get generated whenever I create a new feature file. 
@@ -310,7 +310,7 @@ These improvements and further details I have covered in this video:
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
 
-# Conclusion
+## Conclusion
 
 And this is the current status of my BDD, Gherkin & TickSpec journey.
 
