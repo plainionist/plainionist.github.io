@@ -76,11 +76,14 @@ And with this the compiler allows us to use ```async/await``` for the ```Execute
 <script src="https://gist.github.com/plainionist/86ab9cbd537231998377be8c4e447df7.js?file=Step6-Client.cs"></script>
 
 In essence, that's exactly how ```Task<T>``` works!
+So let's use it instead of our custom ```Promise``` implementation.
 
 <script src="https://gist.github.com/plainionist/86ab9cbd537231998377be8c4e447df7.js?file=Step7.cs"></script>
 
-
 Quod erat demonstrandum.
+
+```Task<T>``` and ```async/await``` are quite convenient and powerful concepts when dealing with asynchronous APIs
+and concurrency BUT neither of these concepts is causing (!) threads or concurrency.
 
 Full source code: https://github.com/plainionist/AboutCleanCode/tree/main/Promise
 
