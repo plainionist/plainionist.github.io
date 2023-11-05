@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What actually is Task<T>?"
+title: "What actually is Task&lt;T&gt;?"
 description: |
     When seeing Task<T> in code, most developers think of threads. But that is actually not quite correct.
     Task<T> is not coupled to multi-threading at all.
