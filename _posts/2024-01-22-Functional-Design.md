@@ -17,7 +17,7 @@ and I love functional programming since years. A perfect match!
 
 So I pre-ordered the book already march 2023 and immediately started reading when it finally arrived in january 2024.
 
-![Book: Functional Design: Principles, Patterns, and Practices]({{ site.url }}/assets/FunctionalDesign.png "Functional Design: Principles, Patterns, and Practices")
+![Book: Functional Design: Principles, Patterns, and Practices]({{ site.url }}/assets/FunctionalDesign.jpg "Functional Design: Principles, Patterns, and Practices")
 
 [Functional Design: Principles, Patterns, and Practices](https://www.amazon.com/Functional-Design-Principles-Patterns-Practices/dp/0138176396)
 
@@ -55,5 +55,5 @@ If you are new to FP and you like the freedom of dynamically types programming l
 then this book is certainly a great starting point for your FP journey!
 
 If you are new to FP and you prefer the safety of strongly typed programming languages,
-then I rather recommend this book [Domain-Modeling-Made-Functional] to start your FP journey.
+then I rather recommend this book [Domain Modeling Made Functional: Tackle Software Complexity with Domain-Driven Design and F#](Domain-Modeling-Made-Functional) to start your FP journey.
 
