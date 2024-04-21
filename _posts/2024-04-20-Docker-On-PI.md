@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002
 ---
 
-![Docker]({{ site.url }}/assets/docker "Docker")
+![Docker]({{ site.url }}/assets/docker.png "Docker")
 
 Even though Docker is popular already for quite a while, I never had an opportunity to give it a try.
 Until recently when I bought a Raspberry PI to host some web applications. 
