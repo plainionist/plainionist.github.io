@@ -7,13 +7,22 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002
 ---
 
-- caching response objects from web api can significantly improve perofmrance of web apps
-- if readonly then vuex or pinia are over engineered
-- wouldnt it be great simple automatic caching?
+One of my web applications has quite some pages which show quite a bit of data.
+
+In order to achieve smooth navigation between the pages, without bothering the user with progress indicators
+when the data of a page is loaded from the Web API every time the user navigates to a particular page,
+the data needs to be cached in the browser.
+
+As most of the data is readonly, frameworks like [Vuex](https://vuex.vuejs.org/) or similar state patterns seem to be "too heavy" in this case.
+
+Here is my simple approach to automatically cache the response objects from the Web APIs which provides
+great performance of the Web application without introducing much complexity.
 
 <!--more-->
 
-axios supports adapters
+The web application uses [axios](https://github.com/axios/axios) to call the Web APIs.
+
+Axios supports adapters which allows custom handling of requests.
 
 ```javascript
 import axios from 'axios'
@@ -40,7 +49,7 @@ function create ({ baseUrl, autoCache = true }) {
 }
 ```
 
-such an adapter is a simple function which takes axios config object and returns response object
+Such an adapter is a simple function which takes an axios config object and returns a response object.
 
 ```javascript
 function createCacheAdapter () {
@@ -83,7 +92,7 @@ function createCacheAdapter () {
 }
 ```
 
-requires two small helper funcitons to create the cache key
+The simple cache adapter above requires two small helper functions to create the cache key
 
 ```javascript
 function createCacheKey (url, params, paramsSerializer) {
@@ -100,7 +109,7 @@ function createCacheKey (url, params, paramsSerializer) {
 }
 ```
 
-and to parse text into json
+and to parse text into a Json object
 
 ```javascript
 function parseJson (data) {
@@ -112,8 +121,10 @@ function parseJson (data) {
 }
 ```
 
-there are NPM packages with cache impl
-a simple one based on sessionStorage could look like this
+The actual cache implementation is independent from the adapter.
+Any of the freely available NPM packages should be suitable.
+
+A simple cache implementation based on sessionStorage could look like this:
 
 ```javascript
 class Cache {
@@ -212,3 +223,6 @@ class Cache {
   }
 }
 ```
+
+As with every caching strategy, the challenge might be to decide when to invalidate the cache.
+In my case the cache only invalidates when the session of the user ends.
