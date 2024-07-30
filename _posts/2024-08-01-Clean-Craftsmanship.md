@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Book Review: Clean Craftsmanship: Disciplines, Standards, and Ethics"
-description: 
+description: What is software craftsmanship?
 tags: [book]
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002, JL0005
@@ -10,7 +10,7 @@ lint-nowarn: JL0003, JL0002, JL0005
 What is software craftsmanship?
 
 > Craftsmanship is the state of knowing, how to do something well and 
-> is the outcome oof good tutelage and lots of experience.
+> is the outcome of good tutelage and lots of experience.
 > 
 > -- Robert C. Martin, Clean Craftsmanship
 
