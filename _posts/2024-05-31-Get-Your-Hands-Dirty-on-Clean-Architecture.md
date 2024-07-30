@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Book Review: Get Your Hands Dirty on Clean Architecture"
-description: Another perspective on productivity
+description: A practical guide to Clean Architecture
 tags: [book]
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002, JL0005
