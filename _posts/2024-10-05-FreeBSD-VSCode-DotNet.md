@@ -11,7 +11,7 @@ lint-nowarn: JL0003, JL0002
 ---
 
 While VSCode and DotNet generally works on FreeBSD, the "C# Dev Kit" does not due to the following issue:
-https://github.com/microsoft/vscode-dotnettools/issues/1388
+[https://github.com/microsoft/vscode-dotnettools/issues/1388]
 
 Knowing that FreeBSD jails support running an almost full features linux system and also X11 apps,
 I was curious whether it would be possible to run VSCode including "C# Dev Kit" in a jail.
@@ -24,7 +24,7 @@ Here is what I learned.
 
 For the basic linux jail setup I mostly followed this great article:
 
-https://forums.freebsd.org/threads/setting-up-a-debian-linux-jail-on-freebsd.68434/
+[https://forums.freebsd.org/threads/setting-up-a-debian-linux-jail-on-freebsd.68434/]
 
 After several attempts, this is the jail configuration I finally used for my experiments
 
@@ -67,20 +67,20 @@ and also to unmount the fstab entries as this didn't happen automatically when s
 It also took me several attempts to finally come up with this fstab.
 
 ```
-# Dev   	      Mountpoint      		        FS              Options         	    Dump / Check
+# Dev       Mountpoint                  FS          Options           Dump/Check
 
-devfs       	  /opt/jails/devuan/dev      	devfs           rw,late                 0   	0
-tmpfs       	  /opt/jails/devuan/dev/shm  	tmpfs           rw,late,mode=1777    	  0   	0
-fdescfs     	  /opt/jails/devuan/dev/fd   	fdescfs         rw,late,linrdlnk        0   	0
+devfs       /opt/jails/devuan/dev       devfs       rw,late             0     0
+tmpfs       /opt/jails/devuan/dev/shm   tmpfs       rw,late,mode=1777   0     0
+fdescfs     /opt/jails/devuan/dev/fd    fdescfs     rw,late,linrdlnk    0     0
 
-linprocfs       /opt/jails/devuan/proc  	  linprocfs       rw,late 		            0   	0
-linsysfs        /opt/jails/devuan/sys   	  linsysfs        rw,late 		            0 	  0
-tmpfs           /opt/jails/devuan/tmp   	  tmpfs   	      rw,late,mode=1777 	    0 	  0
+linprocfs   /opt/jails/devuan/proc      linprocfs   rw,late             0     0
+linsysfs    /opt/jails/devuan/sys       linsysfs    rw,late             0     0
+tmpfs       /opt/jails/devuan/tmp       tmpfs       rw,late,mode=1777   0     0
 ```
 
 # Setting up X11
 
-For setting up X11 I mostly followed this article: https://wiki.freebsd.org/JailingGUIApplications
+For setting up X11 I mostly followed this article: [https://wiki.freebsd.org/JailingGUIApplications]
 
 I set up a non root user as follows:
 
@@ -98,8 +98,6 @@ and then added the following lines to "/home/dev1/.profile"
 export DISPLAY=:0.0
 export XAUTHORITY=/home/dev1/.Xauthority 
 ```
-
-## Testing X11
 
 To run X11 apps it is important to enter the jail without root permission:
 
@@ -123,8 +121,6 @@ APT::Cache-Start "104857600";
 ```
 
 After running ``apt-get update``, I succeeded installing VSCode.
-
-## Testing VSCode
 
 The first attempt to run VSCode failed:
 
@@ -167,10 +163,10 @@ At this point I updated the fstab to support "/dev/shm".
 To make "DBus" running I removed the following check from "/etc/init.d/dbus":
 
 ```bash
- if ! mountpoint -q /proc/ ; then
+if ! mountpoint -q /proc/ ; then
     log_failure_msg "Can't start $DESC - /proc is not mounted"
     return
-  fi
+fi
 ```
 
 ## Third attempt
