@@ -11,7 +11,7 @@ lint-nowarn: JL0003, JL0002
 ---
 
 While VSCode and DotNet generally works on FreeBSD, the "C# Dev Kit" does not due to the following issue:
-[https://github.com/microsoft/vscode-dotnettools/issues/1388]
+[FreeBSD build of C# Dev Kit](https://github.com/microsoft/vscode-dotnettools/issues/1388)
 
 Knowing that FreeBSD jails support running an almost full features linux system and also X11 apps,
 I was curious whether it would be possible to run VSCode including "C# Dev Kit" in a jail.
@@ -24,7 +24,7 @@ Here is what I learned.
 
 For the basic linux jail setup I mostly followed this great article:
 
-[https://forums.freebsd.org/threads/setting-up-a-debian-linux-jail-on-freebsd.68434/]
+[Setting up a (Debian) Linux jail on FreeBSD](https://forums.freebsd.org/threads/setting-up-a-debian-linux-jail-on-freebsd.68434/)
 
 After several attempts, this is the jail configuration I finally used for my experiments
 
@@ -80,7 +80,7 @@ tmpfs       /opt/jails/devuan/tmp       tmpfs       rw,late,mode=1777   0     0
 
 # Setting up X11
 
-For setting up X11 I mostly followed this article: [https://wiki.freebsd.org/JailingGUIApplications]
+For setting up X11 I mostly followed this article: [Jailing GUI Applications](https://wiki.freebsd.org/JailingGUIApplications)
 
 I set up a non root user as follows:
 
