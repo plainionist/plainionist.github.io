@@ -2,6 +2,8 @@
 layout: post
 title: "Book Review: Software Design X-Rays"
 description:
+    A different and very practical view on software complexity and technical debt which you can apply to 
+    any project, independently from size, frameworks or programming language.
 tags: [book]
 excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002, JL0005
