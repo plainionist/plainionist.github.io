@@ -25,13 +25,12 @@ Changes are not "suggested" but planned - it’s rarely a question of whether bu
 PRs were not made for this.
 They optimize for control and gatekeeping, while commercial teams optimize for flow and delivery speed without sacrificing quality.
 
-"
-Using pull requests for code changes by your own team members is like
-having your family members go through an airport security checkpoint to enter your home.
-It’s a costly solution to a different problem.
 
-Kief Morris, Why your team doesn’t need to use pull requests
-"
+> Using pull requests for code changes by your own team members is like having your family members go through an airport security checkpoint to enter your home.
+> It’s a costly solution to a different problem.
+>
+> Kief Morris, Why your team doesn’t need to use pull requests
+
 
 <!--more-->
 
@@ -72,7 +71,7 @@ It is a "gated submission": changes are integrated into mainline only after all 
 A developer cannot start a second PR on the same branch; further changes will update the existing PR.
 
 
-## The arguments
+## The Arguments
 
 ![]({{ site.url }}/assets/flow.drawio.png)
 
