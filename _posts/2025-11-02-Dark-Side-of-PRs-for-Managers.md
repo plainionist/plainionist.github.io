@@ -33,6 +33,7 @@ It’s a costly solution to a different problem.
 Kief Morris, Why your team doesn’t need to use pull requests
 "
 
+<!--more-->
 
 # Motivation
 
