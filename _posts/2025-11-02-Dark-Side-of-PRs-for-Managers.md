@@ -11,7 +11,7 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002, JL0005
 ---
 
-# Abstract
+## Abstract
 
 Pull Requests (PRs) were invented for Open Source projects.
 They allow "untrusted contributors" to suggest changes and ask "trusted committers" to pull them in.
@@ -35,7 +35,7 @@ Kief Morris, Why your team doesn’t need to use pull requests
 
 <!--more-->
 
-# Motivation
+## Motivation
 
 Many great articles and YouTube videos already discuss this topic - see the references -
 including well-known voices like Dave Farley, author of "Continuous Delivery".
@@ -43,27 +43,28 @@ including well-known voices like Dave Farley, author of "Continuous Delivery".
 This article provides a concise overview of the real-world consequences of PRs for commercial teams,
 written for managers and team leads.
 
-# Setting the Stage
+
+## Setting the Stage
 
 Before getting into the arguments, let’s clarify a few facts.
 
-## Git ≠ PR
+### Git ≠ PR
 
 Git doesn’t require Pull Requests.
 It’s a version control system that works perfectly well without them.
 
-## Code Review ≠ PR
+### Code Review ≠ PR
 
 Code reviews are valuable for code quality, knowledge sharing, and finding bugs.
 PRs are not required to practice code reviews.
 
-## Working incrementally
+### Working incrementally
 
 Developers rarely complete a feature in a single commit.
 Bug fixes might fit in one, but most features need multiple commits to be completed.
 
 
-# How Pull Requests work
+## How Pull Requests work
 
 Pull Requests always require a branch.
 A PR can contain one or many commits.
@@ -71,110 +72,110 @@ It is a "gated submission": changes are integrated into mainline only after all 
 A developer cannot start a second PR on the same branch; further changes will update the existing PR.
 
 
-# The arguments
+## The arguments
 
 ![]({{ site.url }}/assets/flow.drawio.png)
 
-## Passing gates takes time
+### Passing gates takes time
 
 Running build pipelines takes time. The larger the codebase, the longer it takes.
 Reviews take time as well. A PR may wait hours or even days for review.
 If reviews are expected immediately, context switching creates new problems (see "reviewing code immediately").
 
-## Continuing on the same task during PR verification is difficult
+### Continuing on the same task during PR verification is difficult
 
 Feature work usually requires several changes.
 While one PR is under review, continuing the same story requires creating a new branch from the first one.
 This adds effort and becomes messy if the first PR fails validation.
 
-## Bigger PRs
+### Bigger PRs
 
 To avoid this overhead, developers tend to group several changes together and open one PR when the story is finished.
 As a result, a single PR often contains multiple logical changes.
 
-## Longer-living branches
+### Longer-living branches
 
 Producing more changes takes more time, which means feature branches live longer.
 
-## Delayed Feedback
+### Delayed Feedback
 
 The longer branches live, the longer feedback gets delayed - from tests, from teammates reviewing the design,
 and from product owners or users who can only verify that the right feature was built after integration.
 
-## Higher reluctance to apply global refactorings
+### Higher reluctance to apply global refactorings
 
 The longer branches live, the higher the reluctance to apply refactorings that span multiple files
 or affect public APIs because developers fear the effort of complex merges.
 Skipping refactoring means not paying back technical debt, which means lowering code quality.
 
-## Bigger integration chunks
+### Bigger integration chunks
 
 The bigger the PR, the bigger the chunk of code changes that is integrated at once into mainline.
 
-## Higher merge complexity
+### Higher merge complexity
 
 The bigger the chunks that get integrated, the higher the risk of complex merges.
 Complex merges cause more effort.
 
-## Higher risk of bugs
+### Higher risk of bugs
 
 The more complex the merge, the higher the risk of mistakes and regressions, reducing product quality.
 
-## Harder to analyze build failures
+### Harder to analyze build failures
 
 The bigger the chunks that get integrated, the harder it is to figure out which change actually caused the issue
 when the build fails which increases the effort required to finish the feature.
 
-## Higher reluctance to reject changes
+### Higher reluctance to reject changes
 
 Bigger PRs also raise the mental barrier for reviewers to reject changes and demand rework.
 In the end, it’s one team aiming for the same goal - and it’s hard to tell a teammate to throw away a week’s work.
 
-## Reduced need to work incrementally
+### Reduced need to work incrementally
 
 It is common sense in the software industry that working incrementally leads to less waste and better results.
 
 But when accepting bigger PRs, developers lose both the incentive and the skill to work in small increments.
 Over time, this leads to even larger PRs.
 
-## Harder reviews
+### Harder reviews
 
 Reviewing large, multi-purpose changes takes longer and increases cognitive load.
 Feedback becomes shallow, resulting in a higher risk of technical debt or even new bugs.
 
-## Higher barrier for minor cleanups (Boy Scout Rule)
+### Higher barrier for minor cleanups (Boy Scout Rule)
 
 When integrating small improvements requires the overhead of a PR, developers skip them.
 Over time, this lowers code quality.
 
 
-# But what about ...
+## But what about ...
 
-## ... working in isolation?
+### ... working in isolation?
 
 Feature branches may feel productive because they isolate work, but that’s a local optimization.
 It benefits an individual’s focus at the expense of team flow.
 
-## ... running CI builds on feature branches?
+### ... running CI builds on feature branches?
 
 Running pipelines on branches is possible if the build farm scales, but it provides partial feedback at best.
 It shows whether a branch works in isolation - not whether it integrates with everyone else’s changes.
 By definition, that’s not Continuous Integration.
 
-## ... reviewing code immediately?
+### ... reviewing code immediately?
 
 Immediate reviews reduce PR delay but force frequent context switches for reviewers.
 Each context switch costs time (~ 15 minutes) and mental focus.
 More PRs mean more context switches, lowering overall team productivity.
 
-## ... short-lived branches?
+### ... short-lived branches?
 
 Short-lived branches reduce some problems but don’t resolve the fundamental ones.
 Each PR still acts as a gatekeeper, breaking the flow.
 More PRs simply multiply the overhead.
 
 
-# Continuous Integration
+## Continuous Integration
 
 Continuous Integration (CI) is the alternative that optimizes for flow and productivity.
 
@@ -197,30 +198,30 @@ CI enforces small, incremental changes, solving all the problems introduced by P
 It aligns developer behavior with team performance rather than individual convenience.
 
 
-# Are branches and PRs entirely bad?
+## Are branches and PRs entirely bad?
 
 Of course not - they have legitimate uses.
 
-## Prototypes
+### Prototypes
 
 When exploring a problem using a prototype, it’s fine to work on a branch.
 The branch helps manage work-in-progress, but its purpose is learning, not integration.
 Once a solution is known, development restarts cleanly on mainline.
 
-## Integrating Dependencies
+### Integrating Dependencies
 
 External dependencies come from outside the team and are therefore trusted less.
 Using a gated submission for validation before integration is often appropriate.
 
 
-# But why does everyone else do PRs then?
+## But why does everyone else do PRs then?
 
 Many teams adopted PRs because they are the default in popular tools like GitHub and GitLab.
 Others assume it’s the standard way to use Git.
 Few stop to question whether a model designed for untrusted collaboration fits a trusted commercial team.
 
 
-# Conclusion
+## Conclusion
 
 The key question is: what do you want to optimize for?
 
@@ -228,7 +229,7 @@ If your goal is control, use PRs.
 If your goal is flow and productivity, adopt Continuous Integration.
 
 
-# References
+## References
 
 - [Are Pull Requests Holding Back Your Team?](https://medium.com/better-programming/are-pull-requests-holding-back-your-team-e8aec48986c2)
 - [You Might Be Better Off Without Pull Requests](https://hamvocke.com/blog/better-off-without-pull-requests/)
