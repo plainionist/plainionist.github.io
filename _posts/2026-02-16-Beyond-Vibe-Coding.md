@@ -7,10 +7,10 @@ excerpt_separator: <!--more-->
 lint-nowarn: JL0003, JL0002, JL0005
 ---
 
-AI can get your project 70% done in minutes.
-But what about the hard 30% — the part that actually requires engineering?
+AI can get your project 70% done in minutes.  
+But what about the hard 30% - the part where real engineering begins?
 
-*Beyond Vibe Coding* cuts through the hype and draws a sharp line between short-term velocity and sustainable AI-assisted engineering.
+*Beyond Vibe Coding* cuts through the hype and draws a sharp line between short-term velocity and sustainable AI-assisted engineering.  
 It explains why prompting is really about expressing intent, why fundamentals still matter, and how juniors, mid-levels, and seniors must adapt differently in the AI era.
 
 ![Book: Beyond Vibe Coding: From Coder to AI-Era Developer]({{ site.url }}/assets/beyond-vibe-coding.jpg "Beyond Vibe Coding: From Coder to AI-Era Developer")
@@ -20,16 +20,18 @@ It explains why prompting is really about expressing intent, why fundamentals st
 <!--more-->
 
 AI tools are now part of everyday development.  
-But how do we use them without sacrificing quality, maintainability, and engineering discipline?
+The real question is not whether we use them - but how.
+
+How do we integrate AI without sacrificing quality, maintainability, and engineering discipline?
 
 *Beyond Vibe Coding: From Coder to AI-Era Developer* attempts to answer exactly that.
 
-The book draws a useful distinction right from the start:
+The book introduces a useful distinction:
 
 - **Vibe coding** optimizes for short-term speed.  
 - **AI-assisted engineering** optimizes for sustained velocity and reliability.
 
-That distinction frames the entire discussion. AI can accelerate you - but only if you integrate it into real engineering practices.
+AI can accelerate you - but only if it is embedded in real engineering practices.
 
 ## Programming With Intent
 
@@ -43,32 +45,33 @@ Prompting, in this view, is less about clever tricks and more about communicatio
 - Avoid overloading  
 - Refine iteratively  
 
-In other words: treat AI like a junior developer. Give direction. Review the results. Iterate.
+Treat AI like a junior developer. Give direction. Review the results. Iterate.
 
-The book introduces patterns such as role prompting and chain-of-thought reasoning, but the real takeaway is this: effective prompting is structured thinking.
+The book introduces techniques such as role prompting and chain-of-thought reasoning, but the deeper takeaway is this: effective prompting requires structured thinking.
 
 ## The 70% Problem
 
-One of the strongest concepts in the book is the "70% problem."
+One of the strongest ideas in the book is the "70% problem."
 
-AI can reliably scaffold a feature, generate boilerplate, or get a system mostly up and running.  
+AI can reliably scaffold a feature, generate boilerplate, or get a system mostly running.  
 But the final 30% - domain-specific decisions, edge cases, architectural trade-offs - remain human territory.
 
 AI handles **accidental complexity** well.  
 Engineers still own **essential complexity**.
 
-That has consequences:
+That distinction matters.
 
-- You must understand the generated code  
-- You must review and test it  
-- You must debug it when it breaks  
-- You must not merge what you cannot explain  
+- You must understand the generated code
+- You must review and test it
+- You must debug it when it breaks
+- You must not merge what you cannot explain
 
-For juniors especially, this is critical. Skipping the hard parts risks long-term skill atrophy.
+The last 30% is where real engineering begins.
+For juniors especially, skipping that part risks long-term skill atrophy.
 
 ## Practical Guidelines
 
-The book reinforces a set of pragmatic rules:
+The book reinforces pragmatic, almost conservative engineering habits:
 
 - One task per session to avoid context confusion  
 - Keep prompts concise and focused  
@@ -89,9 +92,10 @@ It changes how each experience level creates value.
 
 - Act as architect and editor-in-chief  
 - Use AI to accelerate large refactorings and strategic improvements - without losing control  
-- Continue to cultivate domain mastery and long-term foresight  
+- Continue cultivating domain mastery and long-term foresight  
 
-Experience becomes more valuable, not less.
+Experience becomes more valuable, not less.  
+AI amplifies judgment.
 
 **Mid-level engineers are encouraged to grow beyond feature implementation.**
 
@@ -99,7 +103,7 @@ Experience becomes more valuable, not less.
 - Take ownership of code review and quality assurance  
 - Develop systems thinking, architecture, and design skills  
 
-The focus shifts from *writing code* to *understanding systems*.
+The shift is subtle but important: move from *writing code* to *understanding systems*.
 
 **For juniors, AI is an accelerator - but only if fundamentals are solid.**
 
@@ -119,8 +123,6 @@ It helps you avoid common mistakes and establish sustainable workflows from the 
 If you have already experimented extensively with vibe coding and developed your own patterns, you may find fewer surprises.
 The book consolidates solid ideas rather than introducing radically new ones.
 
-Still, it offers a useful reminder:
+Still, it offers an important reminder:
 
 While tools evolve, software engineering fundamentals still apply.
-
-And that may be the most important lesson in the AI era.
