@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Book Review: The art of systems thinking"
+title: "Book Review: The Art of Systems Thinking"
 description:
 tags: [book]
 excerpt_separator: <!--more-->
