@@ -41,7 +41,7 @@ If your environment is more pragmatic and less title-driven, the value is more l
 The second half of the book contains stories from people who took that career path.
 I skipped those completely. Maybe they are useful if you want personal career examples, but for me they were not worth the time.
 
-So my brief opinion is this:
+## TLDR;
 
 The book is useful if you want to understand how senior technical roles work in larger companies and how to grow beyond the management track.
 It is less useful if you are mostly interested in better engineering practices, smaller-company realities, or hands-on technical leadership without the title system around it.
